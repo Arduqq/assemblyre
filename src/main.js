@@ -1,9 +1,9 @@
-var Vue = require("vue");
-var App = require("./app.vue");
+import Vue from 'vue'
+import App from './app.vue'
 
-new Vue({
-  el: "#app",
-  render: (createElement) => {
-    return createElement(App);
-  },
-});
+Vue.config.productionTip = false
+window.onload = function() {
+    new Vue({
+        render: h => h(App),
+    }).$mount('#app')
+}
