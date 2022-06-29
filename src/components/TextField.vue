@@ -1,46 +1,54 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="chord" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
-  
-  <div type="text" 
-       ref="textInput"
-       class="rendered-view"
-       :class="[textAlignment]" 
-       value="mdcontent" 
-       v-html="mdcontent">
-    
-  </div>
-  <div class="config-view" v-show="inEdit">
-    <input type="radio" id="edit-background-toggle" value="background" v-model="inEditProperty" />
-    <label for="edit-background-toggle">BG</label>
-    <input type="radio" id="edit-text-toggle" value="text" v-model="inEditProperty" />
-    <label for="edit-background-toggle">Text</label>
-    <input type="radio" id="edit-border-toggle" value="border" v-model="inEditProperty" />
-    <label for="edit-background-toggle">Border</label>
-    <div class="edit-panel" v-show="inEditProperty === 'background'" v-click-outside="closePanel">
-      <color-picker v-model="backgroundColor" @change-color = "changeBackgroundColor"></color-picker>
-    </div>
-    <div class="edit-panel" v-show="inEditProperty === 'text'" v-click-outside="closePanel">
-      <color-picker v-model="textColor" @change-color = "changeTextColor"></color-picker>
-      <input type="radio" id="left" value="left" v-model="textAlignment" />
-      <label for="left">Left</label>
-      <input type="radio" id="center" value="centered" v-model="textAlignment" />
-      <label for="center">Center</label>
-      <input type="radio" id="right" value="right" v-model="textAlignment" />
-      <label for="right">Right</label>
-    </div>
-    <div class="edit-panel" v-show="inEditProperty === 'border'" v-click-outside="closePanel">
-      <color-picker v-model="borderColor" @change-color = "changeBorderColor"></color-picker>
-    </div>
-    <input type="button" id="delete-button" @click="destroySelf" value="Delete"/>
+  <main>
+    <div type="text" 
+          ref="textInput"
+          class="rendered-view"
+          :class="[textAlignment]" 
+          value="mdcontent" 
+          v-html="mdcontent">
+        
+      </div>
+      <div class="config-view" v-show="inEdit">
+        <input type="radio" id="edit-background-toggle" value="background" v-model="inEditProperty" />
+        <label for="edit-background-toggle">BG</label>
+        <input type="radio" id="edit-text-toggle" value="text" v-model="inEditProperty" />
+        <label for="edit-background-toggle">Text</label>
+        <input type="radio" id="edit-border-toggle" value="border" v-model="inEditProperty" />
+        <label for="edit-background-toggle">Border</label>
+        <div class="edit-panel" v-show="inEditProperty === 'background'" v-click-outside="closePanel">
+          <color-picker v-model="backgroundColor" @change-color = "changeBackgroundColor"></color-picker>
+        </div>
+        <div class="edit-panel" v-show="inEditProperty === 'text'" v-click-outside="closePanel">
+          <color-picker v-model="textColor" @change-color = "changeTextColor"></color-picker>
+          <input type="radio" id="left" value="left" v-model="textAlignment" />
+          <label for="left">Left</label>
+          <input type="radio" id="center" value="centered" v-model="textAlignment" />
+          <label for="center">Center</label>
+          <input type="radio" id="right" value="right" v-model="textAlignment" />
+          <label for="right">Right</label>
+        </div>
+        <div class="edit-panel" v-show="inEditProperty === 'border'" v-click-outside="closePanel">
+          <color-picker v-model="borderColor" @change-color = "changeBorderColor"></color-picker>
+        </div>
+        
+        <input type="button" id="delete-button" @click="destroySelf" value="Delete"/>
 
-    <textarea v-model="content" 
-              type="text" 
-              ref="rawInput"
-              :class="[textAlignment]" 
-              value="content" 
-              rows="10">
-    </textarea>
-  </div>
+        <textarea v-model="content" 
+                  type="text" 
+                  ref="rawInput"
+                  :class="[textAlignment]" 
+                  value="content" 
+                  rows="10">
+        </textarea>
+      </div>
+  </main>
+  
+  <aside class="quick-config-view">
+      <input type="button" value="Up" id="stack-up-button" @click="stackUp" />
+      <input type="button" value="Down" id="stack-down-button" @click="stackDown" />
+
+  </aside>
   
   
 </div>
@@ -90,6 +98,7 @@
         backgroundColor: "#ffffff",
         textColor: "#121212",
         borderColor: "#121212",
+        stackOrder: 0,
         screenX: 0,
         screenY: 0,
         initMessages: [
@@ -116,6 +125,9 @@
         selector.setAttribute('data-x', this.x)
         selector.setAttribute('data-y', this.y)
         interact(selector)
+          .pointerEvents({
+            ignoreFrom: 'aside',
+          })
           .draggable({
             inertia: false,
             restrict: {
@@ -213,15 +225,25 @@
       },
       destroySelf: function() {
         this.alive=!this.alive;
+      },
+      stackUp: function() {
+        this.stackOrder ++;
+      },
+      stackDown: function() {
+        if (this.stackOrder != 0) {
+          this.stackOrder --;
+        }
       }
 
     },
     computed: {
       fieldStyle () {
+        var stacking = !this.inEdit ? this.stackOrder : 1000;
         return {
           '--chord-bg-color': this.backgroundColor,
           '--chord-text-color': this.textColor,
-          '--chord-border-color': this.borderColor
+          '--chord-border-color': this.borderColor,
+          '--chord-stack-order': stacking
         }
       }
     },
@@ -257,6 +279,7 @@
     background-color: var(--chord-bg-color);
     color: var(--chord-text-color);
     border: 2px solid var(--chord-border-color);
+    z-index: var(--chord-stack-order);
     position: absolute;
     height: auto;
     width: 300px;

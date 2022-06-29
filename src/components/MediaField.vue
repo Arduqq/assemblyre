@@ -3,11 +3,19 @@
     
   
   <div class="config-view" v-show="inEdit">
-    
-    <input type="radio" id="edit-background-toggle" value="border" v-model="inEditProperty" />
-    <label for="edit-background-toggle">Border</label>
+    <input type="radio" id="edit-image-toggle" value="image" v-model="inEditProperty" />
+    <label for="edit-image-toggle">Image</label>
+    <input type="radio" id="edit-border-toggle" value="border" v-model="inEditProperty" />
+    <label for="edit-border-toggle">Border</label>
     <div class="edit-panel" v-show="inEditProperty === 'border'" v-click-outside="closePanel">
       <color-picker v-model="borderColor" @change-color = "changeBorderColor"></color-picker>
+    </div>
+    <div class="edit-panel" v-show="inEditProperty === 'image'" v-click-outside="closePanel">
+      
+      <input type="radio" id="pixelated" value="pixelated" v-model="imageRendering" />
+      <label for="pixelated">Pixelated</label>
+      <input type="radio" id="auto" value="auto" v-model="imageRendering" />
+      <label for="auto">Smooth</label>
     </div>
     
     <input type="button" id="delete-button" @click="destroySelf" value="Delete"/>
@@ -56,7 +64,7 @@
         id: uniqueId('media-field-'),
         inEdit: false,
         inEditProperty: null,
-        textAlignment: "Left",
+        imageRendering: "auto",
         borderColor: "#121212",
         screenX: 0,
         screenY: 0
@@ -65,17 +73,17 @@
     mounted: function() {
       let draggableWrapper = this.$refs.draggableWrapper;
       this.initInteract(draggableWrapper);
-      console.log(this.media)
     },
     methods: {
       initInteract: function(selector) {
         selector.style.webkitTransform = selector.style.transform =
             "translate(" + this.x + "px, " + this.y + "px)";
+        selector.style.width =
+            "250px";
         selector.setAttribute('data-x', this.x)
         selector.setAttribute('data-y', this.y)
         interact(selector)
           .draggable({
-            inertia: false,
             restrict: {
               restriction: "parent",
               endOnly: true,
@@ -86,14 +94,16 @@
             onend: this.onDragEnd
           })
           .resizable({
-            edges: { left: true, right: true, bottom: true, top: true },
+            edges: { left: false, right: true, bottom: true, top: false },
             onmove: this.dragScaleListener,
             onend: this.onDragEnd,
             modifiers: [
+              interact.modifiers.restrict({ restriction: 'parent', endOnly: true }),
+              interact.modifiers.restrictSize({ max: 'parent' , min: {width: 100}}),
               interact.modifiers.aspectRatio({
                 ratio: 'preserve',
                 modifiers: [
-                  interact.modifiers.restrictSize({ max: 'parent' }),
+                  interact.modifiers.restrictSize({ max: 'parent' , min: {width: 100}}),
                 ],
               }),
             ],
@@ -113,7 +123,6 @@
           target.style.webkitTransform = target.style.transform =
             "translate(" + x + "px, " + y + "px)";
 
-          // update the posiion attributes
           target.setAttribute("data-x", x);
           target.setAttribute("data-y", y);
         }
@@ -140,7 +149,6 @@
       },
       onDragEnd: function(event) {
         var target = event.target;
-        console.log(target);
         this.screenX = target.getBoundingClientRect().left;
         this.screenY = target.getBoundingClientRect().top;
       },
@@ -171,17 +179,17 @@
     computed: {
       fieldStyle () {
         return {
-          '--plug-bg-color': this.backgroundColor,
+          '--plug-image-rendering': this.imageRendering,
           '--plug-text-color': this.textColor,
           '--plug-border-color': this.borderColor
         }
       },
       mediaURL () {
-        if (!this.media) {
-          return
+        if (this.media) {
+          console.log(this.media);
+          return this.media;
         }
-        const fileName = this.media;
-        return require ('@/assets/' + fileName + '')
+        return require ('@/assets/sample.jpg')
       }
     },
     directives: {
@@ -224,6 +232,11 @@
     max-width: 100%
   }
   
+  .plug img {
+    
+    image-rendering: var(--plug-image-rendering);
+  }
+
   .plug .config-view {
     flex: 1 1 100%;
     display: flex;

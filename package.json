@@ -20,7 +20,8 @@
         "lodash.uniqueid": "^4.0.1",
         "lodash.sample": "^4.2.1",
         "marked": "4.0.16",
-        "vueify": "^9.4.1"
+        "vueify": "^9.4.1",
+        "p5": "1.4.1"
     },
     "license": "MIT",
     "keywords": [

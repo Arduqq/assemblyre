@@ -1,18 +1,24 @@
 <template>
-  <div class="editor">
-    <div class="toolbox">
-      <div class="starter text" ref="textStarter"></div>
-      <div class="starter media" ref="mediaStarter"></div>
+<div id="editor-view">
+  <input type="checkbox" value="Switch mode" class="mode-toggle" @click="editingPlugs = !editingPlugs"/>
+    <div class="editor plugs" >
+      <div class="toolbox">
+        <div class="starter text" ref="textStarter"></div>
+      </div>
+      <div class="sandbox" ref="sandbox">
+        <text-field v-for="chord in chords" :x="chord.x" :y="chord.y" :width="chord.width" :height="chord.height" :key="chord.id"></text-field>
+        <media-field v-for="plug in plugs" :x="plug.x" :y="plug.y" :width="plug.width" :height="plug.height" :media="plug.media" :key="plug.id"></media-field>
+      </div>
+      <div class="mediabox" ref="mediabox">
+        <linked-image v-for="image in images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
+        <input type="text" v-model="newImageURL"/>
+        <button @click="addImage">Add Image</button>
+      </div>
     </div>
-    <div class="sandbox" ref="sandbox">
-      <text-field v-for="chord in chords" :x="chord.x" :y="chord.y" :width="chord.width" :height="chord.height" :key="chord.id"></text-field>
-      <media-field v-for="plug in plugs" :x="plug.x" :y="plug.y" :width="plug.width" :height="plug.height" media="sample.jpg" :key="plug.id"></media-field>
+    <div class="editor flow" :style="editorFocus">
+      <flow-view/>
     </div>
-    <div class="mediabox" ref="mediabox">
-
-    </div>
-  </div>
-      
+   </div>   
 </template>
 
 <script>
@@ -21,13 +27,17 @@
   import MediaField from "./MediaField.vue";
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
+  import LinkedImage from "./LinkedImage.vue";
+  import FlowView from "./FlowView.vue";
   export default {
     name: "EditorView",
     data() {
       return {
-        canSelect: true,
+        editingPlugs: true,
         chords: [],
+        images: [],
         plugs: [],
+        newImageURL : "https://finaloutpost.net/s/pQKfE.png",
         screenX: 0,
         screenY: 0
       };
@@ -35,9 +45,7 @@
     mounted: function() {
       let sandbox = this.$refs.sandbox;
       let textStarter = this.$refs.textStarter;
-      let mediaStarter = this.$refs.mediaStarter;
       this.initTextStarter(textStarter);
-      this.initMediaStarter(mediaStarter);
       this.initDropzone(sandbox);
     },
     methods: {
@@ -47,6 +55,11 @@
             accept: ".starter",
             overlap: 1
           })
+      },
+      initImageStarter: function(isRendered) {
+        if (isRendered) {
+            this.initMediaStarter(this.$refs.imageStarters.at(-1).$el, isRendered);
+        }
       },
       initTextStarter: function(starter) {
         starter.setAttribute('data-x', this.x)
@@ -62,9 +75,10 @@
             onend: this.dropText
           })
         },
-        initMediaStarter: function(starter) {
+        initMediaStarter: function(starter, media) {
           starter.setAttribute('data-x', this.x)
           starter.setAttribute('data-y', this.y)
+          starter.setAttribute('data-media', media)
           interact(starter)
             .draggable({
               inertia: false,
@@ -100,11 +114,12 @@
         },
         dropMedia: function(event) {
           var target = event.target;
+          var media = target.getAttribute("data-media");
           target.style.webkitTransform = target.style.transform =
               "translate(" + 0 + "px, " + 0 + "px)";
           this.screenX = 0;
           this.screenY = 0;
-          this.addPlug(event.clientX, event.clientY);
+          this.addPlug(event.clientX, event.clientY, media);
 
           target.setAttribute("data-x", 0);
           target.setAttribute("data-y", 0);
@@ -112,18 +127,37 @@
         addChord: function (x, y) {
           this.chords.push({id: uniqueId("chord-"), x: x, y: y, width: 100, height: 30});
         },
-        addPlug: function(x,y) {
-          this.plugs.push({id: uniqueId("plug-"), x: x, y: y, width: 100, height: 30});
+        addPlug: function(x,y, url) {
+          this.plugs.push({id: uniqueId("plug-"), x: x, y: y, width: 100, height: 30, media: url});
+        },
+        addImage: function() {
+          this.images.push({id: uniqueId("image-"), url: this.newImageURL});
         },
         controlSelection: function (control) {
             this.canSelect = !control;
 
         }
     },
+    computed: {
+      editorFocus() {
+        if (this.editingPlugs) {
+          return {
+            "--flow-editor-stack-order": 0,
+            "--flow-editor-opacity": .5,
+          }
+        }
+        return {
+            "--flow-editor-stack-order": 2,
+            "--flow-editor-opacity": .8
+          }
+      }
+    },
     components: {
-      TextField,
-      MediaField
-    }
+    TextField,
+    MediaField,
+    LinkedImage,
+    FlowView
+}
   }
 </script>
 
@@ -131,11 +165,31 @@
   * {
     box-sizing: border-box;
   }
+
+  .mode-toggle {
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
+    margin: 0 auto;
+    width: 100px;
+    height: 50px;
+    z-index: 100;
+  }
+
   .editor {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-flow: row wrap;
+    position: absolute;
+    transition: .1s;
+    z-index: 1;
+  }
+
+  .editor.flow {
+    z-index: var(--flow-editor-stack-order);
+    opacity: var(--flow-editor-opacity);
   }
 
   .sandbox {
@@ -143,8 +197,8 @@
   color: #2c3e50;
   display: block;
   flex: 0 0 70%;
-  background-color: #fbfbff;
-  background-image:  linear-gradient(#ffe9fa 2px, transparent 2px), linear-gradient(90deg, #ffe9fa 2px, transparent 2px), linear-gradient(#ffe9fa 1px, transparent 1px), linear-gradient(90deg, #ffe9fa 1px, #fbfbff 1px);
+  background-color: transparent;
+  background-image:  linear-gradient(#ffe9fa 2px, transparent 2px), linear-gradient(90deg, #ffe9fa 2px, transparent 2px), linear-gradient(#ffe9fa 1px, transparent 1px), linear-gradient(90deg, #ffe9fa 1px, transparent 1px);
   background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
   }
@@ -161,7 +215,7 @@
   .mediabox {
     flex: 0 0 20%;
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: center;
     padding: 20px;
