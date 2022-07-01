@@ -13,7 +13,7 @@
 
 <script>
   import uniqueId from 'lodash.uniqueid';
-export default {
+  export default {
     name: "ColorPicker",
     data() {
       return {
@@ -25,7 +25,7 @@ export default {
         passColor (event) {
           var target = event.target;
           this.color = target.value;
-          this.$emit('change-color', target.value);
+          this.$emit('input', target.value);
         }
     },
     computed: {

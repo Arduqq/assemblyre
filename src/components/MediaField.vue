@@ -1,25 +1,6 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="plug" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
-    
-  
-  <div class="config-view" v-show="inEdit">
-    <input type="radio" id="edit-image-toggle" value="image" v-model="inEditProperty" />
-    <label for="edit-image-toggle">Image</label>
-    <input type="radio" id="edit-border-toggle" value="border" v-model="inEditProperty" />
-    <label for="edit-border-toggle">Border</label>
-    <div class="edit-panel" v-show="inEditProperty === 'border'" v-click-outside="closePanel">
-      <color-picker v-model="borderColor" @change-color = "changeBorderColor"></color-picker>
-    </div>
-    <div class="edit-panel" v-show="inEditProperty === 'image'" v-click-outside="closePanel">
-      
-      <input type="radio" id="pixelated" value="pixelated" v-model="imageRendering" />
-      <label for="pixelated">Pixelated</label>
-      <input type="radio" id="auto" value="auto" v-model="imageRendering" />
-      <label for="auto">Smooth</label>
-    </div>
-    
-    <input type="button" id="delete-button" @click="destroySelf" value="Delete"/>
-  </div>
+<div v-if="alive" ref="draggableWrapper" class="media" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
+  <media-field-config  v-show="inEdit" :properties="fieldStyleProperties" />
   <img :src="mediaURL" />
   
 </div>
@@ -28,7 +9,7 @@
 <script>
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
-  import ColorPicker from "./ColorPicker.vue";
+  import MediaFieldConfig from "./MediaFieldConfig.vue";
 
   export default {
   name: "MediaField",
@@ -63,9 +44,17 @@
         alive: true,
         id: uniqueId('media-field-'),
         inEdit: false,
-        inEditProperty: null,
-        imageRendering: "auto",
-        borderColor: "#121212",
+        fieldStyleProperties: {
+          image: {
+            imageRendering: "auto",
+          },
+          border: {
+            borderColor: "#121212",
+            borderRadius: "0%;",
+            borderStyle: "solid",
+            borderSize: "2px"
+          }
+        },
         screenX: 0,
         screenY: 0
       }
@@ -73,6 +62,7 @@
     mounted: function() {
       let draggableWrapper = this.$refs.draggableWrapper;
       this.initInteract(draggableWrapper);
+      console.log(this.fieldStyleProperties);
     },
     methods: {
       initInteract: function(selector) {
@@ -157,10 +147,6 @@
       },
       closeConfig: function() {
         this.inEdit = false;
-        
-      },
-      closePanel: function() {
-        this.inEditProperty = null;
       },
       changeBackgroundColor: function(color) {
         this.backgroundColor = color;
@@ -179,9 +165,11 @@
     computed: {
       fieldStyle () {
         return {
-          '--plug-image-rendering': this.imageRendering,
-          '--plug-text-color': this.textColor,
-          '--plug-border-color': this.borderColor
+          '--media-image-rendering': this.fieldStyleProperties.image.imageRendering,
+          '--media-border-color': this.fieldStyleProperties.border.borderColor,
+          '--media-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
+          '--media-border-size': this.fieldStyleProperties.border.borderSize + "px",
+          '--media-border-style': this.fieldStyleProperties.border.borderStyle
         }
       },
       mediaURL () {
@@ -208,7 +196,7 @@
       }
     },
     components: {
-      ColorPicker
+      MediaFieldConfig
     }
   };
   
@@ -220,72 +208,31 @@
     box-sizing: border-box;
   }
   
-  .plug {
-    background-color: var(--plug-bg-color);
-    color: var(--plug-text-color);
-    border: 2px solid var(--plug-border-color);
+  .media {
     position: absolute;
     user-select: none;
     display: flex;
     flex-flow: row wrap;
     max-height: 100%; 
-    max-width: 100%
+    max-width: 100%;
   }
   
-  .plug img {
-    
-    image-rendering: var(--plug-image-rendering);
+  .media img {
+    image-rendering: var(--media-image-rendering);
   }
 
-  .plug .config-view {
-    flex: 1 1 100%;
-    display: flex;
-    position: absolute;
-    top: calc(10% + 5px);
-    left: calc(10% + 5px);
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-    background: rgba(199, 176, 194, 0.8);
-    border:  1px solid #232323;
-    border-radius: 5px;
-  }
-
-  .plug .config-view > * {
-    flex: 0 0 auto;
-  }
-  
-  .plug .config-view textarea {
-    resize: none;
-    overflow-y: auto;
-    flex: 1 1 100%;
-    margin: 10px;
-    border:  none;
-  }
-
-  .plug img {
+  .media img {
     display: block;
     width: 100%;
     height: 100%;
+    background-color: var(--media-bg-color);
+    border-width: var(--media-border-size);
+    border-style: var(--media-border-style);
+    border-color: var(--media-border-color);
+    border-radius: var(--media-border-radius);
+    transition: .1s;
   }
 
-  .edit-panel {
-    position: absolute;
-    display: flex;
-    flex-flow: row wrap;
-    top: calc(10% + 5px);
-    left: calc(100% + 5px);
-    width: 300px;
-    height: 200px;
-    background: white;
-    border:  1px solid #232323;
-    border-radius: 5px;
-
-  }
-
-  .edit-panel > * {
-    flex: 1 1 100%;
-  }
   
   .bold {
     font-weight: 800;
