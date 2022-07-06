@@ -16,7 +16,7 @@
         data() {
           return {
             inEditProperty: null,
-            currentProperties: this. properties
+            currentProperties: this.properties
           }
         },
         components: {
@@ -40,39 +40,33 @@
     }
 </script>
 <style scoped>
-  .field-config {
+  
+    .field-config {
+    flex: 0 0 100%;
     display: flex;
     position: absolute;
-    top: calc(10% + 5px);
-    left: calc(10% + 5px);
+    left: 105%;
     justify-content: center;
     align-items: center;
     flex-flow: row wrap;
     background: rgba(199, 176, 194, 0.8);
     border:  1px solid #232323;
     border-radius: 5px;
+    padding: 20px;
+    font-size: 70%;
+    width: 100%;
   }
 
   .field-config > * {
     flex: 0 0 auto;
   }
-
   
-  .edit-panel {
-    position: absolute;
-    display: flex;
-    flex-flow: row wrap;
-    top: calc(10% + 5px);
-    left: calc(100% + 5px);
-    width: 300px;
-    height: 200px;
-    background: white;
-    border:  1px solid #232323;
-    border-radius: 5px;
-
-  }
-
-  .edit-panel > * {
+  .field-config textarea {
+    resize: none;
+    overflow-y: auto;
     flex: 1 1 100%;
+    margin: 10px;
+    border:  none;
   }
+
 </style>

@@ -1,46 +1,14 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="chord" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
+<div v-if="alive" ref="draggableWrapper" class="prose" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
+    <text-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf"/>
     <div type="text" 
           ref="textInput"
           class="rendered-view"
-          :class="[textAlignment]" 
-          value="mdcontent" 
-          v-html="mdcontent">
+          :class="[fieldStyleProperties.text.textAlignment]" 
+          :value="fieldStyleProperties.text.mdcontent" 
+          v-html="fieldStyleProperties.text.mdcontent">
         
-      </div>
-      <div class="config-view" v-show="inEdit">
-        <input type="radio" id="edit-background-toggle" value="background" v-model="inEditProperty" />
-        <label for="edit-background-toggle">BG</label>
-        <input type="radio" id="edit-text-toggle" value="text" v-model="inEditProperty" />
-        <label for="edit-background-toggle">Text</label>
-        <input type="radio" id="edit-border-toggle" value="border" v-model="inEditProperty" />
-        <label for="edit-background-toggle">Border</label>
-        <div class="edit-panel" v-show="inEditProperty === 'background'" v-click-outside="closePanel">
-          <color-picker v-model="backgroundColor" @change-color = "changeBackgroundColor"></color-picker>
-        </div>
-        <div class="edit-panel" v-show="inEditProperty === 'text'" v-click-outside="closePanel">
-          <color-picker v-model="textColor" @change-color = "changeTextColor"></color-picker>
-          <input type="radio" id="left" value="left" v-model="textAlignment" />
-          <label for="left">Left</label>
-          <input type="radio" id="center" value="centered" v-model="textAlignment" />
-          <label for="center">Center</label>
-          <input type="radio" id="right" value="right" v-model="textAlignment" />
-          <label for="right">Right</label>
-        </div>
-        <div class="edit-panel" v-show="inEditProperty === 'border'" v-click-outside="closePanel">
-          <color-picker v-model="borderColor" @change-color = "changeBorderColor"></color-picker>
-        </div>
-        
-        <input type="button" id="delete-button" @click="destroySelf" value="Delete"/>
-
-        <textarea v-model="content" 
-                  type="text" 
-                  ref="rawInput"
-                  :class="[textAlignment]" 
-                  value="content" 
-                  rows="10">
-        </textarea>
       </div>
   </main>
   
@@ -49,7 +17,6 @@
       <input type="button" value="Down" id="stack-down-button" @click="stackDown" />
 
   </aside>
-  
   
 </div>
 
@@ -60,7 +27,7 @@
   import sample from 'lodash.sample';
   import DOMPurify from 'dompurify';
   import { marked } from 'marked';
-  import ColorPicker from "./ColorPicker.vue";
+  import TextFieldConfig from "./TextFieldConfig.vue";
 
   export default {
   name: "TextField",
@@ -89,18 +56,29 @@
     data() {
       return {
         alive: true,
-        content: "",
-        mdcontent: "",
         id: uniqueId('text-field-'),
         inEdit: false,
         inEditProperty: null,
-        textAlignment: "Left",
-        backgroundColor: "#ffffff",
-        textColor: "#121212",
-        borderColor: "#121212",
         stackOrder: 0,
         screenX: 0,
         screenY: 0,
+        
+        /* Initial Style Values */
+        fieldStyleProperties: {
+          text: {
+            textAlignment: "Left",
+            backgroundColor: "#ffffff",
+            textColor: "#121212",
+            content: "hello",
+            mdcontent: "hello",
+          },
+          border: {
+            borderColor: "#121212",
+            borderRadius: "0%;",
+            borderStyle: "solid",
+            borderSize: "2px"
+          }
+        },
         initMessages: [
           "If you can't give me poetry, can't you give me poetical science?",
           "I will put up a show!",
@@ -114,9 +92,7 @@
     mounted: function() {
       let draggableWrapper = this.$refs.draggableWrapper;
       this.initInteract(draggableWrapper);
-      this.content = sample(this.initMessages);
-      let textInput = this.$refs.textInput;
-      this.adjustParentSize(textInput, draggableWrapper);
+      this.fieldStyleProperties.text.content = sample(this.initMessages);
     },
     methods: {
       initInteract: function(selector) {
@@ -145,20 +121,6 @@
             onend: this.onDragEnd
           })
           .on('tap', this.openConfig)
-      },
-      adjustParentSize: function(childElement, parentContainer) {
-        var observer = new MutationObserver(function() {
-          childElement.style.height = "auto";
-          parentContainer.style.height = "auto";
-          parentContainer.style.height = childElement.scrollHeight + "px";
-          parentContainer.style.height = "auto";
-        });
-
-        observer.observe(childElement, {
-            attributes:    true,
-            childList:     true,
-            characterData: true
-        });
       },
       dragMoveListener: function(event) {
         if (!this.inEdit) {
@@ -195,7 +157,6 @@
       },
       onDragEnd: function(event) {
         var target = event.target;
-        console.log(target);
         this.screenX = target.getBoundingClientRect().left;
         this.screenY = target.getBoundingClientRect().top;
       },
@@ -204,24 +165,8 @@
       },
       closeConfig: function() {
         this.inEdit = false;
-        this.mdcontent = DOMPurify.sanitize(marked.parse(this.content));
-      
-        let draggableWrapper = this.$refs.draggableWrapper;
-        let textInput = this.$refs.textInput;
-        this.adjustParentSize(textInput, draggableWrapper);
+        this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
         
-      },
-      closePanel: function() {
-        this.inEditProperty = null;
-      },
-      changeBackgroundColor: function(color) {
-        this.backgroundColor = color;
-      },
-      changeTextColor: function(color) {
-        this.textColor = color;
-      },
-      changeBorderColor: function(color) {
-        this.borderColor = color;
       },
       destroySelf: function() {
         this.alive=!this.alive;
@@ -240,10 +185,15 @@
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
         return {
-          '--chord-bg-color': this.backgroundColor,
-          '--chord-text-color': this.textColor,
-          '--chord-border-color': this.borderColor,
-          '--chord-stack-order': stacking
+          '--prose-bg-color': this.fieldStyleProperties.text.backgroundColor,
+          '--prose-text-color': this.fieldStyleProperties.text.textColor,
+          '--prose-text-size': this.fieldStyleProperties.text.textSize + "%",
+          '--prose-border-color': this.fieldStyleProperties.border.borderColor,
+          '--prose-border-style': this.fieldStyleProperties.border.borderStyle,
+          '--prose-border-size': this.fieldStyleProperties.border.borderSize + "px",
+          '--prose-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
+          '--prose-text-alignment': this.fieldStyleProperties.text.textAlignment,
+          '--prose-stack-order': stacking
         }
       }
     },
@@ -263,7 +213,7 @@
       }
     },
     components: {
-      ColorPicker
+      TextFieldConfig
     }
   };
   
@@ -275,57 +225,44 @@
     box-sizing: border-box;
   }
   
-  .chord {
-    background-color: var(--chord-bg-color);
-    color: var(--chord-text-color);
-    border: 2px solid var(--chord-border-color);
-    z-index: var(--chord-stack-order);
+  .prose {
+    z-index: var(--prose-stack-order);
     position: absolute;
     height: auto;
-    width: 300px;
+    min-width: 300px;
     user-select: none;
+    
+  }
+  
+  .prose:hover {
+    opacity: .7;
+  }
+
+  .prose main {
+    width: 100%;
     display: flex;
     flex-flow: row wrap;
   }
-  
-  .chord .rendered-view {
+  .prose main .rendered-view {
     display: block;
     flex: 1 1 100%;
     width: 100%;
-    height: 30px;
+    min-height: 30px;
+    background-color: var(--prose-bg-color);
+    color: var(--prose-text-color);
+    border-color: var(--prose-border-color);
+    border-width: var(--prose-border-size);
+    border-style: var(--prose-border-style);
+    border-radius: var(--prose-border-radius);
+    font-size: var(--prose-text-size);
+    color: var(--prose-text-color);
+    text-align: var(--prose-text-alignment);
     line-height: 30px;
-    background: transparent;
     padding: 10px;
     margin: 0;
     font-family: "Steps Mono", "Courier New", monospace;
   }
   
-  .chord .config-view {
-    flex: 1 1 100%;
-    display: flex;
-    position: absolute;
-    top: calc(10% + 5px);
-    left: calc(10% + 5px);
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-    background: rgba(199, 176, 194, 0.8);
-    border:  1px solid #232323;
-    border-radius: 5px;
-  }
-
-  .chord .config-view > * {
-    flex: 0 0 auto;
-  }
-  
-  .chord .config-view textarea {
-    resize: none;
-    overflow-y: auto;
-    flex: 1 1 100%;
-    margin: 10px;
-    border:  none;
-  }
-
   .edit-panel {
     position: absolute;
     display: flex;
@@ -337,31 +274,11 @@
     background: white;
     border:  1px solid #232323;
     border-radius: 5px;
-
   }
 
   .edit-panel > * {
     flex: 1 1 100%;
   }
   
-  .bold {
-    font-weight: 800;
-  }
-  
-  .italic {
-    font-style: italic;
-  }
-  
-  .centered {
-    text-align: center;
-  }
-  
-  .left {
-    text-align: left;
-  }
-  
-  .right {
-    text-align: right;
-  }
   
 </style>

@@ -10,8 +10,10 @@
         <media-field v-for="plug in plugs" :x="plug.x" :y="plug.y" :width="plug.width" :height="plug.height" :media="plug.media" :key="plug.id"></media-field>
       </div>
       <div class="mediabox" ref="mediabox">
-        <linked-image v-for="image in images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
-        <input type="text" v-model="newImageURL"/>
+        <div class="imagebox"> 
+          <linked-image v-for="image in images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
+        </div>
+       <input type="text" v-model="newImageURL"/>
         <button @click="addImage">Add Image</button>
       </div>
     </div>
@@ -37,7 +39,7 @@
         chords: [],
         images: [],
         plugs: [],
-        newImageURL : "https://finaloutpost.net/s/pQKfE.png",
+        newImageURL : "https://imgur.com/ftHNkoG.png",
         screenX: 0,
         screenY: 0
       };
@@ -96,6 +98,7 @@
               y = (parseFloat(target.getAttribute("data-y")) || this.screenY) + event.dy;
             target.style.webkitTransform = target.style.transform =
               "translate(" + x + "px, " + y + "px)";
+            target.style.zIndex = "1000";
 
             // update the posiion attributes
             target.setAttribute("data-x", x);
@@ -105,9 +108,9 @@
           var target = event.target;
           target.style.webkitTransform = target.style.transform =
               "translate(" + 0 + "px, " + 0 + "px)";
+          this.addChord(event.clientX-200, event.clientY-70);
           this.screenX = 0;
           this.screenY = 0;
-          this.addChord(event.clientX, event.clientY);
 
           target.setAttribute("data-x", 0);
           target.setAttribute("data-y", 0);
@@ -119,7 +122,7 @@
               "translate(" + 0 + "px, " + 0 + "px)";
           this.screenX = 0;
           this.screenY = 0;
-          this.addPlug(event.clientX, event.clientY, media);
+          this.addPlug(event.clientX-200, event.clientY-70, media);
 
           target.setAttribute("data-x", 0);
           target.setAttribute("data-y", 0);
@@ -185,6 +188,7 @@
     position: absolute;
     transition: .1s;
     z-index: 1;
+    overflow: hidden;
   }
 
   .editor.flow {
@@ -210,15 +214,37 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
+    background: white;
+    border-left: 2px solid #2c3e50;
   }
 
   .mediabox {
     flex: 0 0 20%;
     display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
+    flex-flow: column nowrap;
     padding: 20px;
+    height: 100vh;
+    border-right: 2px solid #2c3e50;
+  }
+
+  .mediabox .imagebox {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 5px;
+    align-items: center;
+    height: 80%;
+    width: auto;
+    flex: 0 0 80%;
+  }
+
+  .mediabox .imagebox img {
+    flex: 0 1 50px;
+    max-height: 50px;
+    height: auto;
+  }
+
+  .mediabox input {
+    flex: 0 0 10%;
   }
 
   .toolbox  .starter {

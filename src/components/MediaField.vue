@@ -1,6 +1,6 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="media" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
-  <media-field-config  v-show="inEdit" :properties="fieldStyleProperties" />
+  <media-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf"/>
   <img :src="mediaURL" />
   
 </div>
@@ -216,6 +216,10 @@
     max-height: 100%; 
     max-width: 100%;
   }
+
+  .media:hover {
+    opacity: .7;
+  }
   
   .media img {
     image-rendering: var(--media-image-rendering);
@@ -233,25 +237,5 @@
     transition: .1s;
   }
 
-  
-  .bold {
-    font-weight: 800;
-  }
-  
-  .italic {
-    font-style: italic;
-  }
-  
-  .centered {
-    text-align: center;
-  }
-  
-  .left {
-    text-align: left;
-  }
-  
-  .right {
-    text-align: right;
-  }
   
 </style>
