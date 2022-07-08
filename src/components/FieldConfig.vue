@@ -45,7 +45,8 @@
     flex: 0 0 100%;
     display: flex;
     position: absolute;
-    left: 105%;
+    left: 5px;
+    top: 5px;
     justify-content: center;
     align-items: center;
     flex-flow: row wrap;
@@ -54,7 +55,7 @@
     border-radius: 5px;
     padding: 20px;
     font-size: 70%;
-    width: 100%;
+    width: 250px;
   }
 
   .field-config > * {

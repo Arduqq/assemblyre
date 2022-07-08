@@ -34,7 +34,14 @@
             <h3>color</h3>
             <color-picker @input="updateStyle" v-model="currentProperties.border.borderColor" />
             <h3>radius</h3>
-            <input type="range" id="border_radius" min="0" max="50" step="1" @change="updateStyle()" v-model="currentProperties.border.borderRadius"/>
+            <field-config-slider 
+                binding="q" 
+                title="radius" 
+                property="borderRadius" 
+                :min=0 :max=50 :step=1 
+                :val=currentProperties.border.borderRadius 
+                v-model.number="currentProperties.border.borderRadius" 
+                @change="updateStyle"/>
             <h3>size</h3>
             <input type="range" id="border_size" min="1" max="20" step="1" @change="updateStyle()" v-model="currentProperties.border.borderSize"/>
             <h3>style</h3>
@@ -54,11 +61,15 @@
 </template>
 <script>
 import FieldConfig from './FieldConfig'
+import FieldConfigSlider from './FieldConfigSlider.vue'
 
 export default {
+  components: { FieldConfigSlider },
     name: 'TextFieldConfig',
     methods: {
-        updateStyle() {
+        updateStyle(value) {
+            console.log(document.activeElement);
+            this.$set(this.currentProperties.border, value.property, value.val);
             this.$emit('input', this.currentProperties )
         },
         initDelete() {
@@ -66,6 +77,6 @@ export default {
         }
     },
 
-    extends: FieldConfig
+    extends: FieldConfig, FieldConfigSlider
 }
 </script>

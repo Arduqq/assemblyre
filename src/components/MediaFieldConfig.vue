@@ -40,6 +40,7 @@
 </template>
 <script>
 import FieldConfig from './FieldConfig'
+import FieldConfigSlider from './FieldConfigSlider'
 
 export default {
     name: 'MediaFieldConfig',
@@ -52,6 +53,6 @@ export default {
         }
     },
 
-    extends: FieldConfig
+    extends: FieldConfig, FieldConfigSlider
 }
 </script>
