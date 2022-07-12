@@ -4,9 +4,11 @@
     <div class="editor plugs" >
       <div class="toolbox">
         <div class="starter text" ref="textStarter"></div>
+        <div class="starter code" ref="codeStarter"></div>
       </div>
       <div class="sandbox" ref="sandbox">
         <text-field v-for="chord in chords" :x="chord.x" :y="chord.y" :width="chord.width" :height="chord.height" :key="chord.id"></text-field>
+        <code-field v-for="code in codes" :x="code.x" :y="code.y" :width="code.width" :height="code.height" :key="code.id"></code-field>
         <media-field v-for="plug in plugs" :x="plug.x" :y="plug.y" :width="plug.width" :height="plug.height" :media="plug.media" :key="plug.id"></media-field>
       </div>
       <div class="mediabox" ref="mediabox">
@@ -26,6 +28,7 @@
 <script>
   /* import interact from "interactjs"; */
   import TextField from "./TextField.vue";
+  import CodeField from "./CodeField.vue";
   import MediaField from "./MediaField.vue";
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
@@ -39,6 +42,7 @@
         chords: [],
         images: [],
         plugs: [],
+        codes: [],
         newImageURL : "https://imgur.com/ftHNkoG.png",
         screenX: 0,
         screenY: 0
@@ -47,7 +51,9 @@
     mounted: function() {
       let sandbox = this.$refs.sandbox;
       let textStarter = this.$refs.textStarter;
+      let codeStarter = this.$refs.codeStarter;
       this.initTextStarter(textStarter);
+      this.initCodeStarter(codeStarter);
       this.initDropzone(sandbox);
     },
     methods: {
@@ -75,6 +81,20 @@
             autoScroll: true,
             onmove: this.dragMoveListener,
             onend: this.dropText
+          })
+        },
+      initCodeStarter: function(starter) {
+        starter.setAttribute('data-x', this.x)
+        starter.setAttribute('data-y', this.y)
+        interact(starter)
+          .draggable({
+            inertia: false,
+            restrict: {
+              elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+            },
+            autoScroll: true,
+            onmove: this.dragMoveListener,
+            onend: this.dropCode
           })
         },
         initMediaStarter: function(starter, media) {
@@ -127,6 +147,18 @@
           target.setAttribute("data-x", 0);
           target.setAttribute("data-y", 0);
         },
+        dropCode: function(event) {
+          var target = event.target;
+          var code = target.getAttribute("data-code");
+          target.style.webkitTransform = target.style.transform =
+              "translate(" + 0 + "px, " + 0 + "px)";
+          this.screenX = 0;
+          this.screenY = 0;
+          this.addCode(event.clientX-200, event.clientY-70, code);
+
+          target.setAttribute("data-x", 0);
+          target.setAttribute("data-y", 0);
+        },
         addChord: function (x, y) {
           this.chords.push({id: uniqueId("chord-"), x: x, y: y, width: 100, height: 30});
         },
@@ -135,6 +167,9 @@
         },
         addImage: function() {
           this.images.push({id: uniqueId("image-"), url: this.newImageURL});
+        },
+        addCode: function(x,y) {
+          this.codes.push({id: uniqueId("chord-"), x: x, y: y, width: 100, height: 30});
         },
         controlSelection: function (control) {
             this.canSelect = !control;
@@ -157,6 +192,7 @@
     },
     components: {
     TextField,
+    CodeField,
     MediaField,
     LinkedImage,
     FlowView

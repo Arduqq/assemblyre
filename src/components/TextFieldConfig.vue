@@ -18,41 +18,67 @@
         <div class="edit-panel" v-show="inEditProperty === 'text'">
             <h3>color</h3>
             <color-picker @input="updateStyle" v-model="currentProperties.text.textColor" />
-            <h3>alignment</h3>
-            <input type="radio" name="text_align" id="text_align_left" value="left" @input="updateStyle()" v-model="currentProperties.text.textAlignment"/>
-            <label for="left">left</label>
-            <input type="radio" name="text_align" id="text_align_center" value="center" @input="updateStyle()" v-model="currentProperties.text.textAlignment" selected/>
-            <label for="center">center</label>
-            <input type="radio" name="text_align" id="text_align_right" value="right" @input="updateStyle()" v-model="currentProperties.text.textAlignment"/>
-            <label for="right">right</label>
-            <h3>size</h3>
-            <input type="range" id="text_size" min="50" max="200" step="1" @change="updateStyle()" v-model="currentProperties.text.textSize"/>
-            
+            <field-config-radio 
+                binding="r"
+                title="alignment"
+                property="textAlignment"
+                :options="['left', 'center', 'right', 'justify']"
+                :val="currentProperties.text.textAlignment"
+                v-model="currentProperties.text.textAlignment"
+                :alive="active == 'textAlignment'"
+                @click.native="active = 'textAlignment'"
+                @change="updateStyle"
+            />
+            <field-config-slider 
+                binding="w" 
+                title="size" 
+                group="text"
+                property="textSize" 
+                :min=50 :max=200 :step=1 
+                :val="currentProperties.text.textSize "
+                v-model.number="currentProperties.text.textSize" 
+                :alive="active == 'textSize'"
+                @click.native="active = 'textSize'"
+                @change="updateStyle"/>
 
         </div>
         <div class="edit-panel" v-show="inEditProperty === 'border'">
             <h3>color</h3>
             <color-picker @input="updateStyle" v-model="currentProperties.border.borderColor" />
-            <h3>radius</h3>
             <field-config-slider 
                 binding="q" 
-                title="radius" 
+                title="radius"
+                group="border"
                 property="borderRadius" 
                 :min=0 :max=50 :step=1 
-                :val=currentProperties.border.borderRadius 
+                :val="currentProperties.border.borderRadius "
                 v-model.number="currentProperties.border.borderRadius" 
+                :alive="active == 'borderRadius'"
+                @click.native="active = 'borderRadius'"
                 @change="updateStyle"/>
-            <h3>size</h3>
-            <input type="range" id="border_size" min="1" max="20" step="1" @change="updateStyle()" v-model="currentProperties.border.borderSize"/>
+            <field-config-slider 
+                binding="w" 
+                title="size" 
+                group="border"
+                property="borderSize" 
+                :min=0 :max=50 :step=1 
+                :val="currentProperties.border.borderSize" 
+                v-model.number="currentProperties.border.borderSize" 
+                :alive="active == 'borderSize'"
+                @click.native="active = 'borderSize'"
+                @change="updateStyle"/>
             <h3>style</h3>
-            <input type="radio" name="border_style" id="border_style_none" value="none" @input="updateStyle()" v-model="currentProperties.border.borderStyle"/>
-            <label for="none">none</label>
-            <input type="radio" name="border_style" id="border_style_solid" value="solid" @input="updateStyle()" v-model="currentProperties.border.borderStyle" selected/>
-            <label for="solid">solid</label>
-            <input type="radio" name="border_style" id="border_style_dashed" value="dashed" @input="updateStyle()" v-model="currentProperties.border.borderStyle"/>
-            <label for="dashed">dashed</label>
-            <input type="radio" name="border_style" id="border_style_dotted" value="dotted" @input="updateStyle()" v-model="currentProperties.border.borderStyle"/>
-            <label for="dotted">dotted</label>
+            <field-config-radio 
+                binding="r"
+                title="style"
+                property="borderStyle"
+                :options="['none', 'solid', 'dashed', 'dotted']"
+                :val="currentProperties.border.borderStyle"
+                v-model="currentProperties.border.borderStyle"
+                :alive="active == 'borderStyle'"
+                @click.native="active = 'borderStyle'"
+                @change="updateStyle"
+            />
         </div>
 
         
@@ -62,14 +88,23 @@
 <script>
 import FieldConfig from './FieldConfig'
 import FieldConfigSlider from './FieldConfigSlider.vue'
+import FieldConfigRadio from './FieldConfigRadio.vue'
 
 export default {
-  components: { FieldConfigSlider },
+  components: { FieldConfigSlider, FieldConfigRadio },
     name: 'TextFieldConfig',
+    data() {
+        return {
+            active: '',
+        }
+    },
     methods: {
         updateStyle(value) {
-            console.log(document.activeElement);
-            this.$set(this.currentProperties.border, value.property, value.val);
+            if (this.inEditProperty === 'border') {
+                this.$set(this.currentProperties.border, value.property, value.val);
+            } else {
+                this.$set(this.currentProperties.text, value.property, value.val);
+            }
             this.$emit('input', this.currentProperties )
         },
         initDelete() {
@@ -77,6 +112,6 @@ export default {
         }
     },
 
-    extends: FieldConfig, FieldConfigSlider
+    extends: FieldConfig, FieldConfigSlider, FieldConfigRadio
 }
 </script>

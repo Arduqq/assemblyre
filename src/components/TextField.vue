@@ -61,9 +61,10 @@
         /* Initial Style Values */
         fieldStyleProperties: {
           text: {
-            textAlignment: "Left",
+            textAlignment: "left",
             backgroundColor: "#ffffff",
             textColor: "#121212",
+            textSize: 100,
             content: "hello",
             mdcontent: "hello",
           },
@@ -71,7 +72,7 @@
             borderColor: "#121212",
             borderRadius: 0,
             borderStyle: "solid",
-            borderSize: "2px"
+            borderSize: 2
           }
         }
       }

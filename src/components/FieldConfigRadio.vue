@@ -1,23 +1,24 @@
 <template>
-    <div class="field-config-slider">
+    <div class="field-config-radio">
         [{{binding}}] {{title}}
-        <input v-show="alive" type="range" id="text_size" :min="min" :max="max" :step="step" v-model.number="currentValue" @input="updateValue()"/>
+        <div v-show="alive" class="options">
+            <label v-for="(option, index) in options" :key="index" :for="option">{{option}}
+                <input :id="option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
+            </label>
+        </div>
         {{currentValue}}
-            
     </div>
 </template>
 <script>
 export default {
-    name: "FieldConfigSlider",
+    name: "FieldConfigRadio",
     props: {
         title: String,
         binding: String,
         group: String,
         property: String,
-        min: Number,
-        max: Number,
-        step: Number,
-        val: Number,
+        options: Array,
+        val: String,
         alive: Boolean
     },
     data() {
