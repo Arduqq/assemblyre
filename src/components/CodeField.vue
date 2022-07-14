@@ -1,8 +1,16 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="code" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
-    <div v-for="block in blocks" :key="block.id" class="code-block">
-      {{block.id}}<input type="text" ref="codeBlock" @keyup.enter="addBlock(block.id+1, 0)" v-model="block.content"/>
+    <div v-for="block in blocks" :key="block.id" class="code-block" :id="'code-block' + block.id">
+
+      <span class="code-block-id">{{block.id}}</span>
+      <span class="code-block-indent"
+      v-for="(_, index) in block.indent" :key="index"></span>
+      <input type="text" ref="codeBlock"
+       @keyup.enter="addBlock(block.id, 0)"
+       @keyup.delete="removeBlock(block.id)"
+       @keydown.tab.prevent="block.indent++"
+       v-model="block.content"/>
     </div>
   </main>
   
@@ -78,20 +86,55 @@
     },
     methods: {
       addBlock: function(line, indent) {
-        if (line === this.blocks.length+1) {
-          this.blocks.push(
-            {
-              id: line,
-              content: '',
-              type: 'print',
-              indent: indent
-            }
-          );
+        /* If the cursor is at the start, transfer block's content */
+        var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.blocks[line-1].content : '';
+        if (this.$refs.codeBlock[line-1].selectionStart == 0) {
+          this.blocks[line-1].content = '';
+        }
+        this.blocks.splice(
+          line,
+          0,
+          {
+            id: line+1,
+            content: content,
+            type: 'print',
+            indent: indent
+          }
+        );
+        for (var i = line; i < this.blocks.length+1; i++) {
+          this.blocks[i-1].id = i;
         }
         this.$nextTick(() => {
-          this.$refs.codeBlock[line-1].focus();
+          this.$refs.codeBlock[line].focus();
         });
+      },
+      removeBlock: function(line) {
+        /* Are there more than one line? */
+        if (line > 1) {
+            /* Is the current line tabbed? */
+          if (this.blocks[line-1].indent > 0 && this.$refs.codeBlock[line-1].selectionStart == 0) {
+            this.blocks[line-1].indent --;
+            return;
+          }
+          /* Is the current line empty? */
+          if (this.$refs.codeBlock[line-1].value === "") {
+            this.blocks.splice(line-1,1);
+            this.$nextTick(() => {
+              this.$refs.codeBlock[line-2].focus();
+            });
+          }  
+          /* Is the current selection at the line start? */
+          if (this.$refs.codeBlock[line-1].selectionStart == 0) {
+            var deletedLine = this.blocks.splice(line-1,1)[0];
+            this.blocks[line-2].content += deletedLine.content;
+            console.log(this.blocks);
+            this.$nextTick(() => {
+              this.$refs.codeBlock[line-2].focus();
+            });
+
+          }
         }
+      }
 
     },
     computed: {
@@ -126,6 +169,7 @@
     height: auto;
     min-width: 300px;
     user-select: none;
+    width: 600px;
     
   }
   
@@ -145,9 +189,18 @@
     width: 100%;
   }
   .code .code-block input[type="text"] {
-    width: 100%;
     display: block;
-    flex: 1 1 90%;
+    flex: 1 1 auto;
+  }
+
+  .code .code-block .code-block-id {
+    display: inline-block;
+    flex: 0 1 5%;
+  }
+
+  .code .code-block .code-block-indent {
+    display: inline-block;
+    flex: 0 1 1em;
   }
   
 </style>
