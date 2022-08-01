@@ -1,9 +1,9 @@
 <template>
     <div class="field-config text-field-config" v-click-outside="resetActiveProperty"> 
         <div class="property-config"  v-for="(_, name) in properties" :key="name">
-            <label :for="'edit-' + name + '-toggle'">{{name}}
-                <input type="radio" name="property" :value="name" v-model="inEditProperty" />
-            </label>
+        
+            <input :id="id + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
+            <label :for="id + name">{{name}}</label>
         </div>
 
         <textarea v-model="currentProperties.text.content" 
@@ -16,7 +16,6 @@
 
 
         <div class="edit-panel" v-show="inEditProperty === 'text'">
-            <h3>color</h3>
             <color-picker @input="updateStyle" v-model="currentProperties.text.textColor" />
             <field-config-radio 
                 binding="r"
@@ -25,7 +24,7 @@
                 :options="['left', 'center', 'right', 'justify']"
                 :val="currentProperties.text.textAlignment"
                 v-model="currentProperties.text.textAlignment"
-                :alive="active == 'textAlignment'"
+                :alive="active === 'textAlignment'"
                 @click.native="active = 'textAlignment'"
                 @change="updateStyle"
             />
@@ -43,7 +42,6 @@
 
         </div>
         <div class="edit-panel" v-show="inEditProperty === 'border'">
-            <h3>color</h3>
             <color-picker @input="updateStyle" v-model="currentProperties.border.borderColor" />
             <field-config-slider 
                 binding="q" 
@@ -67,7 +65,6 @@
                 :alive="active == 'borderSize'"
                 @click.native="active = 'borderSize'"
                 @change="updateStyle"/>
-            <h3>style</h3>
             <field-config-radio 
                 binding="r"
                 title="style"

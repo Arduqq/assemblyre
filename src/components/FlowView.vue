@@ -86,9 +86,8 @@ export default {
   position: absolute;
   margin: 0 auto;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
-  border-radius: 20px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 </style>

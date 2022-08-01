@@ -24,7 +24,6 @@
             <input type="range" id="border_radius" min="0" max="50" step="1" @change="updateStyle()" v-model="currentProperties.border.borderRadius"/>
             <h3>size</h3>
             <input type="range" id="border_size" min="1" max="20" step="1" @change="updateStyle()" v-model="currentProperties.border.borderSize"/>
-            <h3>style</h3>
             <input type="radio" name="border_style" id="border_style_none" value="none" @input="updateStyle()" v-model="currentProperties.border.borderStyle"/>
             <label for="none">none</label>
             <input type="radio" name="border_style" id="border_style_solid" value="solid" @input="updateStyle()" v-model="currentProperties.border.borderStyle"/>

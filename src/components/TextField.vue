@@ -1,7 +1,7 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="prose" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
+<div v-if="alive" ref="draggableWrapper" class="field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
-    <text-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf"/>
+    <text-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div type="text" 
           ref="textInput"
           class="rendered-view"
@@ -22,7 +22,6 @@
 
 </template>
 <script>
-  import uniqueId from 'lodash.uniqueid';
   import sample from 'lodash.sample';
   import DOMPurify from 'dompurify';
   import { marked } from 'marked';
@@ -32,31 +31,8 @@
   export default {
   name: "TextField",
   extends: Field,
-    props: {
-      x: {
-        type: Number,
-        required: true,
-        default: 10
-      },
-      y: {
-        type: Number,
-        required: true,
-        default: 10
-      },
-      width: {
-        type: Number,
-        required: true,
-        default: 100
-      },
-      height: {
-        type: Number,
-        required: true,
-        default: 30
-      }
-    },
     data() {
       return {
-        id: uniqueId('text-field-'),
         
         /* Initial Style Values */
         fieldStyleProperties: {
@@ -85,23 +61,28 @@
         this.inEdit = false;
         this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
         
+      },
+      updateProperties: function(value) {
+        this.fieldStyleProperties = value;
+        this.emitChange();
       }
 
     },
     computed: {
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
-        return {
-          '--prose-bg-color': this.fieldStyleProperties.text.backgroundColor,
-          '--prose-text-color': this.fieldStyleProperties.text.textColor,
-          '--prose-text-size': this.fieldStyleProperties.text.textSize + "%",
-          '--prose-border-color': this.fieldStyleProperties.border.borderColor,
-          '--prose-border-style': this.fieldStyleProperties.border.borderStyle,
-          '--prose-border-size': this.fieldStyleProperties.border.borderSize + "px",
-          '--prose-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
-          '--prose-text-alignment': this.fieldStyleProperties.text.textAlignment,
-          '--prose-stack-order': stacking
+        var style = {
+          '--field-bg-color': this.fieldStyleProperties.text.backgroundColor,
+          '--field-text-color': this.fieldStyleProperties.text.textColor,
+          '--field-text-size': this.fieldStyleProperties.text.textSize + "%",
+          '--field-border-color': this.fieldStyleProperties.border.borderColor,
+          '--field-border-style': this.fieldStyleProperties.border.borderStyle,
+          '--field-border-size': this.fieldStyleProperties.border.borderSize + "px",
+          '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
+          '--field-text-alignment': this.fieldStyleProperties.text.textAlignment,
+          '--field-stack-order': stacking
         }
+        return style;
       }
     },
     components: {
@@ -116,61 +97,32 @@
   * {
     box-sizing: border-box;
   }
-  
-  .prose {
-    z-index: var(--prose-stack-order);
-    position: absolute;
-    height: auto;
-    min-width: 300px;
-    user-select: none;
-    
-  }
-  
-  .prose:hover {
-    opacity: .7;
-  }
 
-  .prose main {
+  .field main {
     width: 100%;
     display: flex;
     flex-flow: row wrap;
   }
-  .prose main .rendered-view {
+
+  .field main .rendered-view {
     display: block;
     flex: 1 1 100%;
     width: 100%;
     min-height: 30px;
-    background-color: var(--prose-bg-color);
-    color: var(--prose-text-color);
-    border-color: var(--prose-border-color);
-    border-width: var(--prose-border-size);
-    border-style: var(--prose-border-style);
-    border-radius: var(--prose-border-radius);
-    font-size: var(--prose-text-size);
-    color: var(--prose-text-color);
-    text-align: var(--prose-text-alignment);
+    background-color: var(--field-bg-color);
+    color: var(--field-text-color);
+    border-color: var(--field-border-color);
+    border-width: var(--field-border-size);
+    border-style: var(--field-border-style);
+    border-radius: var(--field-border-radius);
+    font-size: var(--field-text-size);
+    color: var(--field-text-color);
+    text-align: var(--field-text-alignment);
     line-height: auto;
     overflow-wrap: break-word;
     padding: 10px;
     margin: 0;
     font-family: "Steps Mono", "Courier New", monospace;
-  }
-  
-  .edit-panel {
-    position: absolute;
-    display: flex;
-    flex-flow: row wrap;
-    top: calc(10% + 5px);
-    left: calc(100% + 5px);
-    width: 300px;
-    height: 200px;
-    background: white;
-    border:  1px solid #232323;
-    border-radius: 5px;
-  }
-
-  .edit-panel > * {
-    flex: 1 1 100%;
   }
   
   

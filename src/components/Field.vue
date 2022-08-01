@@ -1,12 +1,15 @@
 <script>
   import interact from "interactjs";
-  import uniqueId from 'lodash.uniqueid';
   import DOMPurify from 'dompurify';
   import { marked } from 'marked';
 
   export default {
   name: "TextField",
     props: {
+      id: {
+        type: String,
+        required: true
+      },
       x: {
         type: Number,
         required: true,
@@ -16,22 +19,11 @@
         type: Number,
         required: true,
         default: 10
-      },
-      width: {
-        type: Number,
-        required: true,
-        default: 100
-      },
-      height: {
-        type: Number,
-        required: true,
-        default: 30
       }
     },
     data() {
       return {
         alive: true,
-        id: uniqueId('field-'),
         inEdit: false,
         inEditProperty: null,
         stackOrder: 0,
@@ -101,7 +93,8 @@
             y = (parseFloat(target.getAttribute('data-y')) || 0);
 
           // update the element's style
-          target.style.width = event.rect.width + 'px'
+          target.style.width = event.rect.width + 'px';
+          this.width = event.rect.width;
 
           // translate when resizing from top or left edges
           x += event.deltaRect.left
@@ -117,6 +110,7 @@
         var target = event.target;
         this.screenX = target.getBoundingClientRect().left;
         this.screenY = target.getBoundingClientRect().top;
+        this.emitChange();
       },
       openConfig: function() {
         this.inEdit = true;
@@ -136,6 +130,9 @@
         if (this.stackOrder != 0) {
           this.stackOrder --;
         }
+      },
+      emitChange: function() {
+        this.$emit('change', this.id, this.fieldStyleProperties, this.screenX, this.screenY, this.width);
       }
 
     },
@@ -159,3 +156,59 @@
   
 </script>
 
+<style>
+
+  aside {
+    opacity: 0;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    transition: .1s;
+  }
+
+  aside > * {
+    all: unset;
+    flex: 1 1 100%;
+    width: 100%;
+    font-size: 60%;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid var(--primary-color);
+    background: white;
+    border-radius: 0px 25px 25px 0px;
+    cursor: pointer;
+    transition: .1s;
+  }
+
+  
+  .field {
+    z-index: var(--field-stack-order);
+    position: absolute;
+    height: auto;
+    min-width: 300px;
+    user-select: none;
+    box-sizing: content-box!important;
+  }
+  
+  .field:hover {
+    border-right: 5px solid var(--interact-color);
+  }
+  .field:hover aside {
+    opacity: 1;
+    transform: translateX(5px);
+  }
+
+  aside > *:hover {
+    background: var(--secondary-color);
+  }
+
+  aside > *:active {
+    background: var(--interact-color);
+  }
+
+</style>

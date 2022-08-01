@@ -147,7 +147,7 @@
           '--code-border-color': this.fieldStyleProperties.border.borderColor,
           '--code-border-style': this.fieldStyleProperties.border.borderStyle,
           '--code-border-size': this.fieldStyleProperties.border.borderSize + "px",
-          '--code-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
+          '--code-border-radius': this.fieldStyleProperties.border.borderRadius + "ps",
           '--code-text-alignment': this.fieldStyleProperties.text.textAlignment,
           '--code-stack-order': stacking
         }
@@ -171,10 +171,6 @@
     user-select: none;
     width: 600px;
     
-  }
-  
-  .code:hover {
-    opacity: .7;
   }
 
   .code main {

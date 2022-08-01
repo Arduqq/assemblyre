@@ -2,15 +2,45 @@
 <div id="editor-view">
   <input type="checkbox" value="Switch mode" class="mode-toggle" @click="editingPlugs = !editingPlugs"/>
     <div class="editor plugs" >
+      <div class="editor-control active" >
+        <label>_Opus
+          <input type="text" v-model="score.opus"/>
+        </label>
+        <label>_Version
+          <input type="text" v-model="score.version"/>
+        </label>
+        <label>_Task
+          <input type="text" v-model="score.task"/>
+        </label>
+        
+        <button @click="save">save_</button>
+        <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.json'">Download</a>
+      </div>
       <div class="toolbox">
         <div class="starter text" ref="textStarter"></div>
         <div class="starter code" ref="codeStarter"></div>
       </div>
-      <div class="sandbox" ref="sandbox">
-        <text-field v-for="chord in chords" :x="chord.x" :y="chord.y" :width="chord.width" :height="chord.height" :key="chord.id"></text-field>
-        <code-field v-for="code in codes" :x="code.x" :y="code.y" :width="code.width" :height="code.height" :key="code.id"></code-field>
-        <media-field v-for="plug in plugs" :x="plug.x" :y="plug.y" :width="plug.width" :height="plug.height" :media="plug.media" :key="plug.id"></media-field>
-      </div>
+      <div class="sandbox" >
+        <div class="program" ref="program"> 
+          <text-field v-for="chord in chords" 
+            :id="chord.id"
+            :x="chord.x" 
+            :y="chord.y" 
+            :key="chord.id"
+            @change="updateChord"/>
+          <code-field v-for="code in codes" 
+            :id="code.id"
+            :x="code.x" 
+            :y="code.y" 
+            :key="code.id"/>
+          <media-field v-for="plug in plugs" 
+            :id="plug.id"
+            :x="plug.x" :y="plug.y" 
+            :media="plug.media" 
+            :key="plug.id"/>
+      
+          </div>
+         </div>
       <div class="mediabox" ref="mediabox">
         <div class="imagebox"> 
           <linked-image v-for="image in images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
@@ -26,7 +56,7 @@
 </template>
 
 <script>
-  /* import interact from "interactjs"; */
+
   import TextField from "./TextField.vue";
   import CodeField from "./CodeField.vue";
   import MediaField from "./MediaField.vue";
@@ -39,22 +69,42 @@
     data() {
       return {
         editingPlugs: true,
+        score: {
+          opus: "Pseudo Program",
+          version: "0.1",
+          task: "",
+          type: "square"
+        },
         chords: [],
         images: [],
         plugs: [],
         codes: [],
+        programs: [],
         newImageURL : "https://imgur.com/ftHNkoG.png",
+        exportURL: null,
         screenX: 0,
         screenY: 0
       };
     },
+    props: {
+      width: {
+        type: Number,
+        required: true
+      },
+      height: {
+        type: Number,
+        required: true
+      }
+    },
     mounted: function() {
-      let sandbox = this.$refs.sandbox;
+      let program = this.$refs.program;
       let textStarter = this.$refs.textStarter;
       let codeStarter = this.$refs.codeStarter;
+      program.style.width = this.width + "px";
+      program.style.height = this.height + "px";
       this.initTextStarter(textStarter);
       this.initCodeStarter(codeStarter);
-      this.initDropzone(sandbox);
+      this.initDropzone(program);
     },
     methods: {
       initDropzone: function(zone) {
@@ -160,16 +210,31 @@
           target.setAttribute("data-y", 0);
         },
         addChord: function (x, y) {
-          this.chords.push({id: uniqueId("chord-"), x: x, y: y, width: 100, height: 30});
+          this.chords.push({id: uniqueId("chord-"), x: x, y: y});
         },
         addPlug: function(x,y, url) {
-          this.plugs.push({id: uniqueId("plug-"), x: x, y: y, width: 100, height: 30, media: url});
+          this.plugs.push({id: uniqueId("plug-"), x: x, y: y, media: url});
         },
         addImage: function() {
           this.images.push({id: uniqueId("image-"), url: this.newImageURL});
         },
         addCode: function(x,y) {
-          this.codes.push({id: uniqueId("chord-"), x: x, y: y, width: 100, height: 30});
+          this.codes.push({id: uniqueId("chord-"), x: x, y: y});
+        },
+        updateChord: function(id, value, x, y, w) {
+          this.chords = this.chords.map(el =>
+            el.id === id ? { ...el, style: value, x:x, y:y, width: w } : el
+          );
+        },
+        save: async function() {
+          var exportFile = {
+            chords: this.chords,
+            plugs: this.plugs,
+            codes: this.codes
+          };
+        this.exportURL = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportFile,undefined,2));
+          console.log(exportFile);
+          
         },
         controlSelection: function (control) {
             this.canSelect = !control;
@@ -205,6 +270,38 @@
     box-sizing: border-box;
   }
 
+  .editor-control {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+    position: absolute;
+    top: 100%;
+    transition: .2s;
+    bottom: -100%;
+    right: calc(50px + 30%);
+    max-width:700px;
+    width: 30%;
+  }
+
+  .editor-control > * {
+    flex: 0 1 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .editor-control input {
+    flex: 0 1 80%;
+  }
+
+  .editor-control.active {
+    bottom: 100px;
+    top: auto;
+  }
+
   .mode-toggle {
     position: fixed;
     top:0;
@@ -235,12 +332,16 @@
   .sandbox {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   color: #2c3e50;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 0 0 70%;
-  background-color: transparent;
-  background-image:  linear-gradient(#ffe9fa 2px, transparent 2px), linear-gradient(90deg, #ffe9fa 2px, transparent 2px), linear-gradient(#ffe9fa 1px, transparent 1px), linear-gradient(90deg, #ffe9fa 1px, transparent 1px);
-  background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
-  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background: url(@/../public/assets/pattern-1.png);
+  }
+
+  .sandbox .program {
+    display: block;
+    background: rgba(255, 255, 255, .6);
   }
 
   .toolbox {
@@ -291,6 +392,15 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+  }
+
+  #exported-image {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 100px;
   }
 
 </style>
