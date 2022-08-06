@@ -7,15 +7,19 @@ export default {
   name: 'FlowView',
   mounted() {
     var active = false;
-    var canvas, pg, colorpicker, button;
+    var canvas, pg, colorpicker, button, bg;
     const script = function(p5) {
+      p5.preload = () => {
+        bg = p5.loadImage('@/../assets/pattern-1.png');
+      }
       p5.setup = () => {
         canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight);
         canvas.parent('#flow-view');
 
         pg = p5.createGraphics(p5.windowWidth, p5.windowHeight);
         pg.parent('#flow-view');
-        pg.background(252);
+
+        pg.background(bg);
         pg.canvas.remove()
         
         colorpicker = p5.createColorPicker('#ed225d');

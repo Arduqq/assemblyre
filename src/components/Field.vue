@@ -4,7 +4,7 @@
   import { marked } from 'marked';
 
   export default {
-  name: "TextField",
+  name: "PlainField",
     props: {
       id: {
         type: String,
@@ -58,8 +58,7 @@
             inertia: false,
             restrict: {
               restriction: "parent",
-              endOnly: true,
-              elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+              endOnly: true
             },
             autoScroll: true,
             onmove: this.dragMoveListener,
@@ -108,8 +107,8 @@
       },
       onDragEnd: function(event) {
         var target = event.target;
-        this.screenX = target.getBoundingClientRect().left;
-        this.screenY = target.getBoundingClientRect().top;
+        this.screenX = target.getAttribute('data-x');
+        this.screenY = target.getAttribute('data-y');
         this.emitChange();
       },
       openConfig: function() {

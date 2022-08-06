@@ -49,9 +49,7 @@
         <button @click="addImage">Add Image</button>
       </div>
     </div>
-    <div class="editor flow" :style="editorFocus">
-      <flow-view/>
-    </div>
+      <flow-view class="editor flow" :style="editorFocus"/>
    </div>   
 </template>
 
@@ -272,21 +270,22 @@
 
   .editor-control {
     display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    justify-content: center;
+    flex-flow: row nowrap;
+    flex: 0 1 100%;
+    height: 50px;
     gap: 30px;
-    position: absolute;
-    top: 100%;
-    transition: .2s;
-    bottom: -100%;
-    right: calc(50px + 30%);
-    max-width:700px;
-    width: 30%;
+    padding: 10px;
+    background: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   }
 
   .editor-control > * {
-    flex: 0 1 100%;
+    flex: 0 1 100px;
+    gap: 20px;
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-end;
@@ -294,12 +293,7 @@
   }
 
   .editor-control input {
-    flex: 0 1 80%;
-  }
-
-  .editor-control.active {
-    bottom: 100px;
-    top: auto;
+    flex: 0 1 150px;
   }
 
   .mode-toggle {
@@ -335,8 +329,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
   flex: 0 0 70%;
-  background: url(@/../public/assets/pattern-1.png);
+  border: solid 5px #2c3e50;
+  background: transparent;
   }
 
   .sandbox .program {
@@ -350,18 +346,18 @@
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
+    height: 100%;
     padding: 20px;
     background: white;
-    border-left: 2px solid #2c3e50;
   }
 
   .mediabox {
     flex: 0 0 20%;
     display: flex;
     flex-flow: column nowrap;
+    background: white;
+    height: 100%;
     padding: 20px;
-    height: 100vh;
-    border-right: 2px solid #2c3e50;
   }
 
   .mediabox .imagebox {

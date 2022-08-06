@@ -1,6 +1,8 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="code" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
+    <text-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+    
     <div v-for="block in blocks" :key="block.id" class="code-block" :id="'code-block' + block.id">
 
       <span class="code-block-id">{{block.id}}</span>
@@ -24,8 +26,8 @@
 
 </template>
 <script>
-  import uniqueId from 'lodash.uniqueid';
   import Field from "./Field.vue";
+  import TextFieldConfig from "./TextFieldConfig.vue";
 
   export default {
   name: "CodeField",
@@ -40,21 +42,10 @@
         type: Number,
         required: true,
         default: 10
-      },
-      width: {
-        type: Number,
-        required: true,
-        default: 100
-      },
-      height: {
-        type: Number,
-        required: true,
-        default: 30
       }
     },
     data() {
       return {
-        id: uniqueId('code-field-'),
         input: 'cookie crumbles',
         output: 'cake',
         blocks: [
@@ -66,12 +57,15 @@
           }
         ],
         /* Initial Style Values */
+        
+        
+        /* Initial Style Values */
         fieldStyleProperties: {
           text: {
-            textAlignment: "Left",
+            textAlignment: "left",
             backgroundColor: "#ffffff",
             textColor: "#121212",
-            textSize: "#121212",
+            textSize: 100,
             content: "hello",
             mdcontent: "hello",
           },
@@ -85,6 +79,10 @@
       }
     },
     methods: {
+      updateProperties: function(value) {
+        this.fieldStyleProperties = value;
+        this.emitChange();
+      },
       addBlock: function(line, indent) {
         /* If the cursor is at the start, transfer block's content */
         var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.blocks[line-1].content : '';
@@ -148,10 +146,12 @@
           '--code-border-style': this.fieldStyleProperties.border.borderStyle,
           '--code-border-size': this.fieldStyleProperties.border.borderSize + "px",
           '--code-border-radius': this.fieldStyleProperties.border.borderRadius + "ps",
-          '--code-text-alignment': this.fieldStyleProperties.text.textAlignment,
           '--code-stack-order': stacking
         }
       }
+    },
+    components: {
+      TextFieldConfig
     }
   };
   
@@ -173,6 +173,25 @@
     
   }
 
+    .code main input {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 30px;
+    background-color: var(--field-bg-color);
+    color: var(--field-text-color);
+    border-color: var(--field-border-color);
+    border-width: var(--field-border-size);
+    border-style: var(--field-border-style);
+    border-radius: var(--field-border-radius);
+    font-size: var(--field-text-size);
+    color: var(--field-text-color);
+    line-height: auto;
+    overflow-wrap: break-word;
+    padding: 10px;
+    margin: 0;
+    font-family: "Steps Mono", "Courier New", monospace;
+  }
+
   .code main {
     width: 100%;
     display: flex;
@@ -183,6 +202,8 @@
     display: flex;
     flex-flow: row wrap;
     width: 100%;
+    justify-content: center;
+    align-items: center;
   }
   .code .code-block input[type="text"] {
     display: block;
