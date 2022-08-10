@@ -52,20 +52,27 @@
         selector.setAttribute('data-y', this.y)
         interact(selector)
           .pointerEvents({
-            ignoreFrom: 'aside',
+            ignoreFrom: 'aside, .code-block',
           })
           .draggable({
             inertia: false,
-            restrict: {
-              restriction: "parent",
-              endOnly: true
-            },
+            modifiers: [
+              interact.modifiers.restrictRect({
+                restriction: 'parent'
+              })
+            ],
             autoScroll: true,
             onmove: this.dragMoveListener,
             onend: this.onDragEnd
           })
           .resizable({
             edges: { left: true, right: true, bottom: false, top: false },
+            
+            modifiers: [
+              interact.modifiers.restrictRect({
+                restriction: 'parent'
+              })
+            ],
             onmove: this.dragScaleListener,
             onend: this.onDragEnd
           })
@@ -107,8 +114,8 @@
       },
       onDragEnd: function(event) {
         var target = event.target;
-        this.screenX = target.getAttribute('data-x');
-        this.screenY = target.getAttribute('data-y');
+        this.screenX = (parseFloat(target.getAttribute('data-x')) || 0);
+        this.screenY = (parseFloat(target.getAttribute('data-y')) || 0);
         this.emitChange();
       },
       openConfig: function() {
@@ -116,7 +123,9 @@
       },
       closeConfig: function() {
         this.inEdit = false;
-        this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
+        if (this.fieldStyleProperties.text) {
+          this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
+        }
         
       },
       destroySelf: function() {
@@ -132,7 +141,7 @@
       },
       emitChange: function() {
         this.$emit('change', this.id, this.fieldStyleProperties, this.screenX, this.screenY, this.width);
-      }
+      },
 
     },
     directives: {

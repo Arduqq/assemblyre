@@ -60,6 +60,8 @@
     width: 250px;
     opacity: .95;
     backdrop-filter: blur(20px);
+    transform: translateX(var(--adjustment-offset));
+
   }
 
   .field-config > * {

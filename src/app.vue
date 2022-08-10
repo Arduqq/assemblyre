@@ -1,6 +1,6 @@
 <template>
   <div id='app'>
-    <editor-view :width="1000" :height="600"></editor-view>
+    <editor-view :width="1200" :height="800"></editor-view>
   </div>
 </template>
 
@@ -29,14 +29,6 @@ export default {
   --interact-color: rgb(224, 87, 255);
   }
 
-body {
-    margin: 0;
-  overflow: hidden;
-}
-
-#app {
-  display: flex;
-}
 
 
 @font-face {

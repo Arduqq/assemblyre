@@ -1,7 +1,7 @@
 <template>
 <div id="editor-view">
   <input type="checkbox" value="Switch mode" class="mode-toggle" @click="editingPlugs = !editingPlugs"/>
-    <div class="editor plugs" >
+  
       <div class="editor-control active" >
         <label>_Opus
           <input type="text" v-model="score.opus"/>
@@ -16,9 +16,11 @@
         <button @click="save">save_</button>
         <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.json'">Download</a>
       </div>
-      <div class="toolbox">
+    <div class="editor plugs" >
+      <div class="toolbox"  :class="this.collapsed.includes('toolbox') ? 'collapsed' : ''">
         <div class="starter text" ref="textStarter"></div>
         <div class="starter code" ref="codeStarter"></div>
+      <button @click="toggleCollapse('toolbox')" class="collapse-toggle">TOOLS</button>
       </div>
       <div class="sandbox" >
         <div class="program" ref="program"> 
@@ -41,12 +43,15 @@
       
           </div>
          </div>
-      <div class="mediabox" ref="mediabox">
+      <div class="mediabox" :class="this.collapsed.includes('mediabox') ? 'collapsed' : ''"  ref="mediabox">
+      
         <div class="imagebox"> 
           <linked-image v-for="image in images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
         </div>
        <input type="text" v-model="newImageURL"/>
         <button @click="addImage">Add Image</button>
+        
+        <button @click="toggleCollapse('mediabox')" class="collapse-toggle">MEDIA</button>
       </div>
     </div>
       <flow-view class="editor flow" :style="editorFocus"/>
@@ -73,6 +78,7 @@
           task: "",
           type: "square"
         },
+        collapsed: [],
         chords: [],
         images: [],
         plugs: [],
@@ -237,6 +243,13 @@
         controlSelection: function (control) {
             this.canSelect = !control;
 
+        },
+        toggleCollapse: function(container) {
+          if (this.collapsed.includes(container)) {
+            this.collapsed = this.collapsed.filter(el => el !== container);
+          } else {
+            this.collapsed.push(container);
+          }
         }
     },
     computed: {
@@ -271,15 +284,15 @@
   .editor-control {
     display: flex;
     flex-flow: row nowrap;
-    flex: 0 1 100%;
-    height: 50px;
-    gap: 30px;
-    padding: 10px;
-    background: white;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    width: auto;
+    height: 50px;
+    gap: 30px;
+    padding: 10px;
+    z-index: 2;
+    background: white;
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   }
 
@@ -313,6 +326,8 @@
     display: flex;
     flex-flow: row wrap;
     position: absolute;
+    top: 0;
+    left: 0;
     transition: .1s;
     z-index: 1;
     overflow: hidden;
@@ -323,14 +338,25 @@
     opacity: var(--flow-editor-opacity);
   }
 
+  .editor > * {
+    padding-top: 50px;
+    transition: .1s;
+  }
+
+  .editor > *.collapsed {
+    flex: 0;
+    padding: 0;
+    width: 0;
+    gap: 0;
+  }
+
   .sandbox {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   color: #2c3e50;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  flex: 0 0 70%;
+  flex: 1 1 auto;
   border: solid 5px #2c3e50;
   background: transparent;
   }
@@ -339,49 +365,29 @@
     display: block;
     background: rgba(255, 255, 255, .6);
   }
+  
+  
+  .editor > * > .collapse-toggle {
+    flex: 1 1 100%;
+    width: 50px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    z-index: 1000;
+  }
 
   .toolbox {
-    flex: 0 0 10%;
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 20px;
-    background: white;
-  }
-
-  .mediabox {
-    flex: 0 0 20%;
-    display: flex;
-    flex-flow: column nowrap;
-    background: white;
-    height: 100%;
-    padding: 20px;
-  }
-
-  .mediabox .imagebox {
+    flex: 0 1 10%;
     display: flex;
     flex-flow: column wrap;
-    gap: 5px;
     align-items: center;
-    height: 80%;
-    width: auto;
-    flex: 0 0 80%;
+    justify-content: space-around;
+    height: 100%;
+    background: white;
   }
 
-  .mediabox .imagebox img {
-    flex: 0 1 50px;
-    max-height: 50px;
-    height: auto;
-  }
-
-  .mediabox input {
-    flex: 0 0 10%;
-  }
-
+  
   .toolbox  .starter {
-    flex: 0 0 100%;
+    flex: 0 0 auto;
     height: 200px;
     width: 100%;
     background: url(@/../public/assets/textarea.png);
@@ -398,5 +404,37 @@
     margin: 0 auto;
     height: 100px;
   }
+
+  .mediabox {
+    flex: 0 1 20%;
+    display: flex;
+    flex-flow: column-reverse  wrap-reverse;
+    background: white;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .mediabox > * {
+    width: 100%;
+    flex: 0 0 auto;
+    padding: 0;
+  }
+
+  .mediabox .imagebox {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 5px;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    flex: 0 0 80%;
+  }
+
+  .mediabox .imagebox img {
+    flex: 0 0 20%;
+    width: 100%;
+  }
+
 
 </style>

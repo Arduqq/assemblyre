@@ -1,33 +1,34 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="code" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
-  <main>
-    <text-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+  <div v-if="alive" ref="draggableWrapper" class="code" :id="id"  v-click-outside="closeConfig" >
+    <main :style="fieldStyle">
+      <code-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+      
+      <div v-for="block in blocks" :key="block.id" class="code-block" :id="'code-block' + block.id" >
+
+        <span class="code-block-id">{{block.id}}</span>
+        <span class="code-block-indent"
+        v-for="(_, index) in block.indent" :key="index"></span>
+        <input type="text" ref="codeBlock"
+        @keyup.enter="addBlock(block.id, 0)"
+        @keyup.delete="removeBlock(block.id)"
+        @keydown.tab.prevent="block.indent++"
+        v-model="block.content"/>
+      </div>
+    </main>
     
-    <div v-for="block in blocks" :key="block.id" class="code-block" :id="'code-block' + block.id">
+    <aside class="quick-config-view">
+        <input type="button" value="Down" id="edit-button" @click="stackDown" />
+        <input type="button" value="Up" id="stack-up-button" @click="stackUp" />
+        <input type="button" value="Down" id="stack-down-button" @click="stackDown" />
 
-      <span class="code-block-id">{{block.id}}</span>
-      <span class="code-block-indent"
-      v-for="(_, index) in block.indent" :key="index"></span>
-      <input type="text" ref="codeBlock"
-       @keyup.enter="addBlock(block.id, 0)"
-       @keyup.delete="removeBlock(block.id)"
-       @keydown.tab.prevent="block.indent++"
-       v-model="block.content"/>
-    </div>
-  </main>
-  
-  <aside class="quick-config-view">
-      <input type="button" value="Up" id="stack-up-button" @click="stackUp" />
-      <input type="button" value="Down" id="stack-down-button" @click="stackDown" />
-
-  </aside>
-  
-</div>
+    </aside>
+    
+  </div>
 
 </template>
 <script>
   import Field from "./Field.vue";
-  import TextFieldConfig from "./TextFieldConfig.vue";
+  import CodeFieldConfig from "./CodeFieldConfig.vue";
 
   export default {
   name: "CodeField",
@@ -62,18 +63,20 @@
         /* Initial Style Values */
         fieldStyleProperties: {
           text: {
-            textAlignment: "left",
             backgroundColor: "#ffffff",
             textColor: "#121212",
-            textSize: 100,
-            content: "hello",
-            mdcontent: "hello",
+            textSize: 100
           },
           border: {
             borderColor: "#121212",
             borderRadius: 0,
             borderStyle: "solid",
-            borderSize: 2
+            borderSize: 0
+          },
+          shadow: {
+            shadowDisplacement: 2,
+            shadowSize: 5,
+            shadowColor: "#121212"
           }
         }
       }
@@ -107,29 +110,37 @@
         });
       },
       removeBlock: function(line) {
-        /* Are there more than one line? */
-        if (line > 1) {
+        /* Is there more than one line? */
+        if (line > 0) {
             /* Is the current line tabbed? */
           if (this.blocks[line-1].indent > 0 && this.$refs.codeBlock[line-1].selectionStart == 0) {
             this.blocks[line-1].indent --;
             return;
           }
-          /* Is the current line empty? */
-          if (this.$refs.codeBlock[line-1].value === "") {
-            this.blocks.splice(line-1,1);
-            this.$nextTick(() => {
-              this.$refs.codeBlock[line-2].focus();
-            });
-          }  
-          /* Is the current selection at the line start? */
-          if (this.$refs.codeBlock[line-1].selectionStart == 0) {
-            var deletedLine = this.blocks.splice(line-1,1)[0];
-            this.blocks[line-2].content += deletedLine.content;
-            console.log(this.blocks);
-            this.$nextTick(() => {
-              this.$refs.codeBlock[line-2].focus();
-            });
+          if (line > 1) {
+            /* Is the current line empty? */
+            if (this.$refs.codeBlock[line-1].value === "") {
+              this.blocks.splice(line-1,1);
+              for (var j = line-1; j <= this.blocks.length-1; j++) {
+                this.blocks[j].id--;
+              }
+              this.$nextTick(() => {
+                this.$refs.codeBlock[line-2].focus();
+              });
+              return;
+            }  
+            /* Is the current selection at the line start, but non-empty? */
+            if (this.$refs.codeBlock[line-1].selectionStart === 0 && this.$refs.codeBlock[line-1].value != "") {
+              var deletedLine = this.blocks.splice(line-1,1)[0];
+              this.blocks[line-2].content += deletedLine.content;
+              for (var i = line-1; i <= this.blocks.length-1; i++) {
+                this.blocks[i].id--;
+              }
+              this.$nextTick(() => {
+                this.$refs.codeBlock[line-2].focus();
+              });
 
+            }
           }
         }
       }
@@ -145,13 +156,16 @@
           '--code-border-color': this.fieldStyleProperties.border.borderColor,
           '--code-border-style': this.fieldStyleProperties.border.borderStyle,
           '--code-border-size': this.fieldStyleProperties.border.borderSize + "px",
-          '--code-border-radius': this.fieldStyleProperties.border.borderRadius + "ps",
+          '--code-border-radius': this.fieldStyleProperties.border.borderRadius + "px",
+          '--code-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
+          '--code-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
+          '--code-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
           '--code-stack-order': stacking
         }
       }
     },
     components: {
-      TextFieldConfig
+      CodeFieldConfig
     }
   };
   
@@ -176,19 +190,13 @@
     .code main input {
     display: block;
     flex: 1 1 auto;
-    min-height: 30px;
-    background-color: var(--field-bg-color);
-    color: var(--field-text-color);
-    border-color: var(--field-border-color);
-    border-width: var(--field-border-size);
-    border-style: var(--field-border-style);
-    border-radius: var(--field-border-radius);
-    font-size: var(--field-text-size);
-    color: var(--field-text-color);
+    min-height: 10px;
     line-height: auto;
     overflow-wrap: break-word;
-    padding: 10px;
+    padding: 2px;
     margin: 0;
+    color: var(--code-text-color);
+    font-size: var(--code-text-size);
     font-family: "Steps Mono", "Courier New", monospace;
   }
 
@@ -196,6 +204,16 @@
     width: 100%;
     display: flex;
     flex-flow: row wrap;
+    padding: 10px;
+
+    
+    background-color: var(--code-bg-color);
+    border-color: var(--code-border-color);
+    border-width: var(--code-border-size);
+    border-style: var(--code-border-style);
+    border-radius: var(--code-border-radius);
+    color: var(--code-text-color);
+    box-shadow: var(--code-shadow-displacement) var(--code-shadow-displacement) 0 var(--code-shadow-size) var(--code-shadow-color);
   }
 
   .code .code-block {

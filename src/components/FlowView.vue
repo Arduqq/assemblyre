@@ -44,6 +44,8 @@ export default {
         var newPG = p5.createGraphics(p5.windowWidth, p5.windowHeight);
         newPG.image(pg, 0, 0, newPG.width, newPG.height);
         pg = newPG;
+        
+        pg.background(bg);
         p5.resizeCanvas(p5.windowWidth, p5.height);
       }
 

@@ -1,13 +1,12 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="media" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
-  <media-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf"/>
+  <media-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
   <img :src="mediaURL" />
   
 </div>
 
 </template>
 <script>
-  import uniqueId from 'lodash.uniqueid';
   import Field from "./Field.vue";
   import MediaFieldConfig from "./MediaFieldConfig.vue";
 
@@ -15,24 +14,14 @@
   name: "MediaField",
   extends: Field,
     props: {
-      x: {
-        type: Number,
-        required: true,
-        default: 10
-      },
-      y: {
-        type: Number,
-        required: true,
-        default: 10
-      },
       width: {
         type: Number,
-        required: true,
+        required: false,
         default: 100
       },
       height: {
         type: Number,
-        required: true,
+        required: false,
         default: 30
       },
       media: {
@@ -42,30 +31,43 @@
     },
     data() {
       return {
-        id: uniqueId('media-field-'),
         fieldStyleProperties: {
           image: {
             imageRendering: "auto",
           },
           border: {
             borderColor: "#121212",
-            borderRadius: "0%;",
+            borderRadius: 0,
             borderStyle: "solid",
-            borderSize: "2px"
+            borderSize: 2
+          },
+          shadow: {
+            shadowDisplacement: 2,
+            shadowSize: 5,
+            shadowColor: "#121212"
           }
         }
       }
     },
-    mounted: function() {
+    methods: {
+      updateProperties: function(value) {
+        this.fieldStyleProperties = value;
+        this.emitChange();
+      }
     },
     computed: {
       fieldStyle () {
+        var stacking = !this.inEdit ? this.stackOrder : 1000;
         return {
-          '--media-image-rendering': this.fieldStyleProperties.image.imageRendering,
-          '--media-border-color': this.fieldStyleProperties.border.borderColor,
-          '--media-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
-          '--media-border-size': this.fieldStyleProperties.border.borderSize + "px",
-          '--media-border-style': this.fieldStyleProperties.border.borderStyle
+          '--field-image-rendering': this.fieldStyleProperties.image.imageRendering,
+          '--field-border-color': this.fieldStyleProperties.border.borderColor,
+          '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
+          '--field-border-size': this.fieldStyleProperties.border.borderSize + "px",
+          '--field-border-style': this.fieldStyleProperties.border.borderStyle,
+          '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
+          '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
+          '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
+          '--field-stack-order': stacking
         }
       },
       mediaURL () {
@@ -98,24 +100,19 @@
     max-width: 100%;
   }
 
-  .media:hover {
-    opacity: .7;
-  }
-  
-  .media img {
-    image-rendering: var(--media-image-rendering);
-  }
 
   .media img {
     display: block;
     width: 100%;
     height: 100%;
-    background-color: var(--media-bg-color);
-    border-width: var(--media-border-size);
-    border-style: var(--media-border-style);
-    border-color: var(--media-border-color);
-    border-radius: var(--media-border-radius);
-    transition: .1s;
+    image-rendering: var(--field-image-rendering);
+    background-color: var(--field-bg-color);
+    border-width: var(--field-border-size);
+    border-style: var(--field-border-style);
+    border-color: var(--field-border-color);
+    border-radius: var(--field-border-radius);
+    box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);
+
   }
 
   

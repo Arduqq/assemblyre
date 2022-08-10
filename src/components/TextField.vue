@@ -8,6 +8,7 @@
           :class="[fieldStyleProperties.text.textAlignment]" 
           :value="fieldStyleProperties.text.mdcontent" 
           v-html="fieldStyleProperties.text.mdcontent">
+          
         
       </div>
   </main>
@@ -49,6 +50,11 @@
             borderRadius: 0,
             borderStyle: "solid",
             borderSize: 2
+          },
+          shadow: {
+            shadowDisplacement: 2,
+            shadowSize: 5,
+            shadowColor: "#121212"
           }
         }
       }
@@ -78,8 +84,11 @@
           '--field-border-color': this.fieldStyleProperties.border.borderColor,
           '--field-border-style': this.fieldStyleProperties.border.borderStyle,
           '--field-border-size': this.fieldStyleProperties.border.borderSize + "px",
-          '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
+          '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "px",
           '--field-text-alignment': this.fieldStyleProperties.text.textAlignment,
+          '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
+          '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
+          '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
           '--field-stack-order': stacking
         }
         return style;
@@ -118,6 +127,7 @@
     font-size: var(--field-text-size);
     color: var(--field-text-color);
     text-align: var(--field-text-alignment);
+    box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);
     line-height: auto;
     overflow-wrap: break-word;
     padding: 10px;

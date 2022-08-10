@@ -1,39 +1,19 @@
 <template>
-    <div class="field-config text-field-config" v-click-outside="resetActiveProperty"> 
+    <div class="field-config code-field-config" v-click-outside="resetActiveProperty"> 
         <div class="property-config"  v-for="(_, name) in properties" :key="name">
         
             <input :id="id + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
             <label :for="id + name">{{name}}</label>
         </div>
 
-        <textarea v-model="currentProperties.text.content" 
-                  type="text" 
-                  ref="rawInput"
-                  :class="[currentProperties.text.textAlignment]" 
-                  value="content" 
-                  rows="10">
-        </textarea>
-
-
         <div class="edit-panel" v-show="inEditProperty === 'text'">
             <color-picker @input="updateStyle" v-model="currentProperties.text.textColor" />
-            <field-config-radio 
-                binding="r"
-                title="alignment"
-                property="textAlignment"
-                :options="['left', 'center', 'right', 'justify']"
-                :val="currentProperties.text.textAlignment"
-                v-model="currentProperties.text.textAlignment"
-                :alive="active === 'textAlignment'"
-                @click.native="active = 'textAlignment'"
-                @change="updateStyle"
-            />
             <field-config-slider 
                 binding="w" 
                 title="size" 
                 group="text"
                 property="textSize" 
-                :min=50 :max=200 :step=1 
+                :min=10 :max=200 :step=1 
                 :val="currentProperties.text.textSize "
                 v-model.number="currentProperties.text.textSize" 
                 :alive="active == 'textSize'"
@@ -77,7 +57,6 @@
                 @change="updateStyle"
             />
         </div>
-
         <div class="edit-panel" v-show="inEditProperty === 'shadow'">
             <color-picker @input="updateStyle" v-model="currentProperties.shadow.shadowColor" />
             <field-config-slider 
@@ -103,6 +82,7 @@
                 @click.native="active = 'shadowSize'"
                 @change="updateStyle"/>
         </div>
+
         
         <input type="button" id="delete-button" value="Delete" @click="initDelete"/>
     </div>
@@ -114,13 +94,13 @@ import FieldConfigRadio from './FieldConfigRadio.vue'
 
 export default {
   components: { FieldConfigSlider, FieldConfigRadio },
-    name: 'TextFieldConfig',
-    extends: FieldConfig,
+    name: 'CodeFieldConfig',
     data() {
         return {
             active: '',
         }
     },
+    extends: FieldConfig,
     methods: {
         updateStyle(value) {
             if (this.inEditProperty === 'border') {
