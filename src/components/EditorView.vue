@@ -262,7 +262,7 @@
         }
         return {
             "--flow-editor-stack-order": 2,
-            "--flow-editor-opacity": .8
+            "--flow-editor-opacity": 1
           }
       }
     },

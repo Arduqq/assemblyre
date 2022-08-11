@@ -1,5 +1,13 @@
 <template>
-  <div id='flow-view'></div>
+  <div id='flow-view' :style="flowStyle">
+    <div class="flow-control">
+      <input type="radio" name="patterns" value="pattern-1" v-model="backgroundPattern"/>
+      <input type="radio" name="patterns" value="pattern-2" v-model="backgroundPattern"/>
+      <input type="radio" name="patterns" value="pattern-3" v-model="backgroundPattern"/>
+      <input type="radio" name="patterns" value="pattern-4" v-model="backgroundPattern"/>
+      <input type="radio" name="patterns" value="pattern-5" v-model="backgroundPattern"/>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -7,11 +15,8 @@ export default {
   name: 'FlowView',
   mounted() {
     var active = false;
-    var canvas, pg, colorpicker, button, bg;
+    var canvas, pg, colorpicker, button;
     const script = function(p5) {
-      p5.preload = () => {
-        bg = p5.loadImage('@/../assets/pattern-1.png');
-      }
       p5.setup = () => {
         canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight);
         canvas.parent('#flow-view');
@@ -19,7 +24,6 @@ export default {
         pg = p5.createGraphics(p5.windowWidth, p5.windowHeight);
         pg.parent('#flow-view');
 
-        pg.background(bg);
         pg.canvas.remove()
         
         colorpicker = p5.createColorPicker('#ed225d');
@@ -45,7 +49,6 @@ export default {
         newPG.image(pg, 0, 0, newPG.width, newPG.height);
         pg = newPG;
         
-        pg.background(bg);
         p5.resizeCanvas(p5.windowWidth, p5.height);
       }
 
@@ -81,6 +84,16 @@ export default {
     
     const P5 = require('p5');
     new P5(script);
+  },
+  data() {
+    return {
+      backgroundPattern: "pattern-1",
+    }
+  },
+  computed: {
+    flowStyle() {
+      return {'--background-pattern': 'url(@/../assets/' + this.backgroundPattern + '.jpg)' }
+    }
   }
 };
 </script>
@@ -95,5 +108,6 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: var(--background-pattern);
 }
 </style>
