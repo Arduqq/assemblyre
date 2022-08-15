@@ -10,7 +10,6 @@
                   type="text" 
                   ref="rawInput"
                   :class="[currentProperties.text.textAlignment]" 
-                  value="content" 
                   rows="10">
         </textarea>
 

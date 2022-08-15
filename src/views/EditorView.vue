@@ -1,43 +1,49 @@
 <template>
 <div id="editor-view">
-  <input type="checkbox" value="Switch mode" class="mode-toggle" @click="editingPlugs = !editingPlugs"/>
+  <div class="canvas-control">
+    <input type="checkbox" value="Switch mode" class="mode-toggle" @click="editingPlugs = !editingPlugs"/>            
+    <input type="range" min=".1" max="2" step=".1" v-model.number="canvasScale" />
+
+  </div>
   
       <div class="editor-control active" >
-        <label>_Opus
+        <label>Title
           <input type="text" v-model="score.opus"/>
         </label>
-        <label>_Version
+        <label>Version
           <input type="text" v-model="score.version"/>
         </label>
-        <label>_Task
-          <input type="text" v-model="score.task"/>
-        </label>
+        {{this.task}}
         
         <button @click="save">save_</button>
         <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.json'">Download</a>
       </div>
-    <div class="editor plugs" >
+    <div class="editor plugs">
       <div class="toolbox"  :class="this.collapsed.includes('toolbox') ? 'collapsed' : ''">
         <div class="starter text" ref="textStarter"></div>
         <div class="starter code" ref="codeStarter"></div>
       <button @click="toggleCollapse('toolbox')" class="collapse-toggle">TOOLS</button>
       </div>
-      <div class="sandbox" >
-        <div class="program" ref="program"> 
+      <div class="sandbox" ref="sandbox">
+        <div class="program" ref="program" :style="canvasStyle"> 
           <text-field v-for="chord in chords" 
             :id="chord.id"
             :x="chord.x" 
             :y="chord.y" 
+            :modifier="canvasScale"
             :key="chord.id"
             @change="updateChord"/>
           <code-field v-for="code in codes" 
             :id="code.id"
             :x="code.x" 
             :y="code.y" 
+            :modifier="canvasScale"
             :key="code.id"/>
           <media-field v-for="plug in plugs" 
             :id="plug.id"
-            :x="plug.x" :y="plug.y" 
+            :x="plug.x" 
+            :y="plug.y" 
+            :modifier="canvasScale"
             :media="plug.media" 
             :key="plug.id"/>
       
@@ -60,22 +66,22 @@
 
 <script>
 
-  import TextField from "./TextField.vue";
-  import CodeField from "./CodeField.vue";
-  import MediaField from "./MediaField.vue";
+  import TextField from "../components/TextField.vue";
+  import CodeField from "../components/CodeField.vue";
+  import MediaField from "../components/MediaField.vue";
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
-  import LinkedImage from "./LinkedImage.vue";
-  import FlowView from "./FlowView.vue";
+  import LinkedImage from "../components/LinkedImage.vue";
+  import FlowView from "../components/FlowView.vue";
   export default {
     name: "EditorView",
     data() {
       return {
         editingPlugs: true,
+        panningMode: false,
         score: {
           opus: "Pseudo Program",
           version: "0.1",
-          task: "",
           type: "square"
         },
         collapsed: [],
@@ -87,20 +93,29 @@
         newImageURL : "https://imgur.com/ftHNkoG.png",
         exportURL: null,
         screenX: 0,
-        screenY: 0
+        screenY: 0,
+        canvasScale: 1
       };
     },
     props: {
       width: {
         type: Number,
-        required: true
+        required: false,
+        default: 800,
       },
       height: {
         type: Number,
-        required: true
+        required: false,
+        default: 600,
+      },
+      task: {
+        type: String,
+        required: false,
+        default: "growth spurt"
       }
     },
     mounted: function() {
+      
       let program = this.$refs.program;
       let textStarter = this.$refs.textStarter;
       let codeStarter = this.$refs.codeStarter;
@@ -178,11 +193,25 @@
             target.setAttribute("data-x", x);
             target.setAttribute("data-y", y);
         },
+        sandboxPanListener: function(event) {
+          var target = event.target,
+            x = (parseFloat(target.getAttribute("data-x")) || this.screenX) + event.dx,
+            y = (parseFloat(target.getAttribute("data-y")) || this.screenY) + event.dy;
+            console.log(this.panningMode);
+          if (this.panningMode === true) {
+            target.firstChild.style.webkitTransform = target.firstChild.style.transform =
+              "translate(" + x + "px, " + y + "px)";
+          }
+
+          // update the posiion attributes
+          target.setAttribute("data-x", x);
+          target.setAttribute("data-y", y);
+        },
         dropText: function(event) {
           var target = event.target;
           target.style.webkitTransform = target.style.transform =
               "translate(" + 0 + "px, " + 0 + "px)";
-          this.addChord(event.clientX-200, event.clientY-70);
+          this.addChord(event.screenX, event.screenY);
           this.screenX = 0;
           this.screenY = 0;
 
@@ -194,9 +223,9 @@
           var media = target.getAttribute("data-media");
           target.style.webkitTransform = target.style.transform =
               "translate(" + 0 + "px, " + 0 + "px)";
+          this.addPlug(event.screenX, event.screenY, media);
           this.screenX = 0;
           this.screenY = 0;
-          this.addPlug(event.clientX-200, event.clientY-70, media);
 
           target.setAttribute("data-x", 0);
           target.setAttribute("data-y", 0);
@@ -206,24 +235,24 @@
           var code = target.getAttribute("data-code");
           target.style.webkitTransform = target.style.transform =
               "translate(" + 0 + "px, " + 0 + "px)";
+          this.addCode(event.screenX, event.screenY, code);
           this.screenX = 0;
           this.screenY = 0;
-          this.addCode(event.clientX-200, event.clientY-70, code);
 
           target.setAttribute("data-x", 0);
           target.setAttribute("data-y", 0);
         },
         addChord: function (x, y) {
-          this.chords.push({id: uniqueId("chord-"), x: x, y: y});
+          this.chords.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
         },
         addPlug: function(x,y, url) {
-          this.plugs.push({id: uniqueId("plug-"), x: x, y: y, media: url});
+          this.plugs.push({id: uniqueId("plug-"), x: x, y: y, modifier: this.canvasScale, media: url});
         },
         addImage: function() {
           this.images.push({id: uniqueId("image-"), url: this.newImageURL});
         },
         addCode: function(x,y) {
-          this.codes.push({id: uniqueId("chord-"), x: x, y: y});
+          this.codes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
         },
         updateChord: function(id, value, x, y, w) {
           this.chords = this.chords.map(el =>
@@ -250,6 +279,10 @@
           } else {
             this.collapsed.push(container);
           }
+        },
+        
+        goBack() {
+          window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
         }
     },
     computed: {
@@ -264,6 +297,9 @@
             "--flow-editor-stack-order": 2,
             "--flow-editor-opacity": 1
           }
+      },
+      canvasStyle() {
+        return {"--canvas-scale": 'scale(' + this.canvasScale + ')' }
       }
     },
     components: {
@@ -309,14 +345,13 @@
     flex: 0 1 150px;
   }
 
-  .mode-toggle {
+  .canvas-control {
     position: fixed;
-    top:0;
-    left:0;
-    right: 0;
+    bottom: 0;
+    left: 10%;
+    right: 20%;
     margin: 0 auto;
-    width: 100px;
-    height: 50px;
+    text-align: center;
     z-index: 100;
   }
 
@@ -338,7 +373,7 @@
     opacity: var(--flow-editor-opacity);
   }
 
-  .editor > * {
+  .editor > *:not(.sandbox) {
     padding-top: 50px;
     transition: .1s;
   }
@@ -357,13 +392,13 @@
   justify-content: center;
   align-items: center;
   flex: 1 1 auto;
-  border: solid 5px #2c3e50;
   background: transparent;
   }
 
   .sandbox .program {
     display: block;
     background: rgba(255, 255, 255, .6);
+    transform: var(--canvas-scale);
   }
   
   

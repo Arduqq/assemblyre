@@ -1,7 +1,5 @@
 <script>
   import interact from "interactjs";
-  import DOMPurify from 'dompurify';
-  import { marked } from 'marked';
 
   export default {
   name: "PlainField",
@@ -19,6 +17,11 @@
         type: Number,
         required: true,
         default: 10
+      },
+      modifier: {
+        type: Number,
+        required: false,
+        default: 1
       }
     },
     data() {
@@ -81,8 +84,8 @@
       dragMoveListener: function(event) {
         if (!this.inEdit) {
           var target = event.target,
-            x = (parseFloat(target.getAttribute("data-x")) || this.screenX) + event.dx,
-            y = (parseFloat(target.getAttribute("data-y")) || this.screenY) + event.dy;
+            x = (parseFloat(target.getAttribute("data-x")) || this.screenX) + event.dx / this.modifier,
+            y = (parseFloat(target.getAttribute("data-y")) || this.screenY) + event.dy / this.modifier;
 
           target.style.webkitTransform = target.style.transform =
             "translate(" + x + "px, " + y + "px)";
@@ -123,9 +126,6 @@
       },
       closeConfig: function() {
         this.inEdit = false;
-        if (this.fieldStyleProperties.text) {
-          this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
-        }
         
       },
       destroySelf: function() {
@@ -198,7 +198,7 @@
     z-index: var(--field-stack-order);
     position: absolute;
     height: auto;
-    min-width: 300px;
+    min-width: 50px;
     user-select: none;
     box-sizing: content-box!important;
   }

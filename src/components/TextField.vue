@@ -70,9 +70,10 @@
       },
       updateProperties: function(value) {
         this.fieldStyleProperties = value;
+        this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
+      
         this.emitChange();
-      }
-
+      },
     },
     computed: {
       fieldStyle () {

@@ -1,12 +1,12 @@
 <template>
   <div id='app'>
-    <editor-view :width="1200" :height="800"></editor-view>
+    <router-link to="/">Hub</router-link>
+    <router-link to="/edit">Editor</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import EditorView from './components/EditorView.vue';
-
 export default {
   name: 'App',
 	data: () => ({
@@ -14,9 +14,6 @@ export default {
     version: 0.1,
     author: 'Artur Solomonik'
   }),
-  components: {
-    EditorView
-  }
 }
 </script>
 

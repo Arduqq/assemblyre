@@ -3,7 +3,7 @@
     <main :style="fieldStyle">
       <code-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
-      <div v-for="block in blocks" :key="block.id" class="code-block" :id="'code-block' + block.id" >
+      <div v-for="block in blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" >
 
         <span class="code-block-id">{{block.id}}</span>
         <span class="code-block-indent"
