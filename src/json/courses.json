@@ -1,0 +1,41 @@
+{
+    "0": {
+        "title": "Course Dummy",
+        "code": "seed",
+        "description": "This is a dummy, dummy.",
+        "resources": [
+            {
+                "title": "Link 1",
+                "excerpt": "This link is probably about something, or nothing.",
+                "url": "/" 
+            },
+            
+            {
+                "title": "Link 2",
+                "excerpt": "This link is probably about something, or nothing, as well.",
+                "url": "/" 
+            }
+        ],
+        "submissions": {
+            "grape": null,
+            "apple": {}
+        }
+    },
+    "1": {
+        "title": "Course Dummydummy",
+        "code": "sprout",
+        "description": "This is a dummydummy, dummydummy.",
+        
+        "resources": [
+            {
+                "title": "Link 1",
+                "excerpt": "This link is probably about something, or nothing.",
+                "url": "/" 
+            }
+        ],
+        "submissions": {
+            "grape": {},
+            "apple": {}
+        }
+    }
+}

@@ -70,12 +70,6 @@
           })
           .resizable({
             edges: { left: true, right: true, bottom: false, top: false },
-            
-            modifiers: [
-              interact.modifiers.restrictRect({
-                restriction: 'parent'
-              })
-            ],
             onmove: this.dragScaleListener,
             onend: this.onDragEnd
           })
@@ -98,11 +92,11 @@
       dragScaleListener: function(event) {
         if (!this.inEdit) {
           var target = event.target,
-            x = (parseFloat(target.getAttribute('data-x')) || 0),
+            x = (parseFloat(target.getAttribute('data-x')) || 0) ,
             y = (parseFloat(target.getAttribute('data-y')) || 0);
 
           // update the element's style
-          target.style.width = event.rect.width + 'px';
+          target.style.width = event.rect.width  / this.modifier + 'px';
           this.width = event.rect.width;
 
           // translate when resizing from top or left edges
@@ -198,13 +192,13 @@
     z-index: var(--field-stack-order);
     position: absolute;
     height: auto;
-    min-width: 50px;
+    min-width: 100px;
     user-select: none;
     box-sizing: content-box!important;
   }
   
   .field:hover {
-    border-right: 5px solid var(--interact-color);
+    border-right: 10px solid var(--interact-color)!important;
   }
   .field:hover aside {
     opacity: 1;

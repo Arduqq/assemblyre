@@ -1,5 +1,5 @@
 <template>
-  <div v-if="alive" ref="draggableWrapper" class="code" :id="id"  v-click-outside="closeConfig" >
+  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id"  v-click-outside="closeConfig"  :blocks="blocks">
     <main :style="fieldStyle">
       <code-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
@@ -17,7 +17,6 @@
     </main>
     
     <aside class="quick-config-view">
-        <input type="button" value="Down" id="edit-button" @click="stackDown" />
         <input type="button" value="Up" id="stack-up-button" @click="stackUp" />
         <input type="button" value="Down" id="stack-down-button" @click="stackDown" />
 
@@ -198,6 +197,7 @@
     color: var(--code-text-color);
     font-size: var(--code-text-size);
     font-family: "Steps Mono", "Courier New", monospace;
+    border: none;
   }
 
   .code main {
@@ -222,10 +222,20 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    padding: 0 3px;
   }
   .code .code-block input[type="text"] {
     display: block;
     flex: 1 1 auto;
+    box-sizing: border-box;
+  }
+
+  .code .code-block:focus-within {
+    border-top: solid 1px var(--code-border-color);
+    border-bottom: solid 1px var(--code-border-color);
+  }
+  .code .code-block input[type="text"]:focus {
+    outline: 0;
   }
 
   .code .code-block .code-block-id {
@@ -236,6 +246,8 @@
   .code .code-block .code-block-indent {
     display: inline-block;
     flex: 0 1 1em;
+    border-left: 1px solid var(--code-text-color);
+    height: 100%;
   }
   
 </style>

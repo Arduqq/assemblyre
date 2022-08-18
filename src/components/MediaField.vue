@@ -1,5 +1,5 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="media" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
+<div v-if="alive" ref="draggableWrapper" class="media field" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
   <media-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
   <img :src="mediaURL" />
   

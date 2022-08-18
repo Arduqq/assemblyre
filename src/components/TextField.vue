@@ -13,7 +13,7 @@
       </div>
   </main>
   
-  <aside class="quick-config-view">
+  <aside v-show="!inEdit" class="quick-config-view">
       <input type="button" value="Up" id="stack-up-button" @click="stackUp" />
       <input type="button" value="Down" id="stack-down-button" @click="stackDown" />
 

@@ -60,7 +60,7 @@
         <button @click="toggleCollapse('mediabox')" class="collapse-toggle">MEDIA</button>
       </div>
     </div>
-      <flow-view class="editor flow" :style="editorFocus"/>
+      <flow-view class="editor flow" :style="editorFocus" :width="width" :height="height" :modifier="canvasScale"/>
    </div>   
 </template>
 
@@ -366,6 +366,7 @@
     transition: .1s;
     z-index: 1;
     overflow: hidden;
+    background: rgba(51, 51, 51, 1);
   }
 
   .editor.flow {
