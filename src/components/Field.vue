@@ -35,11 +35,17 @@
 
         initMessages: [
           "If you can't give me poetry, can't you give me poetical science?",
-          "I will put up a show!",
+          "And that's how the cookie crumbles.",
           "This. This can be a text.",
-          "You can drag me around, even!",
-          "Let's go on an adventure.",
-          "Break freeeeeeee!"
+          "a b c d e f g",
+          "Apply adhesive here.",
+          "Do you train for passing tests or do you train for creative inquiry?",
+          "And so on, and so on ...",
+          "Machines take me by surprise with great frequency.",
+          "Codes are a puzzle. A game, just like any other game.",
+          "No, I'm not interested in developing a powerful brain...",
+          "How it is we have so much information, but know so little?",
+          "Colorless green ideas sleep furiously."
         ]
       }
     },
@@ -69,7 +75,7 @@
             onend: this.onDragEnd
           })
           .resizable({
-            edges: { left: true, right: true, bottom: false, top: false },
+            edges: { left: false, right: true, bottom: false, top: false },
             onmove: this.dragScaleListener,
             onend: this.onDragEnd
           })
@@ -99,9 +105,6 @@
           target.style.width = event.rect.width  / this.modifier + 'px';
           this.width = event.rect.width;
 
-          // translate when resizing from top or left edges
-          x += event.deltaRect.left
-          y += event.deltaRect.top
 
           target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
 

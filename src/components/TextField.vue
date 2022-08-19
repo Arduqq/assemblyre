@@ -39,22 +39,27 @@
         fieldStyleProperties: {
           text: {
             textAlignment: "left",
-            backgroundColor: "#ffffff",
             textColor: "#121212",
             textSize: 100,
-            content: "hello",
-            mdcontent: "hello",
+            content: "",
+            mdcontent: "",
           },
           border: {
-            borderColor: "#121212",
+            borderColor: "transparent",
             borderRadius: 0,
             borderStyle: "solid",
-            borderSize: 2
+            borderSize: 0
           },
           shadow: {
-            shadowDisplacement: 2,
-            shadowSize: 5,
-            shadowColor: "#121212"
+            shadowDisplacement: 0,
+            shadowSize: 0,
+            shadowColor: "transparent"
+          },
+          background: {
+            backgroundColor: "transparent",
+            backgroundImage: "none",
+            backgroundSize: 100,
+
           }
         }
       }
@@ -79,7 +84,6 @@
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
         var style = {
-          '--field-bg-color': this.fieldStyleProperties.text.backgroundColor,
           '--field-text-color': this.fieldStyleProperties.text.textColor,
           '--field-text-size': this.fieldStyleProperties.text.textSize + "%",
           '--field-border-color': this.fieldStyleProperties.border.borderColor,
@@ -90,6 +94,9 @@
           '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
           '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
           '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
+          '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
+          '--field-background-image': 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)',
+          '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
           '--field-stack-order': stacking
         }
         return style;
@@ -112,6 +119,7 @@
     width: 100%;
     display: flex;
     flex-flow: row wrap;
+    border: solid 2px #00000013;
   }
 
   .field main .rendered-view {
@@ -129,6 +137,9 @@
     color: var(--field-text-color);
     text-align: var(--field-text-alignment);
     box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);
+    background-color: var(--field-background-color);
+    background-image: var(--field-background-image);
+    background-size: var(--field-background-size);
     line-height: auto;
     overflow-wrap: break-word;
     padding: 10px;

@@ -366,7 +366,6 @@
     transition: .1s;
     z-index: 1;
     overflow: hidden;
-    background: rgba(51, 51, 51, 1);
   }
 
   .editor.flow {
