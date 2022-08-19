@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './app.vue'
-import HubView from './views/HubView.vue'
+import HubView from './views/SetupView.vue'
 import UserView from './views/UserView.vue'
 import EditorView from './views/EditorView.vue'
 import VueRouter from 'vue-router'

@@ -1,8 +1,13 @@
 <template>
   <main id='hub' v-if="['apple', 'grape'].indexOf(userCode) > -1 ">
     <h1>Assemblyng Hub: {{userCode}}</h1>
-    <p>Here you can unlock your new courses. After every chapter in the zine, you can find a code that will lead you to your online resources and the editor for you to create your code piece.</p>
-    <input v-model="courseCode"/>
+     
+    <section id="code">
+      <h2>Setup</h2>
+      <p>Here you can unlock your new courses. After every chapter in the zine, you can find a code that will lead you to your online resources and the editor for you to create your code piece.</p>
+      <input type="text" class="big" placeholder v-model="courseCode"/>
+
+    </section>
     <article class="course" v-for="course in courseData" :key="course.name">
       <section v-if="course.submissions[userCode] !== null || courseCode === course.code" class="course-details">
         <h2>{{course.title}}</h2>

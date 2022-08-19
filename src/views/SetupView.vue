@@ -1,8 +1,8 @@
 <template>
-  <main id='hub'>
+  <div id='setup'>
+    <main>
     <h1>Assemblyng Hub</h1>
     <section id="welcome">
-      <h2>Hello!</h2>
       <p>Thank you for participating in my study on <em>Composing Code</em>. Here, I will guide you through a learning platform alongside all of the resources that you may use for your sessions. Below, you can find further details on what will happen in this study.</p>
     </section>
     <section id="instructions">
@@ -14,18 +14,24 @@
       <p>~ For each code piece that you create, you will fill out a <strong>short survey</strong> where you can summarize your vision and reflection of the program.</p>
     </section>
       
-    <section>
-      <p>On the front page of your <em>Lyre Zine</em> you can find your personal code to view your personal hub. From there you will be able to unlock your digital resources and tools for creating your very own programs- </p>
-      <input type="text" v-model="userCode"/>
-      <router-link :to="{ name: 'hub', params: { userCode: userCode }}" >Enter Hub</router-link>
+    <section id="code">
+      <h2>Setup</h2>
+      <p>On the front page of your <em>Lyre Zine</em> you can find your case-sensitive code to view your personal hub. From there you will be able to unlock your digital resources and tools for creating your very own programs. </p>
+      <p>It is advised to work on a laptop or desktop for your code work. Most digital resources can be viewed on all devices.</p>
+      <input class="big" placeholder="code" type="text" v-model="userCode"/>
+      <router-link class="route" :to="{ name: 'hub', params: { userCode: userCode }}" >Enter Hub</router-link>
 
     </section>
-  </main>
+    </main>
+    <footer>
+      <a href="https://www.uni-weimar.de/"><img src="https://www.uni-weimar.de/fileadmin/_processed_/0/a/csm_Logo_Medien_R0_G155_B180_67f4f287e5.png"/></a>
+    </footer>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'HubView',
+  name: 'SetupView',
   data() {
     return {
       userCode: ''
@@ -35,24 +41,11 @@ export default {
 </script>
 
 <style scoped>
-main {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto;
-  gap: 20px;
-  font-size: 120%;
+a {
+  font-size: 150%;
 }
 
-main > * {
-  padding: 10px;
-  border: 1px solid #a8a8a8;
-  border-radius: 15px;
-  box-shadow: 2px 2px 0 2px #a8a8a8;
-}
 
-h1, h2, h3, h4 {
-  font-family: 'Karrik', Arial, sans-serif;
-}
+
+
 </style>
