@@ -22,6 +22,7 @@
       <div class="toolbox"  :class="this.collapsed.includes('toolbox') ? 'collapsed' : ''">
         <div class="starter text" ref="textStarter"></div>
         <div class="starter code" ref="codeStarter"></div>
+        <div class="starter shape" ref="shapeStarter"></div>
       <button @click="toggleCollapse('toolbox')" class="collapse-toggle">TOOLS</button>
       </div>
       <div class="sandbox" ref="sandbox">
@@ -46,7 +47,12 @@
             :modifier="canvasScale"
             :media="plug.media" 
             :key="plug.id"/>
-      
+          <shape-field v-for="shape in shapes" 
+            :id="shape.id"
+            :x="shape.x" 
+            :y="shape.y" 
+            :modifier="canvasScale"
+            :key="shape.id"/>
           </div>
          </div>
       <div class="mediabox" :class="this.collapsed.includes('mediabox') ? 'collapsed' : ''"  ref="mediabox">
@@ -69,6 +75,7 @@
   import TextField from "../components/TextField.vue";
   import CodeField from "../components/CodeField.vue";
   import MediaField from "../components/MediaField.vue";
+  import ShapeField from "../components/ShapeField.vue";
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
   import LinkedImage from "../components/LinkedImage.vue";
@@ -89,6 +96,7 @@
         images: [],
         plugs: [],
         codes: [],
+        shapes: [],
         programs: [],
         newImageURL : "https://imgur.com/ftHNkoG.png",
         exportURL: null,
@@ -119,9 +127,11 @@
       let program = this.$refs.program;
       let textStarter = this.$refs.textStarter;
       let codeStarter = this.$refs.codeStarter;
+      let shapeStarter = this.$refs.shapeStarter;
       program.style.width = this.width + "px";
       program.style.height = this.height + "px";
       this.initTextStarter(textStarter);
+      this.initShapeStarter(shapeStarter);
       this.initCodeStarter(codeStarter);
       this.initDropzone(program);
     },
@@ -152,7 +162,7 @@
             onend: this.dropText
           })
         },
-      initCodeStarter: function(starter) {
+        initCodeStarter: function(starter) {
         starter.setAttribute('data-x', this.x)
         starter.setAttribute('data-y', this.y)
         interact(starter)
@@ -164,6 +174,20 @@
             autoScroll: true,
             onmove: this.dragMoveListener,
             onend: this.dropCode
+          })
+        },
+        initShapeStarter: function(starter) {
+        starter.setAttribute('data-x', this.x)
+        starter.setAttribute('data-y', this.y)
+        interact(starter)
+          .draggable({
+            inertia: false,
+            restrict: {
+              elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+            },
+            autoScroll: true,
+            onmove: this.dragMoveListener,
+            onend: this.dropShape
           })
         },
         initMediaStarter: function(starter, media) {
@@ -242,17 +266,32 @@
           target.setAttribute("data-x", 0);
           target.setAttribute("data-y", 0);
         },
+        dropShape: function(event) {
+          var target = event.target;
+          target.style.webkitTransform = target.style.transform =
+              "translate(" + 0 + "px, " + 0 + "px)";
+          this.addShape(event.screenX, event.screenY);
+          this.screenX = 0;
+          this.screenY = 0;
+
+          target.setAttribute("data-x", 0);
+          target.setAttribute("data-y", 0);
+        },
         addChord: function (x, y) {
           this.chords.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
         },
         addPlug: function(x,y, url) {
-          this.plugs.push({id: uniqueId("plug-"), x: x, y: y, modifier: this.canvasScale, media: url});
+          this.plugs.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale, media: url});
         },
         addImage: function() {
-          this.images.push({id: uniqueId("image-"), url: this.newImageURL});
+          this.images.push({id: uniqueId("chord-"), url: this.newImageURL});
         },
         addCode: function(x,y) {
           this.codes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
+        },
+        
+        addShape: function(x,y) {
+          this.shapes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
         },
         updateChord: function(id, value, x, y, w) {
           this.chords = this.chords.map(el =>
@@ -306,6 +345,7 @@
     TextField,
     CodeField,
     MediaField,
+    ShapeField,
     LinkedImage,
     FlowView
 }
