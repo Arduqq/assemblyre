@@ -1,9 +1,9 @@
 <template>
-  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id"  v-click-outside="closeConfig"  :blocks="blocks">
+  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id"  v-click-outside="closeConfig" >
     <main :style="fieldStyle">
       <code-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
-      <div v-for="block in blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" >
+      <div v-for="block in fieldStyleProperties.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" >
 
         <span class="code-block-id">{{block.id}}</span>
         <span class="code-block-indent"
@@ -48,19 +48,19 @@
       return {
         input: 'cookie crumbles',
         output: 'cake',
-        blocks: [
-          {
-            id: 1,
-            content: '**Shout** To Infinity!',
-            type: 'print',
-            indent: 0
-          }
-        ],
         /* Initial Style Values */
         
         
         /* Initial Style Values */
         fieldStyleProperties: {
+          blocks: [
+            {
+              id: 1,
+              content: '**Shout** To Infinity!',
+              type: 'print',
+              indent: 0
+            }
+          ],
           text: {
             backgroundColor: "#ffffff",
             textColor: "#121212",
@@ -87,11 +87,11 @@
       },
       addBlock: function(line, indent) {
         /* If the cursor is at the start, transfer block's content */
-        var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.blocks[line-1].content : '';
+        var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.fieldStyleProperties.blocks[line-1].content : '';
         if (this.$refs.codeBlock[line-1].selectionStart == 0) {
-          this.blocks[line-1].content = '';
+          this.fieldStyleProperties.blocks[line-1].content = '';
         }
-        this.blocks.splice(
+        this.fieldStyleProperties.blocks.splice(
           line,
           0,
           {
@@ -101,8 +101,8 @@
             indent: indent
           }
         );
-        for (var i = line; i < this.blocks.length+1; i++) {
-          this.blocks[i-1].id = i;
+        for (var i = line; i < this.fieldStyleProperties.blocks.length+1; i++) {
+          this.fieldStyleProperties.blocks[i-1].id = i;
         }
         this.$nextTick(() => {
           this.$refs.codeBlock[line].focus();
@@ -112,16 +112,16 @@
         /* Is there more than one line? */
         if (line > 0) {
             /* Is the current line tabbed? */
-          if (this.blocks[line-1].indent > 0 && this.$refs.codeBlock[line-1].selectionStart == 0) {
-            this.blocks[line-1].indent --;
+          if (this.fieldStyleProperties.blocks[line-1].indent > 0 && this.$refs.codeBlock[line-1].selectionStart == 0) {
+            this.fieldStyleProperties.blocks[line-1].indent --;
             return;
           }
           if (line > 1) {
             /* Is the current line empty? */
             if (this.$refs.codeBlock[line-1].value === "") {
-              this.blocks.splice(line-1,1);
-              for (var j = line-1; j <= this.blocks.length-1; j++) {
-                this.blocks[j].id--;
+              this.fieldStyleProperties.blocks.splice(line-1,1);
+              for (var j = line-1; j <= this.fieldStyleProperties.blocks.length-1; j++) {
+                this.fieldStyleProperties.blocks[j].id--;
               }
               this.$nextTick(() => {
                 this.$refs.codeBlock[line-2].focus();
@@ -130,10 +130,10 @@
             }  
             /* Is the current selection at the line start, but non-empty? */
             if (this.$refs.codeBlock[line-1].selectionStart === 0 && this.$refs.codeBlock[line-1].value != "") {
-              var deletedLine = this.blocks.splice(line-1,1)[0];
-              this.blocks[line-2].content += deletedLine.content;
-              for (var i = line-1; i <= this.blocks.length-1; i++) {
-                this.blocks[i].id--;
+              var deletedLine = this.fieldStyleProperties.blocks.splice(line-1,1)[0];
+              this.fieldStyleProperties.blocks[line-2].content += deletedLine.content;
+              for (var i = line-1; i <= this.fieldStyleProperties.blocks.length-1; i++) {
+                this.fieldStyleProperties.blocks[i].id--;
               }
               this.$nextTick(() => {
                 this.$refs.codeBlock[line-2].focus();

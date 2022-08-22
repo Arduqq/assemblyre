@@ -33,26 +33,29 @@
             :y="chord.y" 
             :modifier="canvasScale"
             :key="chord.id"
-            @change="updateChord"/>
+            @change="updateFields"/>
           <code-field v-for="code in codes" 
             :id="code.id"
             :x="code.x" 
             :y="code.y" 
             :modifier="canvasScale"
-            :key="code.id"/>
+            :key="code.id"
+            @change="updateFields"/>
           <media-field v-for="plug in plugs" 
             :id="plug.id"
             :x="plug.x" 
             :y="plug.y" 
             :modifier="canvasScale"
             :media="plug.media" 
-            :key="plug.id"/>
+            :key="plug.id"
+            @change="updateFields"/>
           <shape-field v-for="shape in shapes" 
             :id="shape.id"
             :x="shape.x" 
             :y="shape.y" 
             :modifier="canvasScale"
-            :key="shape.id"/>
+            :key="shape.id"
+            @change="updateFields"/>
           </div>
          </div>
       <div class="mediabox" :class="this.collapsed.includes('mediabox') ? 'collapsed' : ''"  ref="mediabox">
@@ -213,7 +216,6 @@
               "translate(" + x + "px, " + y + "px)";
             target.style.zIndex = "1000";
 
-            // update the posiion attributes
             target.setAttribute("data-x", x);
             target.setAttribute("data-y", y);
         },
@@ -227,7 +229,6 @@
               "translate(" + x + "px, " + y + "px)";
           }
 
-          // update the posiion attributes
           target.setAttribute("data-x", x);
           target.setAttribute("data-y", y);
         },
@@ -293,16 +294,27 @@
         addShape: function(x,y) {
           this.shapes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
         },
-        updateChord: function(id, value, x, y, w) {
+
+        updateFields: function(id, value, x, y, w) {
           this.chords = this.chords.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, width: w } : el
-          );
+            el.id === id ? { ...el, style: value, x:x, y:y, w:w} : el
+          )
+          this.plugs = this.plugs.map(el =>
+            el.id === id ? { ...el, style: value, x:x, y:y, w:w} : el
+          )
+          this.codes = this.codes.map(el =>
+            el.id === id ? { ...el, style: value, x:x, y:y, w:w} : el
+          )
+          this.shapes = this.shapes.map(el =>
+            el.id === id ? { ...el, style: value, x:x, y:y, w:w} : el
+          )
         },
         save: async function() {
           var exportFile = {
             chords: this.chords,
             plugs: this.plugs,
-            codes: this.codes
+            codes: this.codes,
+            shapes: this.shapes
           };
         this.exportURL = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportFile,undefined,2));
           console.log(exportFile);
