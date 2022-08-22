@@ -56,7 +56,7 @@
             shadowColor: "transparent"
           },
           background: {
-            backgroundColor: "transparent",
+            backgroundColor: "white",
             backgroundImage: "none",
             backgroundSize: 100,
 
@@ -119,7 +119,6 @@
     width: 100%;
     display: flex;
     flex-flow: row wrap;
-    border: solid 2px #00000013;
   }
 
   .field main .rendered-view {

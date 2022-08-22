@@ -36,15 +36,21 @@
             imageRendering: "auto",
           },
           border: {
-            borderColor: "#121212",
+            borderColor: "transparent",
             borderRadius: 0,
             borderStyle: "solid",
-            borderSize: 2
+            borderSize: 0
           },
           shadow: {
-            shadowDisplacement: 2,
-            shadowSize: 5,
-            shadowColor: "#121212"
+            shadowDisplacement: 0,
+            shadowSize: 0,
+            shadowColor: "transparent"
+          },
+          background: {
+            backgroundColor: "transparent",
+            backgroundImage: "none",
+            backgroundSize: 100,
+
           }
         }
       }
@@ -67,12 +73,14 @@
           '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
           '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
           '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
+          '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
+          '--field-background-image': 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)',
+          '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
           '--field-stack-order': stacking
         }
       },
       mediaURL () {
         if (this.media) {
-          console.log(this.media);
           return this.media;
         }
         return require ('@/assets/sample.jpg')
@@ -106,7 +114,9 @@
     width: 100%;
     height: 100%;
     image-rendering: var(--field-image-rendering);
-    background-color: var(--field-bg-color);
+    background-color: var(--field-background-color);
+    background-image: var(--field-background-image);
+    background-size: var(--field-background-size);
     border-width: var(--field-border-size);
     border-style: var(--field-border-style);
     border-color: var(--field-border-color);

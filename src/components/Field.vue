@@ -18,10 +18,25 @@
         required: true,
         default: 10
       },
+      w: {
+        type: Number,
+        required: false,
+        default: 100
+      },
+      h: {
+        type: Number,
+        required: false,
+        default: 100
+      },
       modifier: {
         type: Number,
         required: false,
         default: 1
+      },
+      lockedResolution: {
+        type: Boolean,
+        required: false,
+        default: true
       }
     },
     data() {
@@ -32,6 +47,8 @@
         stackOrder: 0,
         screenX: 0,
         screenY: 0,
+        screenWidth: 0,
+        screenHeight: 0,
 
         initMessages: [
           "If you can't give me poetry, can't you give me poetical science?",
@@ -75,7 +92,12 @@
             onend: this.onDragEnd
           })
           .resizable({
-            edges: { left: false, right: true, bottom: false, top: false },
+            edges: { 
+              left: false, 
+              right: true, 
+              bottom: !this.lockedResolution, 
+              top: false 
+            },
             onmove: this.dragScaleListener,
             onend: this.onDragEnd
           })
@@ -103,7 +125,11 @@
 
           // update the element's style
           target.style.width = event.rect.width  / this.modifier + 'px';
-          this.width = event.rect.width;
+          if ( !this.lockedResolution ) {
+            target.style.height = event.rect.height  / this.modifier + 'px';
+          }
+          this.screenWidth = event.rect.width;
+          this.screenHeight = event.rect.height;
 
 
           target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
@@ -137,7 +163,7 @@
         }
       },
       emitChange: function() {
-        this.$emit('change', this.id, this.fieldStyleProperties, this.screenX, this.screenY, this.width);
+        this.$emit('change', this.id, this.fieldStyleProperties, this.screenX, this.screenY, this.screenWidth, this.screenHeight);
       },
 
     },
@@ -198,6 +224,7 @@
     min-width: 100px;
     user-select: none;
     box-sizing: content-box!important;
+    border: solid 2px #00000013;
   }
   
   .field:hover {

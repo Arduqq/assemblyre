@@ -13,6 +13,23 @@
             resetActiveProperty: function() {
                 this.inEditProperty = null;
             },
+            updateStyle(value) {
+                if (this.inEditProperty === 'border') {
+                    this.$set(this.currentProperties.border, value.property, value.val);
+                } else if (this.inEditProperty === 'shadow') {
+                    this.$set(this.currentProperties.shadow, value.property, value.val);
+                } else if  (this.inEditProperty === 'background') {
+                    this.$set(this.currentProperties.background, value.property, value.val);
+                } else if (this.inEditProperty === 'image') {
+                    this.$set(this.currentProperties.image, value.property, value.val);
+                } else {
+                    this.$set(this.currentProperties.text, value.property, value.val);
+                }
+                this.$emit('input', this.currentProperties )
+            },
+            initDelete() {
+                this.$emit('delete-initiated', this)
+            }
         },
         data() {
           return {
@@ -24,6 +41,7 @@
         components: {
         ColorPicker
         },
+        
         directives: {
         'click-outside': {
             bind: function (element, binding, vnode) {

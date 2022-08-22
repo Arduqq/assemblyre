@@ -1,6 +1,9 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="shape field" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
-  <shape-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+  <main>
+    <shape-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+    <div class="geometry"></div>
+  </main>
   
 </div>
 
@@ -28,8 +31,27 @@
             shadowDisplacement: 2,
             shadowSize: 5,
             shadowColor: "#121212"
+          },
+          background: {
+            backgroundColor: "black",
+            backgroundImage: "none",
+            backgroundSize: 100,
+
           }
         }
+      }
+    },
+    
+    props: {
+      width: {
+        type: Number,
+        required: false,
+        default: 100
+      },
+      height: {
+        type: Number,
+        required: false,
+        default: 30
       }
     },
     methods: {
@@ -49,6 +71,9 @@
           '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
           '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
           '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
+          '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
+          '--field-background-image': 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)',
+          '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
           '--field-stack-order': stacking
         }
       }
@@ -73,21 +98,34 @@
     flex-flow: row wrap;
     max-height: 100%; 
     max-width: 100%;
+    min-height: 100px;
   }
 
 
-  .shape {
+  .shape main{
     display: block;
-    width: 100px;
-    height: 100px;
-    image-rendering: var(--field-image-rendering);
-    background-color: var(--field-bg-color);
+    max-height: 100%; 
+    max-width: 100%;
+  }
+
+  .shape main > * {
+    z-index: 2;
+  }
+
+  .shape main .geometry {
+    width: 100%;
+    height: 100%;
+    background-color: var(--field-background-color);
+    background-image: var(--field-background-image);
+    background-size: var(--field-background-size);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     border-width: var(--field-border-size);
     border-style: var(--field-border-style);
     border-color: var(--field-border-color);
     border-radius: var(--field-border-radius);
     box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);
-
+    position: relative;
+    z-index: 1!important;
   }
 
   

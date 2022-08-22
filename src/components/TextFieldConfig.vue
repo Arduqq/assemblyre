@@ -71,17 +71,6 @@
         <div class="edit-panel" v-show="inEditProperty === 'border'">
             <color-picker @input="updateStyle" v-model="currentProperties.border.borderColor" />
             <field-config-slider 
-                binding="q" 
-                title="radius"
-                group="border"
-                property="borderRadius" 
-                :min=0 :max=50 :step=1 
-                :val="currentProperties.border.borderRadius "
-                v-model.number="currentProperties.border.borderRadius" 
-                :alive="active == 'borderRadius'"
-                @click.native="active = 'borderRadius'"
-                @change="updateStyle"/>
-            <field-config-slider 
                 binding="w" 
                 title="size" 
                 group="border"
@@ -91,6 +80,17 @@
                 v-model.number="currentProperties.border.borderSize" 
                 :alive="active == 'borderSize'"
                 @click.native="active = 'borderSize'"
+                @change="updateStyle"/>
+            <field-config-slider 
+                binding="q" 
+                title="radius"
+                group="border"
+                property="borderRadius" 
+                :min=0 :max=50 :step=1 
+                :val="currentProperties.border.borderRadius "
+                v-model.number="currentProperties.border.borderRadius" 
+                :alive="active == 'borderRadius'"
+                @click.native="active = 'borderRadius'"
                 @change="updateStyle"/>
             <field-config-radio 
                 binding="r"
@@ -146,23 +146,6 @@ export default {
     data() {
         return {
             active: '',
-        }
-    },
-    methods: {
-        updateStyle(value) {
-            if (this.inEditProperty === 'border') {
-                this.$set(this.currentProperties.border, value.property, value.val);
-            } else if (this.inEditProperty === 'shadow') {
-                this.$set(this.currentProperties.shadow, value.property, value.val);
-            } else if  (this.inEditProperty === 'background') {
-                this.$set(this.currentProperties.background, value.property, value.val);
-            } else {
-                this.$set(this.currentProperties.text, value.property, value.val);
-            }
-            this.$emit('input', this.currentProperties )
-        },
-        initDelete() {
-            this.$emit('delete-initiated', this)
         }
     }
 }

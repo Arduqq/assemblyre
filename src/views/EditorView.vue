@@ -32,6 +32,7 @@
             :x="chord.x" 
             :y="chord.y" 
             :modifier="canvasScale"
+            :lockedResolution="chord.lockedResolution"
             :key="chord.id"
             @change="updateFields"/>
           <code-field v-for="code in codes" 
@@ -39,6 +40,7 @@
             :x="code.x" 
             :y="code.y" 
             :modifier="canvasScale"
+            :lockedResolution="code.lockedResolution"
             :key="code.id"
             @change="updateFields"/>
           <media-field v-for="plug in plugs" 
@@ -47,6 +49,7 @@
             :y="plug.y" 
             :modifier="canvasScale"
             :media="plug.media" 
+            :lockedResolution="plug.lockedResolution"
             :key="plug.id"
             @change="updateFields"/>
           <shape-field v-for="shape in shapes" 
@@ -54,6 +57,7 @@
             :x="shape.x" 
             :y="shape.y" 
             :modifier="canvasScale"
+            :lockedResolution="shape.lockedResolution"
             :key="shape.id"
             @change="updateFields"/>
           </div>
@@ -79,10 +83,10 @@
   import CodeField from "../components/CodeField.vue";
   import MediaField from "../components/MediaField.vue";
   import ShapeField from "../components/ShapeField.vue";
-  import interact from "interactjs";
-  import uniqueId from 'lodash.uniqueid';
   import LinkedImage from "../components/LinkedImage.vue";
   import FlowView from "../components/FlowView.vue";
+  import interact from "interactjs";
+  import uniqueId from 'lodash.uniqueid';
   export default {
     name: "EditorView",
     data() {
@@ -292,21 +296,21 @@
         },
         
         addShape: function(x,y) {
-          this.shapes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
+          this.shapes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale, lockedResolution: false});
         },
 
-        updateFields: function(id, value, x, y, w) {
+        updateFields: function(id, value, x, y, w, h) {
           this.chords = this.chords.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, w:w} : el
+            el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
           this.plugs = this.plugs.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, w:w} : el
+            el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
           this.codes = this.codes.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, w:w} : el
+            el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
           this.shapes = this.shapes.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, w:w} : el
+            el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
         },
         save: async function() {
@@ -317,7 +321,6 @@
             shapes: this.shapes
           };
         this.exportURL = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportFile,undefined,2));
-          console.log(exportFile);
           
         },
         controlSelection: function (control) {
@@ -341,12 +344,12 @@
         if (this.editingPlugs) {
           return {
             "--flow-editor-stack-order": 0,
-            "--flow-editor-opacity": .5,
+            "--flow-editor-opacity": .8,
           }
         }
         return {
             "--flow-editor-stack-order": 2,
-            "--flow-editor-opacity": 1
+            "--flow-editor-opacity": .9
           }
       },
       canvasStyle() {

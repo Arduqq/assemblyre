@@ -67,15 +67,21 @@
             textSize: 100
           },
           border: {
-            borderColor: "#121212",
+            borderColor: "transparent",
             borderRadius: 0,
             borderStyle: "solid",
             borderSize: 0
           },
           shadow: {
-            shadowDisplacement: 2,
-            shadowSize: 5,
-            shadowColor: "#121212"
+            shadowDisplacement: 0,
+            shadowSize: 0,
+            shadowColor: "transparent"
+          },
+          background: {
+            backgroundColor: "white",
+            backgroundImage: "none",
+            backgroundSize: 100,
+
           }
         }
       }
@@ -149,7 +155,7 @@
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
         return {
-          '--code-bg-color': this.fieldStyleProperties.text.backgroundColor,
+          '--code-bg-color': this.fieldStyleProperties.background.backgroundColor,
           '--code-text-color': this.fieldStyleProperties.text.textColor,
           '--code-text-size': this.fieldStyleProperties.text.textSize + "%",
           '--code-border-color': this.fieldStyleProperties.border.borderColor,
@@ -198,6 +204,7 @@
     font-size: var(--code-text-size);
     font-family: "Steps Mono", "Courier New", monospace;
     border: none;
+    background-color: var(--code-bg-color);
   }
 
   .code main {
@@ -231,8 +238,8 @@
   }
 
   .code .code-block:focus-within {
-    border-top: solid 1px var(--code-border-color);
-    border-bottom: solid 1px var(--code-border-color);
+    border-top: solid 1px rgba(0,0,0,.5);
+    border-bottom: solid 1px rgba(0,0,0,.5);
   }
   .code .code-block input[type="text"]:focus {
     outline: 0;
