@@ -1,5 +1,5 @@
 <script>
-  import ColorPicker from "./ColorPicker.vue";
+  import FieldBaseConfigColor from "./FieldBaseConfigColor.vue";
   import uniqueId from 'lodash.uniqueid';
     export default {
         name: "FieldConfig",
@@ -39,7 +39,7 @@
           }
         },
         components: {
-        ColorPicker
+        FieldBaseConfigColor
         },
         
         directives: {

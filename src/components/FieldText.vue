@@ -1,7 +1,7 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
-    <text-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+    <field-text-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div type="text" 
           ref="textInput"
           class="rendered-view"
@@ -26,12 +26,12 @@
   import sample from 'lodash.sample';
   import DOMPurify from 'dompurify';
   import { marked } from 'marked';
-  import Field from "./Field.vue";
-  import TextFieldConfig from "./TextFieldConfig.vue";
+  import FieldBase from "./FieldBase.vue";
+  import FieldTextConfig from "./FieldTextConfig.vue";
 
   export default {
-  name: "TextField",
-  extends: Field,
+  name: "FieldText",
+  extends: FieldBase,
     data() {
       return {
         styleMap: {
@@ -104,7 +104,7 @@
       }
     },
     components: {
-      TextFieldConfig
+      FieldTextConfig
     }
   };
   

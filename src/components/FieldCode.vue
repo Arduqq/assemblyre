@@ -1,7 +1,7 @@
 <template>
   <div v-if="alive" ref="draggableWrapper" class="code field" :id="id"  v-click-outside="closeConfig" >
     <main :style="fieldStyle">
-      <code-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+      <field-code-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
       <div v-for="block in fieldStyleProperties.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" >
 
@@ -26,12 +26,12 @@
 
 </template>
 <script>
-  import Field from "./Field.vue";
-  import CodeFieldConfig from "./CodeFieldConfig.vue";
+  import FieldBase from "./FieldBase.vue";
+  import FieldCodeConfig from "./FieldCodeConfig.vue";
 
   export default {
-  name: "CodeField",
-  extends: Field,
+  name: "FieldCode",
+  extends: FieldBase,
     props: {
       x: {
         type: Number,
@@ -168,7 +168,7 @@
       }
     },
     components: {
-      CodeFieldConfig
+      FieldCodeConfig
     }
   };
   

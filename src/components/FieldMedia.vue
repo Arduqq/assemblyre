@@ -1,44 +1,48 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="shape field" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
-  <main>
-    <shape-field-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
-    <div class="geometry"></div>
-  </main>
+<div v-if="alive" ref="draggableWrapper" class="media field" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
+  <field-media-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+  <img :src="mediaURL" />
   
 </div>
 
 </template>
 <script>
-  import Field from "./Field.vue";
-  import ShapeFieldConfig from "./ShapeFieldConfig.vue";
+  import FieldBase from "./FieldBase.vue";
+  import FieldMediaConfig from "./FieldMediaConfig.vue";
 
   export default {
-  name: "ShapeField",
-  extends: Field,
+  name: "FieldMedia",
+  extends: FieldBase,
+    props: {
+      media: {
+        type: String,
+        required: false
+      }
+    },
     data() {
       return {
         styleMap: {
-            "default": {
-            shape: {
-              geometry: 'circle',
-            },
-            border: {
-              borderColor: "#121212",
-              borderRadius: 0,
-              borderStyle: "solid",
-              borderSize: 1
-            },
-            shadow: {
-              shadowDisplacement: 2,
-              shadowSize: 2,
-              shadowColor: "#343434"
-            },
-            background: {
-              backgroundColor: "black",
-              backgroundImage: "none",
-              backgroundSize: 100,
+          "default": {
+              image: {
+                imageRendering: "auto",
+              },
+              border: {
+                borderColor: "transparent",
+                borderRadius: 0,
+                borderStyle: "solid",
+                borderSize: 0
+              },
+              shadow: {
+                shadowDisplacement: 0,
+                shadowSize: 0,
+                shadowColor: "transparent"
+              },
+              background: {
+                backgroundColor: "transparent",
+                backgroundImage: "none",
+                backgroundSize: 100,
 
-            }
+              }
           }
         }
       }
@@ -53,6 +57,7 @@
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
         return {
+          '--field-image-rendering': this.fieldStyleProperties.image.imageRendering,
           '--field-border-color': this.fieldStyleProperties.border.borderColor,
           '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
           '--field-border-size': this.fieldStyleProperties.border.borderSize + "px",
@@ -65,10 +70,16 @@
           '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
           '--field-stack-order': stacking
         }
+      },
+      mediaURL () {
+        if (this.media) {
+          return this.media;
+        }
+        return require ('@/assets/sample.jpg')
       }
     },
     components: {
-      ShapeFieldConfig
+      FieldMediaConfig
     }
   };
   
@@ -80,41 +91,30 @@
     box-sizing: border-box;
   }
   
-  .shape {
+  .media {
     position: absolute;
     user-select: none;
     display: flex;
     flex-flow: row wrap;
     max-height: 100%; 
     max-width: 100%;
-    min-height: 100px;
   }
 
 
-  .shape main{
+  .media img {
     display: block;
-    max-height: 100%; 
-    max-width: 100%;
-  }
-
-  .shape main > * {
-    z-index: 2;
-  }
-
-  .shape main .geometry {
     width: 100%;
     height: 100%;
+    image-rendering: var(--field-image-rendering);
     background-color: var(--field-background-color);
     background-image: var(--field-background-image);
     background-size: var(--field-background-size);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     border-width: var(--field-border-size);
     border-style: var(--field-border-style);
     border-color: var(--field-border-color);
     border-radius: var(--field-border-radius);
     box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);
-    position: relative;
-    z-index: 1!important;
+
   }
 
   

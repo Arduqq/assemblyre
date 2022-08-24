@@ -7,7 +7,7 @@
         </div>
         
         <div class="edit-panel" v-show="inEditProperty === 'shape'">
-            <field-config-radio 
+            <field-base-config-radio 
                 binding="r"
                 title="geometry"
                 group="shape"
@@ -22,8 +22,8 @@
         </div>
 
         <div class="edit-panel" v-show="inEditProperty === 'background'">
-            <color-picker @input="updateStyle" v-model="currentProperties.background.backgroundColor" />
-            <field-config-radio 
+            <field-base-config-color @input="updateStyle" v-model="currentProperties.background.backgroundColor" />
+            <field-base-config-radio 
                 binding="r"
                 title="image"
                 property="backgroundImage"
@@ -34,7 +34,7 @@
                 @click.native="active = 'backgroundImage'"
                 @change="updateStyle"
             />
-            <field-config-slider 
+            <field-base-config-slider 
                 binding="q" 
                 title="size"
                 group="background"
@@ -49,8 +49,8 @@
         </div>
         
         <div class="edit-panel" v-show="inEditProperty === 'border'">
-            <color-picker @input="updateStyle" v-model="currentProperties.border.borderColor" />
-            <field-config-slider 
+            <field-base-config-color @input="updateStyle" v-model="currentProperties.border.borderColor" />
+            <field-base-config-slider 
                 binding="q" 
                 title="radius"
                 group="border"
@@ -61,7 +61,7 @@
                 :alive="active == 'borderRadius'"
                 @click.native="active = 'borderRadius'"
                 @change="updateStyle"/>
-            <field-config-slider 
+            <field-base-config-slider 
                 binding="w" 
                 title="size" 
                 group="border"
@@ -72,7 +72,7 @@
                 :alive="active == 'borderSize'"
                 @click.native="active = 'borderSize'"
                 @change="updateStyle"/>
-            <field-config-radio 
+            <field-base-config-radio 
                 binding="r"
                 title="style"
                 property="borderStyle"
@@ -86,8 +86,8 @@
         </div>
 
         <div class="edit-panel" v-show="inEditProperty === 'shadow'">
-            <color-picker @input="updateStyle" v-model="currentProperties.shadow.shadowColor" />
-            <field-config-slider 
+            <field-base-config-color @input="updateStyle" v-model="currentProperties.shadow.shadowColor" />
+            <field-base-config-slider 
                 binding="q" 
                 title="displacement"
                 group="shadow"
@@ -98,7 +98,7 @@
                 :alive="active == 'shadowDisplacement'"
                 @click.native="active = 'shadowDisplacement'"
                 @change="updateStyle"/>
-            <field-config-slider 
+            <field-base-config-slider 
                 binding="w" 
                 title="size" 
                 group="shadow"
@@ -115,21 +115,21 @@
     </div>
 </template>
 <script>
-import FieldConfig from './FieldConfig'
-import FieldConfigSlider from './FieldConfigSlider'
-import FieldConfigRadio from './FieldConfigRadio'
+import FieldBaseConfig from './FieldBaseConfig'
+import FieldBaseConfigSlider from './FieldBaseConfigSlider'
+import FieldBaseConfigRadio from './FieldBaseConfigRadio'
 
 export default {
-    name: 'ShapeFieldConfig',
+    name: 'FieldShapeConfig',
     data() {
         return {
             active: '',
         }
     },
-    extends: FieldConfig,
+    extends: FieldBaseConfig,
     components: {
-        FieldConfigRadio,
-        FieldConfigSlider
+        FieldBaseConfigRadio,
+        FieldBaseConfigSlider
     }
 }
 </script>

@@ -2,7 +2,7 @@
   import interact from "interactjs";
 
   export default {
-  name: "PlainField",
+  name: "FieldBase",
     props: {
       id: {
         type: String,

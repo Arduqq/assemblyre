@@ -64,7 +64,7 @@
             shapes: this.shapes
           }" v-show="previewProgram" class="program-preview"/>
         <div class="program" ref="program" :style="canvasStyle"> 
-          <text-field v-for="chord in chords" 
+          <field-text v-for="chord in chords" 
             :id="chord.id"
             :x="chord.x" 
             :y="chord.y" 
@@ -72,7 +72,7 @@
             :lockedResolution="chord.lockedResolution"
             :key="chord.id"
             @change="updateFields"/>
-          <code-field v-for="code in codes" 
+          <field-code v-for="code in codes" 
             :id="code.id"
             :x="code.x" 
             :y="code.y" 
@@ -80,7 +80,7 @@
             :lockedResolution="code.lockedResolution"
             :key="code.id"
             @change="updateFields"/>
-          <media-field v-for="plug in plugs" 
+          <field-media v-for="plug in plugs" 
             :id="plug.id"
             :x="plug.x" 
             :y="plug.y" 
@@ -89,7 +89,7 @@
             :lockedResolution="plug.lockedResolution"
             :key="plug.id"
             @change="updateFields"/>
-          <shape-field v-for="shape in shapes" 
+          <field-shape v-for="shape in shapes" 
             :id="shape.id"
             :x="shape.x" 
             :y="shape.y" 
@@ -107,10 +107,10 @@
 
 <script>
 
-  import TextField from "../components/TextField.vue";
-  import CodeField from "../components/CodeField.vue";
-  import MediaField from "../components/MediaField.vue";
-  import ShapeField from "../components/ShapeField.vue";
+  import FieldText from "../components/FieldText.vue";
+  import FieldCode from "../components/FieldCode.vue";
+  import FieldMedia from "../components/FieldMedia.vue";
+  import FieldShape from "../components/FieldShape.vue";
   import LinkedImage from "../components/LinkedImage.vue";
   import FlowView from "../components/FlowView.vue";
   import ProgramPreview from "../components/ProgramPreview.vue";
@@ -381,10 +381,10 @@
       }
     },
     components: {
-    TextField,
-    CodeField,
-    MediaField,
-    ShapeField,
+    FieldText,
+    FieldCode,
+    FieldMedia,
+    FieldShape,
     LinkedImage,
     FlowView,
     ProgramPreview

@@ -15,8 +15,8 @@
 
 
         <div class="edit-panel" v-show="inEditProperty === 'text'">
-            <color-picker @input="updateStyle" v-model="currentProperties.text.textColor" />
-            <field-config-radio 
+            <field-base-config-color @input="updateStyle" v-model="currentProperties.text.textColor" />
+            <field-base-config-radio 
                 binding="r"
                 title="alignment"
                 property="textAlignment"
@@ -27,7 +27,7 @@
                 @click.native="active = 'textAlignment'"
                 @change="updateStyle"
             />
-            <field-config-slider 
+            <field-base-config-slider 
                 binding="w" 
                 title="size" 
                 group="text"
@@ -42,8 +42,8 @@
         </div>
 
         <div class="edit-panel" v-show="inEditProperty === 'background'">
-            <color-picker @input="updateStyle" v-model="currentProperties.background.backgroundColor" />
-            <field-config-radio 
+            <field-base-config-color @input="updateStyle" v-model="currentProperties.background.backgroundColor" />
+            <field-base-config-radio 
                 binding="r"
                 title="image"
                 property="backgroundImage"
@@ -54,7 +54,7 @@
                 @click.native="active = 'backgroundImage'"
                 @change="updateStyle"
             />
-            <field-config-slider 
+            <field-base-config-slider 
                 binding="q" 
                 title="size"
                 group="background"
@@ -69,8 +69,8 @@
         </div>
 
         <div class="edit-panel" v-show="inEditProperty === 'border'">
-            <color-picker @input="updateStyle" v-model="currentProperties.border.borderColor" />
-            <field-config-slider 
+            <field-base-config-color @input="updateStyle" v-model="currentProperties.border.borderColor" />
+            <field-base-config-slider 
                 binding="w" 
                 title="size" 
                 group="border"
@@ -81,7 +81,7 @@
                 :alive="active == 'borderSize'"
                 @click.native="active = 'borderSize'"
                 @change="updateStyle"/>
-            <field-config-slider 
+            <field-base-config-slider 
                 binding="q" 
                 title="radius"
                 group="border"
@@ -92,7 +92,7 @@
                 :alive="active == 'borderRadius'"
                 @click.native="active = 'borderRadius'"
                 @change="updateStyle"/>
-            <field-config-radio 
+            <field-base-config-radio 
                 binding="r"
                 title="style"
                 property="borderStyle"
@@ -106,8 +106,8 @@
         </div>
 
         <div class="edit-panel" v-show="inEditProperty === 'shadow'">
-            <color-picker @input="updateStyle" v-model="currentProperties.shadow.shadowColor" />
-            <field-config-slider 
+            <field-base-config-color @input="updateStyle" v-model="currentProperties.shadow.shadowColor" />
+            <field-base-config-slider 
                 binding="q" 
                 title="displacement"
                 group="shadow"
@@ -118,7 +118,7 @@
                 :alive="active == 'shadowDisplacement'"
                 @click.native="active = 'shadowDisplacement'"
                 @change="updateStyle"/>
-            <field-config-slider 
+            <field-base-config-slider 
                 binding="w" 
                 title="size" 
                 group="shadow"
@@ -135,14 +135,14 @@
     </div>
 </template>
 <script>
-import FieldConfig from './FieldConfig'
-import FieldConfigSlider from './FieldConfigSlider.vue'
-import FieldConfigRadio from './FieldConfigRadio.vue'
+import FieldBaseConfig from './FieldBaseConfig'
+import FieldBaseConfigSlider from './FieldBaseConfigSlider.vue'
+import FieldBaseConfigRadio from './FieldBaseConfigRadio.vue'
 
 export default {
-  components: { FieldConfigSlider, FieldConfigRadio },
-    name: 'TextFieldConfig',
-    extends: FieldConfig,
+  components: { FieldBaseConfigSlider, FieldBaseConfigRadio },
+    name: 'FieldTextConfig',
+    extends: FieldBaseConfig,
     data() {
         return {
             active: '',
