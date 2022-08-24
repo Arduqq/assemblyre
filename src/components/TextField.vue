@@ -34,34 +34,35 @@
   extends: Field,
     data() {
       return {
-        
-        /* Initial Style Values */
-        fieldStyleProperties: {
-          text: {
-            textAlignment: "left",
-            textColor: "#121212",
-            textSize: 100,
-            content: "",
-            mdcontent: "",
-          },
-          border: {
-            borderColor: "transparent",
-            borderRadius: 0,
-            borderStyle: "solid",
-            borderSize: 0
-          },
-          shadow: {
-            shadowDisplacement: 0,
-            shadowSize: 0,
-            shadowColor: "transparent"
-          },
-          background: {
-            backgroundColor: "white",
-            backgroundImage: "none",
-            backgroundSize: 100,
+        styleMap: {
+          "default": {
+              text: {
+                textAlignment: "left",
+                textColor: "#121212",
+                textSize: 100,
+                content: "",
+                mdcontent: "",
+              },
+              border: {
+                borderColor: "transparent",
+                borderRadius: 0,
+                borderStyle: "solid",
+                borderSize: 0
+              },
+              shadow: {
+                shadowDisplacement: 0,
+                shadowSize: 0,
+                shadowColor: "transparent"
+              },
+              background: {
+                backgroundColor: "white",
+                backgroundImage: "none",
+                backgroundSize: 100,
 
+              }
           }
         }
+
       }
     },
     mounted: function() {

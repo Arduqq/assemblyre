@@ -48,40 +48,38 @@
       return {
         input: 'cookie crumbles',
         output: 'cake',
-        /* Initial Style Values */
-        
-        
-        /* Initial Style Values */
-        fieldStyleProperties: {
-          blocks: [
-            {
-              id: 1,
-              content: '**Shout** To Infinity!',
-              type: 'print',
-              indent: 0
-            }
-          ],
-          text: {
-            backgroundColor: "#ffffff",
-            textColor: "#121212",
-            textSize: 100
-          },
-          border: {
-            borderColor: "transparent",
-            borderRadius: 0,
-            borderStyle: "solid",
-            borderSize: 0
-          },
-          shadow: {
-            shadowDisplacement: 0,
-            shadowSize: 0,
-            shadowColor: "transparent"
-          },
-          background: {
-            backgroundColor: "white",
-            backgroundImage: "none",
-            backgroundSize: 100,
+        styleMap: {
+          "default": {
+            blocks: [
+                {
+                  id: 1,
+                  content: '**Shout** To Infinity!',
+                  type: 'print',
+                  indent: 0
+                }
+              ],
+              text: {
+                backgroundColor: "#ffffff",
+                textColor: "#121212",
+                textSize: 100
+              },
+              border: {
+                borderColor: "transparent",
+                borderRadius: 0,
+                borderStyle: "solid",
+                borderSize: 0
+              },
+              shadow: {
+                shadowDisplacement: 0,
+                shadowSize: 0,
+                shadowColor: "transparent"
+              },
+              background: {
+                backgroundColor: "white",
+                backgroundImage: "none",
+                backgroundSize: 100,
 
+              }
           }
         }
       }

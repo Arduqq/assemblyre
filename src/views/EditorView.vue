@@ -3,29 +3,66 @@
   <div class="canvas-control">
     <input type="checkbox" value="Switch mode" class="mode-toggle" @click="editingPlugs = !editingPlugs"/>            
     <input type="range" min=".1" max="2" step=".1" v-model.number="canvasScale" />
-
+    <input type="button" @click="previewProgram = !previewProgram"/>
   </div>
   
-      <div class="editor-control active" >
-        <label>Title
-          <input type="text" v-model="score.opus"/>
-        </label>
-        <label>Version
-          <input type="text" v-model="score.version"/>
-        </label>
-        {{this.task}}
+    <div class="editor-control active" >
+      <label>Title
+        <input type="text" v-model="score.opus"/>
+      </label>
+      <label>Version
+        <input type="text" v-model="score.version"/>
+      </label>
+      {{this.task}}
         
-        <button @click="save">save_</button>
-        <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.json'">Download</a>
-      </div>
+      <button @click="save">save_</button>
+      <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.json'">Download</a>
+    </div>
+    
     <div class="editor plugs">
-      <div class="toolbox"  :class="this.collapsed.includes('toolbox') ? 'collapsed' : ''">
+      <div class="tool-control">
+        <label>Text
+          <input type="radio" v-model="activeTool" value="text" name="tool"/>
+        </label>
+        <label>Code
+          <input type="radio" v-model="activeTool" value="code" name="tool"/>
+        </label>
+        <label>Shape
+          <input type="radio" v-model="activeTool" value="shape" name="tool"/>
+        </label>
+        <label>Media
+          <input type="radio" v-model="activeTool" value="media" name="tool"/>
+        </label>
+      </div>
+
+      <div class="toolbox" v-show="this.activeTool==='text'">
         <div class="starter text" ref="textStarter"></div>
+      </div>
+
+      <div class="toolbox" v-show="this.activeTool==='code'">
         <div class="starter code" ref="codeStarter"></div>
+      </div>
+
+      <div class="toolbox" v-show="this.activeTool==='shape'">
         <div class="starter shape" ref="shapeStarter"></div>
-      <button @click="toggleCollapse('toolbox')" class="collapse-toggle">TOOLS</button>
+      </div>
+      
+      <div class="mediabox" v-show="this.activeTool==='media'">
+      
+        <div class="imagebox"> 
+          <linked-image v-for="image in images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
+        </div>
+       <input type="text" v-model="newImageURL"/>
+        <button @click="addImage">Add Image</button>
       </div>
       <div class="sandbox" ref="sandbox">
+        
+        <program-preview :program="{
+            chords: this.chords,
+            plugs: this.plugs,
+            codes: this.codes,
+            shapes: this.shapes
+          }" v-show="previewProgram" class="program-preview"/>
         <div class="program" ref="program" :style="canvasStyle"> 
           <text-field v-for="chord in chords" 
             :id="chord.id"
@@ -58,20 +95,11 @@
             :y="shape.y" 
             :modifier="canvasScale"
             :lockedResolution="shape.lockedResolution"
+            :styling="shape.styling"
             :key="shape.id"
             @change="updateFields"/>
           </div>
          </div>
-      <div class="mediabox" :class="this.collapsed.includes('mediabox') ? 'collapsed' : ''"  ref="mediabox">
-      
-        <div class="imagebox"> 
-          <linked-image v-for="image in images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
-        </div>
-       <input type="text" v-model="newImageURL"/>
-        <button @click="addImage">Add Image</button>
-        
-        <button @click="toggleCollapse('mediabox')" class="collapse-toggle">MEDIA</button>
-      </div>
     </div>
       <flow-view class="editor flow" :style="editorFocus" :width="width" :height="height" :modifier="canvasScale"/>
    </div>   
@@ -85,6 +113,7 @@
   import ShapeField from "../components/ShapeField.vue";
   import LinkedImage from "../components/LinkedImage.vue";
   import FlowView from "../components/FlowView.vue";
+  import ProgramPreview from "../components/ProgramPreview.vue";
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
   export default {
@@ -92,13 +121,14 @@
     data() {
       return {
         editingPlugs: true,
+        previewProgram: false,
         panningMode: false,
+        activeTool: "text",
         score: {
           opus: "Pseudo Program",
           version: "0.1",
           type: "square"
         },
-        collapsed: [],
         chords: [],
         images: [],
         plugs: [],
@@ -296,7 +326,8 @@
         },
         
         addShape: function(x,y) {
-          this.shapes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale, lockedResolution: false});
+          this.shapes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale, lockedResolution: false, styling: "default"});
+          console.log(this.shapes);
         },
 
         updateFields: function(id, value, x, y, w, h) {
@@ -327,13 +358,6 @@
             this.canSelect = !control;
 
         },
-        toggleCollapse: function(container) {
-          if (this.collapsed.includes(container)) {
-            this.collapsed = this.collapsed.filter(el => el !== container);
-          } else {
-            this.collapsed.push(container);
-          }
-        },
         
         goBack() {
           window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
@@ -362,7 +386,8 @@
     MediaField,
     ShapeField,
     LinkedImage,
-    FlowView
+    FlowView,
+    ProgramPreview
 }
   }
 </script>
@@ -375,6 +400,7 @@
   .editor-control {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -383,8 +409,10 @@
     gap: 30px;
     padding: 10px;
     z-index: 2;
-    background: white;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background: var(--gui-color);
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    color: rgb(235, 235, 235);
+    border: 1px solid rgb(191, 146, 195);
   }
 
   .editor-control > * {
@@ -415,6 +443,7 @@
     height: 100vh;
     display: flex;
     flex-flow: row wrap;
+    justify-content: flex-start;
     position: absolute;
     top: 0;
     left: 0;
@@ -433,13 +462,6 @@
     transition: .1s;
   }
 
-  .editor > *.collapsed {
-    flex: 0;
-    padding: 0;
-    width: 0;
-    gap: 0;
-  }
-
   .sandbox {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   color: #2c3e50;
@@ -447,32 +469,26 @@
   justify-content: center;
   align-items: center;
   flex: 1 1 auto;
-  background: transparent;
+  color: rgb(235, 235, 235);
   }
 
   .sandbox .program {
     display: block;
-    background: rgba(255, 255, 255, .6);
+    border: 3px solid var(--gui-color);
     transform: var(--canvas-scale);
   }
   
-  
-  .editor > * > .collapse-toggle {
-    flex: 1 1 100%;
-    width: 50px;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    z-index: 1000;
-  }
 
   .toolbox {
-    flex: 0 1 10%;
+    flex: 0 0 300px;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
     height: 100%;
-    background: white;
+    background: var(--gui-color);
+    color: white;
+    border: 1px solid rgb(191, 146, 195);
   }
 
   
@@ -496,13 +512,31 @@
   }
 
   .mediabox {
-    flex: 0 1 20%;
+    flex: 0 0 300px;
     display: flex;
     flex-flow: column-reverse  wrap-reverse;
-    background: white;
+    background: var(--gui-color);
+    color: white;
     height: 100%;
     align-items: center;
     justify-content: flex-end;
+    border: 1px solid rgb(191, 146, 195);
+  }
+
+  .tool-control {
+    flex: 0 1 100px;
+    display: flex;
+    flex-flow: column nowrap;
+    background: var(--gui-color);
+    color: white;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid rgb(191, 146, 195);
+  }
+
+  .tool-control input {
+    display: none;
   }
 
   .mediabox > * {
@@ -526,5 +560,16 @@
     width: 100%;
   }
 
+  .program-preview {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    background: white;
+  }
 
 </style>

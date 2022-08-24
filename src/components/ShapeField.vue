@@ -17,41 +17,30 @@
   extends: Field,
     data() {
       return {
-        fieldStyleProperties: {
-          shape: {
-            geometry: 'circle',
-          },
-          border: {
-            borderColor: "#121212",
-            borderRadius: 0,
-            borderStyle: "solid",
-            borderSize: 2
-          },
-          shadow: {
-            shadowDisplacement: 2,
-            shadowSize: 5,
-            shadowColor: "#121212"
-          },
-          background: {
-            backgroundColor: "black",
-            backgroundImage: "none",
-            backgroundSize: 100,
+        styleMap: {
+            "default": {
+            shape: {
+              geometry: 'circle',
+            },
+            border: {
+              borderColor: "#121212",
+              borderRadius: 0,
+              borderStyle: "solid",
+              borderSize: 1
+            },
+            shadow: {
+              shadowDisplacement: 2,
+              shadowSize: 2,
+              shadowColor: "#343434"
+            },
+            background: {
+              backgroundColor: "black",
+              backgroundImage: "none",
+              backgroundSize: 100,
 
+            }
           }
         }
-      }
-    },
-    
-    props: {
-      width: {
-        type: Number,
-        required: false,
-        default: 100
-      },
-      height: {
-        type: Number,
-        required: false,
-        default: 30
       }
     },
     methods: {

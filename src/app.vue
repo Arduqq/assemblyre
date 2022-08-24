@@ -29,11 +29,16 @@ export default {
   }
 
 :root {
-  --primary-color: #523b38;
-  --primary-alt-color: rgb(110, 164, 192);
-  --secondary-color: #d1f4f6;
+  /* For general text */
+  --primary-color: #333333;
+  /* For special text */
+  --primary-alt-color: #4d2f3f;
+  /* For backgrounds */
+  --secondary-color: #e7deff;
+  --secondary-alt-color: #8d6cae;
+  --gui-color: rgb(57, 47, 67);
   --success-color: rgb(170, 255, 139);
-  --interact-color: rgb(224, 87, 255);
+  --interact-color: #9f18ff;
   --display-font: 'Karrik', Arial, sans-serif;
   --text-font: 'Open Sans', sans-serif;
   --code-font: 'Steps Mono', monospace;
@@ -41,6 +46,7 @@ export default {
 
 body {
   margin: 0;
+  background: rgb(170, 143, 178);
   padding: 0;
 }
 
@@ -50,17 +56,18 @@ main {
   width: 90%;
   max-width: 800px;
   margin: 0 auto;
-  gap: 10px;
+  gap: 20px;
   font-size: 120%;
 }
 
 main > section {
-  padding: 10px;
-  border: 1px solid #a8a8a8;
-  border-radius: 15px;
-  box-shadow: 2px 2px 0 2px #a8a8a8;
+  padding: 20px;
+  border: 1px solid var(--secondary-alt-color);
+  border-radius: 5px;
+  box-shadow: 2px 2px 0 2px var(--secondary-alt-color);
   display: flex;
   flex-flow: row wrap;
+  background: var(--secondary-color);
   justify-content: center;
   align-items: center;
   gap:10px
@@ -75,28 +82,26 @@ h1, h2, h3, h4 {
 }
 
 
-a.route {
+a.route, button {
   font-family: var(--display-font);
   text-decoration: none;
-  border-bottom: 2px solid var(--secondary-color);
+  background: var(--primary-alt-color);
+  color: white;
   transition: .1s;
   text-align: center;
   display: inline-block;
 }
 
-a.route:hover {
-  background: var(--secondary-color);
-  color: var(--interact-color);
-  border-bottom: 2px solid var(--interact-color);
+a.route:hover, button:hover {
+  background: var(--primary-color);
 }
 
 input[type="text"] {
-  padding: 5px;
   border: none;
   outline: none;
   display: inline-block;
-  background: var(--secondary-color);
-  border-bottom: 1px solid var(--primary-color);
+  background: var(--secondary-alt-color);
+  border-bottom: 1px solid var(--primary-alt-color);
   font-family: var(--code-font);
   transition: .1s;
 }

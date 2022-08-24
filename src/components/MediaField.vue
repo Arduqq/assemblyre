@@ -14,16 +14,6 @@
   name: "MediaField",
   extends: Field,
     props: {
-      width: {
-        type: Number,
-        required: false,
-        default: 100
-      },
-      height: {
-        type: Number,
-        required: false,
-        default: 30
-      },
       media: {
         type: String,
         required: false
@@ -31,26 +21,28 @@
     },
     data() {
       return {
-        fieldStyleProperties: {
-          image: {
-            imageRendering: "auto",
-          },
-          border: {
-            borderColor: "transparent",
-            borderRadius: 0,
-            borderStyle: "solid",
-            borderSize: 0
-          },
-          shadow: {
-            shadowDisplacement: 0,
-            shadowSize: 0,
-            shadowColor: "transparent"
-          },
-          background: {
-            backgroundColor: "transparent",
-            backgroundImage: "none",
-            backgroundSize: 100,
+        styleMap: {
+          "default": {
+              image: {
+                imageRendering: "auto",
+              },
+              border: {
+                borderColor: "transparent",
+                borderRadius: 0,
+                borderStyle: "solid",
+                borderSize: 0
+              },
+              shadow: {
+                shadowDisplacement: 0,
+                shadowSize: 0,
+                shadowColor: "transparent"
+              },
+              background: {
+                backgroundColor: "transparent",
+                backgroundImage: "none",
+                backgroundSize: 100,
 
+              }
           }
         }
       }

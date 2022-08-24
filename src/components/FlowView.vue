@@ -133,9 +133,9 @@ export default {
   overflow: hidden;
   background: var(--background-pattern);
   transform: var(--canvas-scale);
-  left: 10%;
-  right: 20%;
-  top: 50px;
+  left: 400px;
+  right: 0;
+  top: 52px;
 }
 
 #flow-control {

@@ -37,6 +37,11 @@
         type: Boolean,
         required: false,
         default: true
+      },
+      styling: {
+        type: String,
+        required: false,
+        default: "default"
       }
     },
     data() {
@@ -49,7 +54,6 @@
         screenY: 0,
         screenWidth: 0,
         screenHeight: 0,
-
         initMessages: [
           "If you can't give me poetry, can't you give me poetical science?",
           "And that's how the cookie crumbles.",
@@ -63,8 +67,12 @@
           "No, I'm not interested in developing a powerful brain...",
           "How it is we have so much information, but know so little?",
           "Colorless green ideas sleep furiously."
-        ]
+        ],
+        fieldStyleProperties: {}
       }
+    },
+    created: function() {
+      this.fieldStyleProperties = this.styleMap[this.styling];
     },
     mounted: function() {
       let draggableWrapper = this.$refs.draggableWrapper;

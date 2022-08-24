@@ -73,6 +73,7 @@
     background: var(--secondary-color);
     border:  1px solid var(--primary-color);
     border-radius: 5px;
+    color: var(--primary-color);
     padding: 20px;
     font-size: 80%;
     width: 250px;
