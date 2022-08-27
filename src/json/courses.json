@@ -1,41 +1,47 @@
 {
-    "0": {
-        "title": "Course Dummy",
+    "seed": {
+        "title": "1: setup() ~ Why to Code",
+        "excerpt": "The first step of this course dealt with the societal need and potential of coding. In the following, you will look at existing art, first languages, and art installations.",
         "code": "seed",
-        "description": "This is a dummy, dummy.",
+        "description": [
+            "Look at the creative works others have produced. What might have they used to achieve it? Try to decompose their process and how you would tackle it. What resources would you need? Where would you apply them and what would be your own result?",
+            "Who is someone who understands code? What makes people interact with code? Where are technology and code intertwined? Picture possible interactions between you and a machine? Are there possible dangers with people understanding code that you do not?", 
+            "Is coding a process of writing text, or is it something else? What does your piece mean to you? Would you like to turn you pseudocode into something real? Do you believe society has the capabilities to realize the code you wrote?"
+        ],
         "resources": [
             {
-                "title": "Link 1",
-                "excerpt": "This link is probably about something, or nothing.",
-                "url": "/" 
+                "title": "The Hello World Collection",
+                "excerpt": "From a small collection of text files by the German network MausNet, a large corpus of Hello World programs emerged. In both program, and human languages, the source code is compiled in an exhaustive overview.",
+                "url": "http://helloworldcollection.de/" 
             },
             
             {
-                "title": "Link 2",
-                "excerpt": "This link is probably about something, or nothing, as well.",
-                "url": "/" 
+                "title": "Markdown Guide",
+                "excerpt": "Markdown is a language to format plain text. Just like any office application, you can use it to create headings, lists, italics, and much more. Assemblyre uses Markdown for its text field. Check out this reference guide if you would like to make use of it in your own program.",
+                "url": "https://www.markdownguide.org/basic-syntax" 
+            },
+
+            {
+                "title": "The P5.js Editor",
+                "excerpt": "P5.js is a javascript framework that is used by many web artists to create generative artwork. The live-preview gives you immediate feedback on your code to overcome any setup limitations. Try drawing a cricle and transform it however you like. Find Help using their Reference sheet.",
+                "url": "https://editor.p5js.org/" 
+            },
+
+            {
+                "title": "sasj.nl",
+                "excerpt": "Saaskia Freeke is a designer and coder from Amsterdam specializing in exploring structure, geometry, and playfulness with new media. Daily she presents generative patterns and animations coded in the programming environment Processing.",
+                "url": "https://sasj.nl/portfolio/daily/" 
+            },
+
+            {
+                "title": "Annette Vee: Coding Literacy",
+                "excerpt": "If you got curious about what coding literacy means in broader context, Annette Vee elaborates on the importance of understanding programming. She explores the boundaries between text and code, painting a picture of a society working under computational standards that are unknown to a majority of the population.",
+                "url": "http://mitpress.mit.edu/9780262340243/coding-literacy/" 
             }
         ],
         "submissions": {
             "grape": null,
-            "apple": {}
-        }
-    },
-    "1": {
-        "title": "Course Dummydummy",
-        "code": "sprout",
-        "description": "This is a dummydummy, dummydummy.",
-        
-        "resources": [
-            {
-                "title": "Link 1",
-                "excerpt": "This link is probably about something, or nothing.",
-                "url": "/" 
-            }
-        ],
-        "submissions": {
-            "grape": {},
-            "apple": {}
+            "apple": null
         }
     }
 }

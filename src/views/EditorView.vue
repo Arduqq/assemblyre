@@ -19,52 +19,68 @@
       <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.json'">Download</a>
     </div>
     
-    <div class="editor plugs">
+    <div class="editor program.plugs">
       <div class="tool-control">
-        <label>Text
-          <input type="radio" v-model="activeTool" value="text" name="tool"/>
-        </label>
-        <label>Code
-          <input type="radio" v-model="activeTool" value="code" name="tool"/>
-        </label>
-        <label>Shape
-          <input type="radio" v-model="activeTool" value="shape" name="tool"/>
-        </label>
-        <label>Media
-          <input type="radio" v-model="activeTool" value="media" name="tool"/>
-        </label>
+          <input id="control-text" type="radio" v-model="activeTool" value="text" name="tool"/>
+          <label for="control-text">Text</label>
+          <input id="control-code" type="radio" v-model="activeTool" value="code" name="tool"/>
+          <label for="control-code">Code</label>
+          <input id="control-shape" type="radio" v-model="activeTool" value="shape" name="tool"/>
+          <label for="control-shape">Shape</label>
+          <input id="control-media" type="radio" v-model="activeTool" value="media" name="tool"/>
+          <label for="control-media">Media</label>
+          <input id="control-background" type="radio" v-model="activeTool" value="background" name="tool"/>
+          <label for="control-background">Background</label>
+          <input id="control-canvas" type="radio" v-model="activeTool" value="canvas" name="tool"/>
+          <label for="control-canvas">Canvas</label>
+          <input id="control-layers" type="radio" v-model="activeTool" value="layers" name="tool"/>
+          <label for="control-layers">Layers</label>
       </div>
 
-      <div class="toolbox" v-show="this.activeTool==='text'">
+      <div class="tool" v-show="this.activeTool==='text'">
         <div class="starter text" ref="textStarter"></div>
       </div>
 
-      <div class="toolbox" v-show="this.activeTool==='code'">
+      <div class="tool" v-show="this.activeTool==='code'">
         <div class="starter code" ref="codeStarter"></div>
       </div>
 
-      <div class="toolbox" v-show="this.activeTool==='shape'">
+      <div class="tool" v-show="this.activeTool==='shape'">
         <div class="starter shape" ref="shapeStarter"></div>
       </div>
+
+      <div class="tool layerbox" v-show="this.activeTool==='layers'">
+        <div class="layer" 
+              v-for="field in program.chords.concat(program.images, program.codes, program.plugs, program.shapes)"
+              :key="field.id">{{field.id}}</div>
+      </div>
       
-      <div class="mediabox" v-show="this.activeTool==='media'">
+      <div class="tool mediabox" v-show="this.activeTool==='media'">
       
         <div class="imagebox"> 
-          <linked-image v-for="image in images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
+          <linked-image v-for="image in program.images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
         </div>
        <input type="text" v-model="newImageURL"/>
         <button @click="addImage">Add Image</button>
       </div>
+
+      <div class="tool" v-show="this.activeTool==='background'">
+        <input type="radio" name="patterns" value="none" v-model="backgroundPattern"/>
+        <input type="radio" name="patterns" value="pattern-1" v-model="backgroundPattern"/>
+        <input type="radio" name="patterns" value="pattern-2" v-model="backgroundPattern"/>
+        <input type="radio" name="patterns" value="pattern-3" v-model="backgroundPattern"/>
+        <input type="radio" name="patterns" value="pattern-4" v-model="backgroundPattern"/>
+        <input type="radio" name="patterns" value="pattern-5" v-model="backgroundPattern"/>
+      </div>
+
+      <div class="tool" v-show="this.activeTool==='canvas'">
+        <input v-model.number="canvasSize.width">
+        <input v-model.number="canvasSize.height">
+      </div>
       <div class="sandbox" ref="sandbox">
-        
-        <program-preview :program="{
-            chords: this.chords,
-            plugs: this.plugs,
-            codes: this.codes,
-            shapes: this.shapes
-          }" v-show="previewProgram" class="program-preview"/>
+        <program-preview :program="program" v-show="previewProgram" class="program-preview" :width="canvasSize.width" :height="canvasSize.height"/>
         <div class="program" ref="program" :style="canvasStyle"> 
-          <field-text v-for="chord in chords" 
+          <field-text v-for="chord in program.chords" 
             :id="chord.id"
             :x="chord.x" 
             :y="chord.y" 
@@ -72,7 +88,7 @@
             :lockedResolution="chord.lockedResolution"
             :key="chord.id"
             @change="updateFields"/>
-          <field-code v-for="code in codes" 
+          <field-code v-for="code in program.codes" 
             :id="code.id"
             :x="code.x" 
             :y="code.y" 
@@ -80,7 +96,7 @@
             :lockedResolution="code.lockedResolution"
             :key="code.id"
             @change="updateFields"/>
-          <field-media v-for="plug in plugs" 
+          <field-media v-for="plug in program.plugs" 
             :id="plug.id"
             :x="plug.x" 
             :y="plug.y" 
@@ -89,7 +105,7 @@
             :lockedResolution="plug.lockedResolution"
             :key="plug.id"
             @change="updateFields"/>
-          <field-shape v-for="shape in shapes" 
+          <field-shape v-for="shape in program.shapes" 
             :id="shape.id"
             :x="shape.x" 
             :y="shape.y" 
@@ -99,9 +115,9 @@
             :key="shape.id"
             @change="updateFields"/>
           </div>
-         </div>
+
+      </div>
     </div>
-      <flow-view class="editor flow" :style="editorFocus" :width="width" :height="height" :modifier="canvasScale"/>
    </div>   
 </template>
 
@@ -112,7 +128,6 @@
   import FieldMedia from "../components/FieldMedia.vue";
   import FieldShape from "../components/FieldShape.vue";
   import LinkedImage from "../components/LinkedImage.vue";
-  import FlowView from "../components/FlowView.vue";
   import ProgramPreview from "../components/ProgramPreview.vue";
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
@@ -124,16 +139,20 @@
         previewProgram: false,
         panningMode: false,
         activeTool: "text",
+        canvasSize: { width: 0, height: 0 },
+        backgroundPattern: "none",
         score: {
           opus: "Pseudo Program",
           version: "0.1",
           type: "square"
         },
-        chords: [],
-        images: [],
-        plugs: [],
-        codes: [],
-        shapes: [],
+        program: {
+          chords: [],
+          images: [],
+          codes: [],
+          plugs: [],
+          shapes: []
+        },
         programs: [],
         newImageURL : "https://imgur.com/ftHNkoG.png",
         exportURL: null,
@@ -160,13 +179,12 @@
       }
     },
     mounted: function() {
-      
       let program = this.$refs.program;
       let textStarter = this.$refs.textStarter;
       let codeStarter = this.$refs.codeStarter;
       let shapeStarter = this.$refs.shapeStarter;
-      program.style.width = this.width + "px";
-      program.style.height = this.height + "px";
+      this.canvasSize.width = this.width;
+      this.canvasSize.height = this.height;
       this.initTextStarter(textStarter);
       this.initShapeStarter(shapeStarter);
       this.initCodeStarter(codeStarter);
@@ -313,45 +331,38 @@
           target.setAttribute("data-y", 0);
         },
         addChord: function (x, y) {
-          this.chords.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
+          this.program.chords.push({id: uniqueId("field-"), x: x, y: y, modifier: this.canvasScale});
         },
         addPlug: function(x,y, url) {
-          this.plugs.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale, media: url});
+          this.program.plugs.push({id: uniqueId("field-"), x: x, y: y, modifier: this.canvasScale, media: url});
         },
         addImage: function() {
-          this.images.push({id: uniqueId("chord-"), url: this.newImageURL});
+          this.program.images.push({id: uniqueId("field-"), url: this.newImageURL});
         },
         addCode: function(x,y) {
-          this.codes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale});
+          this.program.codes.push({id: uniqueId("field-"), x: x, y: y, modifier: this.canvasScale});
         },
         
         addShape: function(x,y) {
-          this.shapes.push({id: uniqueId("chord-"), x: x, y: y, modifier: this.canvasScale, lockedResolution: false, styling: "default"});
-          console.log(this.shapes);
+          this.program.shapes.push({id: uniqueId("field-"), x: x, y: y, modifier: this.canvasScale, lockedResolution: false, styling: "default"});
         },
 
         updateFields: function(id, value, x, y, w, h) {
-          this.chords = this.chords.map(el =>
+          this.program.chords = this.program.chords.map(el =>
             el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
-          this.plugs = this.plugs.map(el =>
+          this.program.plugs = this.program.plugs.map(el =>
             el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
-          this.codes = this.codes.map(el =>
+          this.program.codes = this.program.codes.map(el =>
             el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
-          this.shapes = this.shapes.map(el =>
+          this.program.shapes = this.program.shapes.map(el =>
             el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
         },
         save: async function() {
-          var exportFile = {
-            chords: this.chords,
-            plugs: this.plugs,
-            codes: this.codes,
-            shapes: this.shapes
-          };
-        this.exportURL = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportFile,undefined,2));
+        this.exportURL = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.program,undefined,2));
           
         },
         controlSelection: function (control) {
@@ -377,7 +388,13 @@
           }
       },
       canvasStyle() {
-        return {"--canvas-scale": 'scale(' + this.canvasScale + ')' }
+        var backgroundImage = this.backgroundPattern !== "none" ? 'url(@/../assets/' + this.backgroundPattern + '.jpg)' : "none"
+        return {
+          "--canvas-scale": 'scale(' + this.canvasScale + ')',
+          "--canvas-width": this.canvasSize.width + "px",
+          "--canvas-height": this.canvasSize.height + "px",
+          "--canvas-background": backgroundImage
+        }
       }
     },
     components: {
@@ -386,7 +403,6 @@
     FieldMedia,
     FieldShape,
     LinkedImage,
-    FlowView,
     ProgramPreview
 }
   }
@@ -457,7 +473,7 @@
     opacity: var(--flow-editor-opacity);
   }
 
-  .editor > *:not(.sandbox) {
+  .editor > * {
     padding-top: 50px;
     transition: .1s;
   }
@@ -467,7 +483,7 @@
   color: #2c3e50;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex: 1 1 auto;
   color: rgb(235, 235, 235);
   }
@@ -476,23 +492,27 @@
     display: block;
     border: 3px solid var(--gui-color);
     transform: var(--canvas-scale);
+    width: var(--canvas-width);
+    height: var(--canvas-height);
+    background: var(--canvas-background);
   }
   
 
-  .toolbox {
-    flex: 0 0 300px;
+  .tool {
+    flex: 0 0 275px;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     justify-content: flex-start;
     height: 100%;
+    padding-top: 50px;
     background: var(--gui-color);
     color: white;
     border: 1px solid rgb(191, 146, 195);
   }
 
   
-  .toolbox  .starter {
+  .tool  .starter {
     flex: 0 0 auto;
     height: 200px;
     width: 100%;
@@ -511,8 +531,8 @@
     height: 100px;
   }
 
-  .mediabox {
-    flex: 0 0 300px;
+  .tool.mediabox {
+    flex: 0 0 275px;
     display: flex;
     flex-flow: column-reverse  wrap-reverse;
     background: var(--gui-color);
@@ -524,28 +544,60 @@
   }
 
   .tool-control {
-    flex: 0 1 100px;
+    flex: 0 1 75px;
     display: flex;
     flex-flow: column nowrap;
     background: var(--gui-color);
     color: white;
     height: 100%;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    font-family: var(--display-font);
     border: 1px solid rgb(191, 146, 195);
+  }
+
+  .tool-control label {
+    flex: 0 0 75px;
+    width: 75px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-flow: column nowrap;
+    user-select: none;
+  }
+
+  .tool-control label:hover, .tool-control input:checked + label {
+    background: #633e5f;
+    color: var(--interact-color);
   }
 
   .tool-control input {
     display: none;
   }
 
-  .mediabox > * {
+  .tool.layerbox {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+  }
+
+  .tool.layerbox > * {
+    flex: 0 0 90%;
+    padding: 5px;
+    border: 1px solid var(--primary-color);
+    background: var(--secondary-alt-color);
+    color: var(--primary-color);
+  }
+
+  .tool.mediabox > * {
     width: 100%;
     flex: 0 0 auto;
     padding: 0;
   }
 
-  .mediabox .imagebox {
+  .tool.mediabox .imagebox {
     display: flex;
     flex-flow: row wrap;
     gap: 5px;
@@ -555,7 +607,7 @@
     flex: 0 0 80%;
   }
 
-  .mediabox .imagebox img {
+  .tool.mediabox .imagebox img {
     flex: 0 0 20%;
     width: 100%;
   }

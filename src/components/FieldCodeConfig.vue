@@ -2,8 +2,8 @@
     <div class="field-config code-field-config" v-click-outside="resetActiveProperty"> 
         <div class="property-config"  v-for="(_, name) in properties" :key="name">
         
-            <input :id="id + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
-            <label :for="id + name">{{name}}</label>
+            <input :id="id + '-' + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
+            <label :for="id + '-' + name">{{name}}</label>
         </div>
 
         <div class="edit-panel" v-show="inEditProperty === 'text'">

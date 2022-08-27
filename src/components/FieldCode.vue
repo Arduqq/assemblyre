@@ -1,7 +1,7 @@
 <template>
   <div v-if="alive" ref="draggableWrapper" class="code field" :id="id"  v-click-outside="closeConfig" >
     <main :style="fieldStyle">
-      <field-code-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+      <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
       <div v-for="block in fieldStyleProperties.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" >
 

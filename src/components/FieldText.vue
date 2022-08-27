@@ -1,15 +1,13 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
-    <field-text-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+    <field-text-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div type="text" 
           ref="textInput"
           class="rendered-view"
           :class="[fieldStyleProperties.text.textAlignment]" 
           :value="fieldStyleProperties.text.mdcontent" 
           v-html="fieldStyleProperties.text.mdcontent">
-          
-        
       </div>
   </main>
   
@@ -67,6 +65,7 @@
     },
     mounted: function() {
       this.fieldStyleProperties.text.content = sample(this.initMessages);
+      this.emitChange();
     },
     methods: {
       closeConfig: function() {
@@ -84,6 +83,7 @@
     computed: {
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
+        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
         var style = {
           '--field-text-color': this.fieldStyleProperties.text.textColor,
           '--field-text-size': this.fieldStyleProperties.text.textSize + "%",
@@ -96,7 +96,7 @@
           '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
           '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
           '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
-          '--field-background-image': 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)',
+          '--field-background-image': backgroundImage,
           '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
           '--field-stack-order': stacking
         }

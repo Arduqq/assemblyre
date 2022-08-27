@@ -119,6 +119,9 @@
 
           target.style.webkitTransform = target.style.transform =
             "translate(" + x + "px, " + y + "px)";
+          
+          this.screenWidth = event.rect.width;
+          this.screenHeight = event.rect.height;
 
           // update the posiion attributes
           target.setAttribute("data-x", x);
@@ -218,10 +221,11 @@
     text-align: center;
     padding: 5px;
     border: 1px solid var(--primary-color);
+    color: var(--primary-color);
     background: white;
     border-radius: 0px 25px 25px 0px;
     cursor: pointer;
-    transition: .1s;
+    transition: .05s;
   }
 
   
@@ -249,6 +253,7 @@
 
   aside > *:active {
     background: var(--interact-color);
+    transform: scale(.9);
   }
 
 </style>

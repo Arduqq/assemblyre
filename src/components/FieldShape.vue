@@ -1,7 +1,7 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="shape field" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
   <main>
-    <field-shape-config  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+    <field-shape-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div class="geometry"></div>
   </main>
   

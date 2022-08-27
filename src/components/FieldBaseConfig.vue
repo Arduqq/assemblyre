@@ -1,12 +1,15 @@
 <script>
   import FieldBaseConfigColor from "./FieldBaseConfigColor.vue";
-  import uniqueId from 'lodash.uniqueid';
     export default {
         name: "FieldConfig",
         props: {
             properties: {
                 type: Object,
                 required: true
+            },
+            fid: {
+              type: String,
+              required: true,
             }
         },
         methods: {
@@ -33,7 +36,7 @@
         },
         data() {
           return {
-            id: uniqueId('field-config-'),
+            id: this.fid +'-config-',
             inEditProperty: null,
             currentProperties: this.properties
           }
