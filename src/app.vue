@@ -32,7 +32,7 @@ export default {
   /* For general text */
   --primary-color: #333333;
   /* For special text */
-  --primary-alt-color: #4d2f3f;
+  --primary-alt-color: #7c1c4f;
   /* For backgrounds */
   --secondary-color: #e7deff;
   --secondary-alt-color: #8d6cae;
@@ -46,7 +46,7 @@ export default {
 
 body {
   margin: 0;
-  background: rgb(170, 143, 178);
+  background: white;
   padding: 0;
 }
 

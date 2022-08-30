@@ -13,6 +13,10 @@
         @keyup.delete="removeBlock(block.id)"
         @keydown.tab.prevent="block.indent++"
         v-model="block.content"/>
+        <label >print
+          <input :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
+        </label>
+
       </div>
     </main>
     
