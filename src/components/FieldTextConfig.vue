@@ -1,20 +1,11 @@
 <template>
-    <div class="field-config text-field-config" v-click-outside="resetActiveProperty"> 
+    <div class="field-config text-field-config" v-click-outside="resetActiveProperty"  :class=" inEditProperty !== null ? 'activated' : ''"> 
         <div class="property-config"  v-for="(_, name) in properties" :key="name">
-        
             <input :id="id + '-' + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
             <label :for="id + '-' + name">{{name}}</label>
         </div>
 
-        <textarea v-model="currentProperties.text.content" 
-                  type="text" 
-                  ref="rawInput"
-                  :class="[currentProperties.text.textAlignment]" 
-                  rows="10">
-        </textarea>
-
-
-        <div class="edit-panel" v-show="inEditProperty === 'text'">
+        <div class="edit-panel" v-show="inEditProperty === 'text' ">
             <field-base-config-color @input="updateStyle" v-model="currentProperties.text.textColor" />
             <field-base-config-radio 
                 binding="r"

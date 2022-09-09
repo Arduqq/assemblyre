@@ -135,7 +135,7 @@ header:hover {
   height: 180px;
 }
 
-header:hover + main {
+header:hover + .content {
   margin: 220px auto;
 }
 
@@ -170,7 +170,7 @@ header a img {
   width: 100%;
 }
 
-main {
+.content {
   display: flex;
   flex-flow: column nowrap;
   width: 90%;
@@ -181,7 +181,7 @@ main {
   transition: .3s;
 }
 
-main > section {
+.content > section {
   padding: 20px;
   border: 1px solid var(--secondary-alt-color);
   border-radius: 5px;
@@ -194,7 +194,7 @@ main > section {
   gap:10px
 }
 
-main > section > * {
+.content > section > * {
   flex: 0 1 100%;
 }
 

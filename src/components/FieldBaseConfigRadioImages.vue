@@ -56,8 +56,8 @@ export default {
         width: 250px;
         height: 100px;
         overflow-y: auto;
-        left: 30%;
-        top: 110%;
+        left: 100%;
+        top: 0;
         background-color: var(--primary-color);
         color: var(--secondary-color);
         border-radius: 5px;

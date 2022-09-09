@@ -73,44 +73,44 @@
 <style scoped>
   
     .field-config {
-    display: flex;
-    position: absolute;
-    left: 5px;
-    top: 5px;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    flex-flow: row wrap;
-    background: var(--secondary-color);
-    border:  1px solid var(--primary-color);
-    border-radius: 5px;
-    color: var(--primary-color);
-    padding: 20px;
-    font-size: 80%;
-    width: 250px;
-    opacity: .95;
-    backdrop-filter: blur(20px);
-    transform: translateX(var(--adjustment-offset));
-
+      display: flex;
+      position: absolute;
+      left: -60px;
+      top: 0;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      flex-flow: row wrap;
+      background: var(--secondary-color);
+      border:  1px solid var(--primary-color);
+      border-radius: 5px;
+      color: var(--primary-color);
+      padding: 20px;
+      font-size: 80%;
+      width: 50px;
+      height: 250px;
+      opacity: .95;
+      transform: translateX(var(--adjustment-offset));
+      transition: .1s;
+    
   }
 
   .field-config > * {
-    flex: 1 1 auto;
-  }
-  
-  .field-config textarea {
-    resize: none;
-    overflow-y: auto;
     flex: 1 1 100%;
-    margin: 10px;
-    border:  none;
-    white-space: pre-wrap;
   }
+
+  
+  .field-config.activated {
+    transform: translateX(-100px);
+  }
+
 
   .edit-panel {
     display: flex;
+    position: absolute;
+    left: 55px;
     flex-flow: row wrap;
-    width: 100%;
+    width: 50px;
     align-items: center;
     justify-content: center;
     gap: 5px;
@@ -124,23 +124,34 @@
     align-items: center;
   }
 
-  .property-config label {
-    display: block;
-    width: 100%;
-    padding: 5px;
-    border-top: 5px solid var(--secondary-color);
+  .property-config label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    font-size: 80%;
+    width: 50px;
+    height: 50px;
+    color: var(--primary-color);
+    padding: 2.5px;
+    border-radius: 5px;
+    font-size: 70%;
+    user-select: none;
     transition: .1s;
   }
 
-  .property-config label:hover {
-    border-top: 5px solid var(--interact-color);
+  .property-config label:hover{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    transform: translate(3px, 3px);
+    box-shadow: -1.5px -1.5px 0px 1.5px var(--primary-alt-color);
   }
 
   .property-config input:checked ~ label {
-    border-top: 5px solid var(--primary-alt-color);
-    background: var(--primary-alt-color);
+    
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    transform: translate(0,0);
+    box-shadow: none;
   }
 
   .property-config input {

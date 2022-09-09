@@ -52,8 +52,9 @@ export default {
         z-index: 100;
         position: absolute;
         width: 250px;
-        left: 30%;
-        top: 110%;
+        left: 100%;
+        top: 0;
+        transform: rotate(90deg);
         background-color: var(--primary-color);
         color: var(--secondary-color);
         border-radius: 5px;

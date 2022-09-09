@@ -2,13 +2,17 @@
 <div v-if="alive" ref="draggableWrapper" class="field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
     <field-text-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
-    <div type="text" 
-          ref="textInput"
+    <div v-if="!inEdit" type="text" 
           class="rendered-view"
           :class="[fieldStyleProperties.text.textAlignment]" 
           :value="fieldStyleProperties.text.mdcontent" 
           v-html="fieldStyleProperties.text.mdcontent">
-      </div>
+    </div>
+    <textarea v-else type="text" 
+          class="rendered-view"
+          :class="[fieldStyleProperties.text.textAlignment]" 
+          v-model="fieldStyleProperties.text.content"
+          @input="updateText" ></textarea>
   </main>
   
   <aside v-show="!inEdit" class="quick-config-view">
@@ -65,14 +69,15 @@
       }
     },
     mounted: function() {
-      this.fieldStyleProperties.text.content = sample(this.initMessages);
+      this.fieldStyleProperties.text.content = sample(this.initMessages); 
+      this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
+        
       this.emitChange();
     },
     methods: {
-      closeConfig: function() {
-        this.inEdit = false;
+      updateText: function() {
         this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
-        
+        console.log(this.fieldStyleProperties.text.mdcontent);
       },
       updateProperties: function(value) {
         this.fieldStyleProperties = value;
@@ -124,7 +129,9 @@
     flex-flow: row wrap;
   }
 
-  .field main .rendered-view {
+  
+
+  .field main .rendered-view, .field main textarea {
     display: block;
     flex: 1 1 100%;
     width: 100%;
@@ -149,5 +156,11 @@
     font-family: var(--field-text-font);
   }
   
+
+  
+  .field main > textarea {
+    height: 250px;
+    padding: 20px;
+  }
   
 </style>
