@@ -52,7 +52,7 @@
       <div class="tool layerbox" v-show="this.activeTool==='layers'">
         <div class="layer" 
               v-for="field in program.chords.concat(program.images, program.codes, program.plugs, program.shapes)"
-              :key="field.id">{{field.id}}</div>
+              :key="field.id">{{field.stackOrder}} | {{field.id}}</div>
       </div>
       
       <div class="tool mediabox" v-show="this.activeTool==='media'">
@@ -413,6 +413,12 @@
     box-sizing: border-box;
   }
 
+  #editor-view {
+    height: 100vh;
+    width: 100%;
+    background: var(--secondary-color);
+    position: absolute;
+  }
   .editor-control {
     display: flex;
     flex-flow: row nowrap;

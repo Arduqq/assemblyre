@@ -27,6 +27,17 @@
                 @click.native="active = 'textAlignment'"
                 @change="updateStyle"
             />
+            <field-base-config-radio-fonts 
+                binding="r"
+                title="font"
+                property="fontFamily"
+                :options="['Abordage', 'CirrusCumulus', 'Equateur', 'FT88', 'FT88 Gothique', 'FT88 School', 'Karrik', 'Latitude', 'Louise']"
+                :val="currentProperties.text.fontFamily"
+                v-model="currentProperties.text.fontFamily"
+                :alive="active === 'fontFamily'"
+                @click.native="active = 'fontFamily'"
+                @change="updateStyle"
+            />
             <field-base-config-slider 
                 binding="w" 
                 title="size" 
@@ -43,7 +54,7 @@
 
         <div class="edit-panel" v-show="inEditProperty === 'background'">
             <field-base-config-color @input="updateStyle" v-model="currentProperties.background.backgroundColor" />
-            <field-base-config-radio 
+            <field-base-config-radio-images 
                 binding="r"
                 title="image"
                 property="backgroundImage"
@@ -136,11 +147,8 @@
 </template>
 <script>
 import FieldBaseConfig from './FieldBaseConfig'
-import FieldBaseConfigSlider from './FieldBaseConfigSlider.vue'
-import FieldBaseConfigRadio from './FieldBaseConfigRadio.vue'
 
 export default {
-  components: { FieldBaseConfigSlider, FieldBaseConfigRadio },
     name: 'FieldTextConfig',
     extends: FieldBaseConfig,
     data() {

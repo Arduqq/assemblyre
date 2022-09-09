@@ -1,5 +1,9 @@
 <script>
   import FieldBaseConfigColor from "./FieldBaseConfigColor.vue";
+  import FieldBaseConfigSlider from './FieldBaseConfigSlider.vue'
+  import FieldBaseConfigRadio from './FieldBaseConfigRadio.vue'
+  import FieldBaseConfigRadioImages from './FieldBaseConfigRadioImages.vue'
+  import FieldBaseConfigRadioFonts from './FieldBaseConfigRadioFonts.vue'
     export default {
         name: "FieldConfig",
         props: {
@@ -42,7 +46,11 @@
           }
         },
         components: {
-        FieldBaseConfigColor
+        FieldBaseConfigColor, 
+        FieldBaseConfigSlider, 
+        FieldBaseConfigRadio,
+        FieldBaseConfigRadioImages,
+        FieldBaseConfigRadioFonts
         },
         
         directives: {

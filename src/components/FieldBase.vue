@@ -42,6 +42,11 @@
         type: String,
         required: false,
         default: "default"
+      },
+      stackOrder: {
+        type: Number,
+        required: false,
+        default: 0
       }
     },
     data() {
@@ -49,7 +54,6 @@
         alive: true,
         inEdit: false,
         inEditProperty: null,
-        stackOrder: 0,
         screenX: 0,
         screenY: 0,
         screenWidth: 0,
@@ -166,12 +170,10 @@
         this.alive=!this.alive;
       },
       stackUp: function() {
-        this.stackOrder ++;
+        this.$emit('change-order', "up", this.stackOrder);
       },
       stackDown: function() {
-        if (this.stackOrder != 0) {
-          this.stackOrder --;
-        }
+        this.$emit('change-order', "up", this.stackOrder);
       },
       emitChange: function() {
         this.$emit('change', this.id, this.fieldStyleProperties, this.screenX, this.screenY, this.screenWidth, this.screenHeight);
@@ -237,6 +239,11 @@
     user-select: none;
     box-sizing: content-box!important;
     border: solid 2px #00000013;
+  }
+
+  main {
+    
+    all: unset;
   }
   
   .field:hover {

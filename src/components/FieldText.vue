@@ -36,6 +36,7 @@
           "default": {
               text: {
                 textAlignment: "left",
+                fontFamily: "Roboto",
                 textColor: "#121212",
                 textSize: 100,
                 content: "",
@@ -92,6 +93,7 @@
           '--field-border-size': this.fieldStyleProperties.border.borderSize + "px",
           '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "px",
           '--field-text-alignment': this.fieldStyleProperties.text.textAlignment,
+          '--field-text-font': this.fieldStyleProperties.text.fontFamily,
           '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
           '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
           '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
@@ -144,7 +146,7 @@
     overflow-wrap: break-word;
     padding: 10px;
     margin: 0;
-    font-family: "Steps Mono", "Courier New", monospace;
+    font-family: var(--field-text-font);
   }
   
   

@@ -1,6 +1,5 @@
 <template>
-  <div id='setup'>
-    <main>
+    <main class="content">
     <h1>Assemblyng Hub</h1>
     <section id="welcome">
       <p>Thank you for participating in my study on <em>Composing Code</em>. Here, I will guide you through a learning platform alongside all of the resources that you may use for your sessions. Below, you can find further details on what will happen in this study.</p>
@@ -23,10 +22,6 @@
 
     </section>
     </main>
-    <footer>
-      <a href="https://www.uni-weimar.de/"><img src="https://www.uni-weimar.de/fileadmin/_processed_/0/a/csm_Logo_Medien_R0_G155_B180_67f4f287e5.png"/></a>
-    </footer>
-  </div>
 </template>
 
 <script>

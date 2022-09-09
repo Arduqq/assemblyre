@@ -85,7 +85,7 @@
 
         <div class="edit-panel" v-show="inEditProperty === 'background'">
             <field-base-config-color @input="updateStyle" v-model="currentProperties.background.backgroundColor" />
-            <field-base-config-radio 
+            <field-base-config-radio-images 
                 binding="r"
                 title="image"
                 property="backgroundImage"

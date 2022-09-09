@@ -3,7 +3,7 @@
     <main :style="fieldStyle">
       <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
-      <div v-for="block in fieldStyleProperties.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" >
+      <div v-for="block in fieldStyleProperties.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" :class="block.type">
 
         <span class="code-block-id">{{block.id}}</span>
         <span class="code-block-indent"
@@ -13,10 +13,23 @@
         @keyup.delete="removeBlock(block.id)"
         @keydown.tab.prevent="block.indent++"
         v-model="block.content"/>
-        <label >print
-          <input :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
-        </label>
+        <div class="code-type-config">
+          <label >print
+            <input name="group" value="print"  type="radio" v-model="block.type"/>
+          </label>
+          
+          <label >assign
+            <input name="group" value="assign"  type="radio" v-model="block.type"/>
+          </label>
+          
+          <label >unassign
+            <input name="group" value="unassign"  type="radio" v-model="block.type"/>
+          </label>
 
+          <label >generate
+            <input name="group" value="generate"  type="radio" v-model="block.type"/>
+          </label>
+        </div>
       </div>
     </main>
     
@@ -232,6 +245,7 @@
     justify-content: center;
     align-items: center;
     padding: 0 3px;
+    transition: .1s;
   }
   .code .code-block input[type="text"] {
     display: block;
@@ -257,6 +271,24 @@
     flex: 0 1 1em;
     border-left: 1px solid var(--code-text-color);
     height: 100%;
+  }
+
+  .code-type-config {
+    display: none;
+    font-size: 50%;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .code-type-config > label {
+    display: block;
+    flex: 1 1 25%;
+  }
+
+  .code-block:hover .code-type-config {
+    display: flex;
   }
   
 </style>
