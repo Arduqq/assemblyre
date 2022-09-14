@@ -1,13 +1,13 @@
 <template>
     <div class="field-config-radio-images" :class="this.alive ? 'active' : ''">
-        <b>[{{binding}}]</b> {{title}}
+        <img :src="'/assets/icons/' + property + '.png'" />
         <div v-show="alive" class="options">
             <label v-for="(option, index) in options" :key="index" :for="option">
                 <img :src="'/assets/' + option + '.jpg'">
                 <input :id="option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
             </label>
         </div>
-        <span>{{currentValue}}</span>
+        <span><b>{{property}}:</b> {{currentValue}}</span>
     </div>
 </template>
 <script>
@@ -45,6 +45,8 @@ export default {
         padding: 5px;
         position: relative;
         transition: .1s;
+        width: 50px;
+        height: 50px;
     }
 
     .field-config-radio-images .options {
@@ -63,6 +65,17 @@ export default {
         border-radius: 5px;
         padding: 5px;
         border: 1px solid var(--secondary-color);
+    }
+
+    
+
+    .field-config-radio-images > img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .field-config-radio-images:hover> img, .field-config-radio-fonts.active > img{
+        filter: invert(1);
     }
 
     .field-config-radio-images .options img {

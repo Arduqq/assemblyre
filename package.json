@@ -16,11 +16,7 @@
         "interactjs": "1.10.11",
         "lodash.sample": "^4.2.1",
         "lodash.uniqueid": "^4.0.1",
-        "marked": "4.0.16",
-        "p5": "1.4.1",
-        "vue": "^2.6.14",
-        "vue-router": "^3.5.4",
-        "vueify": "^2.0.1"
+        "marked": "4.0.16"
     },
     "license": "MIT",
     "keywords": [
@@ -40,7 +36,10 @@
         "@vue/cli-service": "^5.0.0",
         "eslint": "^7.32.0",
         "eslint-plugin-vue": "^8.0.3",
-        "vue-template-compiler": "^2.6.14"
+        "vue-template-compiler": "^2.6.14",
+        "vue": "^2.6.14",
+        "vue-router": "^3.5.4",
+        "vueify": "^2.0.1"
     },
     "eslintConfig": {
         "root": true,

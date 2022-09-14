@@ -75,7 +75,7 @@
         if (this.media) {
           return this.media;
         }
-        return require ('@/assets/sample.jpg')
+        return null;
       }
     },
     components: {

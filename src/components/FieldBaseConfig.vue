@@ -75,8 +75,8 @@
     .field-config {
       display: flex;
       position: absolute;
-      left: -60px;
-      top: 0;
+      top: -50px;
+      left: 50%;
       justify-content: center;
       align-items: center;
       gap: 5px;
@@ -85,13 +85,14 @@
       border:  1px solid var(--primary-color);
       border-radius: 5px;
       color: var(--primary-color);
-      padding: 20px;
+      padding: 5px;
       font-size: 80%;
-      width: 50px;
-      height: 250px;
+      width: 500px;
+      height: 40px;
       opacity: .95;
-      transform: translateX(var(--adjustment-offset));
+      transform: translateX(-50%);
       transition: .1s;
+      z-index: 2;
     
   }
 
@@ -101,19 +102,24 @@
 
   
   .field-config.activated {
-    transform: translateX(-100px);
+    transform: translateX(-50%) translateY(-30px);
   }
 
 
   .edit-panel {
     display: flex;
     position: absolute;
-    left: 55px;
+    left: 50px;
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
     flex-flow: row wrap;
-    width: 50px;
+    width: 75px;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 0px;
+    height: 100%;
+    background: var(--primary-color);
+    z-index: 1;
   }
 
   .property-config {
@@ -129,14 +135,16 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     color: var(--primary-color);
+    border: 2px solid var(--primary-color);
     padding: 2.5px;
     border-radius: 5px;
     font-size: 70%;
     user-select: none;
     transition: .1s;
+    z-index: 200;
   }
 
   .property-config label:hover{
@@ -154,7 +162,32 @@
     box-shadow: none;
   }
 
+  .property-config label img {
+    width: 100%;
+    height: 100%;
+  }
+  .property-config label:hover img, .property-config input:checked ~ label img {
+    filter: invert(1);
+  }
   .property-config input {
     display: none;
   }
+
+  .property-config label span {
+        display: block;
+        position: absolute;
+        left: 80%;
+        bottom: 10%;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        padding: 2.5px;
+        border-radius: 5px;
+        opacity: 0;
+        user-select: none;
+        transition: .05s;
+    }
+
+    .property-config label:hover span, .property-config label.active span {
+        opacity: 1
+    }
 </style>

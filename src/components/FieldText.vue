@@ -2,17 +2,18 @@
 <div v-if="alive" ref="draggableWrapper" class="field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
     <field-text-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
-    <div v-if="!inEdit" type="text" 
-          class="rendered-view"
-          :class="[fieldStyleProperties.text.textAlignment]" 
-          :value="fieldStyleProperties.text.mdcontent" 
-          v-html="fieldStyleProperties.text.mdcontent">
+    <div v-if="!inEdit" class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
+      <p  v-for="(value, index) in fieldStyleProperties.text.content"
+          :key="index"
+          :id="'content-' + index"></p>
     </div>
-    <textarea v-else type="text" 
-          class="rendered-view"
-          :class="[fieldStyleProperties.text.textAlignment]" 
-          v-model="fieldStyleProperties.text.content"
-          @input="updateText" ></textarea>
+    <div v-else class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
+      <p  v-for="(value, index) in fieldStyleProperties.text.content"
+          :key="index"
+          :id="'content-' + index"
+          @input="event => onInput(event, index)"
+          contenteditable></p>
+    </div>
   </main>
   
   <aside v-show="!inEdit" class="quick-config-view">
@@ -43,8 +44,7 @@
                 fontFamily: "Roboto",
                 textColor: "#121212",
                 textSize: 100,
-                content: "",
-                mdcontent: "",
+                content: [ { value: '', md: '' } ],
               },
               border: {
                 borderColor: "transparent",
@@ -69,22 +69,48 @@
       }
     },
     mounted: function() {
-      this.fieldStyleProperties.text.content = sample(this.initMessages); 
-      this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
-        
+      const msg = sample(this.initMessages);
+      this.fieldStyleProperties.text.content[0] = ({ value: msg, md: DOMPurify.sanitize(marked.parse(msg))}); 
+      
+      this.updateAllContent();
       this.emitChange();
     },
     methods: {
-      updateText: function() {
-        this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
-        console.log(this.fieldStyleProperties.text.mdcontent);
+      
+      openConfig: function() {
+        if (!this.inEdit) {
+          this.inEdit = true;
+          this.updateAllContent(false);
+        }
       },
+      closeConfig: function() {
+        if (this.inEdit) {
+          this.inEdit = false;
+          this.updateAllContent(true);  
+        }
+      },
+
       updateProperties: function(value) {
         this.fieldStyleProperties = value;
-        this.fieldStyleProperties.text.mdcontent = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content));
-      
         this.emitChange();
       },
+      
+      onInput(event, index) {
+        const value = event.target.innerText;
+        this.fieldStyleProperties.text.content[index].value = value;
+        this.fieldStyleProperties.text.content[index].md = DOMPurify.sanitize(marked.parse(value));
+        this.emitChange();
+      },
+      
+      updateAllContent(markdown) {
+        this.fieldStyleProperties.text.content.forEach((c, index) => {
+          c.md = DOMPurify.sanitize(marked.parse(c.value));
+          const el = document.getElementById(`content-${index}`);
+          if (markdown) { el.innerHTML = c.md }
+          else { el.innerText = c.value}
+        });
+        this.emitChange();
+      }
     },
     computed: {
       fieldStyle () {
@@ -119,19 +145,7 @@
 </script>
 
 <style scoped>
-  * {
-    box-sizing: border-box;
-  }
-
-  .field main {
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-  }
-
-  
-
-  .field main .rendered-view, .field main textarea {
+  .field main .rendered-view{
     display: block;
     flex: 1 1 100%;
     width: 100%;
@@ -154,13 +168,8 @@
     padding: 10px;
     margin: 0;
     font-family: var(--field-text-font);
+    height: auto;
   }
   
 
-  
-  .field main > textarea {
-    height: 250px;
-    padding: 20px;
-  }
-  
 </style>

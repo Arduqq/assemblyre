@@ -1,15 +1,15 @@
 <template>
     <div class="field-config-radio-fonts" :class="this.alive ? 'active' : ''">
-        <b>[{{binding}}]</b> {{title}}
+        <img :src="'/assets/icons/' + property + '.png'" />
         <div v-show="alive" class="options">
             <div class="option"  v-for="(option, index) in options" :key="index">
-                <label :for="option" :style="'font-family: ' + option">
+                <input :id="group+'-'+option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
+                <label :for="group+'-'+option" :style="'font-family: ' + option">
                     <span>QqRrEeUu</span><span>{{option}}</span>
                 </label>
-                <input :id="option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
             </div>
         </div>
-        <span>{{currentValue}}</span>
+        <span><b>{{property}}:</b> {{currentValue}}</span>
     </div>
 </template>
 <script>
@@ -18,8 +18,8 @@ export default {
     props: {
         title: String,
         binding: String,
-        group: String,
         property: String,
+        group: String,
         options: Array,
         val: String,
         alive: Boolean
@@ -47,7 +47,21 @@ export default {
         padding: 5px;
         position: relative;
         transition: .1s;
+        width: 50px;
+        height: 50px;
     }
+
+    
+
+    .field-config-radio-fonts img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .field-config-radio-fonts:hover img, .field-config-radio-fonts.active img{
+        filter: invert(1);
+    }
+
 
     .field-config-radio-fonts .options {
         z-index: 100;
@@ -71,25 +85,20 @@ export default {
         flex: 0 0 100%;
     }
 
-    .field-config-radio-fonts .options label {
-        width: 100%; 
+    .field-config-radio-fonts .options label {  
+        width: 100%;
         padding: 10px;
         transition: .1s;
         background: white;
         color: black;
         flex: 0 0 100%;
-        border: 1px solid var(--secondary-alt-color);
-        
         display: flex;
         flex-flow: row nowrap;
         gap: 20px;
-        align-content: space-around;
-        justify-content: flex-end;
-        text-align: right;
     }
 
-    .field-config-radio-fonts .options input:checked + label {
-        display: none;
+    .field-config-radio-fonts .options .option input:checked + label {
+        filter: invert(1);
     }
 
 

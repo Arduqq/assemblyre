@@ -15,19 +15,19 @@
         v-model="block.content"/>
         <div class="code-type-config">
           <label >print
-            <input name="group" value="print"  type="radio" v-model="block.type"/>
+            <input :name="group" value="print"  type="radio" v-model="block.type"/>
           </label>
           
           <label >assign
-            <input name="group" value="assign"  type="radio" v-model="block.type"/>
+            <input :name="group" value="assign"  type="radio" v-model="block.type"/>
           </label>
           
           <label >unassign
-            <input name="group" value="unassign"  type="radio" v-model="block.type"/>
+            <input :name="group" value="unassign"  type="radio" v-model="block.type"/>
           </label>
 
           <label >generate
-            <input name="group" value="generate"  type="radio" v-model="block.type"/>
+            <input :name="group" value="generate"  type="radio" v-model="block.type"/>
           </label>
         </div>
       </div>
