@@ -2,7 +2,7 @@
     <div class="field-config text-field-config" v-click-outside="resetActiveProperty"  :class=" inEditProperty !== null ? 'activated' : ''"> 
         <div class="property-config"  v-for="(_, name) in properties" :key="name">
             <input :id="id + '-' + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
-            <label :for="id + '-' + name">{{name}}</label>
+            <label :for="id + '-' + name"><img :src="'/assets/icons/' + name + '.png'" /><span>{{name}}</span></label>
         </div>
 
         <div class="edit-panel" v-show="inEditProperty === 'text' ">
@@ -11,6 +11,7 @@
                 binding="r"
                 title="alignment"
                 property="textAlignment"
+                :group="id + 'textAlignment'"
                 :options="['left', 'center', 'right', 'justify']"
                 :val="currentProperties.text.textAlignment"
                 v-model="currentProperties.text.textAlignment"
@@ -22,7 +23,8 @@
                 binding="r"
                 title="font"
                 property="fontFamily"
-                :options="['Abordage', 'CirrusCumulus', 'Equateur', 'FT88', 'FT88 Gothique', 'FT88 School', 'Karrik', 'Latitude', 'Louise']"
+                :group="id + 'fontFamily'"
+                :options="['Roboto', 'Arial', 'Georgia', 'Courier New', 'Abordage', 'CirrusCumulus', 'Equateur', 'FT88', 'FT88 Gothique', 'FT88 School', 'Karrik', 'Latitude', 'Louise']"
                 :val="currentProperties.text.fontFamily"
                 v-model="currentProperties.text.fontFamily"
                 :alive="active === 'fontFamily'"
@@ -32,7 +34,7 @@
             <field-base-config-slider 
                 binding="w" 
                 title="size" 
-                group="text"
+                :group="id + 'text'"
                 property="textSize" 
                 :min=50 :max=200 :step=1 
                 :val="currentProperties.text.textSize "
@@ -49,6 +51,7 @@
                 binding="r"
                 title="image"
                 property="backgroundImage"
+                :group="id + 'backgroundImage'"
                 :options="['asphalt', 'bricks-1', 'bricks-2', 'building-1', 'building-2', 'circuit', 'dots-1', 'dots-2', 'flame-1', 'flame-2', 'leather', 'machine', 'rock-1', 'rock-2', 'shell', 'sponge', 'stars']"
                 :val="currentProperties.background.backgroundImage"
                 v-model="currentProperties.background.backgroundImage"
@@ -59,7 +62,7 @@
             <field-base-config-slider 
                 binding="q" 
                 title="size"
-                group="background"
+                :group="id + 'background'"
                 property="backgroundSize" 
                 :min=0 :max=200 :step=1 
                 :val="currentProperties.background.backgroundSize "
@@ -75,7 +78,7 @@
             <field-base-config-slider 
                 binding="w" 
                 title="size" 
-                group="border"
+                :group="id + 'border'"
                 property="borderSize" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.border.borderSize" 
@@ -86,7 +89,7 @@
             <field-base-config-slider 
                 binding="q" 
                 title="radius"
-                group="border"
+                :group="id + 'border'"
                 property="borderRadius" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.border.borderRadius "
@@ -112,7 +115,7 @@
             <field-base-config-slider 
                 binding="q" 
                 title="displacement"
-                group="shadow"
+                :group="id + 'shadow'"
                 property="shadowDisplacement" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.shadow.shadowDisplacement "
@@ -123,7 +126,7 @@
             <field-base-config-slider 
                 binding="w" 
                 title="size" 
-                group="shadow"
+                :group= "id + 'shadow'"
                 property="shadowSize" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.shadow.shadowSize" 

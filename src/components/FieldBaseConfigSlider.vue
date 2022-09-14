@@ -1,10 +1,10 @@
 <template>
     <div class="field-config-slider" :class="this.alive ? 'active' : ''">
-        [{{binding}}] {{title}}
+        <img :src="'/assets/icons/' + property + '.png'" />
         <div  v-show="alive" class="slider">
-            <input type="range" id="text_size" :min="min" :max="max" :step="step" v-model.number="currentValue" @input="updateValue()"/>
+            {{min}}<input type="range" id="text_size" :min="min" :max="max" :step="step" v-model.number="currentValue" @input="updateValue()"/>{{max}}
         </div>
-        <span>{{currentValue}}</span>
+        <span><b>{{property}}:</b> {{currentValue}}</span>
             
     </div>
 </template>
@@ -36,6 +36,17 @@ export default {
 </script>
 
 <style>
+    
+
+    .field-config-slider img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .field-config-slider:hover img, .field-config-slider.active img{
+        filter: invert(1);
+    }
+
     .field-config-slider {
         display: block;
         background-color: var(--secondary-color);
@@ -46,20 +57,33 @@ export default {
         padding: 5px;
         position: relative;
         transition: .1s;
+        width: 50px;
+        height: 50px;
     }
 
     .field-config-slider .slider {
         z-index: 100;
         position: absolute;
-        width: 250px;
-        left: 100%;
-        top: 0;
-        transform: rotate(90deg);
+        width: 150px;
+        height: 30px;
+        left: 65px;
+        top: calc(100% + 75px);
+        transform: rotate(-90deg);
         background-color: var(--primary-color);
         color: var(--secondary-color);
         border-radius: 5px;
         padding: 5px;
         border: 1px solid var(--secondary-color);
+        display: flex;
+        gap: 10px;
+        transform-origin: top left;
+    }
+
+
+    .field-config-slider .slider input {
+        all: unset;
+        background-color: var(--primary-alt-color);
+        width: 100%;
     }
 
     .field-config-slider:hover {

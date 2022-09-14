@@ -160,10 +160,15 @@
         this.emitChange();
       },
       openConfig: function() {
-        this.inEdit = true;
+        if (!this.inEdit) {
+          this.inEdit = true;
+        }
+        
       },
       closeConfig: function() {
-        this.inEdit = false;
+        if (this.inEdit) {
+          this.inEdit = false;
+        }
         
       },
       destroySelf: function() {
@@ -241,9 +246,15 @@
     border: solid 2px #00000013;
   }
 
-  main {
-    
+  .field main {
     all: unset;
+    
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
   }
   
   .field:hover {

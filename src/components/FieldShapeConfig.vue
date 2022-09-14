@@ -3,7 +3,7 @@
         <div class="property-config"  v-for="(_, name) in properties" :key="name">
         
             <input :id="id + '-' + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
-            <label :for="id + '-' + name">{{name}}</label>
+            <label :for="id + '-' + name"><img :src="'/assets/icons/' + name + '.png'" /><span>{{name}}</span></label>
         </div>
         
         <div class="edit-panel" v-show="inEditProperty === 'shape'">

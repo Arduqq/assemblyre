@@ -489,7 +489,7 @@
   color: #2c3e50;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex: 1 1 auto;
   color: rgb(235, 235, 235);
   }
