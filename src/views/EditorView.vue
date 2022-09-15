@@ -73,9 +73,64 @@
         <input type="radio" name="patterns" value="pattern-5" v-model="backgroundPattern"/>
       </div>
 
-      <div class="tool" v-show="this.activeTool==='canvas'">
-        <input v-model.number="canvasSize.width">
-        <input v-model.number="canvasSize.height">
+      <div class="tool canvasbox" v-show="this.activeTool==='canvas'">
+        <h2>Canvas Dimensions</h2>
+        <label for="canvas-width">width (px)</label>
+        <input id="canvas-width" type="number" step="1" v-model.number="canvasSize.width"/>
+        <label for="canvas-height">height (px)</label>
+        <input id="canvas-height" type="number" step="1" v-model.number="canvasSize.height"/>
+
+        <h2>Canvas Presets</h2>
+          <div class="canvas-presets">
+            <input id="canvas-1" type="radio" name="dimensions" :value="{width: 1080, height: 1080}" v-model="canvasSize"/>
+            <label for="canvas-1">
+              <img src="/assets/canvas/canvas-1.png"/>
+              <div class="canvas-preset-size">
+                <div class="canvas-preset-width">width: 1080px</div>
+                <div class="canvas-preset-height">height: 1080px</div>
+              </div>
+            </label>
+            <input id="canvas-2" type="radio" name="dimensions" :value="{width:600, height: 1800}" v-model="canvasSize"/>
+            <label for="canvas-2">
+              <img src="/assets/canvas/canvas-2.png"/>
+              <div class="canvas-preset-size">
+                <div class="canvas-preset-width">width: 600px</div>
+                <div class="canvas-preset-height">height: 1800px</div>
+              </div>
+            </label>
+            <input id="canvas-3" type="radio" name="dimensions" :value="{width:1080, height: 1920}" v-model="canvasSize"/>
+            <label for="canvas-3">
+              <img src="/assets/canvas/canvas-3.png"/>
+              <div class="canvas-preset-size">
+                <div class="canvas-preset-width">width: 1080px</div>
+                <div class="canvas-preset-height">height: 1920px</div>
+              </div>
+            </label>
+            <input id="canvas-4" type="radio" name="dimensions" :value="{width:400, height: 300}" v-model="canvasSize"/>
+            <label for="canvas-4">
+              <img src="/assets/canvas/canvas-4.png"/>
+              <div class="canvas-preset-size">
+                <div class="canvas-preset-width">width: 400px</div>
+                <div class="canvas-preset-height">height: 300px</div>
+              </div>
+            </label>
+            <input id="canvas-5" type="radio" name="dimensions" :value="{width:1200, height: 1800}" v-model="canvasSize"/>
+            <label for="canvas-5">
+              <img src="/assets/canvas/canvas-5.png"/>
+              <div class="canvas-preset-size">
+                <div class="canvas-preset-width">width: 1200px</div>
+                <div class="canvas-preset-height">height: 1800px</div>
+              </div>
+            </label>
+            <input id="canvas-6" type="radio" name="dimensions" :value="{width:1280, height: 720}" v-model="canvasSize"/>
+            <label for="canvas-6">
+              <img src="/assets/canvas/canvas-6.png"/>
+              <div class="canvas-preset-size">
+                <div class="canvas-preset-width">width: 1280px</div>
+                <div class="canvas-preset-height">height: 720px</div>
+              </div>
+            </label>
+          </div>
       </div>
       <div class="sandbox" ref="sandbox">
         <program-preview :program="program" v-show="previewProgram" class="program-preview" :width="canvasSize.width" :height="canvasSize.height"/>
@@ -388,7 +443,7 @@
           }
       },
       canvasStyle() {
-        var backgroundImage = this.backgroundPattern !== "none" ? 'url(@/../assets/' + this.backgroundPattern + '.jpg)' : "none"
+        var backgroundImage = this.backgroundPattern !== "none" ? 'url(@/../assets/' + this.backgroundPattern + '.jpg)' : "white"
         return {
           "--canvas-scale": 'scale(' + this.canvasScale + ')',
           "--canvas-width": this.canvasSize.width + "px",
@@ -480,18 +535,21 @@
   }
 
   .editor > * {
-    padding-top: 50px;
+    margin-top: 50px;
+    height: calc(100% - 50px);
     transition: .1s;
   }
 
   .sandbox {
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 1 auto;
-  color: rgb(235, 235, 235);
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1 1 1000px;
+    flex-flow: row nowrap;
+    color: rgb(235, 235, 235);
+    overflow: auto;
   }
 
   .sandbox .program {
@@ -501,17 +559,19 @@
     width: var(--canvas-width);
     height: var(--canvas-height);
     background: var(--canvas-background);
+    transform-origin: top left;;
+    transition: .1s;
+    margin: 20px;
   }
   
 
   .tool {
     flex: 0 0 275px;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-    padding-top: 50px;
     background: var(--gui-color);
     color: white;
     border: 1px solid rgb(191, 146, 195);
@@ -557,7 +617,7 @@
     color: white;
     height: 100%;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     font-family: var(--display-font);
     border: 1px solid rgb(191, 146, 195);
   }
@@ -583,7 +643,7 @@
 
   .tool.layerbox {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     align-content: flex-start;
@@ -616,6 +676,52 @@
   .tool.mediabox .imagebox img {
     flex: 0 0 20%;
     width: 100%;
+  }
+
+  .tool.canvasbox .canvas-presets input {
+    display:none
+  }
+
+  .tool.canvasbox .canvas-presets input:checked + label {
+    filter: brightness(1.2);
+  }
+  .tool.canvasbox .canvas-presets {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    margin-bottom: 50px;
+  }
+  .tool.canvasbox .canvas-presets > label {
+    flex: 0 0 100%;
+    padding: 20px;
+    display: flex;
+    transition: .1s;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--gui-color);
+  }
+
+  .tool.canvasbox .canvas-presets > label img {
+    flex: 0 0 100px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .tool.canvasbox .canvas-presets > label .canvas-preset-size {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-end
+  }
+
+  .tool.canvasbox .canvas-presets > label .canvas-preset-size  > * {
+    flex: 0 0 100%;
+    color: var(--secondary-alt-color);
   }
 
   .program-preview {

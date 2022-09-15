@@ -1,16 +1,16 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
-    <field-text-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+    <field-text-config :fid="id" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div v-if="!inEdit" class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
       <p  v-for="(value, index) in fieldStyleProperties.text.content"
           :key="index"
-          :id="'content-' + index"></p>
+          :id="id + '-content-' + index"></p>
     </div>
     <div v-else class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
       <p  v-for="(value, index) in fieldStyleProperties.text.content"
           :key="index"
-          :id="'content-' + index"
+          :id="id + '-content-' + index"
           @input="event => onInput(event, index)"
           contenteditable></p>
     </div>
@@ -70,7 +70,7 @@
     },
     mounted: function() {
       const msg = sample(this.initMessages);
-      this.fieldStyleProperties.text.content[0] = ({ value: msg, md: DOMPurify.sanitize(marked.parse(msg))}); 
+      this.fieldStyleProperties.text.content = [{ value: msg, md: DOMPurify.sanitize(marked.parse(msg))}]; 
       
       this.updateAllContent();
       this.emitChange();
@@ -105,7 +105,8 @@
       updateAllContent(markdown) {
         this.fieldStyleProperties.text.content.forEach((c, index) => {
           c.md = DOMPurify.sanitize(marked.parse(c.value));
-          const el = document.getElementById(`content-${index}`);
+          const el = document.getElementById(this.id + '-content-'+index);
+          console.log(this.id + '-content-'+index);
           if (markdown) { el.innerHTML = c.md }
           else { el.innerText = c.value}
         });
