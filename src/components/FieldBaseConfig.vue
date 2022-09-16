@@ -76,12 +76,9 @@
       display: flex;
       position: absolute;
       top: -50px;
-      left: 50%;
-      justify-content: center;
-      align-items: center;
       gap: 5px;
       flex-flow: row wrap;
-      background: var(--secondary-color);
+      background: var(--gui-color);
       border:  1px solid var(--primary-color);
       border-radius: 5px;
       color: var(--primary-color);
@@ -90,7 +87,6 @@
       width: 500px;
       height: 40px;
       opacity: .95;
-      transform: translateX(-50%);
       transition: .1s;
       z-index: 2;
     
@@ -102,24 +98,7 @@
 
   
   .field-config.activated {
-    transform: translateX(-50%) translateY(-30px);
-  }
-
-
-  .edit-panel {
-    display: flex;
-    position: absolute;
-    left: 50px;
-    padding: 10px;
-    border-radius: 0 10px 10px 0;
-    flex-flow: row wrap;
-    width: 75px;
-    align-items: center;
-    justify-content: center;
-    gap: 0px;
-    height: 100%;
-    background: var(--primary-color);
-    z-index: 1;
+    transform: translateY(-100px);
   }
 
   .property-config {

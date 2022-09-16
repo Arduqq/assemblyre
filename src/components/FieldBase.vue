@@ -94,6 +94,7 @@
           })
           .draggable({
             inertia: false,
+            ignoreFrom: '.field-config',
             modifiers: [
               interact.modifiers.restrictRect({
                 restriction: 'parent'
@@ -104,6 +105,7 @@
             onend: this.onDragEnd
           })
           .resizable({
+            ignoreFrom: '.field-config',
             edges: { 
               left: false, 
               right: true, 
@@ -251,9 +253,8 @@
     
     width: 100%;
     display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-flow: row wrap;
   }
   
