@@ -76,14 +76,11 @@
       display: flex;
       position: absolute;
       top: -50px;
-      gap: 5px;
       flex-flow: row wrap;
       background: var(--gui-color);
-      border:  1px solid var(--primary-color);
       border-radius: 5px;
-      padding: 5px;
       font-size: 80%;
-      width: 500px;
+      width: 300px;
       height: 40px;
       opacity: .95;
       transition: .1s;
@@ -91,14 +88,17 @@
     
   }
 
-  .field-config > * {
-    flex: 1 1 100%;
+  .edit-panel {
+    flex: 0 0 100%;
+    border-top: 5px solid var(--interact-color);
   }
 
   
   .field-config.activated {
     transform: translateY(-100px);
+    border-radius: 5px 5px 0 0;
   }
+
 
   .property-config {
     display: flex;
