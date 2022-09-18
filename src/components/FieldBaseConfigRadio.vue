@@ -1,10 +1,11 @@
 <template>
     <div class="field-config-radio field-config-input">
-        <img :src="'/assets/icons/' + property + '.png'" /><h3><b>{{property}}:</b> {{currentValue}}</h3>
+        <img :src="'/assets/icons/' + property + '.png'" />
+        <h3><b>{{property}}:</b> {{currentValue}}</h3>
         <div class="options">
             <div class="option"  v-for="(option, index) in options" :key="index" :title="option">
-                <input :id="option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
-                <label :for="option">{{option}}</label>
+                <input :id="group+'-'+option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
+                <label :for="group+'-'+option">{{option}}</label>
             </div>
         </div>
     </div>

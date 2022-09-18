@@ -24,8 +24,6 @@ export default {
 }
 </script>
 <style>
-    
-
 
     .field-config-input {
         display: flex;

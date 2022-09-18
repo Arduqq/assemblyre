@@ -23,7 +23,19 @@
 
         
         <div class="edit-panel" v-show="inEditProperty === 'background'">
-            <field-base-config-color @input="updateStyle" v-model="currentProperties.background.backgroundColor" />
+            
+            <field-base-config-color 
+                binding="r"
+                title="color"
+                property="backgroundColor"
+                :group="id + 'background'"
+                :options="['transparent', '#ffffff', '#000000', '#ff675c', '#6f27db', '#d627c5', '#3bf7f1', '#a5ff91']"
+                :val="currentProperties.background.backgroundColor"
+                v-model="currentProperties.background.backgroundColor"
+                :alive="active === 'backgroundColor'"
+                @click.native="active = 'backgroundColor'"
+                @change="updateStyle"
+            />
             <field-base-config-radio-images 
                 binding="r"
                 title="image"
@@ -50,7 +62,19 @@
         </div>
         
         <div class="edit-panel" v-show="inEditProperty === 'border'">
-            <field-base-config-color @input="updateStyle" v-model="currentProperties.border.borderColor" />
+            
+            <field-base-config-color 
+                binding="r"
+                title="color"
+                property="borderColor"
+                :group="id + 'border'"
+                :options="['transparent', '#ffffff', '#000000', '#ff675c', '#6f27db', '#d627c5', '#3bf7f1', '#a5ff91']"
+                :val="currentProperties.border.borderColor"
+                v-model="currentProperties.border.borderColor"
+                :alive="active === 'borderColor'"
+                @click.native="active = 'borderColor'"
+                @change="updateStyle"
+            />
             <field-base-config-slider 
                 binding="w" 
                 title="size" 
@@ -87,7 +111,19 @@
         </div>
 
         <div class="edit-panel" v-show="inEditProperty === 'shadow'">
-            <field-base-config-color @input="updateStyle" v-model="currentProperties.shadow.shadowColor" />
+            
+            <field-base-config-color 
+                binding="r"
+                title="color"
+                property="shadowColor"
+                :group="id + 'shadow'"
+                :options="['transparent', '#ffffff', '#000000', '#ff675c', '#6f27db', '#d627c5', '#3bf7f1', '#a5ff91']"
+                :val="currentProperties.shadow.shadowColor"
+                v-model="currentProperties.shadow.shadowColor"
+                :alive="active === 'shadowColor'"
+                @click.native="active = 'shadowColor'"
+                @change="updateStyle"
+            />
             <field-base-config-slider 
                 binding="q" 
                 title="displacement"

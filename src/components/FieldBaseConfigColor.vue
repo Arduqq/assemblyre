@@ -3,8 +3,8 @@
       <img :src="'/assets/icons/' + property + '.png'" /><h3><b>{{property}}:</b> <div class="color-preview" :style="'background-color:' + currentValue"></div></h3>
       <div class="options">
           <div class="option"  v-for="(option, index) in options" :style="'background-color:' + option" :key="index" :title="option">
-              <input :id="option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
-              <label :for="option"></label>
+              <input :id="group+'-'+option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
+              <label :for="group+'-'+option"></label>
           </div>
       </div>
   </div>

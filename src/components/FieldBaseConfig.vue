@@ -81,7 +81,6 @@
       background: var(--gui-color);
       border:  1px solid var(--primary-color);
       border-radius: 5px;
-      color: var(--primary-color);
       padding: 5px;
       font-size: 80%;
       width: 500px;
