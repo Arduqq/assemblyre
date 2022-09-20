@@ -8,6 +8,7 @@
           :id="id + '-content-' + index"></p>
     </div>
     <div v-else class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
+      {{name}}
       <p  v-for="(value, index) in fieldStyleProperties.text.content"
           :key="index"
           :id="id + '-content-' + index"
@@ -15,12 +16,6 @@
           contenteditable></p>
     </div>
   </main>
-  
-  <aside v-show="!inEdit" class="quick-config-view">
-      <input type="button" value="Up" id="stack-up-button" @click="stackUp" />
-      <input type="button" value="Down" id="stack-down-button" @click="stackDown" />
-
-  </aside>
   
 </div>
 
@@ -71,7 +66,6 @@
     mounted: function() {
       const msg = sample(this.initMessages);
       this.fieldStyleProperties.text.content = [{ value: msg, md: DOMPurify.sanitize(marked.parse(msg))}]; 
-      
       this.updateAllContent();
       this.emitChange();
     },
@@ -106,7 +100,6 @@
         this.fieldStyleProperties.text.content.forEach((c, index) => {
           c.md = DOMPurify.sanitize(marked.parse(c.value));
           const el = document.getElementById(this.id + '-content-'+index);
-          console.log(this.id + '-content-'+index);
           if (markdown) { el.innerHTML = c.md }
           else { el.innerText = c.value}
         });

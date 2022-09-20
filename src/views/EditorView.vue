@@ -50,15 +50,21 @@
       </div>
 
       <div class="tool layerbox" v-show="this.activeTool==='layers'">
+        <h2>Layers</h2>
         <div class="layer" 
-              v-for="field in program.chords.concat(program.images, program.codes, program.plugs, program.shapes)"
-              :key="field.id">{{field.stackOrder}} | {{field.id}}</div>
+              v-for="(field, i) in sortedFields"
+              :key="field.id">{{program[i].stackOrder}} | <input type="text" v-model="program[i].name"/> 
+              <input type="button" value="Up" 
+                @click="swapOrder(program[i], program[i+1])"/> 
+              <input type="button" value="Down" 
+                @click="swapOrder(program[i], program[i-1])"/> 
+        </div>
       </div>
       
       <div class="tool mediabox" v-show="this.activeTool==='media'">
       
         <div class="imagebox"> 
-          <linked-image v-for="image in program.images" :key="image.id" :url="image.url" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
+          <linked-image v-for="image in importedImages" :key="image.id" :url="image.url" :id="image.id" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
         </div>
        <input type="text" v-model="newImageURL"/>
         <button @click="addImage">Add Image</button>
@@ -133,42 +139,50 @@
           </div>
       </div>
       <div class="sandbox" ref="sandbox">
-        <program-preview :program="program" v-show="previewProgram" class="program-preview" :width="canvasSize.width" :height="canvasSize.height"/>
+        <program-preview :program="{}" v-show="previewProgram" class="program-preview" :width="canvasSize.width" :height="canvasSize.height"/>
         <div class="program" ref="program" :style="canvasStyle"> 
-          <field-text v-for="chord in program.chords" 
+          <field-text v-for="chord in programQuery('text')" 
             :id="chord.id"
+            :name=chord.name
             :x="chord.x" 
             :y="chord.y" 
             :modifier="canvasScale"
             :lockedResolution="chord.lockedResolution"
             :key="chord.id"
-            @change="updateFields"/>
-          <field-code v-for="code in program.codes" 
+            @change="updateFields"
+            :stackOrder = chord.stackOrder />
+          <field-code v-for="code in programQuery('code')" 
             :id="code.id"
+            :name=code.name
             :x="code.x" 
             :y="code.y" 
             :modifier="canvasScale"
             :lockedResolution="code.lockedResolution"
             :key="code.id"
-            @change="updateFields"/>
-          <field-media v-for="plug in program.plugs" 
+            @change="updateFields"
+            :stackOrder = code.stackOrder />
+          <field-media v-for="plug in programQuery('image')" 
             :id="plug.id"
+            :name=plug.name
             :x="plug.x" 
             :y="plug.y" 
             :modifier="canvasScale"
             :media="plug.media" 
             :lockedResolution="plug.lockedResolution"
             :key="plug.id"
-            @change="updateFields"/>
-          <field-shape v-for="shape in program.shapes" 
+            @change="updateFields"
+            :stackOrder = plug.stackOrder />
+          <field-shape v-for="shape in programQuery('shape')" 
             :id="shape.id"
+            :name=shape.name
             :x="shape.x" 
             :y="shape.y" 
             :modifier="canvasScale"
             :lockedResolution="shape.lockedResolution"
             :styling="shape.styling"
             :key="shape.id"
-            @change="updateFields"/>
+            @change="updateFields"
+            :stackOrder = shape.stackOrder />
           </div>
 
       </div>
@@ -201,14 +215,8 @@
           version: "0.1",
           type: "square"
         },
-        program: {
-          chords: [],
-          images: [],
-          codes: [],
-          plugs: [],
-          shapes: []
-        },
-        programs: [],
+        program: [],
+        importedImages: [],
         newImageURL : "https://imgur.com/ftHNkoG.png",
         exportURL: null,
         screenX: 0,
@@ -326,19 +334,6 @@
             target.setAttribute("data-x", x);
             target.setAttribute("data-y", y);
         },
-        sandboxPanListener: function(event) {
-          var target = event.target,
-            x = (parseFloat(target.getAttribute("data-x")) || this.screenX) + event.dx,
-            y = (parseFloat(target.getAttribute("data-y")) || this.screenY) + event.dy;
-            console.log(this.panningMode);
-          if (this.panningMode === true) {
-            target.firstChild.style.webkitTransform = target.firstChild.style.transform =
-              "translate(" + x + "px, " + y + "px)";
-          }
-
-          target.setAttribute("data-x", x);
-          target.setAttribute("data-y", y);
-        },
         dropText: function(event) {
           var target = event.target;
           target.style.webkitTransform = target.style.transform =
@@ -386,33 +381,38 @@
           target.setAttribute("data-y", 0);
         },
         addChord: function (x, y) {
-          this.program.chords.push({id: uniqueId("field-"), x: x, y: y, modifier: this.canvasScale});
+          const uID = uniqueId();
+          const fieldType = "text";
+          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, modifier: this.canvasScale, stackOrder: parseInt(uID)};
+          this.program.push(field);
+
         },
         addPlug: function(x,y, url) {
-          this.program.plugs.push({id: uniqueId("field-"), x: x, y: y, modifier: this.canvasScale, media: url});
+          const uID = uniqueId();
+          const fieldType = "image";
+          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, modifier: this.canvasScale, media: url, stackOrder: parseInt(uID)};
+          this.program.push(field);
         },
         addImage: function() {
-          this.program.images.push({id: uniqueId("field-"), url: this.newImageURL});
+          const fieldType = "import";
+          this.importedImages.push({id: this.programQuery('import').length, type: fieldType, name: fieldType + "-" + this.programQuery('import').length, url: this.newImageURL});
         },
         addCode: function(x,y) {
-          this.program.codes.push({id: uniqueId("field-"), x: x, y: y, modifier: this.canvasScale});
+          const uID = uniqueId();
+          const fieldType = "code";
+          const field = {id: uID, name:fieldType + "-" + uID, type: fieldType, x: x, y: y, modifier: this.canvasScale, stackOrder: parseInt(uID)};
+          this.program.push(field);
         },
         
         addShape: function(x,y) {
-          this.program.shapes.push({id: uniqueId("field-"), x: x, y: y, modifier: this.canvasScale, lockedResolution: false, styling: "default"});
+          const uID = uniqueId();
+          const fieldType = "shape";
+          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, modifier: this.canvasScale, lockedResolution: false, styling: "default", stackOrder: parseInt(uID)};
+          this.program.push(field);
         },
 
         updateFields: function(id, value, x, y, w, h) {
-          this.program.chords = this.program.chords.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
-          )
-          this.program.plugs = this.program.plugs.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
-          )
-          this.program.codes = this.program.codes.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
-          )
-          this.program.shapes = this.program.shapes.map(el =>
+          this.program = this.program.map(el =>
             el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
           )
         },
@@ -425,9 +425,22 @@
 
         },
         
+        programQuery(type) {
+          return this.program.filter(function (field) {
+            return field.type === type;
+          })
+        },
         goBack() {
           window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-        }
+        },
+        swapOrder(a, b) {
+          console.log("Swapping " + a.stackOrder + " with " + b.stackOrder)
+          if (a !== undefined && b !== undefined) {
+            [a.stackOrder, b.stackOrder] = [b.stackOrder, a.stackOrder]
+            console.log(a)
+          }
+        },
+        
     },
     computed: {
       editorFocus() {
@@ -441,6 +454,10 @@
             "--flow-editor-stack-order": 2,
             "--flow-editor-opacity": .9
           }
+      },
+      sortedFields(){
+        var programByStackOrder = this.program;
+        return programByStackOrder.sort((a, b) => a.stackOrder - b.stackOrder );
       },
       canvasStyle() {
         var backgroundImage = this.backgroundPattern !== "none" ? 'url(@/../assets/' + this.backgroundPattern + '.jpg)' : "white"
@@ -643,13 +660,13 @@
 
   .tool.layerbox {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     align-content: flex-start;
   }
 
-  .tool.layerbox > * {
+  .tool.layerbox > .layer {
     flex: 0 0 90%;
     padding: 5px;
     border: 1px solid var(--primary-color);

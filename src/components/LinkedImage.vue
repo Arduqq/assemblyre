@@ -2,11 +2,14 @@
 <img ref="draggableWrapper" class="linked-image" :id="id" :src="url" />
 </template>
 <script>
-  import uniqueId from 'lodash.uniqueid';
 
   export default {
   name: "LinkedImage",
     props: {
+      id: {
+        type: Number,
+        required: true
+      },
       url: {
         type: String,
         required: true
@@ -15,7 +18,6 @@
     data() {
       return {
         alive: true,
-        id: uniqueId('linked-image-'),
         screenX: 0,
         screenY: 0
       }

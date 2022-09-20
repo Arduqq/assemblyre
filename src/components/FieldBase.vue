@@ -8,6 +8,10 @@
         type: String,
         required: true
       },
+      name: {
+        type: String,
+        required: true
+      },
       x: {
         type: Number,
         required: true,
@@ -175,12 +179,6 @@
       },
       destroySelf: function() {
         this.alive=!this.alive;
-      },
-      stackUp: function() {
-        this.$emit('change-order', "up", this.stackOrder);
-      },
-      stackDown: function() {
-        this.$emit('change-order', "up", this.stackOrder);
       },
       emitChange: function() {
         this.$emit('change', this.id, this.fieldStyleProperties, this.screenX, this.screenY, this.screenWidth, this.screenHeight);

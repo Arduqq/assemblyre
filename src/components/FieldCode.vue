@@ -15,30 +15,23 @@
         v-model="block.content"/>
         <div class="code-type-config">
           <label >print
-            <input :name="group" value="print"  type="radio" v-model="block.type"/>
+            <input :name="block.id" value="print"  type="radio" v-model="block.type"/>
           </label>
           
           <label >assign
-            <input :name="group" value="assign"  type="radio" v-model="block.type"/>
+            <input :name="block.id" value="assign"  type="radio" v-model="block.type"/>
           </label>
           
           <label >unassign
-            <input :name="group" value="unassign"  type="radio" v-model="block.type"/>
+            <input :name="block.id" value="unassign"  type="radio" v-model="block.type"/>
           </label>
 
           <label >generate
-            <input :name="group" value="generate"  type="radio" v-model="block.type"/>
+            <input :name="block.id" value="generate"  type="radio" v-model="block.type"/>
           </label>
         </div>
       </div>
     </main>
-    
-    <aside class="quick-config-view">
-        <input type="button" value="Up" id="stack-up-button" @click="stackUp" />
-        <input type="button" value="Down" id="stack-down-button" @click="stackDown" />
-
-    </aside>
-    
   </div>
 
 </template>
