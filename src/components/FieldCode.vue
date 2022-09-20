@@ -283,5 +283,17 @@
   .code-block:hover .code-type-config {
     display: flex;
   }
-  
+
+  .code:hover:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-right: 10px solid var(--interact-color);
+    animation: interact-wiggle-h 1s infinite;
+  }
 </style>

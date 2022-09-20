@@ -1,5 +1,5 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="shape field" :id="id"  :style="fieldStyle" v-click-outside="closeConfig">
+<div v-if="alive" ref="draggableWrapper" class="shape field" :id="id" :style="fieldStyle" v-click-outside="closeConfig">
   <main>
     <field-shape-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div class="geometry"></div>
@@ -88,8 +88,22 @@
     max-height: 100%; 
     max-width: 100%;
     min-height: 100px;
+    border: 0;
   }
 
+  .shape:hover:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    height: 100%;
+    border-bottom: 10px solid var(--interact-color);
+    border-right: 10px solid var(--interact-color);
+    animation: interact-wiggle-hv 1s infinite;
+  }
 
   .shape main{
     display: block;

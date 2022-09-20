@@ -1,5 +1,5 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
+<div v-if="alive" ref="draggableWrapper" class="text field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
     <field-text-config :fid="id" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div v-if="!inEdit" class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
@@ -8,7 +8,6 @@
           :id="id + '-content-' + index"></p>
     </div>
     <div v-else class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
-      {{name}}
       <p  v-for="(value, index) in fieldStyleProperties.text.content"
           :key="index"
           :id="id + '-content-' + index"
@@ -165,5 +164,16 @@
     height: auto;
   }
   
-
+  .text:hover:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-right: 10px solid var(--interact-color);
+    animation: interact-wiggle-h 1s infinite;
+  }
 </style>

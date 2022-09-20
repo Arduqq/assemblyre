@@ -207,48 +207,17 @@
 
 <style>
 
-  aside {
-    opacity: 0;
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    transition: .1s;
-  }
-
-  aside > * {
-    all: unset;
-    flex: 1 1 100%;
-    width: 100%;
-    font-size: 60%;
-    text-align: center;
-    padding: 5px;
-    border: 1px solid var(--primary-color);
-    color: var(--primary-color);
-    background: white;
-    border-radius: 0px 25px 25px 0px;
-    cursor: pointer;
-    transition: .05s;
-  }
-
-  
   .field {
     z-index: var(--field-stack-order);
     position: absolute;
     height: auto;
     min-width: 100px;
     user-select: none;
-    box-sizing: content-box!important;
     border: solid 2px #00000013;
   }
 
   .field main {
     all: unset;
-    
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -257,20 +226,7 @@
   }
   
   .field:hover {
-    border-right: 10px solid var(--interact-color)!important;
-  }
-  .field:hover aside {
-    opacity: 1;
-    transform: translateX(5px);
-  }
-
-  aside > *:hover {
-    background: var(--secondary-color);
-  }
-
-  aside > *:active {
-    background: var(--interact-color);
-    transform: scale(.9);
+    box-shadow: 0 0 2px 2px var(--interact-color); 
   }
 
 </style>

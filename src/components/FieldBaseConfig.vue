@@ -84,7 +84,7 @@
       height: 40px;
       opacity: .95;
       transition: .1s;
-      z-index: 2;
+      z-index: 10000;
     
   }
 

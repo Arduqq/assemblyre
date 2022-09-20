@@ -251,4 +251,30 @@ input[type="text"]:focus {
 }
 
 
+@keyframes interact-wiggle-hv {
+    0% {
+    border-bottom: 7px solid var(--interact-color);
+    border-right: 7px solid var(--interact-color);
+    }
+    80% {
+    border-bottom: 4px solid var(--interact-color);
+    border-right: 4px solid var(--interact-color);
+    }
+    100% {
+    border-bottom: 7px solid var(--interact-color);
+    border-right: 7px solid var(--interact-color);
+    }
+  }
+
+  @keyframes interact-wiggle-h {
+    0% {
+    border-right: 7px solid var(--interact-color);
+    }
+    80% {
+    border-right: 4px solid var(--interact-color);
+    }
+    100% {
+    border-right: 7px solid var(--interact-color);
+    }
+  }
 </style>
