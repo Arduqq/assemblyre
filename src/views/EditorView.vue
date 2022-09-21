@@ -3,7 +3,6 @@
   <div class="canvas-control">
     <input type="checkbox" value="Switch mode" class="mode-toggle" @click="editingPlugs = !editingPlugs"/>            
     <input type="range" min=".1" max="2" step=".1" v-model.number="canvasScale" />
-    <input type="button" @click="previewProgram = !previewProgram"/>
   </div>
   
     <div class="editor-control active" >
@@ -52,22 +51,26 @@
       <div class="tool layerbox" v-show="this.activeTool==='layers'">
         <h2>Layers</h2>
         <div class="layer" 
-              v-for="(field, i) in sortedFields"
-              :key="field.id">{{program[i].stackOrder}} | <input type="text" v-model="program[i].name"/> 
-              <input type="button" value="Up" 
-                @click="swapOrder(program[i], program[i+1])"/> 
-              <input type="button" value="Down" 
-                @click="swapOrder(program[i], program[i-1])"/> 
+          v-for="(field, i) in sortedFields"
+            :key="field.id"
+            @mouseenter="program[i].active = true; updateFields()"
+            @mouseleave="program[i].active = false; updateFields()">
+            <input type="text" v-model="program[i].name"/> 
+            <button @click="swapOrder(program[i], program[i-1])">↑</button>
+            <button @click="swapOrder(program[i], program[i+1])">↓</button> 
         </div>
       </div>
       
       <div class="tool mediabox" v-show="this.activeTool==='media'">
       
         <div class="imagebox"> 
-          <linked-image v-for="image in importedImages" :key="image.id" :url="image.url" :id="image.id" ref="imageStarters" class="starter media" @rendered-image="initImageStarter"/>
-        </div>
-       <input type="text" v-model="newImageURL"/>
+          <div class="image" v-for="(image, i) in importedImages" :key="image.id" :id="image.id" >
+            <button @click="importedImages.splice(i, 1);">delete</button>
+            <input type="button" :style="'background-image: url(' + image.url + ')'" @click="dropMedia(image.url)"/>
+          </div>
+          </div>
         <button @click="addImage">Add Image</button>
+       <input type="text" v-model="newImageURL"/>
       </div>
 
       <div class="tool" v-show="this.activeTool==='background'">
@@ -139,50 +142,57 @@
           </div>
       </div>
       <div class="sandbox" ref="sandbox">
-        <program-preview :program="{}" v-show="previewProgram" class="program-preview" :width="canvasSize.width" :height="canvasSize.height"/>
         <div class="program" ref="program" :style="canvasStyle"> 
           <field-text v-for="chord in programQuery('text')" 
             :id="chord.id"
             :name=chord.name
             :x="chord.x" 
             :y="chord.y" 
+            :alive = chord.alive
             :modifier="canvasScale"
             :lockedResolution="chord.lockedResolution"
             :key="chord.id"
             @change="updateFields"
-            :stackOrder = chord.stackOrder />
+            :stackOrder = chord.stackOrder
+            :active = chord.active />
           <field-code v-for="code in programQuery('code')" 
             :id="code.id"
             :name=code.name
             :x="code.x" 
             :y="code.y" 
+            :alive = code.alive
             :modifier="canvasScale"
             :lockedResolution="code.lockedResolution"
             :key="code.id"
             @change="updateFields"
-            :stackOrder = code.stackOrder />
+            :stackOrder = code.stackOrder 
+            :active = code.active />
           <field-media v-for="plug in programQuery('image')" 
             :id="plug.id"
             :name=plug.name
             :x="plug.x" 
             :y="plug.y" 
+            :alive = plug.alive
             :modifier="canvasScale"
             :media="plug.media" 
             :lockedResolution="plug.lockedResolution"
             :key="plug.id"
             @change="updateFields"
-            :stackOrder = plug.stackOrder />
+            :stackOrder = plug.stackOrder 
+            :active = plug.active />
           <field-shape v-for="shape in programQuery('shape')" 
             :id="shape.id"
             :name=shape.name
             :x="shape.x" 
             :y="shape.y" 
+            :alive = shape.alive
             :modifier="canvasScale"
             :lockedResolution="shape.lockedResolution"
             :styling="shape.styling"
             :key="shape.id"
             @change="updateFields"
-            :stackOrder = shape.stackOrder />
+            :stackOrder = shape.stackOrder 
+            :active = shape.active />
           </div>
 
       </div>
@@ -196,8 +206,6 @@
   import FieldCode from "../components/FieldCode.vue";
   import FieldMedia from "../components/FieldMedia.vue";
   import FieldShape from "../components/FieldShape.vue";
-  import LinkedImage from "../components/LinkedImage.vue";
-  import ProgramPreview from "../components/ProgramPreview.vue";
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
   export default {
@@ -205,7 +213,6 @@
     data() {
       return {
         editingPlugs: true,
-        previewProgram: false,
         panningMode: false,
         activeTool: "text",
         canvasSize: { width: 0, height: 0 },
@@ -239,9 +246,15 @@
         type: String,
         required: false,
         default: "growth spurt"
+      }, 
+      import: {
+        type: Array,
+        required: false,
+        default() { return [] }
       }
     },
     mounted: function() {
+      this.program = this.import;
       let program = this.$refs.program;
       let textStarter = this.$refs.textStarter;
       let codeStarter = this.$refs.codeStarter;
@@ -260,11 +273,6 @@
             accept: ".starter",
             overlap: 1
           })
-      },
-      initImageStarter: function(isRendered) {
-        if (isRendered) {
-            this.initMediaStarter(this.$refs.imageStarters.at(-1).$el, isRendered);
-        }
       },
       initTextStarter: function(starter) {
         starter.setAttribute('data-x', this.x)
@@ -308,21 +316,6 @@
             onend: this.dropShape
           })
         },
-        initMediaStarter: function(starter, media) {
-          starter.setAttribute('data-x', this.x)
-          starter.setAttribute('data-y', this.y)
-          starter.setAttribute('data-media', media)
-          interact(starter)
-            .draggable({
-              inertia: false,
-              restrict: {
-                elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-              },
-              autoScroll: true,
-              onmove: this.dragMoveListener,
-              onend: this.dropMedia
-            })
-        },
         dragMoveListener: function(event) {
             var target = event.target,
               x = (parseFloat(target.getAttribute("data-x")) || this.screenX) + event.dx,
@@ -345,17 +338,8 @@
           target.setAttribute("data-x", 0);
           target.setAttribute("data-y", 0);
         },
-        dropMedia: function(event) {
-          var target = event.target;
-          var media = target.getAttribute("data-media");
-          target.style.webkitTransform = target.style.transform =
-              "translate(" + 0 + "px, " + 0 + "px)";
-          this.addPlug(event.screenX, event.screenY, media);
-          this.screenX = 0;
-          this.screenY = 0;
-
-          target.setAttribute("data-x", 0);
-          target.setAttribute("data-y", 0);
+        dropMedia: function(media) {
+          this.addPlug(0, 0, media);
         },
         dropCode: function(event) {
           var target = event.target;
@@ -383,37 +367,40 @@
         addChord: function (x, y) {
           const uID = uniqueId();
           const fieldType = "text";
-          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, modifier: this.canvasScale, stackOrder: parseInt(uID)};
+          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
           this.program.push(field);
 
         },
         addPlug: function(x,y, url) {
           const uID = uniqueId();
           const fieldType = "image";
-          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, modifier: this.canvasScale, media: url, stackOrder: parseInt(uID)};
+          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, media: url, stackOrder: parseInt(uID)};
           this.program.push(field);
         },
         addImage: function() {
           const fieldType = "import";
-          this.importedImages.push({id: this.programQuery('import').length, type: fieldType, name: fieldType + "-" + this.programQuery('import').length, url: this.newImageURL});
+          if (this.newImageURL !== "") {
+            this.importedImages.push({id: this.importedImages.length, type: fieldType, name: fieldType + "-" + this.importedImages.length, alive: true, url: this.newImageURL});
+            this.newImageURL = "";
+          }
         },
         addCode: function(x,y) {
           const uID = uniqueId();
           const fieldType = "code";
-          const field = {id: uID, name:fieldType + "-" + uID, type: fieldType, x: x, y: y, modifier: this.canvasScale, stackOrder: parseInt(uID)};
+          const field = {id: uID, name:fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
           this.program.push(field);
         },
         
         addShape: function(x,y) {
           const uID = uniqueId();
           const fieldType = "shape";
-          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, modifier: this.canvasScale, lockedResolution: false, styling: "default", stackOrder: parseInt(uID)};
+          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, lockedResolution: false, styling: "default", stackOrder: parseInt(uID)};
           this.program.push(field);
         },
 
-        updateFields: function(id, value, x, y, w, h) {
+        updateFields: function(id, value, alive, x, y, w, h) {
           this.program = this.program.map(el =>
-            el.id === id ? { ...el, style: value, x:x, y:y, w:w, h:h} : el
+            el.id === id ? { ...el, style: value, alive:alive, x:x, y:y, w:w, h:h} : el
           )
         },
         save: async function() {
@@ -426,18 +413,21 @@
         },
         
         programQuery(type) {
+          if (type==="alive") {
+            return this.program.filter(function (field) {
+              return field.alive;
+            })
+          }
           return this.program.filter(function (field) {
-            return field.type === type;
+            return field.type === type && field.alive;
           })
         },
         goBack() {
           window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
         },
         swapOrder(a, b) {
-          console.log("Swapping " + a.stackOrder + " with " + b.stackOrder)
           if (a !== undefined && b !== undefined) {
             [a.stackOrder, b.stackOrder] = [b.stackOrder, a.stackOrder]
-            console.log(a)
           }
         },
         
@@ -456,8 +446,8 @@
           }
       },
       sortedFields(){
-        var programByStackOrder = this.program;
-        return programByStackOrder.sort((a, b) => a.stackOrder - b.stackOrder );
+        var programByStackOrder = this.programQuery("alive");
+        return programByStackOrder.sort((a, b) => b.stackOrder - a.stackOrder );
       },
       canvasStyle() {
         var backgroundImage = this.backgroundPattern !== "none" ? 'url(@/../assets/' + this.backgroundPattern + '.jpg)' : "white"
@@ -473,9 +463,7 @@
     FieldText,
     FieldCode,
     FieldMedia,
-    FieldShape,
-    LinkedImage,
-    ProgramPreview
+    FieldShape
 }
   }
 </script>
@@ -660,24 +648,53 @@
 
   .tool.layerbox {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row-reverse wrap;
     justify-content: center;
     align-items: center;
     align-content: flex-start;
+    gap: 5px;
+    padding: 5px;
   }
+
 
   .tool.layerbox > .layer {
-    flex: 0 0 90%;
+    flex: 1 1 90%;
     padding: 5px;
-    border: 1px solid var(--primary-color);
     background: var(--secondary-alt-color);
     color: var(--primary-color);
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    height: 50px;
+    transition: .1s;
   }
 
-  .tool.mediabox > * {
+  .tool.layerbox > .layer:hover {
+    height: 60px;
+  }
+
+  .tool.layerbox > .layer > * {
+    font-size: 100%;
+  }
+
+  .tool.layerbox > .layer > button {
+    width: 30px;
+    height: 30px;
+    font-size: 120%;
+  }
+
+  .tool.mediabox {
+    padding: 5px;
+    gap: 5px;
+  }
+  .tool.mediabox > input[type="text"] {
     width: 100%;
     flex: 0 0 auto;
-    padding: 0;
+    padding: 20px;
+    height: 20px;
   }
 
   .tool.mediabox .imagebox {
@@ -685,14 +702,53 @@
     flex-flow: row wrap;
     gap: 5px;
     align-items: flex-start;
+    justify-content: center;
     width: 100%;
-    height: 100%;
-    flex: 0 0 80%;
+    height: 500px;
+    padding: 20px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
   }
 
-  .tool.mediabox .imagebox img {
-    flex: 0 0 20%;
+  .tool.mediabox .imagebox .image {
+    height: 100%;
+    max-height: 100px;
+    flex: 1 1 40%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    transition: .1s;
+  }
+
+  .tool.mediabox .imagebox .image > * {
+    flex: 0 0 100%;
+    display: block;
+  }
+
+  .tool.mediabox .imagebox:hover .image {
+    filter: grayscale(1);
+  }
+
+  .tool.mediabox .imagebox .image input:last-child {  
+    height: 100%;
+    background-size: cover;
     width: 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    max-height: 100px;
+    outline: none;
+    border: none;
+  }
+
+  .tool.mediabox .imagebox .image:hover{
+    filter: grayscale(0);
+    transform: scale(1.1);
+  }
+
+  .tool.mediabox .imagebox .image:active {
+    transform: scale(1);
   }
 
   .tool.canvasbox .canvas-presets input {
@@ -741,16 +797,5 @@
     color: var(--secondary-alt-color);
   }
 
-  .program-preview {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 800px;
-    height: 600px;
-    margin: auto;
-    background: white;
-  }
 
 </style>

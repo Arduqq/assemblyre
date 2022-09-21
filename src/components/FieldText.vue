@@ -1,13 +1,13 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="text field" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
+<div v-if="alive" ref="draggableWrapper" class="text field" :class="{'active' : active}" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
     <field-text-config :fid="id" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
-    <div v-if="!inEdit" class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
+    <div v-if="!inEdit" class="rendered-view" >
       <p  v-for="(value, index) in fieldStyleProperties.text.content"
           :key="index"
           :id="id + '-content-' + index"></p>
     </div>
-    <div v-else class="rendered-view" :class="[fieldStyleProperties.text.textAlignment]" >
+    <div v-else class="rendered-view" >
       <p  v-for="(value, index) in fieldStyleProperties.text.content"
           :key="index"
           :id="id + '-content-' + index"
@@ -138,7 +138,7 @@
 </script>
 
 <style scoped>
-  .field main .rendered-view{
+  .text main .rendered-view{
     display: block;
     flex: 1 1 100%;
     width: 100%;

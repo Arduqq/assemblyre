@@ -51,6 +51,11 @@
         type: Number,
         required: false,
         default: 0
+      },
+      active: {
+        type: Boolean,
+        required: false,
+        default: false
       }
     },
     data() {
@@ -179,9 +184,10 @@
       },
       destroySelf: function() {
         this.alive=!this.alive;
+        this.emitChange();
       },
       emitChange: function() {
-        this.$emit('change', this.id, this.fieldStyleProperties, this.screenX, this.screenY, this.screenWidth, this.screenHeight);
+        this.$emit('change', this.id, this.fieldStyleProperties, this.alive, this.screenX, this.screenY, this.screenWidth, this.screenHeight);
       },
 
     },
@@ -225,8 +231,9 @@
     flex-flow: row wrap;
   }
   
-  .field:hover {
+  .field:hover, .field.active {
     box-shadow: 0 0 2px 2px var(--interact-color); 
   }
+
 
 </style>

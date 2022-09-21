@@ -1,5 +1,5 @@
 <template>
-  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id"  v-click-outside="closeConfig" >
+  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active}" v-click-outside="closeConfig" >
     <main :style="fieldStyle">
       <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
