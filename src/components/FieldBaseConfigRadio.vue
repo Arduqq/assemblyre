@@ -22,6 +22,7 @@ export default {
 .field-config-radio .options {
     flex-flow: row nowrap;
     gap: 5px;
+    overflow: hidden;
 }
 
 .field-config-radio .options .option {

@@ -75,21 +75,25 @@
     .field-config {
       display: flex;
       position: absolute;
-      top: -50px;
+      top: -70px;
       flex-flow: row wrap;
-      background: var(--gui-color);
-      border-radius: 5px;
-      font-size: 80%;
-      width: 300px;
-      height: 40px;
+      border-radius: 25px;
+      width: 500px;
+      height: 60px;
       opacity: .95;
       transition: .1s;
       z-index: 10000;
     
   }
 
+  .field-config input {
+    background: var(--secondary-alt-color);
+
+  }
+
   .edit-panel {
     flex: 0 0 100%;
+    z-index: 2000;
     border-top: 5px solid var(--interact-color);
   }
 
@@ -100,6 +104,11 @@
   }
 
 
+  .quick-access {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+  }
   .property-config {
     display: flex;
     flex: 1 1 auto;
@@ -108,42 +117,37 @@
     align-items: center;
   }
 
-  .property-config label{
+  .property-config label {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 30px;
-    height: 30px;
+    width: 100%;
+    height: 100%;
     color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    padding: 2.5px;
-    border-radius: 5px;
-    font-size: 70%;
+    background: var(--secondary-color);
+    padding: 10px;
     user-select: none;
     transition: .1s;
+    gap: 10px;
     z-index: 200;
+  }
+
+  .property-config label img {
+    width: 30px;
+    height: 30px;
   }
 
   .property-config label:hover{
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    transform: translate(3px, 3px);
-    box-shadow: -1.5px -1.5px 0px 1.5px var(--primary-alt-color);
   }
 
   .property-config input:checked ~ label {
-    
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    transform: translate(0,0);
-    box-shadow: none;
   }
 
-  .property-config label img {
-    width: 100%;
-    height: 100%;
-  }
   .property-config label:hover img, .property-config input:checked ~ label img {
     filter: invert(1);
   }
@@ -153,19 +157,10 @@
 
   .property-config label span {
         display: block;
-        position: absolute;
-        left: 80%;
-        bottom: 10%;
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-        padding: 2.5px;
+
         border-radius: 5px;
-        opacity: 0;
         user-select: none;
         transition: .05s;
     }
 
-    .property-config label:hover span, .property-config label.active span {
-        opacity: 1
-    }
 </style>

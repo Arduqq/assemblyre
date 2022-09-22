@@ -52,6 +52,7 @@
     computed: {
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
+        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
         return {
           '--field-border-color': this.fieldStyleProperties.border.borderColor,
           '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
@@ -61,7 +62,7 @@
           '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
           '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
           '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
-          '--field-background-image': 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)',
+          '--field-background-image': backgroundImage,
           '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
           '--field-stack-order': stacking
         }

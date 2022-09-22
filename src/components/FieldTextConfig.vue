@@ -180,7 +180,9 @@
                 @change="updateStyle"/>
         </div>
         
-        <input type="button" id="delete-button" value="Delete" @click="initDelete"/>
+        <div class="quick-access">
+            <button id="delete-button" @click="initDelete">Delete</button>
+        </div>
     </div>
 </template>
 <script>

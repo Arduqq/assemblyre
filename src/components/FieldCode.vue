@@ -3,7 +3,7 @@
     <main :style="fieldStyle">
       <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
-      <div v-for="block in fieldStyleProperties.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" :class="block.type">
+      <div v-for="block in fieldStyleProperties.text.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" :class="block.type">
 
         <span class="code-block-id">{{block.id}}</span>
         <span class="code-block-indent"
@@ -14,21 +14,18 @@
         @keydown.tab.prevent="block.indent++"
         v-model="block.content"/>
         <div class="code-type-config">
-          <label >print
-            <input :name="block.id" value="print"  type="radio" v-model="block.type"/>
-          </label>
+          <input :id="block.id + '-print'" :name="block.id" value="print"  type="radio" v-model="block.type"/>
+          <label :for="block.id + '-print'" >print</label>
           
-          <label >assign
-            <input :name="block.id" value="assign"  type="radio" v-model="block.type"/>
-          </label>
+          <input :id="block.id + '-assign'" :name="block.id" value="assign"  type="radio" v-model="block.type"/>
+          <label :for="block.id + '-assign'">assign</label>
           
-          <label >unassign
-            <input :name="block.id" value="unassign"  type="radio" v-model="block.type"/>
-          </label>
-
-          <label >generate
-            <input :name="block.id" value="generate"  type="radio" v-model="block.type"/>
-          </label>
+          <input :id="block.id + '-unassign'" :name="block.id" value="unassign"  type="radio" v-model="block.type"/>
+          <label :for="block.id + '-unassign'">unassign</label>
+          
+          <input :id="block.id + '-generate'" :name="block.id" value="generate"  type="radio" v-model="block.type"/>
+          <label :for="block.id + '-generate'">generate</label>
+          
         </div>
       </div>
     </main>
@@ -60,18 +57,18 @@
         output: 'cake',
         styleMap: {
           "default": {
-            blocks: [
-                {
-                  id: 1,
-                  content: '**Shout** To Infinity!',
-                  type: 'print',
-                  indent: 0
-                }
-              ],
               text: {
                 backgroundColor: "#ffffff",
                 textColor: "#121212",
-                textSize: 100
+                textSize: 100,
+                blocks: [
+                    {
+                      id: 1,
+                      content: '**Shout** To Infinity!',
+                      type: 'print',
+                      indent: 0
+                    }
+                  ],
               },
               border: {
                 borderColor: "transparent",
@@ -101,11 +98,11 @@
       },
       addBlock: function(line, indent) {
         /* If the cursor is at the start, transfer block's content */
-        var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.fieldStyleProperties.blocks[line-1].content : '';
+        var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.fieldStyleProperties.text.blocks[line-1].content : '';
         if (this.$refs.codeBlock[line-1].selectionStart == 0) {
-          this.fieldStyleProperties.blocks[line-1].content = '';
+          this.fieldStyleProperties.text.blocks[line-1].content = '';
         }
-        this.fieldStyleProperties.blocks.splice(
+        this.fieldStyleProperties.text.blocks.splice(
           line,
           0,
           {
@@ -115,8 +112,8 @@
             indent: indent
           }
         );
-        for (var i = line; i < this.fieldStyleProperties.blocks.length+1; i++) {
-          this.fieldStyleProperties.blocks[i-1].id = i;
+        for (var i = line; i < this.fieldStyleProperties.text.blocks.length+1; i++) {
+          this.fieldStyleProperties.text.blocks[i-1].id = i;
         }
         this.$nextTick(() => {
           this.$refs.codeBlock[line].focus();
@@ -126,16 +123,16 @@
         /* Is there more than one line? */
         if (line > 0) {
             /* Is the current line tabbed? */
-          if (this.fieldStyleProperties.blocks[line-1].indent > 0 && this.$refs.codeBlock[line-1].selectionStart == 0) {
-            this.fieldStyleProperties.blocks[line-1].indent --;
+          if (this.fieldStyleProperties.text.blocks[line-1].indent > 0 && this.$refs.codeBlock[line-1].selectionStart == 0) {
+            this.fieldStyleProperties.text.blocks[line-1].indent --;
             return;
           }
           if (line > 1) {
             /* Is the current line empty? */
             if (this.$refs.codeBlock[line-1].value === "") {
-              this.fieldStyleProperties.blocks.splice(line-1,1);
-              for (var j = line-1; j <= this.fieldStyleProperties.blocks.length-1; j++) {
-                this.fieldStyleProperties.blocks[j].id--;
+              this.fieldStyleProperties.text.blocks.splice(line-1,1);
+              for (var j = line-1; j <= this.fieldStyleProperties.text.blocks.length-1; j++) {
+                this.fieldStyleProperties.text.blocks[j].id--;
               }
               this.$nextTick(() => {
                 this.$refs.codeBlock[line-2].focus();
@@ -144,10 +141,10 @@
             }  
             /* Is the current selection at the line start, but non-empty? */
             if (this.$refs.codeBlock[line-1].selectionStart === 0 && this.$refs.codeBlock[line-1].value != "") {
-              var deletedLine = this.fieldStyleProperties.blocks.splice(line-1,1)[0];
-              this.fieldStyleProperties.blocks[line-2].content += deletedLine.content;
-              for (var i = line-1; i <= this.fieldStyleProperties.blocks.length-1; i++) {
-                this.fieldStyleProperties.blocks[i].id--;
+              var deletedLine = this.fieldStyleProperties.text.blocks.splice(line-1,1)[0];
+              this.fieldStyleProperties.text.blocks[line-2].content += deletedLine.content;
+              for (var i = line-1; i <= this.fieldStyleProperties.text.blocks.length-1; i++) {
+                this.fieldStyleProperties.text.blocks[i].id--;
               }
               this.$nextTick(() => {
                 this.$refs.codeBlock[line-2].focus();
@@ -200,7 +197,7 @@
     
   }
 
-    .code main input {
+    .code main .code-block > input {
     display: block;
     flex: 1 1 auto;
     min-height: 10px;
@@ -216,7 +213,7 @@
   }
 
   .code main {
-    width: 100%;
+    width: auto;
     display: flex;
     flex-flow: row wrap;
     padding: 10px;
@@ -239,6 +236,8 @@
     align-items: center;
     padding: 0 3px;
     transition: .1s;
+    border-top: solid 1px rgba(0,0,0,0);
+    border-bottom: solid 1px rgba(0,0,0,0);
   }
   .code .code-block input[type="text"] {
     display: block;
@@ -263,21 +262,44 @@
     display: inline-block;
     flex: 0 1 1em;
     border-left: 1px solid var(--code-text-color);
-    height: 100%;
+    height: 1em;;
   }
 
   .code-type-config {
     display: none;
-    font-size: 50%;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
+    flex-flow: row wrap;
+    position: absolute;
+    left: 90%;
+    width: 100px;
+    padding: 2px;
+    border-radius: 5px;
+    background: var(--secondary-color);
+    gap: 2px;
+  }
+  .code-type-config label:hover, .code-type-config input:checked + label {
+    color: white;
+    background: var(--secondary-alt-color);
+  }
+  .code-type-config input {
+    display: none;
   }
 
-  .code-type-config > label {
-    display: block;
-    flex: 1 1 25%;
+  .code-type-config label {
+    width: 100%;
+    flex: 0 0 100%;
+    padding: 2px;
+  }
+
+  .code-type-config:before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 0;
+    height: 100%;
+    width: 20px;
+    background: var(--secondary-color);
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+
   }
 
   .code-block:hover .code-type-config {

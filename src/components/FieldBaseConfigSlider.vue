@@ -33,7 +33,6 @@ export default {
         padding: 5px;
         border: 1px solid var(--secondary-color);
         display: flex;
-        gap: 2px;
     }
 
 

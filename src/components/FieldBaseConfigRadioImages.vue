@@ -3,6 +3,10 @@
         <img :src="'/assets/icons/' + property + '.png'" />
         <h3><b>{{property}}:</b> {{currentValue}}</h3>
         <div class="options">
+            <label for="none" title="None">
+                <img >
+                <input id="none" :name="group" value="none"  type="radio" v-model="currentValue" @change="updateValue()"/>
+            </label>
             <label v-for="(option, index) in options" :key="index" :for="option" :title="option">
                 <img :src="'/assets/' + option + '.jpg'">
                 <input :id="option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
@@ -20,7 +24,7 @@ export default {
 <style>
     
 
-    .field-config-radio-images > img {
+    .field-config-radio-images > img{
         height: 100%;
         width: 100%;
     }
@@ -29,7 +33,7 @@ export default {
         filter: invert(1);
     }
 
-    .field-config-radio-images .options img {
+    .field-config-radio-images .options img , .field-config-radio-images .options div {
         width: 50px; 
         height: 50px;
         filter: saturate(.7);
