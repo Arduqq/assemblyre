@@ -1,11 +1,11 @@
 <template>
 <div id="editor-view">
-  <div class="canvas-control">
-    <input type="checkbox" value="Switch mode" class="mode-toggle" @click="editingPlugs = !editingPlugs"/>            
+  <div class="canvas-control">        
     <input type="range" min=".1" max="2" step=".1" v-model.number="canvasScale" />
   </div>
   
     <div class="editor-control active" >
+      <a class="logo" href="/"></a>
       <label>Title
         <input type="text" v-model="score.opus"/>
       </label>
@@ -16,6 +16,7 @@
         
       <button @click="save">save_</button>
       <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.json'">Download</a>
+      <tooltip keyphrase="export-help"/>
     </div>
     
     <div class="editor program.plugs">
@@ -37,19 +38,22 @@
       </div>
 
       <div class="tool" v-show="this.activeTool==='text'">
+        <h2>Text Presets</h2> <tooltip keyphrase="text-help"/>
         <div class="starter text" ref="textStarter"></div>
       </div>
 
       <div class="tool" v-show="this.activeTool==='code'">
+        <h2>Code Presets</h2> <tooltip keyphrase="code-help"/>
         <div class="starter code" ref="codeStarter"></div>
       </div>
 
       <div class="tool" v-show="this.activeTool==='shape'">
+        <h2>Shape Presets</h2> <tooltip keyphrase="shape-help"/>
         <div class="starter shape" ref="shapeStarter"></div>
       </div>
 
       <div class="tool layerbox" v-show="this.activeTool==='layers'">
-        <h2>Layers</h2>
+        <h2>Layers</h2> <tooltip keyphrase="layer-help"/>
         <div class="layer" 
           v-for="(field, i) in sortedFields"
             :key="field.id"
@@ -62,18 +66,21 @@
       </div>
       
       <div class="tool mediabox" v-show="this.activeTool==='media'">
-      
         <div class="imagebox"> 
           <div class="image" v-for="(image, i) in importedImages" :key="image.id" :id="image.id" >
             <button @click="importedImages.splice(i, 1);">delete</button>
             <input type="button" :style="'background-image: url(' + image.url + ')'" @click="dropMedia(image.url)"/>
           </div>
           </div>
+        <h2>Gallery</h2> 
+       <tooltip keyphrase="image-help"/>
         <button @click="addImage">Add Image</button>
        <input type="text" v-model="newImageURL"/>
+       
       </div>
 
       <div class="tool" v-show="this.activeTool==='background'">
+        <h2>Backgrounds</h2> <tooltip keyphrase="background-help"/>
         <input type="radio" name="patterns" value="none" v-model="backgroundPattern"/>
         <input type="radio" name="patterns" value="pattern-1" v-model="backgroundPattern"/>
         <input type="radio" name="patterns" value="pattern-2" v-model="backgroundPattern"/>
@@ -206,13 +213,13 @@
   import FieldCode from "../components/FieldCode.vue";
   import FieldMedia from "../components/FieldMedia.vue";
   import FieldShape from "../components/FieldShape.vue";
+  import Tooltip from "../components/Tooltip.vue";
   import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
   export default {
     name: "EditorView",
     data() {
       return {
-        editingPlugs: true,
         panningMode: false,
         activeTool: "text",
         canvasSize: { width: 0, height: 0 },
@@ -433,18 +440,6 @@
         
     },
     computed: {
-      editorFocus() {
-        if (this.editingPlugs) {
-          return {
-            "--flow-editor-stack-order": 0,
-            "--flow-editor-opacity": .8,
-          }
-        }
-        return {
-            "--flow-editor-stack-order": 2,
-            "--flow-editor-opacity": .9
-          }
-      },
       sortedFields(){
         var programByStackOrder = this.programQuery("alive");
         return programByStackOrder.sort((a, b) => b.stackOrder - a.stackOrder );
@@ -463,7 +458,8 @@
     FieldText,
     FieldCode,
     FieldMedia,
-    FieldShape
+    FieldShape,
+    Tooltip
 }
   }
 </script>
@@ -498,7 +494,6 @@
   }
 
   .editor-control > * {
-    flex: 0 1 100px;
     gap: 20px;
     display: flex;
     flex-flow: row nowrap;
@@ -508,6 +503,19 @@
 
   .editor-control input {
     flex: 0 1 150px;
+  }
+
+  .editor-control .logo {
+    width: 40px;
+    height: 40px;
+    background-image: url('@/../public/assets/assemblyre-logo.png');
+    filter: invert(0) contrast(.7);
+    background-color: white;
+    border-radius: 100%;
+    border: 2px solid var(--secondary-alt-color);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .canvas-control {

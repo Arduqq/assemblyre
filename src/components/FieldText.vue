@@ -34,28 +34,27 @@
         styleMap: {
           "default": {
               text: {
+                textSize: 100,
                 textAlignment: "left",
                 fontFamily: "Roboto",
                 textColor: "#121212",
-                textSize: 100,
-                content: [ { value: '', md: '' } ],
+                content: [ { value: '', md: '' } ]
               },
               border: {
-                borderColor: "transparent",
+                borderSize: 0,
                 borderRadius: 0,
                 borderStyle: "solid",
-                borderSize: 0
+                borderColor: "transparent"
               },
               shadow: {
-                shadowDisplacement: 0,
                 shadowSize: 0,
+                shadowDisplacement: 0,
                 shadowColor: "transparent"
               },
               background: {
-                backgroundColor: "white",
-                backgroundImage: "none",
                 backgroundSize: 100,
-
+                backgroundColor: "white",
+                backgroundImage: "none"
               }
           }
         }
