@@ -1,5 +1,5 @@
 <template>
-    <main class="content" id='hub' v-if="['apple', 'grape'].indexOf(userCode) > -1 ">
+    <main class="content" id='hub' v-if="participants.indexOf(userCode) > -1 ">
       
       <header>
         <router-link to="/"><img src="/assets/assemblyre-logo.png">Start</router-link>
@@ -14,19 +14,24 @@
         <input type="text" class="big" placeholder="code" v-model="courseCode"/>
 
       </section>
-      <article class="course" v-for="course in courseData" :key="course.name">
-        <section v-if="course.submissions[userCode] !== null || courseCode === course.code" class="course-details">
-          <h2>{{course.title}}</h2>
-          <p>{{course.excerpt}}</p>
-          <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link><br/>
-        </section>
-        
-      </article>
+      <div class="courses">
+        <article class="course" v-for="course in courseData" :key="course.name">
+          <section v-if="course.submissions[userCode] !== null || courseCode === course.code" class="course-details">
+            <h2>{{course.title}}</h2>
+            <p>{{course.excerpt}}</p>
+            <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link><br/>
+          </section>
+          
+        </article>
+      </div>
     </main>
-    <main id="hub" v-else>
+    <main class="content" id="hub" v-else>
+      <header>
+        <router-link to="/"><img src="/assets/assemblyre-logo.png">Start</router-link>
+      </header>
       <h1>Assemblyng Hub: <span>{{userCode}}</span></h1>
       <section id="error">
-        Seems like {{userCode}} is not a participant of the study. Check your Lyre Zine! The code is right at the front page.
+        Seems like '{{userCode}}' is not a participant of the study. Check your Lyre Zine! The code is right at the front page.
         <input class="big" placeholder="code" type="text" v-model="userCodeNew"/>
         <router-link class="route" :to="{ name: 'hub', params: { userCode: userCodeNew }}" >Try again</router-link>
       </section>
@@ -48,7 +53,17 @@ export default {
     return {
       courseData: courses,
       courseCode: '',
-      userCodeNew: this.userCode
+      userCodeNew: this.userCode,
+      participants: [
+        "grape",
+        "apple",
+        "ananas",
+        "jackfruit",
+        "apricot",
+        "peach",
+        "lemon",
+        "garden"
+      ]
     }
   }
 }
@@ -56,20 +71,23 @@ export default {
 
 <style scoped>
 
-article section {
-  width: 400px;
+.courses {
+  margin-top: 20px;
+  width: 100%;
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  margin: 20px;
+  gap: 20px;
+}
+
+.courses article {
   padding: 10px;
   border-radius: 5px;
   border: 3px solid var(--primary-alt-color);
 }
 
-article section > * {
-  flex: 1 1 100%;
+.courses > * {
+  flex: 1 1 300px;
+  width: 100%;
 }
 
 </style>
