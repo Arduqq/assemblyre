@@ -1,6 +1,6 @@
 <template>
-  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active}" v-click-outside="closeConfig" >
-    <main :style="fieldStyle">
+  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active}" v-click-outside="closeConfig"  :style="fieldStyle">
+    <main>
       <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
       <div v-for="block in fieldStyleProperties.text.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" :class="block.type">
@@ -58,7 +58,6 @@
         styleMap: {
           "default": {
               text: {
-                backgroundColor: "#ffffff",
                 textColor: "#121212",
                 textSize: 100,
                 blocks: [
@@ -69,6 +68,11 @@
                       indent: 0
                     }
                   ],
+              },
+              highlight: {
+                textGlow: 100,
+                textGlowColor: "left",
+                highlightColor: "Roboto"
               },
               border: {
                 borderColor: "transparent",
@@ -158,19 +162,25 @@
     },
     computed: {
       fieldStyle () {
-        var stacking = !this.inEdit ? this.stackOrder : 1000;
+        var stacking = !this.inEdit ? this.stackOrder : 10000;
+        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
         return {
-          '--code-bg-color': this.fieldStyleProperties.background.backgroundColor,
-          '--code-text-color': this.fieldStyleProperties.text.textColor,
-          '--code-text-size': this.fieldStyleProperties.text.textSize + "%",
-          '--code-border-color': this.fieldStyleProperties.border.borderColor,
-          '--code-border-style': this.fieldStyleProperties.border.borderStyle,
-          '--code-border-size': this.fieldStyleProperties.border.borderSize + "px",
-          '--code-border-radius': this.fieldStyleProperties.border.borderRadius + "px",
-          '--code-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
-          '--code-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
-          '--code-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
-          '--code-stack-order': stacking
+          '--field-background-image': backgroundImage,
+          '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
+          '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
+          '--field-text-color': this.fieldStyleProperties.text.textColor,
+          '--field-text-size': this.fieldStyleProperties.text.textSize + "%",
+          '--field-highlight-text-glow': this.fieldStyleProperties.highlight.textGlow + 'px',
+          '--field-highlight-text-glow-color': this.fieldStyleProperties.highlight.textGlowColor,
+          '--field-highlight-color': this.fieldStyleProperties.highlight.highlightColor,
+          '--field-border-color': this.fieldStyleProperties.border.borderColor,
+          '--field-border-style': this.fieldStyleProperties.border.borderStyle,
+          '--field-border-size': this.fieldStyleProperties.border.borderSize + "px",
+          '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "px",
+          '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
+          '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
+          '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
+          '--field-stack-order': stacking
         }
       }
     },
@@ -188,7 +198,7 @@
   }
   
   .code {
-    z-index: var(--code-stack-order);
+    z-index: var(--field-stack-order);
     position: absolute;
     height: auto;
     min-width: 300px;
@@ -205,11 +215,11 @@
     overflow-wrap: break-word;
     padding: 2px;
     margin: 0;
-    color: var(--code-text-color);
-    font-size: var(--code-text-size);
+    color: var(--field-text-color);
+    font-size: var(--field-text-size);
     font-family: "Steps Mono", "Courier New", monospace;
     border: none;
-    background-color: var(--code-bg-color);
+    background-color: var(--field-bg-color);
   }
 
   .code main {
@@ -219,13 +229,13 @@
     padding: 10px;
 
     
-    background-color: var(--code-bg-color);
-    border-color: var(--code-border-color);
-    border-width: var(--code-border-size);
-    border-style: var(--code-border-style);
-    border-radius: var(--code-border-radius);
-    color: var(--code-text-color);
-    box-shadow: var(--code-shadow-displacement) var(--code-shadow-displacement) 0 var(--code-shadow-size) var(--code-shadow-color);
+    background-color: var(--field-background-color);
+    border-color: var(--field-border-color);
+    border-width: var(--field-border-size);
+    border-style: var(--field-border-style);
+    border-radius: var(--field-border-radius);
+    color: var(--field-text-color);
+    box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);
   }
 
   .code .code-block {
@@ -243,6 +253,8 @@
     display: block;
     flex: 1 1 auto;
     box-sizing: border-box;
+    background-color: var(--field-highlight-color);
+    text-shadow: 0 0  var(--field-highlight-text-glow) var(--field-highlight-text-glow-color);
   }
 
   .code .code-block:focus-within {
@@ -261,7 +273,7 @@
   .code .code-block .code-block-indent {
     display: inline-block;
     flex: 0 1 1em;
-    border-left: 1px solid var(--code-text-color);
+    border-left: 1px solid var(--field-text-color);
     height: 1em;;
   }
 

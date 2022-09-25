@@ -40,6 +40,11 @@
                 textColor: "#121212",
                 content: [ { value: '', md: '' } ]
               },
+              highlight: {
+                textGlow: 0,
+                textGlowColor: "transparent",
+                highlightColor: "transparent"
+              },
               border: {
                 borderSize: 0,
                 borderRadius: 0,
@@ -111,6 +116,9 @@
         var style = {
           '--field-text-color': this.fieldStyleProperties.text.textColor,
           '--field-text-size': this.fieldStyleProperties.text.textSize + "%",
+          '--field-highlight-text-glow': this.fieldStyleProperties.highlight.textGlow + 'px',
+          '--field-highlight-text-glow-color': this.fieldStyleProperties.highlight.textGlowColor,
+          '--field-highlight-color': this.fieldStyleProperties.highlight.highlightColor,
           '--field-border-color': this.fieldStyleProperties.border.borderColor,
           '--field-border-style': this.fieldStyleProperties.border.borderStyle,
           '--field-border-size': this.fieldStyleProperties.border.borderSize + "px",
@@ -161,6 +169,11 @@
     margin: 0;
     font-family: var(--field-text-font);
     height: auto;
+  }
+
+  .text main .rendered-view p {
+    background-color: var(--field-highlight-color);
+    text-shadow: 0 0  var(--field-highlight-text-glow) var(--field-highlight-text-glow-color);
   }
   
   .text:hover:after {

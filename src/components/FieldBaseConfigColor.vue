@@ -6,18 +6,19 @@
         <input type="button" @click="generateColors(0)" value="R"/>
         <input type="button" @click="generateColors(120)" value="G"/>
         <input type="button" @click="generateColors(240)" value="B"/>
+              <h4>Opacity</h4>
         <input type="range" min="0" max="100" v-model.number="opacity" @change="updateValue()"/>
         <input type="text" v-model="currentValue" @change="updateValue()"/>
       </div>
       
       <div class="swatches">
         <div class="swatch" title="Custom">
-          <input id="custom" type="color" v-model="currentValue" @change="updateValue()"/>
-          <label for="custom" :style="'background-color:' + currentValue">custom</label>
+          <input :id="group+'-'+property+'--custom'" type="color" v-model="currentValue" @change="updateValue()"/>
+          <label :for="group+'-'+property+'--custom'" :style="'background-color:' + currentValue">✨</label>
         </div>
           <div class="swatch"  v-for="(swatch, index) in swatches" :key="index" :title="swatch+alphaToHex(opacity)">
-              <input :id="group+'-'+swatch+alphaToHex(opacity)" :name="group" :value="swatch+alphaToHex(opacity)"  type="radio" v-model="currentValue" @change="updateValue()"/>
-              <label :for="group+'-'+swatch+alphaToHex(opacity)" :style="'background-color:' + swatch+alphaToHex(opacity)"></label>
+              <input :id="group+'-'+property+'-'+swatch+alphaToHex(opacity)" :name="group" :value="swatch+alphaToHex(opacity)"  type="radio" v-model="currentValue" @change="updateValue()"/>
+              <label :for="group+'-'+property+'-'+swatch+alphaToHex(opacity)" :style="'background-color:' + swatch+alphaToHex(opacity)"></label>
           </div>
       </div>
   </div>
@@ -107,6 +108,16 @@
     box-shadow: none;
   }
 
+  input[type="range"] {
+    
+    background-color: var(--primary-alt-color);
+    height: 30px;
+    color: var(--secondary-color);
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid var(--secondary-color);
+  }
+
     .field-config-color .swatches {
       display: flex;
       flex-flow: row wrap;
@@ -118,6 +129,7 @@
 
     .field-config-color .swatches .swatch {
       flex: 0 0 20%;
+      text-align: center;
     }
 
     .field-config-color .swatches label {  
@@ -125,7 +137,7 @@
         transition: .1s;
         display: flex;
         flex-flow: row nowrap;
-        justify-content: space-between;
+        justify-content: center;
         gap: 20px;
         mix-blend-mode: difference;
         line-height: 0;

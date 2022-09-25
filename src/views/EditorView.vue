@@ -57,11 +57,11 @@
         <div class="layer" 
           v-for="(field, i) in sortedFields"
             :key="field.id"
-            @mouseenter="program[i].active = true; updateFields()"
-            @mouseleave="program[i].active = false; updateFields()">
-            <input type="text" v-model="program[i].name"/> 
-            <button @click="swapOrder(program[i], program[i-1])">↑</button>
-            <button @click="swapOrder(program[i], program[i+1])">↓</button> 
+            @mouseenter="sortedFields[i].active = true; updateFields()"
+            @mouseleave="sortedFields[i].active = false; updateFields()">
+            <input type="text" v-model="program[parseInt(field.id)-1].name"/> 
+            <button @click="swapOrder(sortedFields[i], sortedFields[i-1])">↑</button>
+            <button @click="swapOrder(sortedFields[i], sortedFields[i+1])">↓</button> 
         </div>
       </div>
       
@@ -442,7 +442,7 @@
     computed: {
       sortedFields(){
         var programByStackOrder = this.programQuery("alive");
-        return programByStackOrder.sort((a, b) => b.stackOrder - a.stackOrder );
+        return programByStackOrder.sort((a, b) => a.stackOrder < b.stackOrder );
       },
       canvasStyle() {
         var backgroundImage = this.backgroundPattern !== "none" ? 'url(@/../assets/' + this.backgroundPattern + '.jpg)' : "white"
@@ -540,11 +540,6 @@
     transition: .1s;
     z-index: 1;
     overflow: hidden;
-  }
-
-  .editor.flow {
-    z-index: var(--flow-editor-stack-order);
-    opacity: var(--flow-editor-opacity);
   }
 
   .editor > * {

@@ -3,7 +3,7 @@
         <img :src="'/assets/icons/' + property + '.png'" />
         <h3><b>{{property}}:</b> {{currentValue}}</h3>
         <div class="slider">
-            {{min}}<input type="range" id="text_size" :min="min" :max="max" :step="step" v-model.number="currentValue" @input="updateValue()"/>{{max}}
+            {{min}}<input type="range" :id="group+'-'+property" :min="min" :max="max" :step="step" v-model.number="currentValue" @input="updateValue()"/>{{max}}
         </div><input type="number" :step="step" :min="min" :max="max" v-model.number="currentValue"  @input="updateValue()"/>
             
     </div>

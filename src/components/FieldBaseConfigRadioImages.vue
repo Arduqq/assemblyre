@@ -5,11 +5,11 @@
         <div class="options">
             <label for="none" title="None">
                 <img >
-                <input id="none" :name="group" value="none"  type="radio" v-model="currentValue" @change="updateValue()"/>
+                <input :id="group+'-'+property+'-none'" :name="group" value="none"  type="radio" v-model="currentValue" @change="updateValue()"/>
             </label>
-            <label v-for="(option, index) in options" :key="index" :for="option" :title="option">
+            <label v-for="(option, index) in options" :key="index" :for="group+'-'+property+'-'+option" :title="option">
                 <img :src="'/assets/' + option + '.jpg'">
-                <input :id="option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
+                <input :id="group+'-'+property+'-'+option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
             </label>
         </div>
     </div>

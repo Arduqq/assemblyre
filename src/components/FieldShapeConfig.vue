@@ -10,7 +10,7 @@
             <field-base-config-radio 
                 binding="r"
                 title="geometry"
-                group="shape"
+                :group="id + 'shape'"
                 property="shapeGeometry"
                 :options="['circle', 'square', 'triangle']"
                 :val="currentProperties.shape.shapeGeometry"
@@ -26,7 +26,7 @@
                 binding="r"
                 title="color"
                 property="backgroundColor"
-                :group="id + 'backgroundColor'"
+                :group="id + 'background'"
                 :options="['transparent, #ffffff', '#000000', '#ff675c', '#6f27db', '#d627c5', '#3bf7f1', '#a5ff91']"
                 :val="currentProperties.background.backgroundColor"
                 v-model="currentProperties.background.backgroundColor"
@@ -37,6 +37,7 @@
             <field-base-config-radio-images 
                 binding="r"
                 title="image"
+                :group="id + 'background'"
                 property="backgroundImage"
                 :options="['asphalt', 'bricks-1', 'bricks-2', 'building-1', 'building-2', 'circuit', 'dots-1', 'dots-2', 'flame-1', 'flame-2', 'leather', 'machine', 'rock-1', 'rock-2', 'shell', 'sponge', 'stars']"
                 :val="currentProperties.background.backgroundImage"
@@ -48,7 +49,7 @@
             <field-base-config-slider 
                 binding="q" 
                 title="size"
-                group="background"
+                :group="id + 'background'"
                 property="backgroundSize" 
                 :min=0 :max=200 :step=1 
                 :val="currentProperties.background.backgroundSize "
@@ -65,7 +66,7 @@
                 binding="r"
                 title="color"
                 property="borderColor"
-                :group="id + 'borderColor'"
+                :group="id + 'border'"
                 :options="['transparent, #ffffff', '#000000', '#ff675c', '#6f27db', '#d627c5', '#3bf7f1', '#a5ff91']"
                 :val="currentProperties.border.borderColor"
                 v-model="currentProperties.border.borderColor"
@@ -76,7 +77,7 @@
             <field-base-config-slider 
                 binding="q" 
                 title="radius"
-                group="border"
+                :group="id + 'border'"
                 property="borderRadius" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.border.borderRadius "
@@ -87,7 +88,7 @@
             <field-base-config-slider 
                 binding="w" 
                 title="size" 
-                group="border"
+                :group="id + 'border'"
                 property="borderSize" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.border.borderSize" 
@@ -99,6 +100,7 @@
                 binding="r"
                 title="style"
                 property="borderStyle"
+                :group="id + 'border'"
                 :options="['none', 'solid', 'dashed', 'dotted']"
                 :val="currentProperties.border.borderStyle"
                 v-model="currentProperties.border.borderStyle"
@@ -114,7 +116,7 @@
                 binding="r"
                 title="color"
                 property="shadowColor"
-                :group="id + 'shadowColor'"
+                :group="id + 'shadow'"
                 :options="['transparent, #ffffff', '#000000', '#ff675c', '#6f27db', '#d627c5', '#3bf7f1', '#a5ff91']"
                 :val="currentProperties.shadow.shadowColor"
                 v-model="currentProperties.shadow.shadowColor"
@@ -125,7 +127,7 @@
             <field-base-config-slider 
                 binding="q" 
                 title="displacement"
-                group="shadow"
+                :group="id + 'shadow'"
                 property="shadowDisplacement" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.shadow.shadowDisplacement "
@@ -136,7 +138,7 @@
             <field-base-config-slider 
                 binding="w" 
                 title="size" 
-                group="shadow"
+                :group="id + 'shadow'"
                 property="shadowSize" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.shadow.shadowSize" 

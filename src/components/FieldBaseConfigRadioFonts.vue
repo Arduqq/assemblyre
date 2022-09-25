@@ -4,8 +4,8 @@
         <h3><b>{{property}}:</b> {{currentValue}}</h3>
         <div class="options">
             <div class="option"  v-for="(option, index) in options" :key="index" :title="option">
-                <input :id="group+'-'+option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
-                <label :for="group+'-'+option" :style="'font-family: ' + option">
+                <input :id="group+'-'+property+'-'+option" :name="group" :value="option"  type="radio" v-model="currentValue" @change="updateValue()"/>
+                <label :for="group+'-'+property+'-'+option" :style="'font-family: ' + option">
                     <span>{{option}}</span><span>QqRrUuEe</span>
                 </label>
             </div>

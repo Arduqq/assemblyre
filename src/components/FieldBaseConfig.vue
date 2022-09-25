@@ -29,8 +29,12 @@
                     this.$set(this.currentProperties.background, value.property, value.val);
                 } else if (this.inEditProperty === 'image') {
                     this.$set(this.currentProperties.image, value.property, value.val);
-                } else {
+                } else if (this.inEditProperty === 'text') {
                     this.$set(this.currentProperties.text, value.property, value.val);
+                } else if (this.inEditProperty === 'geometry') {
+                    this.$set(this.currentProperties.geometry, value.property, value.val);
+                } else if (this.inEditProperty === 'highlight') {
+                    this.$set(this.currentProperties.highlight, value.property, value.val);
                 }
                 this.$emit('input', this.currentProperties )
             },
