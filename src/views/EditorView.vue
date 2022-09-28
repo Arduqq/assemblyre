@@ -6,13 +6,14 @@
   
     <div class="editor-control active" >
       <a class="logo" href="/"></a>
+      <router-link class="hub-link route" :to="{ name: 'hub', params: { userCode: this.user }}" >{{participants[user]}}</router-link>
       <label>Title
         <input type="text" v-model="score.opus"/>
       </label>
       <label>Version
         <input type="text" v-model="score.version"/>
       </label>
-      {{this.task}}
+      <span class="task">{{this.user}} {{this.task}} <tooltip icon="⭐" :keyphrase="task"/></span>
         
       <button @click="save">save_</button>
       <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.json'">Download</a>
@@ -79,15 +80,25 @@
        
       </div>
 
-      <div class="tool" v-show="this.activeTool==='background'">
+      <div class="tool backgroundbox" v-show="this.activeTool==='background'">
         <h2>Backgrounds</h2> <tooltip keyphrase="background-help"/>
-        <input type="radio" name="patterns" value="none" v-model="backgroundPattern"/>
-        <input type="radio" name="patterns" value="pattern-1" v-model="backgroundPattern"/>
-        <input type="radio" name="patterns" value="pattern-2" v-model="backgroundPattern"/>
-        <input type="radio" name="patterns" value="pattern-3" v-model="backgroundPattern"/>
-        <input type="radio" name="patterns" value="pattern-4" v-model="backgroundPattern"/>
-        <input type="radio" name="patterns" value="pattern-5" v-model="backgroundPattern"/>
-      </div>
+          
+          <div class="backgrounds">
+            <input type="color" name="patterns" id="background-color" v-model="backgroundColor"/>
+            <input type="radio" name="patterns" value="none" id="background-none" v-model="backgroundPattern"/>
+            <label for="background-none" :style="'background-image: none'"></label>
+            <input type="radio" name="patterns" value="pattern-1" id="background-1" v-model="backgroundPattern"/>
+            <label for="background-1" :style="'background-image: url(@/../assets/pattern-1.jpg)'"></label>
+            <input type="radio" name="patterns" value="pattern-2" id="background-2" v-model="backgroundPattern"/>
+            <label for="background-2" :style="'background-image: url(@/../assets/pattern-2.jpg)'"></label>
+            <input type="radio" name="patterns" value="pattern-3" id="background-3" v-model="backgroundPattern"/>
+            <label for="background-3" :style="'background-image: url(@/../assets/pattern-3.jpg)'"></label>
+            <input type="radio" name="patterns" value="pattern-4" id="background-4" v-model="backgroundPattern"/>
+            <label for="background-4" :style="'background-image: url(@/../assets/pattern-4.jpg)'"></label>
+            <input type="radio" name="patterns" value="pattern-5" id="background-5" v-model="backgroundPattern"/>
+            <label for="background-5" :style="'background-image: url(@/../assets/pattern-5.jpg)'"></label>
+          </div>
+        </div>
 
       <div class="tool canvasbox" v-show="this.activeTool==='canvas'">
         <h2>Canvas Dimensions</h2>
@@ -224,6 +235,7 @@
         activeTool: "text",
         canvasSize: { width: 0, height: 0 },
         backgroundPattern: "none",
+        backgroundColor: "white",
         score: {
           opus: "Pseudo Program",
           version: "0.1",
@@ -235,7 +247,18 @@
         exportURL: null,
         screenX: 0,
         screenY: 0,
-        canvasScale: 1
+        canvasScale: 1,
+        participants:  {
+          "lemon": "🍋",
+          "peach": "🍑",
+          "pineapple": "🍍",
+          "grape": "🍇",
+          "apple": "🍏",
+          "maracuja": "🍹",
+          "jackfruit": "🫒",
+          "growth": "🌱",
+          "garden": "🌿"
+        }
       };
     },
     props: {
@@ -249,10 +272,15 @@
         required: false,
         default: 600,
       },
+      user: {
+        type: String,
+        required: false,
+        default: "growth"
+      },
       task: {
         type: String,
         required: false,
-        default: "growth spurt"
+        default: "spurt"
       }, 
       import: {
         type: Array,
@@ -450,7 +478,8 @@
           "--canvas-scale": 'scale(' + this.canvasScale + ')',
           "--canvas-width": this.canvasSize.width + "px",
           "--canvas-height": this.canvasSize.height + "px",
-          "--canvas-background": backgroundImage
+          "--canvas-background": backgroundImage,
+          "--canvas-background-color": this.backgroundColor
         }
       }
     },
@@ -479,6 +508,7 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
+    gap: 20px;
     position: fixed;
     top: 0;
     left: 0;
@@ -488,21 +518,24 @@
     padding: 10px;
     z-index: 2;
     background: var(--gui-color);
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-family: var(--display-font);
     color: rgb(235, 235, 235);
     border: 1px solid rgb(191, 146, 195);
   }
 
-  .editor-control > * {
-    gap: 20px;
+  .editor-control label {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-end;
-    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
   }
-
   .editor-control input {
     flex: 0 1 150px;
+    padding: 5px;
+  }
+
+  .editor-control .hub-link {
+    border-radius: 100%;
   }
 
   .editor-control .logo {
@@ -516,6 +549,19 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+  }
+
+  .editor-control .task {
+    color: var(--primary-color);
+    background: white;
+    padding: 5px;
+    border-radius: 15px;
+    border: 3px solid var(--primary-alt-color);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 
   .canvas-control {
@@ -566,7 +612,8 @@
     transform: var(--canvas-scale);
     width: var(--canvas-width);
     height: var(--canvas-height);
-    background: var(--canvas-background);
+    background-image: var(--canvas-background);
+    background-color: var(--canvas-background-color);
     transform-origin: top left;;
     transition: .1s;
     margin: 20px;
@@ -615,6 +662,46 @@
     align-items: center;
     justify-content: flex-end;
     border: 1px solid rgb(191, 146, 195);
+  }
+
+  .tool.backgroundbox .backgrounds {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .tool.backgroundbox .backgrounds input[type="color"] {
+    all: unset;
+    width: 75px;
+    height: 75px;
+  }
+
+  .tool.backgroundbox:hover .backgrounds label {
+    filter: saturate(.5);
+  }
+
+  .tool.backgroundbox .backgrounds label {
+    width: 75px; 
+    height: 75px;
+    transition: .1s;
+    background-size: 200% 200%;
+    background-position: 0px 0px;
+    border: 1px solid var(--secondary-alt-color);
+  }
+
+  .tool.backgroundbox .backgrounds label:hover {
+    animation: background-scroll linear infinite 10s;
+  }
+
+  .tool.backgroundbox .backgrounds label:hover, .tool.backgroundbox .backgrounds input:checked + label {
+    filter: saturate(1);
+    border-color: var(--secondary-color);
+  }
+
+  .tool.backgroundbox input[type="radio"] {
+    display: none;
   }
 
   .tool-control {

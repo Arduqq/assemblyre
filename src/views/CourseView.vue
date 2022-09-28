@@ -11,7 +11,7 @@
         <p>{{resource.excerpt}}</p>
       </a>
     </section>
-    <router-link class="route" :to="{ name: 'edit', params: { task: userCode + ' ' + course.code }}" >Start Coding</router-link>
+    <router-link class="route" :to="{ name: 'edit', params: { user: userCode, task: course.code  }}" >Start Coding</router-link>
 
     </main>
 </template>

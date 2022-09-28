@@ -277,4 +277,20 @@ input[type="text"]:focus {
     border-right: 7px solid var(--interact-color);
     }
   }
+
+  
+
+  
+
+  @keyframes background-scroll {
+    0% {
+		background-position: 0% 0%
+    }
+    50% {
+      background-position: 200% 200%
+    }
+    100% {
+      background-position: 0% 0%
+    }
+  }
 </style>

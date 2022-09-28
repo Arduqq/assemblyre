@@ -42,9 +42,9 @@
         "submissions": {
             "grape": null,
             "apple": null,
-            "ananas": null,
+            "pineapple": null,
             "jackfruit": null,
-            "apricot": null,
+            "maracuja": null,
             "peach": null,
             "lemon": null,
             "garden" : 1
@@ -74,7 +74,7 @@
             },
 
             {
-                "title": "",
+                "title": "Transmediale Artwork Archive",
                 "excerpt": "Since 1988, the transmediale archive features hundreds of artists with their multi-media installations. Browse through their catalogue on the many voices surrounding the topic of technology and culture.Transmediale is a festival that emplores a critical view on how digital media reflects on every aspect of our life. Do check out their publications as well, if you would like to delve deeper!",
                 "url": "https://archive.transmediale.de/archive/explore?f%5B0%5D=type:artwork" 
             },
@@ -94,9 +94,9 @@
         "submissions": {
             "grape": null,
             "apple": null,
-            "ananas": null,
+            "pineapple": null,
             "jackfruit": null,
-            "apricot": null,
+            "maracuja": null,
             "peach": null,
             "lemon": null,
             "garden" : 1
@@ -121,9 +121,9 @@
         "submissions": {
             "grape": null,
             "apple": null,
-            "ananas": null,
+            "pineapple": null,
             "jackfruit": null,
-            "apricot": null,
+            "maracuja": null,
             "peach": null,
             "lemon": null,
             "garden" : 1
@@ -163,9 +163,9 @@
         "submissions": {
             "grape": null,
             "apple": null,
-            "ananas": null,
+            "pineapple": null,
             "jackfruit": null,
-            "apricot": null,
+            "maracuja": null,
             "peach": null,
             "lemon": null,
             "garden" : 1
@@ -190,9 +190,9 @@
         "submissions": {
             "grape": null,
             "apple": null,
-            "ananas": null,
+            "pineapple": null,
             "jackfruit": null,
-            "apricot": null,
+            "maracuja": null,
             "peach": null,
             "lemon": null,
             "garden" : 1
@@ -223,19 +223,19 @@
         "submissions": {
             "grape": null,
             "apple": null,
-            "ananas": null,
+            "pineapple": null,
             "jackfruit": null,
-            "apricot": null,
+            "maracuja": null,
             "peach": null,
             "lemon": null,
             "garden" : 1
 
         }
     },
-    "algorithm": {
+    "tree": {
         "title": "7: algorithm() ~ Building (Complex) Blocks",
         "excerpt": "The core of programming comes down to the algorithm - the combination of all the elements you have learned about. We will take a look at some algorithms and how they manage to convey their message through some short lines of text, their context of application, and the result they are striving for.",
-        "code": "vine",
+        "code": "tree",
         "description": [
             "In your course, you have been playing around with the editor to create diagrams of programs from the very beginning. Use this exercise to maybe create a piece that hasn’t really fit into any of the other courses. Try to imagine that someone else is reading your code: How can you make it understandable, clear and as transparent as possible? How would you convey the “flow of information” with the graphical tools provided?", 
             "You may even just create a flowchart as explained above. Would you stick to the geometric forms presented?",
@@ -257,9 +257,9 @@
         "submissions": {
             "grape": null,
             "apple": null,
-            "ananas": null,
+            "pineapple": null,
             "jackfruit": null,
-            "apricot": null,
+            "maracuja": null,
             "peach": null,
             "lemon": null,
             "garden" : 1
@@ -267,10 +267,10 @@
         }
     },
     
-    "learning": {
+    "thicket": {
         "title": "8: learning() ~ Cheating the Test",
         "excerpt": "The core of programming comes down to the algorithm - the combination of all the elements you have learned about. We will take a look at some algorithms and how they manage to convey their message through some short lines of text, their context of application, and the result they are striving for.",
-        "code": "vine",
+        "code": "thicket",
         "description": [
             "Where do you see the duality of children learning, and machines learning? Where are its boundaries? From your understanding of designing a learning task, conceptualize a model that could solve some issue. What are the benefits of machine learning to you personally, and where would you draw the line? If machines are fit to learn, how would you implement them in a societal context?", 
             "What is the common perception of machine learning in your daily life? How do you think different kinds of people perceive the possibilities of learning models? What could be done to further communicate their potential and its benefits and dangers?",
@@ -301,9 +301,9 @@
         "submissions": {
             "grape": null,
             "apple": null,
-            "ananas": null,
+            "pineapple": null,
             "jackfruit": null,
-            "apricot": null,
+            "maracuja": null,
             "peach": null,
             "lemon": null,
             "garden" : 1
