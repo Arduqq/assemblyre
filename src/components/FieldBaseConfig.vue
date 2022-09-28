@@ -35,6 +35,8 @@
                     this.$set(this.currentProperties.geometry, value.property, value.val);
                 } else if (this.inEditProperty === 'highlight') {
                     this.$set(this.currentProperties.highlight, value.property, value.val);
+                } else if (this.inEditProperty === 'animation') {
+                    this.$set(this.currentProperties.animation, value.property, value.val);
                 }
                 this.$emit('input', this.currentProperties )
             },

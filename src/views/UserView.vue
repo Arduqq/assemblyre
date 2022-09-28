@@ -79,7 +79,7 @@ export default {
   gap: 20px;
 }
 
-.courses article {
+.courses .course .course-details {
   padding: 10px;
   border-radius: 5px;
   border: 3px solid var(--primary-alt-color);

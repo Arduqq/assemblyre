@@ -238,8 +238,7 @@
         backgroundColor: "white",
         score: {
           opus: "Pseudo Program",
-          version: "0.1",
-          type: "square"
+          version: "0.1"
         },
         program: [],
         importedImages: [],
