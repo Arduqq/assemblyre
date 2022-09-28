@@ -103,7 +103,7 @@
           })
           .draggable({
             inertia: false,
-            ignoreFrom: '.field-config',
+            ignoreFrom: '.field-config, input',
             modifiers: [
               interact.modifiers.restrictRect({
                 restriction: 'parent'
