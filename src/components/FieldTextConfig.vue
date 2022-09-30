@@ -187,7 +187,7 @@
                 binding="w" 
                 title="size" 
                 :group= "id + 'shadowSize'"
-                property="shadow" 
+                property="shadowSize" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.shadow.shadowSize" 
                 v-model.number="currentProperties.shadow.shadowSize" 
@@ -216,6 +216,41 @@
                 v-model.number="currentProperties.shadow.shadowDisplacement" 
                 :alive="active == 'shadowDisplacement'"
                 @click.native="active = 'shadowDisplacement'"
+                @change="updateStyle"/>
+        </div>
+
+        <div class="edit-panel" v-show="inEditProperty === 'animation'">
+            <field-base-config-radio-animations
+                binding="r"
+                title="type"
+                property="animationType"
+                :group="id + 'animation'"
+                :options="[
+                    'ani1 cubic-bezier(0.175, 0.885, 0.32, 1.275)', 
+                    'ani2 cubic-bezier(0.455, 0.03, 0.515, 0.955)', 
+                    'ani3 cubic-bezier(0.165, 0.84, 0.44, 1)', 
+                    'ani4 cubic-bezier(0.23, 1, 0.320, 1)',
+                    'ani5 cubic-bezier(0.165, 0.84, 0.44, 1)',
+                    'ani6 cubic-bezier(0.165, 0.84, 0.44, 1)',
+                    'ani7 cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+                ]"
+                :val="currentProperties.animation.animationType"
+                v-model="currentProperties.animation.animationType"
+                :alive="active == 'animationType'"
+                @click.native="active = 'animationType'"
+                @change="updateStyle"
+            />
+
+            <field-base-config-slider 
+                binding="w" 
+                title="duration" 
+                :group= "id + 'animationDuration'"
+                property="animationDuration" 
+                :min=1 :max=20 :step=1 
+                :val="currentProperties.animation.animationDuration" 
+                v-model.number="currentProperties.animation.animationDuration" 
+                :alive="active == 'animationDuration'"
+                @click.native="active = 'animationDuration'"
                 @change="updateStyle"/>
         </div>
         

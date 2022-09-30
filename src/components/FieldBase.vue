@@ -56,6 +56,11 @@
         type: Boolean,
         required: false,
         default: false
+      },
+      edit: {
+        type: Boolean,
+        required: false,
+        default: true
       }
     },
     data() {
@@ -213,6 +218,14 @@
 
 <style>
 
+  .field.edit *:not(.animation-preview .dummy), .field.edit {
+    animation: none!important;
+  }
+
+  .field:not(.edit) {
+    opacity: 0;
+  }
+
   .field {
     z-index: var(--field-stack-order);
     position: absolute;
@@ -220,6 +233,7 @@
     min-width: 100px;
     user-select: none;
     border: solid 2px #00000013;
+    animation: appear 10s var(--field-animation-entry) ease-in-out infinite;
   }
 
   .field main {
@@ -235,77 +249,16 @@
     box-shadow: 0 0 2px 2px var(--interact-color); 
   }
 
-  .field main > *:not(.field-config), .field img {
-    animation: 15s ani7 cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  .field main > .field-config {
+    animation: none;
   }
 
-  /* 5s ani1 cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite */
-  @keyframes ani1 {
-    0% { transform: scale(1) }
-    10% {transform: translate(10px,10px) }
-    20% {transform: translate(0 , 10px) }
-    30% {transform: translate(-10px, 10px) }
-    40% {transform: translate(-10px, 0) }
-    50% {transform: translate(-10px, -10px) }
-    60% {transform: translate(0, 0) }
-    90% { transform: scale(.8) }
-    95% { transform: scale(1.2) }
-    100% { transform: scale(1) }
-  }
-
-  /*  3s ani2 cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite */
-  @keyframes ani2 {
-    0% { transform: rotate(0) }
-    20% {transform: translate(10px 0) }
-    30% {transform: rotate(10deg) }
-    50% {transform: translate(-10px 0) }
-    60% {transform: rotate(-10deg) }
-    100% { transform: rotate(0) }
-  }
-
-  /* 3s ani3 cubic-bezier(0.165, 0.84, 0.44, 1) infinite */
-  @keyframes ani3 {
-    0% { transform: rotate(0) }
-    100% { transform: rotate(360deg) }
-  }
-
-  /* 5s ani4 cubic-bezier(0.23, 1, 0.320, 1) */
-  @keyframes ani4 {
-    0% { transform:  translate(0,0) scale(1) }
-    10% { transform: translate(0,-20px) scale(.9)  }
-    21% { transform: translate(0,20px) scaleY(.5)  }
-    100% { transform:  translate(0,0) scale(1) }
-  }
-
-  /* 2s ani5 cubic-bezier(0.165, 0.84, 0.44, 1) infinite */
-  @keyframes ani5 {
-    0% { transform: scale(1)}
-    12.5% { transform: scale(1.1)}
-    25% { transform: scale(.95)}
-    37.5% { transform: scale(1.1)}
-    100% { transform: scale(1)}
-  }
-
-  /* 2s ani5 cubic-bezier(0.165, 0.84, 0.44, 1) infinite */
-  @keyframes ani6 {
-    0% { opacity: 1}
-    22.1% { opacity: .1}
-    55% { opacity: .95}
-    85.5% { opacity: .1}
-    100% { opacity: 1}
-  }
-
-  /* cubic-bezier(0.68, -0.55, 0.265, 1.55) */
-  @keyframes ani7 {
-    0% { transform: rotate(0deg)}
-    12.5% { transform: rotate(45deg)}
-    25% { transform: rotate(90deg)}
-    37.5% { transform: rotate(135deg)}
-    50% { transform: rotate(180deg)}
-    62.5% { transform: rotate(225deg)}
-    75% { transform: rotate(270deg)}
-    87.5% { transform: rotate(315deg)}
-    100% { transform: rotate(360deg)}
+ 
+  @keyframes appear {
+    0% { opacity: 0; transform: rotate(90deg)}
+    5% {opacity: 1; transform: rotate(-5deg) translate(var(--field-x), var(--field-y))}
+    10% {opacity: 1; transform: rotate(0deg) translate(var(--field-x), var(--field-y))}
+    100% {opacity: 1; transform: rotate(0deg)  translate(var(--field-x), var(--field-y))}
   }
 
 

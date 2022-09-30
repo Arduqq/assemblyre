@@ -1,5 +1,5 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="shape field" :id="id" :class="{'active' : active}" :style="fieldStyle" v-click-outside="closeConfig">
+<div v-if="alive" ref="draggableWrapper" class="shape field" :id="id" :class="{'active' : active, 'edit' : edit}" :style="fieldStyle" v-click-outside="closeConfig">
   <main>
     <field-shape-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div class="geometry"></div>
@@ -37,8 +37,11 @@
               backgroundColor: "black",
               backgroundImage: "none",
               backgroundSize: 100,
-
-            }
+            },
+              animation: {
+                animationDuration: 5,
+                animationType: "none"
+              }
           }
         }
       }
@@ -64,7 +67,12 @@
           '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
           '--field-background-image': backgroundImage,
           '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
-          '--field-stack-order': stacking
+          '--field-animation-type': this.fieldStyleProperties.animation.animationType,
+          '--field-animation-duration': this.fieldStyleProperties.animation.animationDuration + 's',
+          '--field-stack-order': stacking,
+          '--field-animation-entry' : stacking + 's',
+          '--field-x': this.x+'px',
+          '--field-y': this.y+'px'
         }
       }
     },
@@ -119,6 +127,7 @@
   .shape main .geometry {
     width: 100%;
     height: 100%;
+    animation: var(--field-animation-type) var(--field-animation-duration) infinite;
     background-color: var(--field-background-color);
     background-image: var(--field-background-image);
     background-size: var(--field-background-size);

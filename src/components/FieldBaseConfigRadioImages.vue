@@ -3,7 +3,7 @@
         <img :src="'/assets/icons/' + property + '.png'" />
         <h3><b>{{property}}:</b> {{currentValue}}</h3>
         <div class="options">
-            <label for="none" title="None">
+            <label :for="group+'-'+property+'-none'" title="None">
                 <img >
                 <input :id="group+'-'+property+'-none'" :name="group" value="none"  type="radio" v-model="currentValue" @change="updateValue()"/>
             </label>

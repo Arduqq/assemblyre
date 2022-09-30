@@ -1,6 +1,9 @@
 <template>
 <div id="editor-view">
-  <div class="canvas-control">        
+  <div class="canvas-control">     
+    <input type="checkbox" id="run-button" v-model="programRunning" />
+    <label for="run-button"></label>
+    <tooltip keyphrase="run-help" icon="⚠️"/>
     <input type="range" min=".1" max="2" step=".1" v-model.number="canvasScale" />
   </div>
   
@@ -172,7 +175,8 @@
             :key="chord.id"
             @change="updateFields"
             :stackOrder = chord.stackOrder
-            :active = chord.active />
+            :active = chord.active
+            :edit = !programRunning />
           <field-code v-for="code in programQuery('code')" 
             :id="code.id"
             :name=code.name
@@ -184,7 +188,8 @@
             :key="code.id"
             @change="updateFields"
             :stackOrder = code.stackOrder 
-            :active = code.active />
+            :active = code.active
+            :edit = !programRunning />
           <field-media v-for="plug in programQuery('image')" 
             :id="plug.id"
             :name=plug.name
@@ -197,7 +202,8 @@
             :key="plug.id"
             @change="updateFields"
             :stackOrder = plug.stackOrder 
-            :active = plug.active />
+            :active = plug.active
+            :edit = !programRunning />
           <field-shape v-for="shape in programQuery('shape')" 
             :id="shape.id"
             :name=shape.name
@@ -210,7 +216,8 @@
             :key="shape.id"
             @change="updateFields"
             :stackOrder = shape.stackOrder 
-            :active = shape.active />
+            :active = shape.active
+            :edit = !programRunning />
           </div>
 
       </div>
@@ -247,6 +254,7 @@
         screenX: 0,
         screenY: 0,
         canvasScale: 1,
+        programRunning: false,
         participants:  {
           "lemon": "🍋",
           "peach": "🍑",
@@ -566,11 +574,15 @@
   .canvas-control {
     position: fixed;
     bottom: 0;
-    left: 10%;
-    right: 20%;
+    left: 350px;
+    right: 0;
     margin: 0 auto;
     text-align: center;
     z-index: 100;
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    justify-content: flex-start;
   }
 
   .editor {
@@ -892,5 +904,50 @@
     color: var(--secondary-alt-color);
   }
 
+  #run-button {
+    display: none;
+  }
+
+  #run-button + label {
+    display: block;
+    height: 50px;
+    width: 200px;
+    border-radius: 50px;
+    padding: 0 20px;
+    transition: .1s;
+    background: var(--gui-color);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    flex-flow: row nowrap;
+    display: flex;
+    justify-content: space-around;
+  }
+
+
+  #run-button:checked + label {
+    background: var(--success-color);
+    transform: scale(1);
+    width: 300px;
+    border-left: 5px solid var(--gui-color);
+    border-right: 5px solid var(--gui-color);
+
+  }
+  #run-button + label:hover {
+    transform: scale(1.1);
+  }
+
+  #run-button:checked + label:hover {
+    transform: scale(1);
+  }
+
+  #run-button:checked + label:before {
+    content: '▶ Running';
+  }
+  #run-button + label:before {
+    content: '▶ Run';
+    color: white;
+    font-size: 200%;
+    text-align: center;
+  }
 
 </style>

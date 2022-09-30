@@ -1,5 +1,5 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="media field" :id="id" :class="{'active' : active}"  :style="fieldStyle" v-click-outside="closeConfig">
+<div v-if="alive" ref="draggableWrapper" class="media field" :id="id" :class="{'active' : active, 'edit' : edit}"  :style="fieldStyle" v-click-outside="closeConfig">
   <field-media-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
   <img :src="mediaURL" />
   
@@ -41,7 +41,10 @@
                 backgroundColor: "transparent",
                 backgroundImage: "none",
                 backgroundSize: 100,
-
+              },
+              animation: {
+                animationDuration: 5,
+                animationType: "none"
               }
           }
         }
@@ -69,7 +72,12 @@
           '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
           '--field-background-image': backgroundImage,
           '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
-          '--field-stack-order': stacking
+          '--field-animation-type': this.fieldStyleProperties.animation.animationType,
+          '--field-animation-duration': this.fieldStyleProperties.animation.animationDuration + 's',
+          '--field-stack-order': stacking,
+          '--field-animation-entry' : stacking + 's',
+          '--field-x': this.x+'px',
+          '--field-y': this.y+'px'
         }
       },
       mediaURL () {
@@ -115,7 +123,7 @@
     border-color: var(--field-border-color);
     border-radius: var(--field-border-radius);
     box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);
-
+    animation: var(--field-animation-type) var(--field-animation-duration) infinite;
   }
 
   .media:hover:after {

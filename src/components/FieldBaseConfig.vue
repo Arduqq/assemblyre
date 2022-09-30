@@ -4,6 +4,7 @@
   import FieldBaseConfigRadio from './FieldBaseConfigRadio.vue'
   import FieldBaseConfigRadioImages from './FieldBaseConfigRadioImages.vue'
   import FieldBaseConfigRadioFonts from './FieldBaseConfigRadioFonts.vue'
+  import FieldBaseConfigRadioAnimations from './FieldBaseConfigRadioAnimations.vue'
     export default {
         name: "FieldConfig",
         props: {
@@ -56,7 +57,8 @@
         FieldBaseConfigSlider, 
         FieldBaseConfigRadio,
         FieldBaseConfigRadioImages,
-        FieldBaseConfigRadioFonts
+        FieldBaseConfigRadioFonts,
+        FieldBaseConfigRadioAnimations
         },
         
         directives: {

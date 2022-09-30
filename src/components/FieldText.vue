@@ -1,5 +1,5 @@
 <template>
-<div v-if="alive" ref="draggableWrapper" class="text field" :class="{'active' : active}" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
+<div v-if="alive" ref="draggableWrapper" class="text field" :class="{'active' : active, 'edit' : edit}" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
     <field-text-config :fid="id" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div v-if="!inEdit" class="rendered-view" >
@@ -60,6 +60,10 @@
                 backgroundSize: 100,
                 backgroundColor: "white",
                 backgroundImage: "none"
+              },
+              animation: {
+                animationDuration: 5,
+                animationType: "none"
               }
           }
         }
@@ -131,7 +135,12 @@
           '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
           '--field-background-image': backgroundImage,
           '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
-          '--field-stack-order': stacking
+          '--field-animation-type': this.fieldStyleProperties.animation.animationType,
+          '--field-animation-duration': this.fieldStyleProperties.animation.animationDuration + 's',
+          '--field-stack-order': stacking,
+          '--field-animation-entry' : stacking + 's',
+          '--field-x': this.x+'px',
+          '--field-y': this.y+'px'
         }
         return style;
       }
@@ -163,6 +172,7 @@
     background-color: var(--field-background-color);
     background-image: var(--field-background-image);
     background-size: var(--field-background-size);
+    animation: var(--field-animation-type) var(--field-animation-duration) infinite;
     line-height: auto;
     overflow-wrap: break-word;
     padding: 10px;

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active}" v-click-outside="closeConfig"  :style="fieldStyle">
+  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active, 'edit' : edit}" v-click-outside="closeConfig"  :style="fieldStyle">
     <main>
       <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
@@ -89,7 +89,10 @@
                 backgroundColor: "white",
                 backgroundImage: "none",
                 backgroundSize: 100,
-
+              },
+              animation: {
+                animationDuration: 5,
+                animationType: "none"
               }
           }
         }
@@ -180,7 +183,12 @@
           '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
           '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
           '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
-          '--field-stack-order': stacking
+          '--field-animation-type': this.fieldStyleProperties.animation.animationType,
+          '--field-animation-duration': this.fieldStyleProperties.animation.animationDuration + 's',
+          '--field-stack-order': stacking,
+          '--field-animation-entry' : stacking + 's',
+          '--field-x': this.x+'px',
+          '--field-y': this.y+'px'
         }
       }
     },
@@ -204,7 +212,6 @@
     min-width: 300px;
     user-select: none;
     width: 600px;
-    
   }
 
     .code main .code-block > input {
@@ -227,8 +234,7 @@
     display: flex;
     flex-flow: row wrap;
     padding: 10px;
-
-    
+    animation: var(--field-animation-type) var(--field-animation-duration) infinite;
     background-color: var(--field-background-color);
     border-color: var(--field-border-color);
     border-width: var(--field-border-size);
