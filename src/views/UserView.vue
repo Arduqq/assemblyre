@@ -19,7 +19,7 @@
           <section v-if="course.submissions[userCode] !== null || courseCode === course.code" class="course-details">
             <h2>{{course.title}}</h2>
             <p>{{course.excerpt}}</p>
-            <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link><br/>
+            <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link>
           </section>
           
         </article>
@@ -80,14 +80,17 @@ export default {
 }
 
 .courses .course .course-details {
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 5px;
+  height: 100%;
   border: 3px solid var(--primary-alt-color);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 
 .courses > * {
-  flex: 1 1 300px;
-  width: 100%;
+  flex: 1 1 500px;
 }
 
 </style>

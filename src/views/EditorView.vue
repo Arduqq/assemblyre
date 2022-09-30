@@ -5,8 +5,8 @@
   </div>
   
     <div class="editor-control active" >
-      <a class="logo" href="/"></a>
-      <router-link class="hub-link route" :to="{ name: 'hub', params: { userCode: this.user }}" >{{participants[user]}}</router-link>
+      <a class="logo" title="Back to Start" href="/"></a>
+      <router-link :title="'Back to ' + this.user.toUpperCase() + ' Hub'" class="hub-link route" :to="{ name: 'hub', params: { userCode: this.user }}" >{{participants[user]}}</router-link>
       <label>Title
         <input type="text" v-model="score.opus"/>
       </label>
@@ -23,19 +23,19 @@
     <div class="editor program.plugs">
       <div class="tool-control">
           <input id="control-text" type="radio" v-model="activeTool" value="text" name="tool"/>
-          <label for="control-text">Text</label>
+          <label for="control-text"><img src="/assets/icons/text.png" />Text</label>
           <input id="control-code" type="radio" v-model="activeTool" value="code" name="tool"/>
-          <label for="control-code">Code</label>
+          <label for="control-code"><img src="/assets/icons/code.png" />Code</label>
           <input id="control-shape" type="radio" v-model="activeTool" value="shape" name="tool"/>
-          <label for="control-shape">Shape</label>
+          <label for="control-shape"><img src="/assets/icons/shape.png" />Shape</label>
           <input id="control-media" type="radio" v-model="activeTool" value="media" name="tool"/>
-          <label for="control-media">Media</label>
+          <label for="control-media"><img src="/assets/icons/image.png" />Image</label>
           <input id="control-background" type="radio" v-model="activeTool" value="background" name="tool"/>
-          <label for="control-background">Background</label>
+          <label for="control-background"><img src="/assets/icons/background.png" />Background</label>
           <input id="control-canvas" type="radio" v-model="activeTool" value="canvas" name="tool"/>
-          <label for="control-canvas">Canvas</label>
+          <label for="control-canvas"><img src="/assets/icons/canvas.png" />Canvas</label>
           <input id="control-layers" type="radio" v-model="activeTool" value="layers" name="tool"/>
-          <label for="control-layers">Layers</label>
+          <label for="control-layers"><img src="/assets/icons/layers.png" />Layers</label>
       </div>
 
       <div class="tool" v-show="this.activeTool==='text'">
@@ -512,7 +512,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 50px;
+    height: 60px;
     gap: 30px;
     padding: 10px;
     z-index: 2;
@@ -588,8 +588,8 @@
   }
 
   .editor > * {
-    margin-top: 50px;
-    height: calc(100% - 50px);
+    margin-top: 60px;
+    height: calc(100% - 60px);
     transition: .1s;
   }
 
@@ -625,7 +625,6 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: flex-start;
-    height: 100%;
     background: var(--gui-color);
     color: white;
     border: 1px solid rgb(191, 146, 195);
@@ -708,8 +707,11 @@
     display: flex;
     flex-flow: column nowrap;
     background: var(--gui-color);
+    overflow-y: auto;
+    scrollbar-width: none;
     color: white;
-    height: 100%;
+    margin-top: 60px;
+    height: calc(100% - 60px);
     align-items: center;
     justify-content: flex-start;
     font-family: var(--display-font);
@@ -724,11 +726,15 @@
     display: flex;
     flex-flow: column nowrap;
     user-select: none;
+    font-size: 80%;
+  }
+
+  .tool-control label img {
+    width: 60%;
   }
 
   .tool-control label:hover, .tool-control input:checked + label {
     background: #633e5f;
-    color: var(--interact-color);
   }
 
   .tool-control input {

@@ -174,7 +174,6 @@ header a img {
   display: flex;
   flex-flow: column nowrap;
   width: 90%;
-  max-width: 800px;
   margin: 100px auto;
   gap: 20px;
   font-size: 120%;
@@ -183,6 +182,8 @@ header a img {
 
 .content > section {
   padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
   border: 1px solid var(--secondary-alt-color);
   border-radius: 5px;
   box-shadow: 2px 2px 0 2px var(--secondary-alt-color);
@@ -224,6 +225,12 @@ a.route, button {
   transition: .1s;
   text-align: center;
   display: inline-block;
+}
+
+a.route {
+  max-width: 800px;
+  align-self: center;
+  padding: 10px;
 }
 
 a.route:hover, button:hover {
