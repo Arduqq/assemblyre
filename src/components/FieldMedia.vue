@@ -126,7 +126,7 @@
     animation: var(--field-animation-type) var(--field-animation-duration) infinite;
   }
 
-  .media:hover:after {
+  .media.edit:hover:after {
     content: '';
     display: block;
     position: absolute;

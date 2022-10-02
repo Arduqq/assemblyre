@@ -101,6 +101,10 @@
             <input type="radio" name="patterns" value="pattern-5" id="background-5" v-model="backgroundPattern"/>
             <label for="background-5" :style="'background-image: url(@/../assets/pattern-5.jpg)'"></label>
           </div>
+          <tooltip keyphrase="warning" icon="⚠️"/>
+          <label>Allow background scrolling
+            <input type="checkbox" v-model="allowScroll">
+          </label>
         </div>
 
       <div class="tool canvasbox" v-show="this.activeTool==='canvas'">
@@ -162,8 +166,8 @@
             </label>
           </div>
       </div>
-      <div class="sandbox" ref="sandbox">
-        <div class="program" ref="program" :style="canvasStyle"> 
+      <div class="sandbox" ref="sandbox" >
+        <div class="program" ref="program" :style="canvasStyle" :class="{'preview': programRunning, 'alive' : allowScroll} "> 
           <field-text v-for="chord in programQuery('text')" 
             :id="chord.id"
             :name=chord.name
@@ -255,6 +259,7 @@
         screenY: 0,
         canvasScale: 1,
         programRunning: false,
+        allowScroll: false,
         participants:  {
           "lemon": "🍋",
           "peach": "🍑",
@@ -630,10 +635,14 @@
     margin: 20px;
   }
   
+  .sandbox .program.preview.alive {
+    animation: background-scroll linear infinite 30s;
+  }
 
   .tool {
     flex: 0 0 275px;
     display: flex;
+    gap: 20px;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: flex-start;

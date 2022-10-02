@@ -100,7 +100,7 @@
     border: 0;
   }
 
-  .shape:hover:after {
+  .shape.edit:hover:after {
     content: '';
     display: block;
     position: absolute;

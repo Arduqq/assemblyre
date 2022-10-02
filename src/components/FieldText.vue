@@ -186,7 +186,7 @@
     text-shadow: 0 0  var(--field-highlight-text-glow) var(--field-highlight-text-glow-color);
   }
   
-  .text:hover:after {
+  .text.edit:hover:after {
     content: '';
     display: block;
     position: absolute;

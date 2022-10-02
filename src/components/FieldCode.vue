@@ -1,32 +1,38 @@
 <template>
-  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active, 'edit' : edit}" v-click-outside="closeConfig"  :style="fieldStyle">
-    <main>
+  <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active, 'edit' : edit}" v-click-outside="closeConfig" :style="fieldStyle">
+    <main >
       <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
-      
+      <div v-show="edit" class="code-block" id="code-block-input">
+        <span class="code-block-id"><b>IN</b></span>
+        <input type="text" v-model="input" @input="updateProperties" />
+      </div>
       <div v-for="block in fieldStyleProperties.text.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" :class="block.type">
-
         <span class="code-block-id">{{block.id}}</span>
         <span class="code-block-indent"
         v-for="(_, index) in block.indent" :key="index"></span>
-        <input type="text" ref="codeBlock"
+        <input type="text" ref="codeBlock" :disabled="!edit"
         @keyup.enter="addBlock(block.id, 0)"
         @keyup.delete="removeBlock(block.id)"
         @keydown.tab.prevent="block.indent++"
         v-model="block.content"/>
-        <div class="code-type-config">
-          <input :id="block.id + '-print'" :name="block.id" value="print"  type="radio" v-model="block.type"/>
+        <div class="code-type-config" v-show="edit">
+          <input :id="block.id + '-print'" :name="block.id" value="print"  type="radio" v-model="block.type" @input="updateProperties"/>
           <label :for="block.id + '-print'" >print</label>
           
-          <input :id="block.id + '-assign'" :name="block.id" value="assign"  type="radio" v-model="block.type"/>
+          <input :id="block.id + '-assign'" :name="block.id" value="assign"  type="radio" v-model="block.type" @input="updateProperties"/>
           <label :for="block.id + '-assign'">assign</label>
           
-          <input :id="block.id + '-unassign'" :name="block.id" value="unassign"  type="radio" v-model="block.type"/>
+          <input :id="block.id + '-unassign'" :name="block.id" value="unassign"  type="radio" v-model="block.type" @input="updateProperties"/>
           <label :for="block.id + '-unassign'">unassign</label>
           
-          <input :id="block.id + '-generate'" :name="block.id" value="generate"  type="radio" v-model="block.type"/>
+          <input :id="block.id + '-generate'" :name="block.id" value="generate"  type="radio" v-model="block.type" @input="updateProperties"/>
           <label :for="block.id + '-generate'">generate</label>
           
         </div>
+      </div>
+      <div v-show="edit" class="code-block" id="code-block-input">
+        <span class="code-block-id"><b>OU</b></span>
+        <input type="text" v-model="output" @input="updateProperties" />
       </div>
     </main>
   </div>
@@ -100,63 +106,68 @@
     },
     methods: {
       updateProperties: function(value) {
-        this.fieldStyleProperties = value;
-        this.emitChange();
+        if (this.edit) {
+          this.fieldStyleProperties = value;
+          this.emitChange();
+        }
       },
       addBlock: function(line, indent) {
-        /* If the cursor is at the start, transfer block's content */
-        var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.fieldStyleProperties.text.blocks[line-1].content : '';
-        if (this.$refs.codeBlock[line-1].selectionStart == 0) {
-          this.fieldStyleProperties.text.blocks[line-1].content = '';
-        }
-        this.fieldStyleProperties.text.blocks.splice(
-          line,
-          0,
-          {
-            id: line+1,
-            content: content,
-            type: 'print',
-            indent: indent
+        if (this.edit) {
+          /* If the cursor is at the start, transfer block's content */
+          var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.fieldStyleProperties.text.blocks[line-1].content : '';
+          if (this.$refs.codeBlock[line-1].selectionStart == 0) {
+            this.fieldStyleProperties.text.blocks[line-1].content = '';
           }
-        );
-        for (var i = line; i < this.fieldStyleProperties.text.blocks.length+1; i++) {
-          this.fieldStyleProperties.text.blocks[i-1].id = i;
+          this.fieldStyleProperties.text.blocks.splice(
+            line,
+            0,
+            {
+              id: line+1,
+              content: content,
+              type: 'print',
+              indent: indent
+            }
+          );
+          for (var i = line; i < this.fieldStyleProperties.text.blocks.length+1; i++) {
+            this.fieldStyleProperties.text.blocks[i-1].id = i;
+          }
+          this.$nextTick(() => {
+            this.$refs.codeBlock[line].focus();
+          });
         }
-        this.$nextTick(() => {
-          this.$refs.codeBlock[line].focus();
-        });
       },
       removeBlock: function(line) {
-        /* Is there more than one line? */
-        if (line > 0) {
-            /* Is the current line tabbed? */
-          if (this.fieldStyleProperties.text.blocks[line-1].indent > 0 && this.$refs.codeBlock[line-1].selectionStart == 0) {
-            this.fieldStyleProperties.text.blocks[line-1].indent --;
-            return;
-          }
-          if (line > 1) {
-            /* Is the current line empty? */
-            if (this.$refs.codeBlock[line-1].value === "") {
-              this.fieldStyleProperties.text.blocks.splice(line-1,1);
-              for (var j = line-1; j <= this.fieldStyleProperties.text.blocks.length-1; j++) {
-                this.fieldStyleProperties.text.blocks[j].id--;
-              }
-              this.$nextTick(() => {
-                this.$refs.codeBlock[line-2].focus();
-              });
+        if (this.edit) {
+          /* Is there more than one line? */
+          if (line > 0) {
+              /* Is the current line tabbed? */
+            if (this.fieldStyleProperties.text.blocks[line-1].indent > 0 && this.$refs.codeBlock[line-1].selectionStart == 0) {
+              this.fieldStyleProperties.text.blocks[line-1].indent --;
               return;
-            }  
-            /* Is the current selection at the line start, but non-empty? */
-            if (this.$refs.codeBlock[line-1].selectionStart === 0 && this.$refs.codeBlock[line-1].value != "") {
-              var deletedLine = this.fieldStyleProperties.text.blocks.splice(line-1,1)[0];
-              this.fieldStyleProperties.text.blocks[line-2].content += deletedLine.content;
-              for (var i = line-1; i <= this.fieldStyleProperties.text.blocks.length-1; i++) {
-                this.fieldStyleProperties.text.blocks[i].id--;
+            }
+            if (line > 1) {
+              /* Is the current line empty? */
+              if (this.$refs.codeBlock[line-1].value === "") {
+                this.fieldStyleProperties.text.blocks.splice(line-1,1);
+                for (var j = line-1; j <= this.fieldStyleProperties.text.blocks.length-1; j++) {
+                  this.fieldStyleProperties.text.blocks[j].id--;
+                }
+                this.$nextTick(() => {
+                  this.$refs.codeBlock[line-2].focus();
+                });
+                return;
+              }  
+              /* Is the current selection at the line start, but non-empty? */
+              if (this.$refs.codeBlock[line-1].selectionStart === 0 && this.$refs.codeBlock[line-1].value != "") {
+                var deletedLine = this.fieldStyleProperties.text.blocks.splice(line-1,1)[0];
+                this.fieldStyleProperties.text.blocks[line-2].content += deletedLine.content;
+                for (var i = line-1; i <= this.fieldStyleProperties.text.blocks.length-1; i++) {
+                  this.fieldStyleProperties.text.blocks[i].id--;
+                }
+                this.$nextTick(() => {
+                  this.$refs.codeBlock[line-2].focus();
+                });
               }
-              this.$nextTick(() => {
-                this.$refs.codeBlock[line-2].focus();
-              });
-
             }
           }
         }
@@ -294,7 +305,7 @@
     background: var(--secondary-color);
     gap: 2px;
   }
-  .code-type-config label:hover, .code-type-config input:checked + label {
+  .code.edit .code-type-config label:hover, .code.edit .code-type-config input:checked + label {
     color: white;
     background: var(--secondary-alt-color);
   }
@@ -320,11 +331,11 @@
 
   }
 
-  .code-block:hover .code-type-config {
+  .code.edit .code-block:hover .code-type-config {
     display: flex;
   }
 
-  .code:hover:after {
+  .code.edit:hover:after {
     content: '';
     display: block;
     position: absolute;
