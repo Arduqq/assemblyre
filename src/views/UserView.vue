@@ -1,9 +1,6 @@
 <template>
     <main class="content" id='hub' v-if="participants.indexOf(userCode) > -1 ">
       
-      <header>
-        <router-link to="/"><img src="/assets/assemblyre-logo.png">Start</router-link>
-      </header>
       <h1>Assemblyng Hub: <span>{{userCode}}</span></h1>
       
       <section id="code">
