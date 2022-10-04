@@ -23,9 +23,6 @@
       </div>
     </main>
     <main class="content" id="hub" v-else>
-      <header>
-        <router-link to="/"><img src="/assets/assemblyre-logo.png">Start</router-link>
-      </header>
       <h1>Assemblyng Hub: <span>{{userCode}}</span></h1>
       <section id="error">
         Seems like '{{userCode}}' is not a participant of the study. Check your Lyre Zine! The code is right at the front page.

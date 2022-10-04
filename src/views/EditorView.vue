@@ -43,12 +43,38 @@
 
       <div class="tool" v-show="this.activeTool==='text'">
         <h2>Text Presets</h2> <tooltip keyphrase="text-help"/>
-        <div class="starter text" ref="textStarter"></div>
+        <div class="starter text" @click="addChord(0, 0, styling[0])" v-for="(styling, i) in Object.entries(styles.text)" :key="i">
+          <field-text
+            :id= "'starter-text-' + styling[0]"
+            :name= "'starter-text-' + styling[0]"
+            :x= 0  
+            :y= 0 
+            :alive = true
+            :modifier= 1
+            :styling= styling[0]
+            :lockedResolution= false
+            :stackOrder = 1
+            :active = false
+            :edit = false />
+        </div>
       </div>
 
       <div class="tool" v-show="this.activeTool==='code'">
         <h2>Code Presets</h2> <tooltip keyphrase="code-help"/>
-        <div class="starter code" ref="codeStarter"></div>
+        <div class="starter code" @click="addCode(0, 0, styling[0])" v-for="(styling, i) in Object.entries(styles.code)" :key="i">
+          <field-code
+            :id= "'starter-code-' + styling[0]"
+            :name= "'starter-code-' + styling[0]"
+            :x= 0  
+            :y= 0 
+            :alive = true
+            :modifier= 1
+            :styling= styling[0]
+            :lockedResolution= false
+            :stackOrder = 1
+            :active = false
+            :edit = false />
+        </div>
       </div>
 
       <div class="tool" v-show="this.activeTool==='shape'">
@@ -73,7 +99,7 @@
         <div class="imagebox"> 
           <div class="image" v-for="(image, i) in importedImages" :key="image.id" :id="image.id" >
             <button @click="importedImages.splice(i, 1);">delete</button>
-            <input type="button" :style="'background-image: url(' + image.url + ')'" @click="dropMedia(image.url)"/>
+            <input type="button" :style="'background-image: url(' + image.url + ')'" @click="addPlug(0, 0, image.url)"/>
           </div>
           </div>
         <h2>Gallery</h2> 
@@ -169,56 +195,58 @@
       <div class="sandbox" ref="sandbox" >
         <div class="program" ref="program" :style="canvasStyle" :class="{'preview': programRunning, 'alive' : allowScroll} "> 
           <field-text v-for="chord in programQuery('text')" 
-            :id="chord.id"
-            :name=chord.name
-            :x="chord.x" 
-            :y="chord.y" 
+            :id= chord.id 
+            :name= chord.name
+            :x= chord.x  
+            :y= chord.y  
             :alive = chord.alive
-            :modifier="canvasScale"
-            :lockedResolution="chord.lockedResolution"
-            :key="chord.id"
-            @change="updateFields"
+            :modifier= canvasScale
+            :styling= chord.styling
+            :lockedResolution= chord.lockedResolution
+            :key= chord.id 
+            @change= updateFields 
             :stackOrder = chord.stackOrder
             :active = chord.active
             :edit = !programRunning />
           <field-code v-for="code in programQuery('code')" 
-            :id="code.id"
+            :id= code.id 
             :name=code.name
-            :x="code.x" 
-            :y="code.y" 
+            :x= code.x  
+            :y= code.y  
             :alive = code.alive
-            :modifier="canvasScale"
-            :lockedResolution="code.lockedResolution"
-            :key="code.id"
-            @change="updateFields"
+            :modifier= canvasScale 
+            :styling= code.styling
+            :lockedResolution= code.lockedResolution 
+            :key= code.id 
+            @change= updateFields 
             :stackOrder = code.stackOrder 
             :active = code.active
             :edit = !programRunning />
           <field-media v-for="plug in programQuery('image')" 
-            :id="plug.id"
+            :id= plug.id 
             :name=plug.name
-            :x="plug.x" 
-            :y="plug.y" 
+            :x= plug.x  
+            :y= plug.y  
             :alive = plug.alive
-            :modifier="canvasScale"
-            :media="plug.media" 
-            :lockedResolution="plug.lockedResolution"
-            :key="plug.id"
-            @change="updateFields"
+            :modifier= canvasScale 
+            :media= plug.media  
+            :lockedResolution= plug.lockedResolution 
+            :key= plug.id 
+            @change= updateFields 
             :stackOrder = plug.stackOrder 
             :active = plug.active
             :edit = !programRunning />
           <field-shape v-for="shape in programQuery('shape')" 
-            :id="shape.id"
+            :id= shape.id 
             :name=shape.name
-            :x="shape.x" 
-            :y="shape.y" 
+            :x= shape.x  
+            :y= shape.y  
             :alive = shape.alive
-            :modifier="canvasScale"
-            :lockedResolution="shape.lockedResolution"
-            :styling="shape.styling"
-            :key="shape.id"
-            @change="updateFields"
+            :modifier= canvasScale 
+            :lockedResolution= shape.lockedResolution 
+            :styling= shape.styling 
+            :key= shape.id 
+            @change= updateFields 
             :stackOrder = shape.stackOrder 
             :active = shape.active
             :edit = !programRunning />
@@ -236,8 +264,9 @@
   import FieldMedia from "../components/FieldMedia.vue";
   import FieldShape from "../components/FieldShape.vue";
   import Tooltip from "../components/Tooltip.vue";
-  import interact from "interactjs";
   import uniqueId from 'lodash.uniqueid';
+  import styles from '../json/styles.json'
+
   export default {
     name: "EditorView",
     data() {
@@ -270,7 +299,8 @@
           "jackfruit": "🫒",
           "growth": "🌱",
           "garden": "🌿"
-        }
+        },
+        styles: styles
       };
     },
     props: {
@@ -302,119 +332,15 @@
     },
     mounted: function() {
       this.program = this.import;
-      let program = this.$refs.program;
-      let textStarter = this.$refs.textStarter;
-      let codeStarter = this.$refs.codeStarter;
-      let shapeStarter = this.$refs.shapeStarter;
+      /*let program = this.$refs.program;*/
       this.canvasSize.width = this.width;
       this.canvasSize.height = this.height;
-      this.initTextStarter(textStarter);
-      this.initShapeStarter(shapeStarter);
-      this.initCodeStarter(codeStarter);
-      this.initDropzone(program);
     },
     methods: {
-      initDropzone: function(zone) {
-        interact(zone)
-          .dropzone({
-            accept: ".starter",
-            overlap: 1
-          })
-      },
-      initTextStarter: function(starter) {
-        starter.setAttribute('data-x', this.x)
-        starter.setAttribute('data-y', this.y)
-        interact(starter)
-          .draggable({
-            inertia: false,
-            restrict: {
-              elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-            },
-            autoScroll: true,
-            onmove: this.dragMoveListener,
-            onend: this.dropText
-          })
-        },
-        initCodeStarter: function(starter) {
-        starter.setAttribute('data-x', this.x)
-        starter.setAttribute('data-y', this.y)
-        interact(starter)
-          .draggable({
-            inertia: false,
-            restrict: {
-              elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-            },
-            autoScroll: true,
-            onmove: this.dragMoveListener,
-            onend: this.dropCode
-          })
-        },
-        initShapeStarter: function(starter) {
-        starter.setAttribute('data-x', this.x)
-        starter.setAttribute('data-y', this.y)
-        interact(starter)
-          .draggable({
-            inertia: false,
-            restrict: {
-              elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-            },
-            autoScroll: true,
-            onmove: this.dragMoveListener,
-            onend: this.dropShape
-          })
-        },
-        dragMoveListener: function(event) {
-            var target = event.target,
-              x = (parseFloat(target.getAttribute("data-x")) || this.screenX) + event.dx,
-              y = (parseFloat(target.getAttribute("data-y")) || this.screenY) + event.dy;
-            target.style.webkitTransform = target.style.transform =
-              "translate(" + x + "px, " + y + "px)";
-            target.style.zIndex = "1000";
-
-            target.setAttribute("data-x", x);
-            target.setAttribute("data-y", y);
-        },
-        dropText: function(event) {
-          var target = event.target;
-          target.style.webkitTransform = target.style.transform =
-              "translate(" + 0 + "px, " + 0 + "px)";
-          this.addChord(event.screenX, event.screenY);
-          this.screenX = 0;
-          this.screenY = 0;
-
-          target.setAttribute("data-x", 0);
-          target.setAttribute("data-y", 0);
-        },
-        dropMedia: function(media) {
-          this.addPlug(0, 0, media);
-        },
-        dropCode: function(event) {
-          var target = event.target;
-          var code = target.getAttribute("data-code");
-          target.style.webkitTransform = target.style.transform =
-              "translate(" + 0 + "px, " + 0 + "px)";
-          this.addCode(event.screenX, event.screenY, code);
-          this.screenX = 0;
-          this.screenY = 0;
-
-          target.setAttribute("data-x", 0);
-          target.setAttribute("data-y", 0);
-        },
-        dropShape: function(event) {
-          var target = event.target;
-          target.style.webkitTransform = target.style.transform =
-              "translate(" + 0 + "px, " + 0 + "px)";
-          this.addShape(event.screenX, event.screenY);
-          this.screenX = 0;
-          this.screenY = 0;
-
-          target.setAttribute("data-x", 0);
-          target.setAttribute("data-y", 0);
-        },
-        addChord: function (x, y) {
+        addChord: function (x, y, style) {
           const uID = uniqueId();
           const fieldType = "text";
-          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
+          const field = {id: uID, name: fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
           this.program.push(field);
 
         },
@@ -431,17 +357,17 @@
             this.newImageURL = "";
           }
         },
-        addCode: function(x,y) {
+        addCode: function(x,y, style) {
           const uID = uniqueId();
           const fieldType = "code";
-          const field = {id: uID, name:fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
+          const field = {id: uID, name:fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
           this.program.push(field);
         },
         
-        addShape: function(x,y) {
+        addShape: function(x,y, style) {
           const uID = uniqueId();
           const fieldType = "shape";
-          const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, lockedResolution: false, styling: "default", stackOrder: parseInt(uID)};
+          const field = {id: uID, name: fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, lockedResolution: false, stackOrder: parseInt(uID)};
           this.program.push(field);
         },
 
@@ -610,6 +536,7 @@
     transition: .1s;
   }
 
+
   .sandbox {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     color: #2c3e50;
@@ -645,6 +572,7 @@
     gap: 20px;
     flex-flow: column nowrap;
     align-items: center;
+    overflow-y: auto;
     justify-content: flex-start;
     background: var(--gui-color);
     color: white;
@@ -653,13 +581,27 @@
 
   
   .tool  .starter {
-    flex: 0 0 auto;
-    height: 200px;
+    flex: 0 0 100px;
+    justify-self: center;
     width: 100%;
-    background: url(@/../public/assets/textarea.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  }
+
+  
+  .editor .tool .field main, .editor .tool .field .rendered-view {
+    overflow-wrap: break-word;
+    font-size: 75%;
+    padding: 5px;
+    width: 200px;
+    height: 60px;
+  }
+
+  .editor .tool .field {
+    position: static;
+    width: 250px;
+    height: 75px;
+    align-items: center;
+justify-content: center;
+display: flex;
   }
 
   #exported-image {

@@ -41,67 +41,16 @@
 <script>
   import FieldBase from "./FieldBase.vue";
   import FieldCodeConfig from "./FieldCodeConfig.vue";
+  import styles from '../json/styles.json'
 
   export default {
   name: "FieldCode",
   extends: FieldBase,
-    props: {
-      x: {
-        type: Number,
-        required: true,
-        default: 10
-      },
-      y: {
-        type: Number,
-        required: true,
-        default: 10
-      }
-    },
     data() {
       return {
         input: 'cookie crumbles',
         output: 'cake',
-        styleMap: {
-          "default": {
-              text: {
-                textColor: "#121212",
-                textSize: 100,
-                blocks: [
-                    {
-                      id: 1,
-                      content: '**Shout** To Infinity!',
-                      type: 'print',
-                      indent: 0
-                    }
-                  ],
-              },
-              highlight: {
-                textGlow: 100,
-                textGlowColor: "left",
-                highlightColor: "Roboto"
-              },
-              border: {
-                borderColor: "transparent",
-                borderRadius: 0,
-                borderStyle: "solid",
-                borderSize: 0
-              },
-              shadow: {
-                shadowDisplacement: 0,
-                shadowSize: 0,
-                shadowColor: "transparent"
-              },
-              background: {
-                backgroundColor: "white",
-                backgroundImage: "none",
-                backgroundSize: 100,
-              },
-              animation: {
-                animationDuration: 5,
-                animationType: "none"
-              }
-          }
-        }
+        styleMap: styles.code
       }
     },
     methods: {
@@ -220,9 +169,10 @@
     z-index: var(--field-stack-order);
     position: absolute;
     height: auto;
-    min-width: 300px;
+    min-width: 100px;
     user-select: none;
-    width: 600px;
+    width: auto;
+    max-width: 100%;
   }
 
     .code main .code-block > input {

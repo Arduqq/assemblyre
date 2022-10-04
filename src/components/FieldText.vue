@@ -25,48 +25,14 @@
   import { marked } from 'marked';
   import FieldBase from "./FieldBase.vue";
   import FieldTextConfig from "./FieldTextConfig.vue";
+  import styles from '../json/styles.json'
 
   export default {
   name: "FieldText",
   extends: FieldBase,
     data() {
       return {
-        styleMap: {
-          "default": {
-              text: {
-                textSize: 100,
-                textAlignment: "left",
-                fontFamily: "Roboto",
-                textColor: "#121212",
-                content: [ { value: '', md: '' } ]
-              },
-              highlight: {
-                textGlow: 0,
-                textGlowColor: "transparent",
-                highlightColor: "transparent"
-              },
-              border: {
-                borderSize: 0,
-                borderRadius: 0,
-                borderStyle: "solid",
-                borderColor: "transparent"
-              },
-              shadow: {
-                shadowSize: 0,
-                shadowDisplacement: 0,
-                shadowColor: "transparent"
-              },
-              background: {
-                backgroundSize: 100,
-                backgroundColor: "white",
-                backgroundImage: "none"
-              },
-              animation: {
-                animationDuration: 5,
-                animationType: "none"
-              }
-          }
-        }
+        styleMap: styles.text
 
       }
     },
@@ -79,13 +45,13 @@
     methods: {
       
       openConfig: function() {
-        if (!this.inEdit) {
+        if (!this.inEdit && this.edit) {
           this.inEdit = true;
           this.updateAllContent(false);
         }
       },
       closeConfig: function() {
-        if (this.inEdit) {
+        if (this.inEdit && this.edit) {
           this.inEdit = false;
           this.updateAllContent(true);  
         }
@@ -97,10 +63,10 @@
       },
       
       onInput(event, index) {
-        const value = event.target.innerText;
-        this.fieldStyleProperties.text.content[index].value = value;
-        this.fieldStyleProperties.text.content[index].md = DOMPurify.sanitize(marked.parse(value));
-        this.emitChange();
+          const value = event.target.innerText;
+          this.fieldStyleProperties.text.content[index].value = value;
+          this.fieldStyleProperties.text.content[index].md = DOMPurify.sanitize(marked.parse(value));
+          this.emitChange();
       },
       
       updateAllContent(markdown) {

@@ -90,7 +90,7 @@
       }
     },
     created: function() {
-      this.fieldStyleProperties = this.styleMap[this.styling];
+      this.fieldStyleProperties = structuredClone(this.styleMap[this.styling]);
     },
     mounted: function() {
       let draggableWrapper = this.$refs.draggableWrapper;
@@ -233,6 +233,7 @@
     position: absolute;
     height: auto;
     min-width: 100px;
+    max-width: 100%;
     user-select: none;
     border: solid 2px #00000013;
     animation: appear 10s var(--field-animation-entry) cubic-bezier(0.86, 0, 0.07, 1) 1 normal forwards;
