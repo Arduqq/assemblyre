@@ -132,7 +132,7 @@
           .on('tap', this.openConfig)
       },
       dragMoveListener: function(event) {
-        if (!this.inEdit) {
+        if (!this.inEdit && this.edit) {
           var target = event.target,
             x = (parseFloat(target.getAttribute("data-x")) || this.screenX) + event.dx / this.modifier,
             y = (parseFloat(target.getAttribute("data-y")) || this.screenY) + event.dy / this.modifier;
@@ -149,7 +149,7 @@
         }
       },
       dragScaleListener: function(event) {
-        if (!this.inEdit) {
+        if (!this.inEdit && this.edit) {
           var target = event.target,
             x = (parseFloat(target.getAttribute('data-x')) || 0) ,
             y = (parseFloat(target.getAttribute('data-y')) || 0);
@@ -170,19 +170,21 @@
         }
       },
       onDragEnd: function(event) {
-        var target = event.target;
-        this.screenX = (parseFloat(target.getAttribute('data-x')) || 0);
-        this.screenY = (parseFloat(target.getAttribute('data-y')) || 0);
-        this.emitChange();
+        if (!this.inEdit && this.edit) {
+          var target = event.target;
+          this.screenX = (parseFloat(target.getAttribute('data-x')) || 0);
+          this.screenY = (parseFloat(target.getAttribute('data-y')) || 0);
+          this.emitChange();
+        }
       },
       openConfig: function() {
-        if (!this.inEdit) {
+        if (!this.inEdit && this.edit) {
           this.inEdit = true;
         }
         
       },
       closeConfig: function() {
-        if (this.inEdit) {
+        if (this.inEdit && this.edit) {
           this.inEdit = false;
         }
         
@@ -233,7 +235,7 @@
     min-width: 100px;
     user-select: none;
     border: solid 2px #00000013;
-    animation: appear 10s var(--field-animation-entry) ease-in-out infinite;
+    animation: appear 10s var(--field-animation-entry) cubic-bezier(0.86, 0, 0.07, 1) 1 normal forwards;
   }
 
   .field main {
@@ -245,7 +247,7 @@
     flex-flow: row wrap;
   }
   
-  .field:hover, .field.active {
+  .field.edit:hover, .field.edit.active {
     box-shadow: 0 0 2px 2px var(--interact-color); 
   }
 
@@ -255,7 +257,7 @@
 
  
   @keyframes appear {
-    0% { opacity: 0; transform: rotate(90deg)}
+    0% { opacity: 0; transform: rotate(90deg) translate(var(--field-x), var(--field-y))}
     5% {opacity: 1; transform: rotate(-5deg) translate(var(--field-x), var(--field-y))}
     10% {opacity: 1; transform: rotate(0deg) translate(var(--field-x), var(--field-y))}
     100% {opacity: 1; transform: rotate(0deg)  translate(var(--field-x), var(--field-y))}
