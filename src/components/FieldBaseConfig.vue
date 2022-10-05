@@ -84,13 +84,16 @@
       display: flex;
       position: absolute;
       top: -70px;
+      left: 0;
       flex-flow: row wrap;
       border-radius: 25px;
-      width: 500px;
+      width: 600px;
       height: 60px;
       opacity: .95;
       transition: .1s;
       z-index: 10000;
+      font-size: 60%;
+      font-family: var(--text-font);
     
   }
 
@@ -100,15 +103,12 @@
   }
 
   .edit-panel {
-    flex: 0 0 100%;
+    flex: 0 0 50%;
     z-index: 2000;
-    border-top: 5px solid var(--interact-color);
-  }
-
-  
-  .field-config.activated {
-    transform: translateY(-100px);
-    border-radius: 5px 5px 0 0;
+    max-height: 250px;
+    overflow-y: auto;
+    scrollbar-width: auto;
+    height: auto;
   }
 
 

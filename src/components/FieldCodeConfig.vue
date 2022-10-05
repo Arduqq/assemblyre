@@ -165,7 +165,7 @@
             <field-base-config-slider 
                 binding="w" 
                 title="size" 
-                :group= "id + 'shadowSize'"
+                :group= "id + 'shadow'"
                 property="shadowSize" 
                 :min=0 :max=50 :step=1 
                 :val="currentProperties.shadow.shadowSize" 

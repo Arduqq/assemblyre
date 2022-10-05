@@ -4,35 +4,35 @@
       <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       <div v-show="edit" class="code-block" id="code-block-input">
         <span class="code-block-id"><b>IN</b></span>
-        <input type="text" v-model="input" @input="updateProperties" />
+        <input type="text" v-model="input"/>
       </div>
-      <div v-for="block in fieldStyleProperties.text.blocks" :key="block.id" class="code-block" :id="'code-block-' + block.id" :class="block.type">
+      <div v-for="block in fieldStyleProperties.text.blocks" :key="block.id" class="code-block" :id="id + '-' + block.id" :class="block.type">
         <span class="code-block-id">{{block.id}}</span>
         <span class="code-block-indent"
         v-for="(_, index) in block.indent" :key="index"></span>
         <input type="text" ref="codeBlock" :disabled="!edit"
-        @keyup.enter="addBlock(block.id, 0)"
-        @keyup.delete="removeBlock(block.id)"
+        @keydown.enter="addBlock(block.id, 0)"
+        @keydown.delete="removeBlock(block.id)"
         @keydown.tab.prevent="block.indent++"
         v-model="block.content"/>
         <div class="code-type-config" v-show="edit">
-          <input :id="block.id + '-print'" :name="block.id" value="print"  type="radio" v-model="block.type" @input="updateProperties"/>
-          <label :for="block.id + '-print'" >print</label>
+          <input :id="'code-block-' + id + '-' + block.id + '-print'" :name="'code-block-' + id + '-' + block.id" value="print"  type="radio" v-model="block.type"/>
+          <label :for="'code-block-' + id + '-' + block.id + '-print'" >print</label>
           
-          <input :id="block.id + '-assign'" :name="block.id" value="assign"  type="radio" v-model="block.type" @input="updateProperties"/>
-          <label :for="block.id + '-assign'">assign</label>
+          <input :id="'code-block-' + id + '-' + block.id + '-assign'" :name="'code-block-' + id + '-' + block.id" value="assign"  type="radio" v-model="block.type"/>
+          <label :for="'code-block-' + id + '-' + block.id + '-assign'">assign</label>
           
-          <input :id="block.id + '-unassign'" :name="block.id" value="unassign"  type="radio" v-model="block.type" @input="updateProperties"/>
-          <label :for="block.id + '-unassign'">unassign</label>
+          <input :id="'code-block-' + id + '-' + block.id + '-unassign'" :name="'code-block-' + id + '-' + block.id" value="unassign"  type="radio" v-model="block.type"/>
+          <label :for="'code-block-' + id + '-' + block.id + '-unassign'">unassign</label>
           
-          <input :id="block.id + '-generate'" :name="block.id" value="generate"  type="radio" v-model="block.type" @input="updateProperties"/>
-          <label :for="block.id + '-generate'">generate</label>
+          <input :id="'code-block-' + id + '-' + block.id + '-generate'" :name="'code-block-' + id + '-' + block.id" value="generate"  type="radio" v-model="block.type"/>
+          <label :for="'code-block-' + id + '-' + block.id + '-generate'">generate</label>
           
         </div>
       </div>
       <div v-show="edit" class="code-block" id="code-block-input">
         <span class="code-block-id"><b>OU</b></span>
-        <input type="text" v-model="output" @input="updateProperties" />
+        <input type="text" v-model="output"/>
       </div>
     </main>
   </div>
@@ -55,18 +55,16 @@
     },
     methods: {
       updateProperties: function(value) {
-        if (this.edit) {
-          this.fieldStyleProperties = value;
-          this.emitChange();
-        }
+        this.fieldStyleProperties = value;
+        this.emitChange();
       },
       addBlock: function(line, indent) {
         if (this.edit) {
-          /* If the cursor is at the start, transfer block's content */
-          var content = this.$refs.codeBlock[line-1].selectionStart == 0 ? this.fieldStyleProperties.text.blocks[line-1].content : '';
-          if (this.$refs.codeBlock[line-1].selectionStart == 0) {
-            this.fieldStyleProperties.text.blocks[line-1].content = '';
-          }
+          /* If the cursor is not at the last character, transfer block's content */
+          var content = this.$refs.codeBlock[line-1].selectionStart < this.$refs.codeBlock[line-1].textLength ? 
+            this.fieldStyleProperties.text.blocks[line-1].content.substring(this.$refs.codeBlock[line-1].selectionStart, this.$refs.codeBlock[line-1].textLength) : '';
+          var previousContent = this.fieldStyleProperties.text.blocks[line-1].content.substring(0, this.$refs.codeBlock[line-1].selectionStart);
+          this.fieldStyleProperties.text.blocks[line-1].content = previousContent;
           this.fieldStyleProperties.text.blocks.splice(
             line,
             0,
@@ -86,7 +84,6 @@
         }
       },
       removeBlock: function(line) {
-        if (this.edit) {
           /* Is there more than one line? */
           if (line > 0) {
               /* Is the current line tabbed? */
@@ -96,7 +93,7 @@
             }
             if (line > 1) {
               /* Is the current line empty? */
-              if (this.$refs.codeBlock[line-1].value === "") {
+              if (this.$refs.codeBlock[line-1].value === "" && this.$refs.codeBlock[line-1].selectionStart == 0 ) {
                 this.fieldStyleProperties.text.blocks.splice(line-1,1);
                 for (var j = line-1; j <= this.fieldStyleProperties.text.blocks.length-1; j++) {
                   this.fieldStyleProperties.text.blocks[j].id--;
@@ -109,7 +106,7 @@
               /* Is the current selection at the line start, but non-empty? */
               if (this.$refs.codeBlock[line-1].selectionStart === 0 && this.$refs.codeBlock[line-1].value != "") {
                 var deletedLine = this.fieldStyleProperties.text.blocks.splice(line-1,1)[0];
-                this.fieldStyleProperties.text.blocks[line-2].content += deletedLine.content;
+                this.fieldStyleProperties.text.blocks[line-2].content += deletedLine.content + ' ';
                 for (var i = line-1; i <= this.fieldStyleProperties.text.blocks.length-1; i++) {
                   this.fieldStyleProperties.text.blocks[i].id--;
                 }
@@ -119,7 +116,6 @@
               }
             }
           }
-        }
       }
 
     },

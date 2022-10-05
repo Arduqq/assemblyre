@@ -2,6 +2,7 @@
   <div id='app'>
     <header v-show="title!=='Editor'">
       <router-link to="/"><img src="/assets/assemblyre-logo.png">Start</router-link>
+      <router-link to="/edit"><img src="/assets/machine.jpg">Editor</router-link>
       <router-link to="/about"><img src="/assets/dots-1.jpg">About</router-link>
       <router-link to="/more"><img src="/assets/dots-2.jpg">More</router-link>
     </header>
@@ -121,7 +122,7 @@ header {
   left: 0;
   right: 0;
   width: 100%;
-  height: 60px;
+  height: 180px;
   padding: 10px;
   background-color: var(--gui-color);
   display: flex;
@@ -132,14 +133,6 @@ header {
   overflow: hidden;
   transition: .3s;
   box-shadow: inset 0px -20px 20px 20px rgba(0, 0, 0, .2);
-}
-
-header:hover, html[scroll="0"] header {
-  height: 180px;
-}
-
-header:hover + .content {
-  margin: 220px auto;
 }
 
 
@@ -181,6 +174,7 @@ header a img {
   gap: 20px;
   font-size: 120%;
   transition: .3s;
+  margin: 220px auto;
 }
 
 .content > section {
