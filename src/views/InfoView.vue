@@ -1,5 +1,5 @@
 <template>
-    <main class="content" id='hub'>
+    <main class="content" id='info'>
       <h1>Assemblyng Hub: About</h1>
       
       <section id="info">

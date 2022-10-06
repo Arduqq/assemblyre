@@ -70,7 +70,7 @@
           '--field-animation-type': this.fieldStyleProperties.animation.animationType,
           '--field-animation-duration': this.fieldStyleProperties.animation.animationDuration + 's',
           '--field-stack-order': stacking,
-          '--field-animation-entry' : stacking + 's',
+          '--field-animation-entry' : stacking-1 + 's',
           '--field-x': this.x+'px',
           '--field-y': this.y+'px'
         }

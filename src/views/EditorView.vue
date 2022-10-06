@@ -728,6 +728,7 @@ display: flex;
     gap: 5px;
     height: 50px;
     transition: .1s;
+    width: 100%;
   }
 
   .tool.layerbox > .layer:hover {

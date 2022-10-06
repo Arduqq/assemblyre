@@ -236,7 +236,7 @@
     max-width: 100%;
     user-select: none;
     border: solid 2px #00000013;
-    animation: appear 10s var(--field-animation-entry) cubic-bezier(0.86, 0, 0.07, 1) 1 normal forwards;
+    animation: appear 10s var(--field-animation-entry) cubic-bezier(0.175, 0.885, 0.32, 1.275) 1 normal forwards;
   }
 
   .field main {
@@ -258,10 +258,10 @@
 
  
   @keyframes appear {
-    0% { opacity: 0; transform: rotate(90deg) translate(var(--field-x), var(--field-y))}
-    5% {opacity: 1; transform: rotate(-5deg) translate(var(--field-x), var(--field-y))}
-    10% {opacity: 1; transform: rotate(0deg) translate(var(--field-x), var(--field-y))}
-    100% {opacity: 1; transform: rotate(0deg)  translate(var(--field-x), var(--field-y))}
+    0% { opacity: 0; transform: translate(var(--field-x), var(--field-y))}
+    5% {opacity: 1; transform: translate(var(--field-x), var(--field-y))}
+    10% {opacity: 1; transform: translate(var(--field-x), var(--field-y))}
+    100% {opacity: 1; transform: translate(var(--field-x), var(--field-y))}
   }
 
 

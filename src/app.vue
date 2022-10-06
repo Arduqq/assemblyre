@@ -4,6 +4,7 @@
       <router-link to="/"><img src="/assets/assemblyre-logo.png">Start</router-link>
       <router-link to="/edit"><img src="/assets/machine.jpg">Editor</router-link>
       <router-link to="/about"><img src="/assets/dots-1.jpg">About</router-link>
+      <router-link to="/zine"><img src="/assets/circuit.jpg">LYRE</router-link>
       <router-link to="/more"><img src="/assets/dots-2.jpg">More</router-link>
     </header>
     <router-view></router-view>
@@ -194,6 +195,12 @@ header a img {
 
 .content > section > * {
   flex: 0 1 100%;
+}
+
+.content > section > img {
+  margin: 0 auto;
+  max-width: 80%;
+  display: block;
 }
 
 h1, h2, h3, h4 {
