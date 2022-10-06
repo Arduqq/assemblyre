@@ -37,10 +37,12 @@
       }
     },
     mounted: function() {
-      const msg = sample(this.initMessages);
-      this.fieldStyleProperties.text.content = [{ value: msg, md: DOMPurify.sanitize(marked.parse(msg))}]; 
-      this.updateAllContent();
-      this.emitChange();
+      if (typeof this.importedData !== 'undefined') {
+        const msg = sample(this.initMessages);
+        this.fieldStyleProperties.text.content = [{ value: msg, md: DOMPurify.sanitize(marked.parse(msg))}]; 
+      }
+        this.updateAllContent();
+        this.emitChange();
     },
     methods: {
       
@@ -106,7 +108,8 @@
           '--field-stack-order': stacking,
           '--field-animation-entry' : stacking-1 + 's',
           '--field-x': this.x+'px',
-          '--field-y': this.y+'px'
+          '--field-y': this.y+'px',
+          '--field-w': this.screenWidth+'px'
         }
         return style;
       }

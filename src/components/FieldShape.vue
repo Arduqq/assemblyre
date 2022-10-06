@@ -72,7 +72,8 @@
           '--field-stack-order': stacking,
           '--field-animation-entry' : stacking-1 + 's',
           '--field-x': this.x+'px',
-          '--field-y': this.y+'px'
+          '--field-y': this.y+'px',
+          '--field-w': this.screenWidth+'px'
         }
       }
     },

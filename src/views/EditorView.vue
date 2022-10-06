@@ -10,6 +10,7 @@
     <div class="editor-control active" >
       <a class="logo" title="Back to Start" href="/"></a>
       <router-link :title="'Back to ' + this.user.toUpperCase() + ' Hub'" class="hub-link route" :to="{ name: 'hub', params: { userCode: this.user }}" >{{participants[user]}}</router-link>
+      <input type="file" id="import-file" value="Import" @change="handleFile"/>
       <label>Title
         <input type="text" v-model="score.opus"/>
       </label>
@@ -89,7 +90,7 @@
             :key="field.id"
             @mouseenter="sortedFields[i].active = true; updateFields()"
             @mouseleave="sortedFields[i].active = false; updateFields()">
-            <input type="text" v-model="program[parseInt(field.id)-1].name"/> 
+            <input type="text" v-model="score.program[parseInt(field.id)-1].name"/> 
             <button @click="swapOrder(sortedFields[i], sortedFields[i-1])">↑</button>
             <button @click="swapOrder(sortedFields[i], sortedFields[i+1])">↓</button> 
         </div>
@@ -113,18 +114,18 @@
         <h2>Backgrounds</h2> <tooltip keyphrase="background-help"/>
           
           <div class="backgrounds">
-            <input type="color" name="patterns" id="background-color" v-model="backgroundColor"/>
-            <input type="radio" name="patterns" value="none" id="background-none" v-model="backgroundPattern"/>
+            <input type="color" name="patterns" id="background-color" v-model="score.backgroundColor"/>
+            <input type="radio" name="patterns" value="none" id="background-none" v-model="score.backgroundPattern"/>
             <label for="background-none" :style="'background-image: none'"></label>
-            <input type="radio" name="patterns" value="pattern-1" id="background-1" v-model="backgroundPattern"/>
+            <input type="radio" name="patterns" value="pattern-1" id="background-1" v-model="score.backgroundPattern"/>
             <label for="background-1" :style="'background-image: url(@/../assets/pattern-1.jpg)'"></label>
-            <input type="radio" name="patterns" value="pattern-2" id="background-2" v-model="backgroundPattern"/>
+            <input type="radio" name="patterns" value="pattern-2" id="background-2" v-model="score.backgroundPattern"/>
             <label for="background-2" :style="'background-image: url(@/../assets/pattern-2.jpg)'"></label>
-            <input type="radio" name="patterns" value="pattern-3" id="background-3" v-model="backgroundPattern"/>
+            <input type="radio" name="patterns" value="pattern-3" id="background-3" v-model="score.backgroundPattern"/>
             <label for="background-3" :style="'background-image: url(@/../assets/pattern-3.jpg)'"></label>
-            <input type="radio" name="patterns" value="pattern-4" id="background-4" v-model="backgroundPattern"/>
+            <input type="radio" name="patterns" value="pattern-4" id="background-4" v-model="score.backgroundPattern"/>
             <label for="background-4" :style="'background-image: url(@/../assets/pattern-4.jpg)'"></label>
-            <input type="radio" name="patterns" value="pattern-5" id="background-5" v-model="backgroundPattern"/>
+            <input type="radio" name="patterns" value="pattern-5" id="background-5" v-model="score.backgroundPattern"/>
             <label for="background-5" :style="'background-image: url(@/../assets/pattern-5.jpg)'"></label>
           </div>
           <tooltip keyphrase="warning" icon="⚠️"/>
@@ -136,13 +137,13 @@
       <div class="tool canvasbox" v-show="this.activeTool==='canvas'">
         <h2>Canvas Dimensions</h2>
         <label for="canvas-width">width (px)</label>
-        <input id="canvas-width" type="number" step="1" v-model.number="canvasSize.width"/>
+        <input id="canvas-width" type="number" step="1" v-model.number="score.canvasSize.width"/>
         <label for="canvas-height">height (px)</label>
-        <input id="canvas-height" type="number" step="1" v-model.number="canvasSize.height"/>
+        <input id="canvas-height" type="number" step="1" v-model.number="score.canvasSize.height"/>
 
         <h2>Canvas Presets</h2>
           <div class="canvas-presets">
-            <input id="canvas-1" type="radio" name="dimensions" :value="{width: 1080, height: 1080}" v-model="canvasSize"/>
+            <input id="canvas-1" type="radio" name="dimensions" :value="{width: 1080, height: 1080}" v-model="score.canvasSize"/>
             <label for="canvas-1">
               <img src="/assets/canvas/canvas-1.png"/>
               <div class="canvas-preset-size">
@@ -150,7 +151,7 @@
                 <div class="canvas-preset-height">height: 1080px</div>
               </div>
             </label>
-            <input id="canvas-2" type="radio" name="dimensions" :value="{width:600, height: 1800}" v-model="canvasSize"/>
+            <input id="canvas-2" type="radio" name="dimensions" :value="{width:600, height: 1800}" v-model="score.canvasSize"/>
             <label for="canvas-2">
               <img src="/assets/canvas/canvas-2.png"/>
               <div class="canvas-preset-size">
@@ -158,7 +159,7 @@
                 <div class="canvas-preset-height">height: 1800px</div>
               </div>
             </label>
-            <input id="canvas-3" type="radio" name="dimensions" :value="{width:1080, height: 1920}" v-model="canvasSize"/>
+            <input id="canvas-3" type="radio" name="dimensions" :value="{width:1080, height: 1920}" v-model="score.canvasSize"/>
             <label for="canvas-3">
               <img src="/assets/canvas/canvas-3.png"/>
               <div class="canvas-preset-size">
@@ -166,7 +167,7 @@
                 <div class="canvas-preset-height">height: 1920px</div>
               </div>
             </label>
-            <input id="canvas-4" type="radio" name="dimensions" :value="{width:400, height: 300}" v-model="canvasSize"/>
+            <input id="canvas-4" type="radio" name="dimensions" :value="{width:400, height: 300}" v-model="score.canvasSize"/>
             <label for="canvas-4">
               <img src="/assets/canvas/canvas-4.png"/>
               <div class="canvas-preset-size">
@@ -174,7 +175,7 @@
                 <div class="canvas-preset-height">height: 300px</div>
               </div>
             </label>
-            <input id="canvas-5" type="radio" name="dimensions" :value="{width:1200, height: 1800}" v-model="canvasSize"/>
+            <input id="canvas-5" type="radio" name="dimensions" :value="{width:1200, height: 1800}" v-model="score.canvasSize"/>
             <label for="canvas-5">
               <img src="/assets/canvas/canvas-5.png"/>
               <div class="canvas-preset-size">
@@ -182,7 +183,7 @@
                 <div class="canvas-preset-height">height: 1800px</div>
               </div>
             </label>
-            <input id="canvas-6" type="radio" name="dimensions" :value="{width:1280, height: 720}" v-model="canvasSize"/>
+            <input id="canvas-6" type="radio" name="dimensions" :value="{width:1280, height: 720}" v-model="score.canvasSize"/>
             <label for="canvas-6">
               <img src="/assets/canvas/canvas-6.png"/>
               <div class="canvas-preset-size">
@@ -199,6 +200,8 @@
             :name= chord.name
             :x= chord.x  
             :y= chord.y  
+            :w= chord.w  
+            :h= chord.h  
             :alive = chord.alive
             :modifier= canvasScale
             :styling= chord.styling
@@ -207,12 +210,15 @@
             @change= updateFields 
             :stackOrder = chord.stackOrder
             :active = chord.active
-            :edit = !programRunning />
+            :edit = !programRunning 
+            :importData = chord.style />
           <field-code v-for="code in programQuery('code')" 
             :id= code.id 
             :name=code.name
             :x= code.x  
             :y= code.y  
+            :w= code.w  
+            :h= code.h  
             :alive = code.alive
             :modifier= canvasScale 
             :styling= code.styling
@@ -221,12 +227,15 @@
             @change= updateFields 
             :stackOrder = code.stackOrder 
             :active = code.active
-            :edit = !programRunning />
+            :edit = !programRunning 
+            :importData = code.style />
           <field-media v-for="plug in programQuery('image')" 
             :id= plug.id 
             :name=plug.name
             :x= plug.x  
             :y= plug.y  
+            :w= plug.w  
+            :h= plug.h  
             :alive = plug.alive
             :modifier= canvasScale 
             :media= plug.media  
@@ -235,12 +244,15 @@
             @change= updateFields 
             :stackOrder = plug.stackOrder 
             :active = plug.active
-            :edit = !programRunning />
+            :edit = !programRunning 
+            :importData = plug.style />
           <field-shape v-for="shape in programQuery('shape')" 
             :id= shape.id 
             :name=shape.name
             :x= shape.x  
             :y= shape.y  
+            :w= shape.w  
+            :h= shape.h  
             :alive = shape.alive
             :modifier= canvasScale 
             :lockedResolution= shape.lockedResolution 
@@ -249,7 +261,8 @@
             @change= updateFields 
             :stackOrder = shape.stackOrder 
             :active = shape.active
-            :edit = !programRunning />
+            :edit = !programRunning 
+            :importData = shape.style />
           </div>
 
       </div>
@@ -273,14 +286,14 @@
       return {
         panningMode: false,
         activeTool: "text",
-        canvasSize: { width: 0, height: 0 },
-        backgroundPattern: "none",
-        backgroundColor: "white",
         score: {
           opus: "Pseudo Program",
-          version: "0.1"
+          version: "0.1",
+          backgroundPattern: "none",
+          backgroundColor: "white",
+          program: [],
+          canvasSize: { width: 0, height: 0 },
         },
-        program: [],
         importedImages: [],
         newImageURL : "https://imgur.com/ftHNkoG.png",
         exportURL: null,
@@ -323,32 +336,43 @@
         type: String,
         required: false,
         default: "spurt"
-      }, 
-      import: {
-        type: Array,
-        required: false,
-        default() { return [] }
       }
     },
     mounted: function() {
-      this.program = this.import;
       /*let program = this.$refs.program;*/
-      this.canvasSize.width = this.width;
-      this.canvasSize.height = this.height;
+      this.score.canvasSize.width = this.width;
+      this.score.canvasSize.height = this.height;
     },
     methods: {
+      handleFile(e) {
+        var files = e.target.files || e.dataTransfer.files;
+        if (!files.length)
+          return;
+        this.importProgram(files[0])
+      },
+
+      importProgram(file) {
+        var reader = new FileReader();
+        var vm = this;
+        this.score = {};
+        reader.onload = (e) => {
+          let json = JSON.parse(e.target.result);
+          vm.score = json;
+        };
+        reader.readAsText(file);
+      },
         addChord: function (x, y, style) {
           const uID = uniqueId();
           const fieldType = "text";
           const field = {id: uID, name: fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
-          this.program.push(field);
+          this.score.program.push(field);
 
         },
         addPlug: function(x,y, url) {
           const uID = uniqueId();
           const fieldType = "image";
           const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, media: url, stackOrder: parseInt(uID)};
-          this.program.push(field);
+          this.score.program.push(field);
         },
         addImage: function() {
           const fieldType = "import";
@@ -361,23 +385,23 @@
           const uID = uniqueId();
           const fieldType = "code";
           const field = {id: uID, name:fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
-          this.program.push(field);
+          this.score.program.push(field);
         },
         
         addShape: function(x,y, style) {
           const uID = uniqueId();
           const fieldType = "shape";
           const field = {id: uID, name: fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, lockedResolution: false, stackOrder: parseInt(uID)};
-          this.program.push(field);
+          this.score.program.push(field);
         },
 
         updateFields: function(id, value, alive, x, y, w, h) {
-          this.program = this.program.map(el =>
+          this.score.program = this.score.program.map(el =>
             el.id === id ? { ...el, style: value, alive:alive, x:x, y:y, w:w, h:h} : el
           )
         },
         save: async function() {
-        this.exportURL = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.program,undefined,2));
+        this.exportURL = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.score,undefined,2));
           
         },
         controlSelection: function (control) {
@@ -387,11 +411,11 @@
         
         programQuery(type) {
           if (type==="alive") {
-            return this.program.filter(function (field) {
+            return this.score.program.filter(function (field) {
               return field.alive;
             })
           }
-          return this.program.filter(function (field) {
+          return this.score.program.filter(function (field) {
             return field.type === type && field.alive;
           })
         },
@@ -411,13 +435,13 @@
         return programByStackOrder.sort((a, b) => a.stackOrder < b.stackOrder );
       },
       canvasStyle() {
-        var backgroundImage = this.backgroundPattern !== "none" ? 'url(@/../assets/' + this.backgroundPattern + '.jpg)' : "white"
+        var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(@/../assets/' + this.score.backgroundPattern + '.jpg)' : "white"
         return {
           "--canvas-scale": 'scale(' + this.canvasScale + ')',
-          "--canvas-width": this.canvasSize.width + "px",
-          "--canvas-height": this.canvasSize.height + "px",
+          "--canvas-width": this.score.canvasSize.width + "px",
+          "--canvas-height": this.score.canvasSize.height + "px",
           "--canvas-background": backgroundImage,
-          "--canvas-background-color": this.backgroundColor
+          "--canvas-background-color": this.score.backgroundColor
         }
       }
     },

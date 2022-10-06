@@ -61,6 +61,11 @@
         type: Boolean,
         required: false,
         default: true
+      },
+      importData: {
+        type: Object,
+        required: false,
+        default: null
       }
     },
     data() {
@@ -90,7 +95,10 @@
       }
     },
     created: function() {
-      this.fieldStyleProperties = structuredClone(this.styleMap[this.styling]);
+      this.fieldStyleProperties = this.importData !== null ? this.importData : structuredClone(this.styleMap[this.styling]);
+      this.screenWidth = this.w;
+      this.screenHeight = this.h;
+      this.emitChange();
     },
     mounted: function() {
       let draggableWrapper = this.$refs.draggableWrapper;
@@ -233,6 +241,8 @@
     position: absolute;
     height: auto;
     min-width: 100px;
+    width: var(--field-w);
+    height: var(--field-h);
     max-width: 100%;
     user-select: none;
     border: solid 2px #00000013;
