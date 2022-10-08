@@ -1,573 +1,577 @@
 {
-    "text":  {
+    "text": {
         "default": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "Roboto",
-              "textColor": "#121212",
-              "content": [ { "value": "", "md": "" } ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Roboto",
+                "textColor": "#121212",
+                "content": [{ "value": "", "md": "" }]
             },
             "highlight": {
-              "textGlow": 0,
-              "textGlowColor": "transparent",
-              "highlightColor": "transparent"
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 0,
-              "borderRadius": 0,
-              "borderStyle": "solid",
-              "borderColor": "transparent"
+                "borderSize": 0,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "transparent"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 0,
-              "shadowColor": "transparent"
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "white",
-              "backgroundImage": "none"
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "none"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
         },
         "hunter": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "FT88 Gothique",
-              "textColor": "#f0df8e",
-              "content": [
-                {
-                  "value": "",
-                  "md": ""
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "FT88 Gothique",
+                "textColor": "#f0df8e",
+                "content": [{
+                    "value": "",
+                    "md": ""
+                }]
             },
             "highlight": {
-              "textGlow": 0,
-              "textGlowColor": "transparent",
-              "highlightColor": "transparent"
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 1,
-              "borderRadius": 6,
-              "borderStyle": "dashed",
-              "borderColor": "#f0df8e"
+                "borderSize": 1,
+                "borderRadius": 6,
+                "borderStyle": "dashed",
+                "borderColor": "#f0df8e"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 4,
-              "shadowColor": "#00000020",
-              "shadow": 8
+                "shadowSize": 0,
+                "shadowDisplacement": 4,
+                "shadowColor": "#00000020",
+                "shadow": 8
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "#000000aa",
-              "backgroundImage": "none"
+                "backgroundSize": 100,
+                "backgroundColor": "#000000aa",
+                "backgroundImage": "none"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "letter": {
+        },
+        "letter": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "Louise",
-              "textColor": "#fcf7f7FF",
-              "content": [
-                {
-                  "value": "",
-                  "md": ""
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Louise",
+                "textColor": "#fcf7f7FF",
+                "content": [{
+                    "value": "",
+                    "md": ""
+                }]
             },
             "highlight": {
-              "textGlow": 1,
-              "textGlowColor": "#000",
-              "highlightColor": "transparent"
+                "textGlow": 1,
+                "textGlowColor": "#000",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 0,
-              "borderRadius": 0,
-              "borderStyle": "solid",
-              "borderColor": "transparent"
+                "borderSize": 0,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "transparent"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 9,
-              "shadowColor": "#5c5ceb4A",
-              "shadow": 6
+                "shadowSize": 0,
+                "shadowDisplacement": 9,
+                "shadowColor": "#5c5ceb4A",
+                "shadow": 6
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "#fbeaeaFF",
-              "backgroundImage": "asphalt"
+                "backgroundSize": 100,
+                "backgroundColor": "#fbeaeaFF",
+                "backgroundImage": "asphalt"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "educate": {
+        },
+        "educate": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "FT88 School",
-              "textColor": "#ffffffef",
-              "content": [
-                {
-                  "value": "",
-                  "md": ""
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "FT88 School",
+                "textColor": "#ffffffef",
+                "content": [{
+                    "value": "",
+                    "md": ""
+                }]
             },
             "highlight": {
-              "textGlow": 0,
-              "textGlowColor": "transparent",
-              "highlightColor": "transparent"
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 9,
-              "borderRadius": 50,
-              "borderStyle": "solid",
-              "borderColor": "#fbe5e5FF"
+                "borderSize": 9,
+                "borderRadius": 50,
+                "borderStyle": "solid",
+                "borderColor": "#fbe5e5FF"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 3,
-              "shadowColor": "#d7888aFF",
-              "shadow": 15
+                "shadowSize": 0,
+                "shadowDisplacement": 3,
+                "shadowColor": "#d7888aFF",
+                "shadow": 15
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "#44734f",
-              "backgroundImage": "none"
+                "backgroundSize": 100,
+                "backgroundColor": "#44734f",
+                "backgroundImage": "none"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "hustle": {
+        },
+        "hustle": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "Abordage",
-              "textColor": "#ffbdf2",
-              "content": [
-                {
-                  "value": "",
-                  "md": ""
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Abordage",
+                "textColor": "#ffbdf2",
+                "content": [{
+                    "value": "",
+                    "md": ""
+                }]
             },
             "highlight": {
-              "textGlow": 3,
-              "textGlowColor": "#ff97dd",
-              "highlightColor": "transparent"
+                "textGlow": 3,
+                "textGlowColor": "#ff97dd",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 3,
-              "borderRadius": 13,
-              "borderStyle": "dashed",
-              "borderColor": "#ffbdf2"
+                "borderSize": 3,
+                "borderRadius": 13,
+                "borderStyle": "dashed",
+                "borderColor": "#ffbdf2"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 0,
-              "shadowColor": "#ffbdf2",
-              "shadow": 11
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "#ffbdf2",
+                "shadow": 11
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "white",
-              "backgroundImage": "asphalt"
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "asphalt"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "arcade": {
+        },
+        "arcade": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "center",
-              "fontFamily": "FT88",
-              "textColor": "#f4d8fdFF",
-              "content": [
-                {
-                  "value": "",
-                  "md": ""
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "content": [{
+                    "value": "",
+                    "md": ""
+                }]
             },
             "highlight": {
-              "textGlow": 0,
-              "textGlowColor": "transparent",
-              "highlightColor": "transparent"
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 12,
-              "borderRadius": 0,
-              "borderStyle": "solid",
-              "borderColor": "#f4d8fdFF"
+                "borderSize": 12,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 0,
-              "shadowColor": "transparent"
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "#000000",
-              "backgroundImage": "none"
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "thrive": {
+        },
+        "thrive": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "CirrusCumulus",
-              "textColor": "#ffffff",
-              "content": [
-                {
-                  "value": "",
-                  "md": ""
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "CirrusCumulus",
+                "textColor": "#ffffff",
+                "content": [{
+                    "value": "",
+                    "md": ""
+                }]
             },
             "highlight": {
-              "textGlow": 3,
-              "textGlowColor": "#ffffff",
-              "highlightColor": "#000000"
+                "textGlow": 3,
+                "textGlowColor": "#ffffff",
+                "highlightColor": "#000000"
             },
             "border": {
-              "borderSize": 6,
-              "borderRadius": 3,
-              "borderStyle": "solid",
-              "borderColor": "#000000"
+                "borderSize": 6,
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderColor": "#000000"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 0,
-              "shadowColor": "transparent"
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "white",
-              "backgroundImage": "stars"
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "stars"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          }
+        }
     },
-    "code":  {
+    "code": {
         "default": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "Roboto",
-              "textColor": "#121212",
-              "blocks": [ 
-                { "id": 1,
-                "indent": 0,
-                "type": "print",
-                "content": ""  } ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Roboto",
+                "textColor": "#121212",
+                "blocks": [{
+                    "id": 1,
+                    "indent": 0,
+                    "type": "print",
+                    "content": ""
+                }]
             },
             "highlight": {
-              "textGlow": 0,
-              "textGlowColor": "transparent",
-              "highlightColor": "transparent"
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 0,
-              "borderRadius": 0,
-              "borderStyle": "solid",
-              "borderColor": "transparent"
+                "borderSize": 0,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "transparent"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 0,
-              "shadowColor": "transparent"
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "white",
-              "backgroundImage": "none"
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "none"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
         },
         "hunter": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "FT88 Gothique",
-              "textColor": "#f0df8e",
-              "blocks": [
-                {
-                  "id": 1,
-                  "indent": 0,
-                  "type": "print",
-                  "content": ""
-                  
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "FT88 Gothique",
+                "textColor": "#f0df8e",
+                "blocks": [{
+                    "id": 1,
+                    "indent": 0,
+                    "type": "print",
+                    "content": ""
+
+                }]
             },
             "highlight": {
-              "textGlow": 0,
-              "textGlowColor": "transparent",
-              "highlightColor": "transparent"
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 1,
-              "borderRadius": 6,
-              "borderStyle": "dashed",
-              "borderColor": "#f0df8e"
+                "borderSize": 1,
+                "borderRadius": 6,
+                "borderStyle": "dashed",
+                "borderColor": "#f0df8e"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 4,
-              "shadowColor": "#00000020",
-              "shadow": 8
+                "shadowSize": 0,
+                "shadowDisplacement": 4,
+                "shadowColor": "#00000020",
+                "shadow": 8
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "#000000aa",
-              "backgroundImage": "none"
+                "backgroundSize": 100,
+                "backgroundColor": "#000000aa",
+                "backgroundImage": "none"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "letter": {
+        },
+        "letter": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "Louise",
-              "textColor": "#fcf7f7FF",
-              "blocks": [
-                {
-                  "id": 1,
-                  "indent": 0,
-                  "type": "print",
-                  "content": ""
-                  
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Louise",
+                "textColor": "#fcf7f7FF",
+                "blocks": [{
+                    "id": 1,
+                    "indent": 0,
+                    "type": "print",
+                    "content": ""
+
+                }]
             },
             "highlight": {
-              "textGlow": 1,
-              "textGlowColor": "#000",
-              "highlightColor": "transparent"
+                "textGlow": 1,
+                "textGlowColor": "#000",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 0,
-              "borderRadius": 0,
-              "borderStyle": "solid",
-              "borderColor": "transparent"
+                "borderSize": 0,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "transparent"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 9,
-              "shadowColor": "#5c5ceb4A",
-              "shadow": 6
+                "shadowSize": 0,
+                "shadowDisplacement": 9,
+                "shadowColor": "#5c5ceb4A",
+                "shadow": 6
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "#fbeaeaFF",
-              "backgroundImage": "asphalt"
+                "backgroundSize": 100,
+                "backgroundColor": "#fbeaeaFF",
+                "backgroundImage": "asphalt"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "educate": {
+        },
+        "educate": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "FT88 School",
-              "textColor": "#ffffffef",
-              "blocks": [
-                {
-                  "id": 1,
-                  "indent": 0,
-                  "type": "print",
-                  "content": ""
-                  
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "FT88 School",
+                "textColor": "#ffffffef",
+                "blocks": [{
+                    "id": 1,
+                    "indent": 0,
+                    "type": "print",
+                    "content": ""
+
+                }]
             },
             "highlight": {
-              "textGlow": 0,
-              "textGlowColor": "transparent",
-              "highlightColor": "transparent"
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 9,
-              "borderRadius": 50,
-              "borderStyle": "solid",
-              "borderColor": "#fbe5e5FF"
+                "borderSize": 9,
+                "borderRadius": 50,
+                "borderStyle": "solid",
+                "borderColor": "#fbe5e5FF"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 3,
-              "shadowColor": "#d7888aFF",
-              "shadow": 15
+                "shadowSize": 0,
+                "shadowDisplacement": 3,
+                "shadowColor": "#d7888aFF",
+                "shadow": 15
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "#44734f",
-              "backgroundImage": "none"
+                "backgroundSize": 100,
+                "backgroundColor": "#44734f",
+                "backgroundImage": "none"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "hustle": {
+        },
+        "hustle": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "Abordage",
-              "textColor": "#ffbdf2",
-              "blocks": [
-                {
-                  "id": 1,
-                  "indent": 0,
-                  "type": "print",
-                  "content": ""
-                  
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Abordage",
+                "textColor": "#ffbdf2",
+                "blocks": [{
+                    "id": 1,
+                    "indent": 0,
+                    "type": "print",
+                    "content": ""
+
+                }]
             },
             "highlight": {
-              "textGlow": 3,
-              "textGlowColor": "#ff97dd",
-              "highlightColor": "transparent"
+                "textGlow": 3,
+                "textGlowColor": "#ff97dd",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 3,
-              "borderRadius": 13,
-              "borderStyle": "dashed",
-              "borderColor": "#ffbdf2"
+                "borderSize": 3,
+                "borderRadius": 13,
+                "borderStyle": "dashed",
+                "borderColor": "#ffbdf2"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 0,
-              "shadowColor": "#ffbdf2",
-              "shadow": 11
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "#ffbdf2",
+                "shadow": 11
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "white",
-              "backgroundImage": "asphalt"
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "asphalt"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "arcade": {
+        },
+        "arcade": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "center",
-              "fontFamily": "FT88",
-              "textColor": "#f4d8fdFF",
-              "blocks": [
-                {
-                  "id": 1,
-                  "indent": 0,
-                  "type": "print",
-                  "content": ""
-                  
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "blocks": [{
+                    "id": 1,
+                    "indent": 0,
+                    "type": "print",
+                    "content": ""
+
+                }]
             },
             "highlight": {
-              "textGlow": 0,
-              "textGlowColor": "transparent",
-              "highlightColor": "transparent"
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
             },
             "border": {
-              "borderSize": 12,
-              "borderRadius": 0,
-              "borderStyle": "solid",
-              "borderColor": "#f4d8fdFF"
+                "borderSize": 12,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 0,
-              "shadowColor": "transparent"
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "#000000",
-              "backgroundImage": "none"
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          },
-          "thrive": {
+        },
+        "thrive": {
             "text": {
-              "textSize": 100,
-              "textAlignment": "left",
-              "fontFamily": "CirrusCumulus",
-              "textColor": "#ffffff",
-              "blocks": [
-                {
-                  "id": 1,
-                  "indent": 0,
-                  "type": "print",
-                  "content": ""
-                  
-                }
-              ]
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "CirrusCumulus",
+                "textColor": "#ffffff",
+                "blocks": [{
+                    "id": 1,
+                    "indent": 0,
+                    "type": "print",
+                    "content": ""
+
+                }]
             },
             "highlight": {
-              "textGlow": 3,
-              "textGlowColor": "#ffffff",
-              "highlightColor": "#000000"
+                "textGlow": 3,
+                "textGlowColor": "#ffffff",
+                "highlightColor": "#000000"
             },
             "border": {
-              "borderSize": 6,
-              "borderRadius": 3,
-              "borderStyle": "solid",
-              "borderColor": "#000000"
+                "borderSize": 6,
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderColor": "#000000"
             },
             "shadow": {
-              "shadowSize": 0,
-              "shadowDisplacement": 0,
-              "shadowColor": "transparent"
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
             },
             "background": {
-              "backgroundSize": 100,
-              "backgroundColor": "white",
-              "backgroundImage": "stars"
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "stars"
             },
             "animation": {
-              "animationDuration": 5,
-              "animationType": "none"
+                "animationDuration": 5,
+                "animationType": "none"
             }
-          }
+        }
+    },
+    "shape": {
+        "default": {
+            "shape": {
+                "geometry": "circle"
+            },
+            "border": {
+                "borderColor": "#121212",
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderSize": 1
+            },
+            "shadow": {
+                "shadowDisplacement": 2,
+                "shadowSize": 2,
+                "shadowColor": "#343434"
+            },
+            "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+            },
+            "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+            }
+        }
     }
-    
+
 }

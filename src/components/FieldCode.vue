@@ -122,7 +122,7 @@
     computed: {
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 10000;
-        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
+        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/backgrounds/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
         return {
           '--field-background-image': backgroundImage,
           '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
@@ -165,10 +165,8 @@
   .code {
     z-index: var(--field-stack-order);
     position: absolute;
-    height: auto;
-    min-width: 100px;
+    min-width: 330px;
     user-select: none;
-    width: auto;
     max-width: 100%;
   }
 
@@ -187,12 +185,15 @@
     background-color: var(--field-bg-color);
   }
 
-  .code main {
+  .code main{
     width: auto;
     display: flex;
     flex-flow: row wrap;
     padding: 10px;
+    overflow-y: auto;
+    scrollbar-width: thin;
     animation: var(--field-animation-type) var(--field-animation-duration) infinite;
+    background-image: var(--field-background-image);
     background-color: var(--field-background-color);
     border-color: var(--field-border-color);
     border-width: var(--field-border-size);
@@ -205,8 +206,8 @@
   .code .code-block {
     display: flex;
     flex-flow: row wrap;
-    width: 100%;
-    justify-content: center;
+    width: 90%;
+    justify-content: flex-start;
     align-items: center;
     padding: 0 3px;
     transition: .1s;
@@ -231,12 +232,12 @@
 
   .code .code-block .code-block-id {
     display: inline-block;
-    flex: 0 1 5%;
+    flex: 0 0 1em;
   }
 
   .code .code-block .code-block-indent {
     display: inline-block;
-    flex: 0 1 1em;
+    flex: 0 0 1em;
     border-left: 1px solid var(--field-text-color);
     height: 1em;;
   }
@@ -249,6 +250,7 @@
     width: 100px;
     padding: 2px;
     border-radius: 5px;
+    color: var(--primary-color);
     background: var(--secondary-color);
     gap: 2px;
   }

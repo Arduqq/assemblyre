@@ -80,7 +80,20 @@
 
       <div class="tool" v-show="this.activeTool==='shape'">
         <h2>Shape Presets</h2> <tooltip keyphrase="shape-help"/>
-        <div class="starter shape" ref="shapeStarter"></div>
+        <div class="starter shape" @click="addShape(0, 0, styling[0])" v-for="(styling, i) in Object.entries(styles.shape)" :key="i">
+          <field-shape
+            :id= "'starter-shape-' + styling[0]"
+            :name= "'starter-shape-' + styling[0]"
+            :x= 0  
+            :y= 0 
+            :alive = true
+            :modifier= 1
+            :styling= styling[0]
+            :lockedResolution= false
+            :stackOrder = 1
+            :active = false
+            :edit = false />
+        </div>
       </div>
 
       <div class="tool layerbox" v-show="this.activeTool==='layers'">
@@ -97,16 +110,16 @@
       </div>
       
       <div class="tool mediabox" v-show="this.activeTool==='media'">
+        <h2>Gallery</h2> 
+       <tooltip keyphrase="image-help"/>
+       <input type="text" v-model="newImageURL"/>
+      <button @click="addImage">Add Image</button>
         <div class="imagebox"> 
           <div class="image" v-for="(image, i) in importedImages" :key="image.id" :id="image.id" >
             <button @click="importedImages.splice(i, 1);">delete</button>
             <input type="button" :style="'background-image: url(' + image.url + ')'" @click="addPlug(0, 0, image.url)"/>
           </div>
-          </div>
-        <h2>Gallery</h2> 
-       <tooltip keyphrase="image-help"/>
-        <button @click="addImage">Add Image</button>
-       <input type="text" v-model="newImageURL"/>
+        </div>
        
       </div>
 
@@ -114,19 +127,17 @@
         <h2>Backgrounds</h2> <tooltip keyphrase="background-help"/>
           
           <div class="backgrounds">
-            <input type="color" name="patterns" id="background-color" v-model="score.backgroundColor"/>
-            <input type="radio" name="patterns" value="none" id="background-none" v-model="score.backgroundPattern"/>
-            <label for="background-none" :style="'background-image: none'"></label>
-            <input type="radio" name="patterns" value="pattern-1" id="background-1" v-model="score.backgroundPattern"/>
-            <label for="background-1" :style="'background-image: url(@/../assets/pattern-1.jpg)'"></label>
-            <input type="radio" name="patterns" value="pattern-2" id="background-2" v-model="score.backgroundPattern"/>
-            <label for="background-2" :style="'background-image: url(@/../assets/pattern-2.jpg)'"></label>
-            <input type="radio" name="patterns" value="pattern-3" id="background-3" v-model="score.backgroundPattern"/>
-            <label for="background-3" :style="'background-image: url(@/../assets/pattern-3.jpg)'"></label>
-            <input type="radio" name="patterns" value="pattern-4" id="background-4" v-model="score.backgroundPattern"/>
-            <label for="background-4" :style="'background-image: url(@/../assets/pattern-4.jpg)'"></label>
-            <input type="radio" name="patterns" value="pattern-5" id="background-5" v-model="score.backgroundPattern"/>
-            <label for="background-5" :style="'background-image: url(@/../assets/pattern-5.jpg)'"></label>
+            <div class="canvas-background">
+              <input type="color" name="patterns" id="background-color" v-model="score.backgroundColor"/>
+            </div>
+            <div class="canvas-background">
+              <input type="radio" name="patterns" value="none" id="canvas-background-none" v-model="score.backgroundPattern"/>
+              <label for="canvas-background-none" :style="'background-image: none'"></label>
+            </div>
+            <div v-for="(bg,i) in this.backgroundImages" :key="i" class="canvas-background">
+              <input type="radio" name="patterns" :value="bg" :id="'canvas-background-'+bg" v-model="score.backgroundPattern"/>
+              <label :for="'canvas-background-'+bg" :style="'background-image: url(@/../assets/backgrounds/'+ bg + '.jpg)'"></label>
+            </div>
           </div>
           <tooltip keyphrase="warning" icon="⚠️"/>
           <label>Allow background scrolling
@@ -313,7 +324,8 @@
           "growth": "🌱",
           "garden": "🌿"
         },
-        styles: styles
+        styles: styles,
+        backgroundImages: [ "ASPHALT", "BRICKS-1", "BRICKS-2", "BRICKS-3", "BRICKS-4", "BUILDING-1", "BUILDING-2", "BUILDING-3", "BUILDING-4", "BUILDING-5", "BUILDING-6", "BUILDING-7", "BUILDING-8", "BUILDING-9", "CIRCUIT", "CLOVER", "DOOR-1", "DOOR-2", "DOTS-1", "DOTS-2", "FLAME-1", "FLAME-2", "FLOWERS-1", "FLOWERS-2", "GIRAFFE", "LEATHER", "MACHINE", "PASTA", "PATTERN-1", "PATTERN-10", "PATTERN-11", "PATTERN-12", "PATTERN-13", "PATTERN-14", "PATTERN-15", "PATTERN-16", "PATTERN-17", "PATTERN-18", "PATTERN-19", "PATTERN-2", "PATTERN-20", "PATTERN-21", "PATTERN-22", "PATTERN-23", "PATTERN-24", "PATTERN-25", "PATTERN-26", "PATTERN-27", "PATTERN-28", "PATTERN-29", "PATTERN-3", "PATTERN-30", "PATTERN-31", "PATTERN-32", "PATTERN-33", "PATTERN-34", "PATTERN-35", "PATTERN-36", "PATTERN-37", "PATTERN-4", "PATTERN-5", "PATTERN-6", "PATTERN-7", "PATTERN-8", "PATTERN-9", "PLANTS", "PLATE", "ROCK-1", "ROCK-2", "ROCK-3", "ROCK-4", "SHELL", "SIBERIAN", "SPONGE", "STARS", "TIGER", "WATER", "WINDOWS-1", "WINDOWS-2", "WOOL-1", "WOOL-2"]
       };
     },
     props: {
@@ -435,7 +447,7 @@
         return programByStackOrder.sort((a, b) => a.stackOrder < b.stackOrder );
       },
       canvasStyle() {
-        var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(@/../assets/' + this.score.backgroundPattern + '.jpg)' : "white"
+        var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(@/../assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"
         return {
           "--canvas-scale": 'scale(' + this.canvasScale + ')',
           "--canvas-width": this.score.canvasSize.width + "px",
@@ -562,7 +574,6 @@
 
 
   .sandbox {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     display: flex;
     justify-content: flex-start;
@@ -605,7 +616,7 @@
 
   
   .tool  .starter {
-    flex: 0 0 100px;
+    flex: 0 0 80px;
     justify-self: center;
     width: 100%;
   }
@@ -617,15 +628,22 @@
     padding: 5px;
     width: 200px;
     height: 60px;
+
   }
 
   .editor .tool .field {
     position: static;
     width: 250px;
+    min-width: 0;
     height: 75px;
     align-items: center;
-justify-content: center;
-display: flex;
+    justify-content: center;
+    display: flex;
+    border: none!important;
+  }
+
+  .editor .tool .field:hover {
+    transform: scale(1.1)!important;
   }
 
   #exported-image {
@@ -640,12 +658,12 @@ display: flex;
   .tool.mediabox {
     flex: 0 0 275px;
     display: flex;
-    flex-flow: column-reverse  wrap-reverse;
+    flex-flow: column nowrap;
     background: var(--gui-color);
     color: white;
     height: 100%;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     border: 1px solid rgb(191, 146, 195);
   }
 
@@ -663,11 +681,11 @@ display: flex;
     height: 75px;
   }
 
-  .tool.backgroundbox:hover .backgrounds label {
+  .tool.backgroundbox:hover .backgrounds .canvas-background label {
     filter: saturate(.5);
   }
 
-  .tool.backgroundbox .backgrounds label {
+  .tool.backgroundbox .backgrounds .canvas-background {
     width: 75px; 
     height: 75px;
     transition: .1s;
@@ -676,11 +694,22 @@ display: flex;
     border: 1px solid var(--secondary-alt-color);
   }
 
-  .tool.backgroundbox .backgrounds label:hover {
+
+  .tool.backgroundbox .backgrounds .canvas-background label {
+    transition: .1s;
+    background-size: 200% 200%;
+    background-position: 0px 0px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 1px solid var(--secondary-alt-color);
+  }
+  .tool.backgroundbox .backgrounds .canvas-background:hover label {
     animation: background-scroll linear infinite 10s;
+    filter: saturate(1);
   }
 
-  .tool.backgroundbox .backgrounds label:hover, .tool.backgroundbox .backgrounds input:checked + label {
+  .tool.backgroundbox .backgrounds .canvas-background:hover label, .tool.backgroundbox .backgrounds input:checked + label {
     filter: saturate(1);
     border-color: var(--secondary-color);
   }

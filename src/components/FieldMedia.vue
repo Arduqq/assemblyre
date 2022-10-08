@@ -59,7 +59,7 @@
     computed: {
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
-        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
+        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/backgrounds/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
         return {
           '--field-image-rendering': this.fieldStyleProperties.image.imageRendering,
           '--field-border-color': this.fieldStyleProperties.border.borderColor,

@@ -18,7 +18,6 @@ export default {
 }
 </script>
 <style scoped>
-
 .field-config-radio .options {
     flex-flow: row nowrap;
     gap: 5px;

@@ -2,11 +2,13 @@
   <div class="field-config-color field-config-input">
       <img :src="'/assets/icons/' + property + '.png'" /><h3><b>{{property}}:</b> <div class="color-preview" :style="'background-color:' + currentValue"></div></h3>
       <div class="swatch-generator">
-        <input type="button" @click="generateColors(359, 'rgb')" value="RGB"/>
-        <input type="button" @click="generateColors(0)" value="R"/>
-        <input type="button" @click="generateColors(120)" value="G"/>
-        <input type="button" @click="generateColors(240)" value="B"/>
-              <h4>Opacity</h4>
+        <div class="swatch-generator-control">
+          <input type="button" @click="generateColors(359, 'rgb')" value="RGB"/>
+          <input type="button" @click="generateColors(0)" value="R"/>
+          <input type="button" @click="generateColors(120)" value="G"/>
+          <input type="button" @click="generateColors(240)" value="B"/>
+        </div>
+        <h4>Opacity</h4>
         <input type="range" min="0" max="100" v-model.number="opacity" @change="updateValue()"/>
         <input type="text" v-model="currentValue" @change="updateValue()"/>
       </div>
@@ -84,7 +86,17 @@
     gap: 5px;
   }
 
-  .swatch-generator > input[type="button"] {
+  .swatch-generator > * {
+    flex: 0 0 100%;
+  }
+
+  .swatch-generator .swatch-generator-control {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .swatch-generator .swatch-generator-control input[type="button"] {
     all: unset;
     flex: 0 0 50px;
     text-align: center;
@@ -95,19 +107,22 @@
     transition: .1s;
   }
 
-  .swatch-generator > input[type="button"]:hover {
+  .swatch-generator .swatch-generator-control input[type="button"]:hover {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     transform: translate(3px, 3px);
     box-shadow: -1.5px -1.5px 0px 1.5px var(--primary-alt-color);
   }
 
-  .swatch-generator > input[type="button"]:active {
+  .swatch-generator .swatch-generator-control input[type="button"]:active {
     transform: translate(0px, 0px);
     background-color: var(--interact-color);
     box-shadow: none;
   }
 
+  .swatch-generator h4 {
+    margin-bottom: 0;
+  }
   input[type="range"] {
     
     background-color: var(--primary-alt-color);

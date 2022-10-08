@@ -11,39 +11,14 @@
 <script>
   import FieldBase from "./FieldBase.vue";
   import FieldShapeConfig from "./FieldShapeConfig.vue";
+  import styles from '../json/styles.json'
 
   export default {
   name: "FieldShape",
   extends: FieldBase,
     data() {
       return {
-        styleMap: {
-            "default": {
-            shape: {
-              geometry: 'circle',
-            },
-            border: {
-              borderColor: "#121212",
-              borderRadius: 0,
-              borderStyle: "solid",
-              borderSize: 1
-            },
-            shadow: {
-              shadowDisplacement: 2,
-              shadowSize: 2,
-              shadowColor: "#343434"
-            },
-            background: {
-              backgroundColor: "black",
-              backgroundImage: "none",
-              backgroundSize: 100,
-            },
-              animation: {
-                animationDuration: 5,
-                animationType: "none"
-              }
-          }
-        }
+        styleMap: styles.shape
       }
     },
     methods: {
@@ -55,7 +30,7 @@
     computed: {
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
-        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
+        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/backgrounds/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
         return {
           '--field-border-color': this.fieldStyleProperties.border.borderColor,
           '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "%",

@@ -17,7 +17,6 @@ export default {
     },
     methods: {
         updateValue() {
-            console.log('Set ' + this.property + ' to ' + this.currentValue + ' ' + this.group);
             this.$emit("change", {property: this.property, val: this.currentValue})
         }
     }
@@ -29,7 +28,7 @@ export default {
         display: flex;
         padding: 10px;
         flex-flow: row wrap;
-        width: 300px;
+        width: 100%;
         align-items: center;
         justify-content: flex-start;
         gap: 5px;

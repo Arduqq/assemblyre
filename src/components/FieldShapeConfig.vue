@@ -39,7 +39,7 @@
                 title="image"
                 :group="id + 'background'"
                 property="backgroundImage"
-                :options="['asphalt', 'bricks-1', 'bricks-2', 'building-1', 'building-2', 'circuit', 'dots-1', 'dots-2', 'flame-1', 'flame-2', 'leather', 'machine', 'rock-1', 'rock-2', 'shell', 'sponge', 'stars']"
+                :options="this.backgroundImages"
                 :val="currentProperties.background.backgroundImage"
                 v-model="currentProperties.background.backgroundImage"
                 :alive="active === 'backgroundImage'"
