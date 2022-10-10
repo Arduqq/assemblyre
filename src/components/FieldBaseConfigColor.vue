@@ -1,8 +1,13 @@
 <template>
   <div class="field-config-color field-config-input">
-      <img :src="'/assets/icons/' + property + '.png'" /><h3><b>{{property}}:</b> <div class="color-preview" :style="'background-color:' + currentValue"></div></h3>
+      <img :src="'/assets/icons/' + property + '.png'" />
+      <h3>
+        <b>{{property}}:</b> 
+        <div class="color-preview" :style="'background-color:' + currentValue"></div>
+      </h3>
       <div class="swatch-generator">
         <div class="swatch-generator-control">
+          <input type="button" @click="lightnessMode = lightnessMode === 'dark' ? 'light' : 'dark'" :value="lightnessMode"/>
           <input type="button" @click="generateColors(359, 'rgb')" value="RGB"/>
           <input type="button" @click="generateColors(0)" value="R"/>
           <input type="button" @click="generateColors(120)" value="G"/>
@@ -39,7 +44,7 @@
       }
     },
     mounted: function() {
-      this.generateColors(359);
+      this.generateColors(359, 'rgb');
     },
     methods: {
       generateColors(hue, mode) {
@@ -98,7 +103,7 @@
   }
   .swatch-generator .swatch-generator-control input[type="button"] {
     all: unset;
-    flex: 0 0 50px;
+    flex: 0 1 40px;
     text-align: center;
     padding: 2.5px;
     border-radius: 5px;
@@ -121,16 +126,20 @@
   }
 
   .swatch-generator h4 {
-    margin-bottom: 0;
+    margin: 0;
+    flex: 0 0 20%;
+    width: 20%;
+    text-align: right;
   }
   input[type="range"] {
-    
     background-color: var(--primary-alt-color);
     height: 30px;
     color: var(--secondary-color);
     border-radius: 5px;
     padding: 5px;
     border: 1px solid var(--secondary-color);
+    flex: 0 0 75%;
+    width: 75%;
   }
 
     .field-config-color .swatches {
@@ -170,8 +179,9 @@
     .color-preview {
       width: 50px;
       display: inline-block;
-      height: 10px;
+      height: 1em;
       border-radius: 25px;
+      margin: 2px 0 0 5px;
     }
 
     

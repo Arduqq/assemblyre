@@ -78,7 +78,7 @@
         </div>
       </div>
 
-      <div class="tool" v-show="this.activeTool==='shape'">
+      <div class="tool shapebox" v-show="this.activeTool==='shape'">
         <h2>Shape Presets</h2> <tooltip keyphrase="shape-help"/>
         <div class="starter shape" @click="addShape(0, 0, styling[0])" v-for="(styling, i) in Object.entries(styles.shape)" :key="i">
           <field-shape
@@ -608,9 +608,12 @@
     flex-flow: column nowrap;
     align-items: center;
     overflow-y: auto;
+    overflow-x: hidden;
     justify-content: flex-start;
     background: var(--gui-color);
     color: white;
+    scrollbar-width: thin;
+    padding-bottom: 20px;
     border: 1px solid rgb(191, 146, 195);
   }
 
@@ -653,6 +656,10 @@
     right: 0;
     margin: 0 auto;
     height: 100px;
+  }
+
+  .tool.shapebox > .shape{
+    width: 40%;
   }
 
   .tool.mediabox {

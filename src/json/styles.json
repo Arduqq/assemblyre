@@ -547,20 +547,79 @@
         }
     },
     "shape": {
-        "default": {
+        "triangle": {
             "shape": {
-                "geometry": "circle"
+                "shapeGeometry": "triangle"
             },
-            "border": {
-                "borderColor": "#121212",
-                "borderRadius": 0,
-                "borderStyle": "solid",
-                "borderSize": 1
+            "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
             },
-            "shadow": {
-                "shadowDisplacement": 2,
-                "shadowSize": 2,
-                "shadowColor": "#343434"
+            "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+            }
+        },
+        "square": {
+            "shape": {
+                "shapeGeometry": "square"
+            },
+            "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+            },
+            "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+            }
+        },
+        "ellipse": {
+            "shape": {
+                "shapeGeometry": "ellipse"
+            },
+            "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+            },
+            "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+            }
+        },
+        "speechbubble": {
+            "shape": {
+                "shapeGeometry": "speechbubble"
+            },
+            "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+            },
+            "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+            }
+        },
+        "rhombus": {
+            "shape": {
+                "shapeGeometry": "rhombus"
+            },
+            "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+            },
+            "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+            }
+        },
+        "star": {
+            "shape": {
+                "shapeGeometry": "star"
             },
             "background": {
                 "backgroundColor": "black",

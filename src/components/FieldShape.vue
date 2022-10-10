@@ -18,7 +18,15 @@
   extends: FieldBase,
     data() {
       return {
-        styleMap: styles.shape
+        styleMap: styles.shape,
+        geometryMap: {
+          "triangle" : "polygon(50% 0%, 0% 100%, 100% 100%)",
+          "square" : "none",
+          "ellipse": "ellipse(50% 50% at 50% 50%)",
+          "speechbubble": "polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%)",
+          "rhombus": "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+          "star": "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)"
+        }
       }
     },
     methods: {
@@ -30,20 +38,15 @@
     computed: {
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
+        var geometry = this.geometryMap[this.fieldStyleProperties.shape.shapeGeometry];
         var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/backgrounds/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
         return {
-          '--field-border-color': this.fieldStyleProperties.border.borderColor,
-          '--field-border-radius': this.fieldStyleProperties.border.borderRadius + "%",
-          '--field-border-size': this.fieldStyleProperties.border.borderSize + "px",
-          '--field-border-style': this.fieldStyleProperties.border.borderStyle,
-          '--field-shadow-displacement': this.fieldStyleProperties.shadow.shadowDisplacement + "px",
-          '--field-shadow-size': this.fieldStyleProperties.shadow.shadowSize + "px",
-          '--field-shadow-color': this.fieldStyleProperties.shadow.shadowColor,
           '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
           '--field-background-image': backgroundImage,
           '--field-background-size': this.fieldStyleProperties.background.backgroundSize + '%',
           '--field-animation-type': this.fieldStyleProperties.animation.animationType,
           '--field-animation-duration': this.fieldStyleProperties.animation.animationDuration + 's',
+          '--field-geometry' : geometry,
           '--field-stack-order': stacking,
           '--field-animation-entry' : stacking-1 + 's',
           '--field-x': this.x+'px',
@@ -107,15 +110,11 @@
     background-color: var(--field-background-color);
     background-image: var(--field-background-image);
     background-size: var(--field-background-size);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    border-width: var(--field-border-size);
-    border-style: var(--field-border-style);
-    border-color: var(--field-border-color);
-    border-radius: var(--field-border-radius);
-    box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);
+    clip-path: var(--field-geometry);
     position: relative;
     z-index: 1!important;
   }
+
 
   
 </style>

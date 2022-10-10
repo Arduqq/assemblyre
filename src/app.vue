@@ -203,10 +203,6 @@ header a img {
   display: block;
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Karrik', Arial, sans-serif;
-}
-
 .content > h1, .content  > h2, .content  > h3 {
   text-align: center;
 }

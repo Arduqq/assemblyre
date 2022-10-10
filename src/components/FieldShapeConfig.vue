@@ -12,7 +12,7 @@
                 title="geometry"
                 :group="id + 'shape'"
                 property="shapeGeometry"
-                :options="['circle', 'square', 'triangle']"
+                :options="['ellipse', 'square', 'triangle', 'speechbubble', 'rhombus', 'star']"
                 :val="currentProperties.shape.shapeGeometry"
                 v-model="currentProperties.shape.shapeGeometry"
                 :alive="active == 'shapeGeometry'"
@@ -59,95 +59,7 @@
                 @change="updateStyle"/>
 
         </div>
-        
-        <div class="edit-panel" v-show="inEditProperty === 'border'">
-            
-            <field-base-config-color 
-                binding="r"
-                title="color"
-                property="borderColor"
-                :group="id + 'border'"
-                :options="['transparent, #ffffff', '#000000', '#ff675c', '#6f27db', '#d627c5', '#3bf7f1', '#a5ff91']"
-                :val="currentProperties.border.borderColor"
-                v-model="currentProperties.border.borderColor"
-                :alive="active === 'borderColor'"
-                @click.native="active = 'borderColor'"
-                @change="updateStyle"
-            />
-            <field-base-config-slider 
-                binding="q" 
-                title="radius"
-                :group="id + 'border'"
-                property="borderRadius" 
-                :min=0 :max=50 :step=1 
-                :val="currentProperties.border.borderRadius "
-                v-model.number="currentProperties.border.borderRadius" 
-                :alive="active == 'borderRadius'"
-                @click.native="active = 'borderRadius'"
-                @change="updateStyle"/>
-            <field-base-config-slider 
-                binding="w" 
-                title="size" 
-                :group="id + 'border'"
-                property="borderSize" 
-                :min=0 :max=50 :step=1 
-                :val="currentProperties.border.borderSize" 
-                v-model.number="currentProperties.border.borderSize" 
-                :alive="active == 'borderSize'"
-                @click.native="active = 'borderSize'"
-                @change="updateStyle"/>
-            <field-base-config-radio 
-                binding="r"
-                title="style"
-                property="borderStyle"
-                :group="id + 'border'"
-                :options="['none', 'solid', 'dashed', 'dotted']"
-                :val="currentProperties.border.borderStyle"
-                v-model="currentProperties.border.borderStyle"
-                :alive="active == 'borderStyle'"
-                @click.native="active = 'borderStyle'"
-                @change="updateStyle"
-            />
-        </div>
-
-        
-        <div class="edit-panel" v-show="inEditProperty === 'shadow'">
-            <field-base-config-slider 
-                binding="w" 
-                title="size" 
-                :group= "id + 'shadowSize'"
-                property="shadowSize" 
-                :min=0 :max=50 :step=1 
-                :val="currentProperties.shadow.shadowSize" 
-                v-model.number="currentProperties.shadow.shadowSize" 
-                :alive="active == 'shadowSize'"
-                @click.native="active = 'shadowSize'"
-                @change="updateStyle"/>
-            <field-base-config-color 
-                binding="r"
-                title="color"
-                property="shadowColor"
-                :group="id + 'shadow'"
-                :options="['transparent', '#ffffff', '#000000', '#ff675c', '#6f27db', '#d627c5', '#3bf7f1', '#a5ff91']"
-                :val="currentProperties.shadow.shadowColor"
-                v-model="currentProperties.shadow.shadowColor"
-                :alive="active === 'shadowColor'"
-                @click.native="active = 'shadowColor'"
-                @change="updateStyle"
-            />
-            <field-base-config-slider 
-                binding="q" 
-                title="displacement"
-                :group="id + 'shadow'"
-                property="shadowDisplacement" 
-                :min=0 :max=50 :step=1 
-                :val="currentProperties.shadow.shadowDisplacement "
-                v-model.number="currentProperties.shadow.shadowDisplacement" 
-                :alive="active == 'shadowDisplacement'"
-                @click.native="active = 'shadowDisplacement'"
-                @change="updateStyle"/>
-        </div>
-
+         
         <div class="edit-panel" v-show="inEditProperty === 'animation'">
             <field-base-config-radio-animations
                 binding="r"

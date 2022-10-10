@@ -30,7 +30,7 @@ import DOMPurify from 'dompurify';
              **ASSIGN** lines could be assignments and definitions of variables. (e.g. `turnips = 10`, `variable guilt`, `fun <- #people / experiences.with(people[cool])`)\
              **UNASSIGN** lines could be the reverse process of assignment and up to your imagination! Why would one *unassign* a variable? How would you detach something from its definition?\
              **GENERATE** lines could be processes where you create data from an imagined source, like a random generator, a database, or something picking up information from the real world. (e.g. `current_day = pick2({dance, eat, cook, sing})`, `generatePopulation(stigma, paradigm)`, `learn?`)",
-          "shape-help": "Shape fields are simple geometrical forms.",
+          "shape-help": "Shape fields are simple geometrical forms. Shapes currently do not support borders or shadows.",
           "image-help": "You can use your own images by uploading them to an image host of your trust, and importing them through their URL. Click on your images in your gallery to put them on the canvas.",
           "background-help": "Like with images, you can import your own backgrounds and use them on your canvas. Backgrounds can be animated which will result in them panning under the canvas.",
           "canvas-help": "You can customize the dimensions of your canvas to fit your code. You placed items will not be adjusted, so beware of possible changes!",
