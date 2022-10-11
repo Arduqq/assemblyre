@@ -16,6 +16,9 @@
         @keydown.tab.prevent="block.indent++"
         v-model="block.content"/>
         <div class="code-type-config" v-show="edit">
+          <input :id="'code-block-' + id + '-' + block.id + '-none'" :name="'code-block-' + id + '-' + block.id" value="none"  type="radio" v-model="block.type"/>
+          <label :for="'code-block-' + id + '-' + block.id + '-none'" >none</label>
+
           <input :id="'code-block-' + id + '-' + block.id + '-print'" :name="'code-block-' + id + '-' + block.id" value="print"  type="radio" v-model="block.type"/>
           <label :for="'code-block-' + id + '-' + block.id + '-print'" >print</label>
           
@@ -216,7 +219,7 @@
   }
   .code .code-block input[type="text"] {
     display: block;
-    flex: 1 1 auto;
+    flex: 1 0 auto;
     box-sizing: border-box;
     background-color: var(--field-highlight-color);
     text-shadow: 0 0  var(--field-highlight-text-glow) var(--field-highlight-text-glow-color);
@@ -293,7 +296,44 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    overflow-y: hidden;
     border-right: 10px solid var(--interact-color);
     animation: interact-wiggle-h 1s infinite;
+  }
+
+  .code:not(.edit) .code-block.print input {
+    animation: print 5s var(--field-animation-entry) steps(40, end) infinite;
+  }
+
+  .code:not(.edit) .code-block.assign input {
+    animation: assign 5s var(--field-animation-entry) linear infinite;
+  }
+
+  .code:not(.edit) .code-block.unassign input {
+    animation: unassign 5s var(--field-animation-entry) linear infinite;
+  }
+
+  .code:not(.edit) .code-block.generate input {
+    animation: generate 5s var(--field-animation-entry)  steps(5, end) infinite;
+  }
+
+  @keyframes print {
+    0% {width: 0px; flex-grow: 0}
+    100% {width: 70%; flex-grow: 1}
+  }
+
+  @keyframes assign {
+    0% {opacity: .2; padding-left: 10px;}
+    100% {opacity: 1; padding-left: 0px;}
+  }
+
+  @keyframes unassign {
+    0% {opacity: 1; padding-left: 0px;}
+    100% {opacity: .2; padding-left: 10px;}
+  }
+
+  @keyframes generate {
+    0% {width: 0px; flex-grow: 0; opacity: .2; padding-left: 50px;}
+    100% {width: 70%; flex-grow: 1; opacity: 1; padding-left: 0px;}
   }
 </style>

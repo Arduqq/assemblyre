@@ -98,6 +98,8 @@
       this.fieldStyleProperties = this.importData !== null ? this.importData : structuredClone(this.styleMap[this.styling]);
       this.screenWidth = this.w;
       this.screenHeight = this.h;
+      this.screenX = this.x;
+      this.screenY = this.y;
       this.emitChange();
     },
     mounted: function() {

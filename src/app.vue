@@ -23,14 +23,6 @@ export default {
 </script>
 
 <style>
-
-@font-face {
-  font-family: 'Steps Mono';
-  font-display: auto;
-  unicode-range: U+000-5FF;
-  src: local('Steps Mono'),   url("/public/fonts/Steps-Mono.otf") format('otf');
-}
-
 @font-face {
   font-family: 'Karrik';
   font-display: auto;
@@ -217,7 +209,7 @@ h1 span {
 }
 
 
-a.route, button {
+a.route, button, input.route {
   font-family: var(--display-font);
   text-decoration: none;
   background: var(--primary-alt-color);

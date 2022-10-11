@@ -10,6 +10,7 @@
     <div class="editor-control active" >
       <a class="logo" title="Back to Start" href="/"></a>
       <router-link :title="'Back to ' + this.user.toUpperCase() + ' Hub'" class="hub-link route" :to="{ name: 'hub', params: { userCode: this.user }}" >{{participants[user]}}</router-link>
+      <button @click="reset">reset_</button>
       <input type="file" id="import-file" value="Import" @change="handleFile"/>
       <label>Title
         <input type="text" v-model="score.opus"/>
@@ -303,7 +304,7 @@
           backgroundPattern: "none",
           backgroundColor: "white",
           program: [],
-          canvasSize: { width: 0, height: 0 },
+          canvasSize: { width: 800, height: 600 },
         },
         importedImages: [],
         newImageURL : "https://imgur.com/ftHNkoG.png",
@@ -368,7 +369,7 @@
         var vm = this;
         this.score = {};
         reader.onload = (e) => {
-          let json = JSON.parse(e.target.result);
+          var json = JSON.parse(e.target.result);
           vm.score = json;
         };
         reader.readAsText(file);
@@ -415,6 +416,17 @@
         save: async function() {
         this.exportURL = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.score,undefined,2));
           
+        },
+
+        reset: function() {
+          this.score = {
+            opus: "Pseudo Program",
+            version: "0.1",
+            backgroundPattern: "none",
+            backgroundColor: "white",
+            program: [],
+            canvasSize: { width: 800, height: 600 },
+          }
         },
         controlSelection: function (control) {
             this.canSelect = !control;
