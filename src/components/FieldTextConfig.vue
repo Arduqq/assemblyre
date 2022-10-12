@@ -1,5 +1,5 @@
 <template>
-    <div class="field-config text-field-config" v-click-outside="resetActiveProperty"  :class=" inEditProperty !== null ? 'activated' : ''"> 
+    <div class="field-config text-field-config" v-click-outside="resetActiveProperty" :class=" inEditProperty !== null ? 'activated' : ''" :style="dynamicPosition"> 
         <div class="property-config"  v-for="(_, name) in properties" :key="name">
             <input :id="id + '-' + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
             <label :for="id + '-' + name"><img :src="'/assets/icons/' + name + '.png'" /><span>{{name}}</span></label>

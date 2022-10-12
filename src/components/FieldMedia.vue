@@ -1,6 +1,6 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="media field" :id="id" :class="{'active' : active, 'edit' : edit}"  :style="fieldStyle" v-click-outside="closeConfig">
-  <field-media-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+  <field-media-config :fid="id" :onTop="screenY + screenHeight/2 > windowHeight / 2" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
   <img :src="mediaURL" />
   
 </div>

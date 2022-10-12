@@ -1,7 +1,7 @@
 <template>
 <div v-if="alive" ref="draggableWrapper" class="text field" :class="{'active' : active, 'edit' : edit}" :id="id"  v-click-outside="closeConfig" :style="fieldStyle">
   <main>
-    <field-text-config :fid="id" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+    <field-text-config :fid="id" :onTop="screenY + screenHeight/2 > windowHeight / 2" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
     <div v-if="!inEdit" class="rendered-view" >
       <p  v-for="(value, index) in fieldStyleProperties.text.content"
           :key="index"

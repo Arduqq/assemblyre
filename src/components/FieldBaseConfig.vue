@@ -15,6 +15,11 @@
             fid: {
               type: String,
               required: true,
+            },
+            onTop: {
+              type: Boolean,
+              required: false,
+              default: true
             }
         },
         methods: {
@@ -53,6 +58,22 @@
             backgroundImages: [ "ASPHALT", "BRICKS-1", "BRICKS-2", "BRICKS-3", "BRICKS-4", "BUILDING-1", "BUILDING-2", "BUILDING-3", "BUILDING-4", "BUILDING-5", "BUILDING-6", "BUILDING-7", "BUILDING-8", "BUILDING-9", "CIRCUIT", "CLOVER", "DOOR-1", "DOOR-2", "DOTS-1", "DOTS-2", "FLAME-1", "FLAME-2", "FLOWERS-1", "FLOWERS-2", "GIRAFFE", "LEATHER", "MACHINE", "PASTA", "PATTERN-1", "PATTERN-10", "PATTERN-11", "PATTERN-12", "PATTERN-13", "PATTERN-14", "PATTERN-15", "PATTERN-16", "PATTERN-17", "PATTERN-18", "PATTERN-19", "PATTERN-2", "PATTERN-20", "PATTERN-21", "PATTERN-22", "PATTERN-23", "PATTERN-24", "PATTERN-25", "PATTERN-26", "PATTERN-27", "PATTERN-28", "PATTERN-29", "PATTERN-3", "PATTERN-30", "PATTERN-31", "PATTERN-32", "PATTERN-33", "PATTERN-34", "PATTERN-35", "PATTERN-36", "PATTERN-37", "PATTERN-4", "PATTERN-5", "PATTERN-6", "PATTERN-7", "PATTERN-8", "PATTERN-9", "PLANTS", "PLATE", "ROCK-1", "ROCK-2", "ROCK-3", "ROCK-4", "SHELL", "SIBERIAN", "SPONGE", "STARS", "TIGER", "WATER", "WINDOWS-1", "WINDOWS-2", "WOOL-1", "WOOL-2"]
           }
         },
+        computed: {
+          dynamicPosition() {
+            var position = {
+              top: this.onTop ? '-70px' : '100%',
+            };
+            var flex = {
+              wrap: this.onTop ? 'wrap' : 'wrap-reverse',
+            };
+            var style = {
+              '--top-distance': position.top,
+              '--bottom-distance': position.bottom,
+              '--flex-wrap': flex.wrap
+            };
+            return style;
+          }
+        },
         components: {
         FieldBaseConfigColor, 
         FieldBaseConfigSlider, 
@@ -61,6 +82,7 @@
         FieldBaseConfigRadioFonts,
         FieldBaseConfigRadioAnimations
         },
+
         
         directives: {
         'click-outside': {
@@ -84,9 +106,10 @@
     .field-config {
       display: flex;
       position: absolute;
-      top: -70px;
+      top: var(--top-distance);
       left: 0;
-      flex-flow: row wrap;
+      flex-direction: row;
+      flex-wrap: var(--flex-wrap);
       border-radius: 25px;
       width: 600px;
       height: 60px;
@@ -106,7 +129,7 @@
   .edit-panel {
     flex: 0 0 50%;
     z-index: 2000;
-    max-height: 250px;
+    max-height: max(250px, 100%);
     overflow-y: auto;
     scrollbar-width: auto;
     height: auto;
@@ -120,8 +143,9 @@
   }
   .property-config {
     display: flex;
-    flex: 1 1 auto;
-    flex-flow: row wrap;
+    flex: 1 1 auto;  
+    flex-direction: row;
+    flex-wrap: var(--flex-wrap);
     justify-content: center;
     align-items: center;
   }

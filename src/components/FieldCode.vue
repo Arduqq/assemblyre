@@ -1,7 +1,7 @@
 <template>
   <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active, 'edit' : edit}" v-click-outside="closeConfig" :style="fieldStyle">
     <main >
-      <field-code-config :fid="id"  v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+      <field-code-config :fid="id" :onTop="screenY + screenHeight/2 > windowHeight / 2" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       <div v-show="edit" class="code-block" id="code-block-input">
         <span class="code-block-id"><b>IN</b></span>
         <input type="text" v-model="input"/>
@@ -74,7 +74,7 @@
             {
               id: line+1,
               content: content,
-              type: 'print',
+              type: 'none',
               indent: indent
             }
           );

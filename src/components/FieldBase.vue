@@ -77,6 +77,7 @@
         screenY: 0,
         screenWidth: 0,
         screenHeight: 0,
+        windowHeight: 0,
         initMessages: [
           "If you can't give me poetry, can't you give me poetical science?",
           "And that's how the cookie crumbles.",
@@ -100,6 +101,8 @@
       this.screenHeight = this.h;
       this.screenX = this.x;
       this.screenY = this.y;
+      this.windowHeight = window.innerHeight;
+
       this.emitChange();
     },
     mounted: function() {

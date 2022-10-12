@@ -1,5 +1,5 @@
 <template>
-    <div class="field-config shape-field-config" v-click-outside="resetActiveProperty"> 
+    <div class="field-config shape-field-config" v-click-outside="resetActiveProperty" :style="dynamicPosition"> 
         <div class="property-config"  v-for="(_, name) in properties" :key="name">
         
             <input :id="id + '-' + name" type="radio" name="property" :value="name" v-model="inEditProperty" />
