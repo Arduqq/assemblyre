@@ -37,7 +37,7 @@
       }
     },
     mounted: function() {
-      if (typeof this.importedData === 'undefined') {
+      if (this.importData === null) {
         const msg = sample(this.initMessages);
         this.fieldStyleProperties.text.content = [{ value: msg, md: DOMPurify.sanitize(marked.parse(msg))}]; 
       }

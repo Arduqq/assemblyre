@@ -23,6 +23,8 @@
             <h2>{{course.title}}</h2>
             <p>{{course.excerpt}}</p>
             <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link>
+             <program-preview :score="course.submissions[userCode]" />
+
             <a href="" class="route">Submit Code</a>
           </section>
           
@@ -42,6 +44,7 @@
 
 <script>
 import courses from '../json/courses.json'
+import ProgramPreview from '../components/ProgramPreview'
 export default {
   name: 'HubView',
   props: {
@@ -61,12 +64,15 @@ export default {
         "apple",
         "ananas",
         "jackfruit",
-        "apricot",
+        "pineapple",
         "peach",
         "lemon",
         "garden"
       ]
     }
+  },
+  components: {
+    ProgramPreview
   }
 }
 </script>

@@ -47,7 +47,172 @@
             "maracuja": null,
             "peach": null,
             "lemon": null,
-            "garden" : 1
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "STARS",
+              "backgroundColor": "white",
+              "program": [
+                {
+                  "id": "1",
+                  "name": "text-1",
+                  "styling": "hunter",
+                  "type": "text",
+                  "x": 7,
+                  "y": 183,
+                  "alive": true,
+                  "modifier": 1,
+                  "stackOrder": 2,
+                  "style": {
+                    "text": {
+                      "textSize": 200,
+                      "textAlignment": "center",
+                      "fontFamily": "Karrik",
+                      "textColor": "#7147faFF",
+                      "content": [
+                        {
+                          "value": "Hallo Welt! :)\n",
+                          "md": "<p>Hallo Welt! :)</p>\n"
+                        }
+                      ]
+                    },
+                    "highlight": {
+                      "textGlow": 0,
+                      "textGlowColor": "transparent",
+                      "highlightColor": "transparent"
+                    },
+                    "border": {
+                      "borderSize": 1,
+                      "borderRadius": 6,
+                      "borderStyle": "dashed",
+                      "borderColor": "#f0df8e"
+                    },
+                    "shadow": {
+                      "shadowSize": 17,
+                      "shadowDisplacement": 25,
+                      "shadowColor": "#8358ee33",
+                      "shadow": 8
+                    },
+                    "background": {
+                      "backgroundSize": 100,
+                      "backgroundColor": "#f7fdfaFF",
+                      "backgroundImage": "PATTERN-13"
+                    },
+                    "animation": {
+                      "animationDuration": 1,
+                      "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+                    }
+                  },
+                  "w": 270,
+                  "h": 124,
+                  "active": false
+                },
+                {
+                  "id": "2",
+                  "name": "code-2",
+                  "styling": "default",
+                  "type": "code",
+                  "x": 27,
+                  "y": 21,
+                  "alive": true,
+                  "modifier": 1,
+                  "stackOrder": 3,
+                  "style": {
+                    "text": {
+                      "textSize": 100,
+                      "textAlignment": "left",
+                      "fontFamily": "Roboto",
+                      "textColor": "#121212",
+                      "blocks": [
+                        {
+                          "id": 1,
+                          "indent": 0,
+                          "type": "print",
+                          "content": "Hallo Welt!"
+                        },
+                        {
+                          "id": 2,
+                          "content": "Jetzt entsteht die Welt!",
+                          "type": "generate",
+                          "indent": 0
+                        }
+                      ]
+                    },
+                    "highlight": {
+                      "textGlow": 0,
+                      "textGlowColor": "transparent",
+                      "highlightColor": "#e5fbf4FF"
+                    },
+                    "border": {
+                      "borderSize": 0,
+                      "borderRadius": 0,
+                      "borderStyle": "solid",
+                      "borderColor": "transparent"
+                    },
+                    "shadow": {
+                      "shadowSize": 0,
+                      "shadowDisplacement": 0,
+                      "shadowColor": "transparent"
+                    },
+                    "background": {
+                      "backgroundSize": 100,
+                      "backgroundColor": "#fad4d1FF",
+                      "backgroundImage": "DOTS-2"
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 330,
+                  "h": 119.20001220703125,
+                  "active": false
+                },
+                {
+                  "id": "3",
+                  "name": "image-3",
+                  "type": "image",
+                  "x": 427,
+                  "y": 78.39999389648438,
+                  "alive": true,
+                  "modifier": 1,
+                  "media": "https://cdn.w600.comps.canstockphoto.at/netter-cartoon-globus-der-welt-clip-art-vektor_csp66004268.jpg",
+                  "stackOrder": 1,
+                  "style": {
+                    "image": {
+                      "imageRendering": "auto"
+                    },
+                    "border": {
+                      "borderColor": "transparent",
+                      "borderRadius": 0,
+                      "borderStyle": "solid",
+                      "borderSize": 0
+                    },
+                    "shadow": {
+                      "shadowDisplacement": 0,
+                      "shadowSize": 0,
+                      "shadowColor": "transparent"
+                    },
+                    "background": {
+                      "backgroundColor": "transparent",
+                      "backgroundImage": "none",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "ani3 cubic-bezier(0.165, 0.84, 0.44, 1)"
+                    }
+                  },
+                  "w": 196,
+                  "h": 299.25,
+                  "active": true
+                }
+              ],
+              "canvasSize": {
+                "width": 800,
+                "height": 400
+              }
+            }
 
         }
     },
@@ -99,7 +264,305 @@
             "maracuja": null,
             "peach": null,
             "lemon": null,
-            "garden" : 1
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "BRICKS-3",
+              "backgroundColor": "white",
+              "program": [
+                {
+                  "id": "1",
+                  "name": "shape-1",
+                  "styling": "ellipse",
+                  "type": "shape",
+                  "x": 0,
+                  "y": 0,
+                  "alive": true,
+                  "modifier": 1,
+                  "lockedResolution": false,
+                  "stackOrder": 1,
+                  "style": {
+                    "shape": {
+                      "shapeGeometry": "ellipse"
+                    },
+                    "background": {
+                      "backgroundColor": "black",
+                      "backgroundImage": "none",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 100,
+                  "h": 100
+                },
+                {
+                  "id": "2",
+                  "name": "shape-2",
+                  "styling": "ellipse",
+                  "type": "shape",
+                  "x": 0,
+                  "y": 0,
+                  "alive": true,
+                  "modifier": 1,
+                  "lockedResolution": false,
+                  "stackOrder": 2,
+                  "style": {
+                    "shape": {
+                      "shapeGeometry": "ellipse"
+                    },
+                    "background": {
+                      "backgroundColor": "black",
+                      "backgroundImage": "none",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 100,
+                  "h": 100
+                },
+                {
+                  "id": "3",
+                  "name": "shape-3",
+                  "styling": "ellipse",
+                  "type": "shape",
+                  "x": 284,
+                  "y": 297,
+                  "alive": true,
+                  "modifier": 1,
+                  "lockedResolution": false,
+                  "stackOrder": 3,
+                  "style": {
+                    "shape": {
+                      "shapeGeometry": "ellipse"
+                    },
+                    "background": {
+                      "backgroundColor": "black",
+                      "backgroundImage": "none",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 100,
+                  "h": 100
+                },
+                {
+                  "id": "4",
+                  "name": "shape-4",
+                  "styling": "ellipse",
+                  "type": "shape",
+                  "x": 530,
+                  "y": 95,
+                  "alive": true,
+                  "modifier": 1,
+                  "lockedResolution": false,
+                  "stackOrder": 4,
+                  "style": {
+                    "shape": {
+                      "shapeGeometry": "ellipse"
+                    },
+                    "background": {
+                      "backgroundColor": "black",
+                      "backgroundImage": "none",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 201,
+                  "h": 100
+                },
+                {
+                  "id": "5",
+                  "name": "shape-5",
+                  "styling": "ellipse",
+                  "type": "shape",
+                  "x": 88,
+                  "y": 248,
+                  "alive": true,
+                  "modifier": 1,
+                  "lockedResolution": false,
+                  "stackOrder": 5,
+                  "style": {
+                    "shape": {
+                      "shapeGeometry": "ellipse"
+                    },
+                    "background": {
+                      "backgroundColor": "black",
+                      "backgroundImage": "DOTS-1",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 100,
+                  "h": 100
+                },
+                {
+                  "id": "6",
+                  "name": "shape-6",
+                  "styling": "ellipse",
+                  "type": "shape",
+                  "x": 266,
+                  "y": 71,
+                  "alive": true,
+                  "modifier": 1,
+                  "lockedResolution": false,
+                  "stackOrder": 6,
+                  "style": {
+                    "shape": {
+                      "shapeGeometry": "ellipse"
+                    },
+                    "background": {
+                      "backgroundColor": "black",
+                      "backgroundImage": "none",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 284,
+                  "h": 100
+                },
+                {
+                  "id": "7",
+                  "name": "shape-7",
+                  "styling": "ellipse",
+                  "type": "shape",
+                  "x": 18,
+                  "y": 396,
+                  "alive": true,
+                  "modifier": 1,
+                  "lockedResolution": false,
+                  "stackOrder": 7,
+                  "style": {
+                    "shape": {
+                      "shapeGeometry": "ellipse"
+                    },
+                    "background": {
+                      "backgroundColor": "black",
+                      "backgroundImage": "none",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 675,
+                  "h": 100
+                },
+                {
+                  "id": "8",
+                  "name": "image-8",
+                  "type": "image",
+                  "x": 432,
+                  "y": 165,
+                  "alive": true,
+                  "modifier": 1,
+                  "media": "https://imgur.com/ftHNkoG.png",
+                  "stackOrder": 8,
+                  "style": {
+                    "image": {
+                      "imageRendering": "auto"
+                    },
+                    "border": {
+                      "borderColor": "transparent",
+                      "borderRadius": 0,
+                      "borderStyle": "solid",
+                      "borderSize": 0
+                    },
+                    "shadow": {
+                      "shadowDisplacement": 0,
+                      "shadowSize": 0,
+                      "shadowColor": "transparent"
+                    },
+                    "background": {
+                      "backgroundColor": "transparent",
+                      "backgroundImage": "none",
+                      "backgroundSize": 100
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 257,
+                  "h": 257
+                },
+                {
+                  "id": "9",
+                  "name": "text-9",
+                  "styling": "hunter",
+                  "type": "text",
+                  "x": 68,
+                  "y": 64,
+                  "alive": true,
+                  "modifier": 1,
+                  "stackOrder": 9,
+                  "style": {
+                    "text": {
+                      "textSize": 100,
+                      "textAlignment": "left",
+                      "fontFamily": "FT88 Gothique",
+                      "textColor": "#f0df8e",
+                      "content": [
+                        {
+                          "value": "aslkdaklsndlkasjd\n\n\nasdnasndjasnd\ndasndn\n\nasndasndlkjasnd\n\nanskdnaskjdnkjasnd\n\nasndkajsndk\n",
+                          "md": "<p>aslkdaklsndlkasjd</p>\n<p>asdnasndjasnd\ndasndn</p>\n<p>asndasndlkjasnd</p>\n<p>anskdnaskjdnkjasnd</p>\n<p>asndkajsndk</p>\n"
+                        }
+                      ]
+                    },
+                    "highlight": {
+                      "textGlow": 0,
+                      "textGlowColor": "transparent",
+                      "highlightColor": "transparent"
+                    },
+                    "border": {
+                      "borderSize": 1,
+                      "borderRadius": 6,
+                      "borderStyle": "dashed",
+                      "borderColor": "#f0df8e"
+                    },
+                    "shadow": {
+                      "shadowSize": 0,
+                      "shadowDisplacement": 4,
+                      "shadowColor": "#00000020",
+                      "shadow": 8
+                    },
+                    "background": {
+                      "backgroundSize": 100,
+                      "backgroundColor": "#000000aa",
+                      "backgroundImage": "none"
+                    },
+                    "animation": {
+                      "animationDuration": 5,
+                      "animationType": "none"
+                    }
+                  },
+                  "w": 267,
+                  "h": 95.20001220703125
+                }
+              ],
+              "canvasSize": {
+                "width": 800,
+                "height": 600
+              }
+            }
 
         }
     },
@@ -126,7 +589,7 @@
             "maracuja": null,
             "peach": null,
             "lemon": null,
-            "garden" : 1
+            "garden" : null
 
         }
     },
@@ -168,7 +631,7 @@
             "maracuja": null,
             "peach": null,
             "lemon": null,
-            "garden" : 1
+            "garden" : null
 
         }
     },
@@ -195,7 +658,7 @@
             "maracuja": null,
             "peach": null,
             "lemon": null,
-            "garden" : 1
+            "garden" : null
 
         }
     },
@@ -228,7 +691,7 @@
             "maracuja": null,
             "peach": null,
             "lemon": null,
-            "garden" : 1
+            "garden" : null
 
         }
     },
@@ -262,7 +725,7 @@
             "maracuja": null,
             "peach": null,
             "lemon": null,
-            "garden" : 1
+            "garden" : null
 
         }
     },
@@ -306,7 +769,7 @@
             "maracuja": null,
             "peach": null,
             "lemon": null,
-            "garden" : 1
+            "garden" : null
 
         }
     }

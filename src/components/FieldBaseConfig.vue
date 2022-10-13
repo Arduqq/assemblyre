@@ -61,10 +61,10 @@
         computed: {
           dynamicPosition() {
             var position = {
-              top: this.onTop ? '-70px' : '100%',
+              top: !this.onTop ? '0px' : '100%',
             };
             var flex = {
-              wrap: this.onTop ? 'wrap' : 'wrap-reverse',
+              wrap: !this.onTop ? 'wrap' : 'wrap-reverse',
             };
             var style = {
               '--top-distance': position.top,
@@ -118,6 +118,7 @@
       z-index: 10000;
       font-size: 60%;
       font-family: var(--text-font);
+      opacity: .7;
     
   }
 
@@ -133,8 +134,13 @@
     overflow-y: auto;
     scrollbar-width: auto;
     height: auto;
+    transition: .1s;
+    opacity: .2;
   }
 
+  .field-config:hover .edit-panel, .field-config:hover {
+    opacity: 1;
+  }
 
   .quick-access {
     position: absolute;
