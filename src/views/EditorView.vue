@@ -10,7 +10,6 @@
     <div class="editor-control active" >
       <a class="logo" title="Back to Start" href="/"></a>
       <router-link :title="'Back to ' + this.user.toUpperCase() + ' Hub'" class="hub-link route" :to="{ name: 'hub', params: { userCode: this.user }}" >{{participants[user]}}</router-link>
-      <button @click="reset">reset_</button>
       <input type="file" id="import-file" value="Import" @change="handleFile"/>
       <label>Title
         <input type="text" v-model="score.opus"/>
@@ -418,16 +417,6 @@
           
         },
 
-        reset: function() {
-          this.score = {
-            opus: "Pseudo Program",
-            version: "0.1",
-            backgroundPattern: "none",
-            backgroundColor: "white",
-            program: [],
-            canvasSize: { width: 800, height: 600 },
-          }
-        },
         controlSelection: function (control) {
             this.canSelect = !control;
 
@@ -659,6 +648,10 @@
 
   .editor .tool .field:hover {
     transform: scale(1.1)!important;
+  }
+
+  .starter.code .program-input, .starter.code .program-output {
+    display: none;
   }
 
   #exported-image {

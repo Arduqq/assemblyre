@@ -2,6 +2,9 @@
   <div v-if="alive" ref="draggableWrapper" class="code field" :id="id" :class="{'active' : active, 'edit' : edit}" v-click-outside="closeConfig" :style="fieldStyle">
     <main >
       <field-code-config :fid="id" :onTop="screenY + screenHeight/2 > windowHeight / 2" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
+      
+      <div v-show="!edit" class="program-input">{{input}}</div>
+      <div v-show="!edit" class="program-output">{{output}}</div>
       <div v-show="edit" class="code-block" id="code-block-input">
         <span class="code-block-id"><b>IN</b></span>
         <input type="text" v-model="input"/>
@@ -317,6 +320,40 @@
     animation: generate 5s var(--field-animation-entry)  steps(5, end) infinite;
   }
 
+  .program-input {
+    width: 80%;
+    bottom: 100%;
+    text-align: center;
+    padding: 5px;
+    position: absolute;
+    margin: 0 auto;
+    color: var(--field-text-color);
+    background: var(--field-background-color);
+    z-index: -1;
+    font-size: var(--field-text-size);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);  
+    animation: inout 3s ease-in-out infinite;
+  }
+  .program-output {
+    width: 80%;
+    text-align: center;
+    bottom: 5%;
+    margin: 0 auto;
+    padding: 5px;
+    background: var(--field-text-color);
+    color: var(--field-background-color);
+    position: absolute;
+    z-index: -1;
+    font-size: var(--field-text-size);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%); 
+    animation: inout 3s ease-in-out infinite; 
+  }
+
+  @keyframes inout {
+    0% {transform: translateY(0)}
+    50% {transform: translateY(4rem)}
+    100% {transform: translateY(0)}
+  }
   @keyframes print {
     0% {width: 0px; flex-grow: 0}
     100% {width: 70%; flex-grow: 1}

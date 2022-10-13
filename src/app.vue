@@ -87,14 +87,11 @@ export default {
 }
 
 :root {
-  /* For general text */
   --primary-color: #333333;
-  /* For special text */
   --primary-alt-color: #7c1c4f;
-  /* For backgrounds */
-  --secondary-color: #e7deff;
-  --secondary-alt-color: #b58fda;
-  --gui-color: rgb(57, 47, 67);
+  --secondary-color: #f1f5ff;
+  --secondary-alt-color: #cecfe2;
+  --gui-color: rgb(45, 45, 45);
   --success-color: rgb(170, 255, 139);
   --interact-color: #9f18ff;
   --display-font: 'Karrik', Arial, sans-serif;
@@ -126,6 +123,7 @@ header {
   overflow: hidden;
   transition: .3s;
   box-shadow: inset 0px -20px 20px 20px rgba(0, 0, 0, .2);
+  border-bottom: 8px solid var(--secondary-alt-color);
 }
 
 
@@ -247,6 +245,18 @@ input[type="text"].big{
 input[type="text"]:focus {
   border-bottom: 1px solid var(--interact-color);
   background: white;
+}
+
+p a, p a:visited {
+  background: var(--secondary-alt-color);
+  padding: 4px 5px;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+p a:hover {
+  background: var(--primary-color);
+  color: white;
 }
 
 

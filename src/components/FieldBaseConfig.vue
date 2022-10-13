@@ -61,7 +61,7 @@
         computed: {
           dynamicPosition() {
             var position = {
-              top: !this.onTop ? '0px' : '100%',
+              top: !this.onTop ? '-70px' : '100%',
             };
             var flex = {
               wrap: !this.onTop ? 'wrap' : 'wrap-reverse',
