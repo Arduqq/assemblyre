@@ -1,0 +1,21 @@
+<template>
+    <main class="content" id='hub'>
+      <h1>Assemblyng Hub: Now What?!</h1>
+      
+      <section id="info">
+        <h2>Where to go from here</h2>
+        <p>The following is a personal note by me personally to you if you have enjoyed certain parts of this study. All platforms and resources mentioned are not a part of the study and based solely on my personal experiences and opinions as a developer and artist.</p>
+        <p>Programming not only is a way to build software for others to use. Despite its prevalent implementation in websites, blogs, online shops, labour software or social media, it can be valuable for expressing yourself, creating art and discussing complex topics through the means of syntax that is based on human language. If you have enjoyed writing your own pseudocode to bring your own idea across, you can check out work of computer scientists and algorithm engineers in its fundamental form. <a target="__blank" href="https://www.sortvisualizer.com/">This website on sorting algorithms</a> is a great start to understand what makes computers so clever and how we can decompose our own complex brain activities during basic processes like sorting. To go further, check out a programming language! I personally adore Python and Ruby. <a target="__blank" href="https://rubymonk.com/">Rubymonk</a> and <a target="__blank" href="http://automatetheboringstuff.com/">Automate the Boring Stuff</a> are great and fun curated guides to delve into these languages step by step. Both present the basics in a very well-written fashion and will encourage you to look around for your very own, personal projects.</p>
+        <p>If you enjoy the visual side of creating 2D collages that can interact and visualize data, try creating your very own website from scratch. <a target="__blank" href="https://www.neocities.org">Neocities</a> is a free hosting provider for your own websites where you have full control over your code. Learning HTML and CSS has been my personal first dive into the digital world as it helps you to visualize your final result while writing very simple tags capturing your message. The platform gives you a variety of creative websites others have created and maintained over years for the means of absolute self expression. While not essentially complex in logic, it makes room for you to explore JavaScript to program more complex websites. <a href="https://mmm.page/" target="__blank">mmm.page</a> will go a step further and let you click together fast and simple sites without much hassle.</p>
+        <p>In case you enjoyed writing about the things you were passionate about, feel free to create your very own blog from scratch. Static site generators like <a target="__blank" href="">Jekyll</a> are great to create a functional and beautiful site without writing any base code. These Jekyll projects can be easily deployed for free on providers like Netlify, Glitch or GitHub. Their guides are simple and quick and won't drown you in scripts you barely have control over. Such tools are great to dip your toes into working with a command line, but will also give you the oportunity to understand how information rendering works. From there on out, you can go a step further and explore sophisticated frontend frameworks like Laravel, React or Vue. </p>
+        <p>More social platforms like <a target="__blank" href="https://multiverse.plus/home">Multiverse</a> or <a target="__blank" href="https://cohost.org/">Cohost</a> are perfect if you want to use collages and posts on established, populated platforms. Both sites find themselves removing numbers and engagement from social media to go back to a virtual space that is solely for you to explore. Multiverse itself was my inspiration to build on the idea of giving users accessible means to create visually appealing representation of their ideas without much back knowledge.</p>
+        <p>No matter where your digital journey might lead, I hope that the societal implications of programming will help you reflect on this magnitude of resources out there. The coding space is ever-growing, and hard to digest for many, so take it slow and stick to what you enjoy most about it!</p>
+      </section>
+    </main>
+</template>
+
+<script>
+export default {
+  name: 'InfoView',
+}
+</script>

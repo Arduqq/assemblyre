@@ -1,31 +1,57 @@
 <template>
-  <div id='flow-view'></div>
+  <div id='flow-view' :style="flowStyle">
+    <div id="flow-control">
+      <input type="radio" name="patterns" value="pattern-1" v-model="backgroundPattern"/>
+      <input type="radio" name="patterns" value="pattern-2" v-model="backgroundPattern"/>
+      <input type="radio" name="patterns" value="pattern-3" v-model="backgroundPattern"/>
+      <input type="radio" name="patterns" value="pattern-4" v-model="backgroundPattern"/>
+      <input type="radio" name="patterns" value="pattern-5" v-model="backgroundPattern"/>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'FlowView',
+  props: {
+    width: {
+      type: Number,
+      required: false,
+      default: 800,
+    },
+    height: {
+      type: Number,
+      required: false,
+      default: 600
+    },
+    modifier: {
+      type: Number,
+      required: false,
+      default: 1
+    }
+  },
   mounted() {
     var active = false;
     var canvas, pg, colorpicker, button;
+    var width = this.width;
+    var height = this.height;
+    var offset = this.modifier;
     const script = function(p5) {
       p5.setup = () => {
-        canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight);
+        canvas = p5.createCanvas(width, height);
         canvas.parent('#flow-view');
 
-        pg = p5.createGraphics(p5.windowWidth, p5.windowHeight);
+        pg = p5.createGraphics(width, height);
         pg.parent('#flow-view');
-        pg.background(252);
+
         pg.canvas.remove()
         
         colorpicker = p5.createColorPicker('#ed225d');
-        colorpicker.parent('#flow-view');
-        colorpicker.position(0, 0, 'fixed');
+        colorpicker.parent('#flow-control');
         
         button = p5.createButton('Reset')
         button.mousePressed(resetGraphic);
-        button.parent('#flow-view');
-        button.position(0, 50, 'fixed');
+        button.parent('#flow-control');
 
         canvas.mousePressed(makeActive);
         canvas.mouseReleased(makeUnactive);
@@ -37,27 +63,28 @@ export default {
       };
 
       p5.windowResized  = () => {
-        var newPG = p5.createGraphics(p5.windowWidth, p5.windowHeight);
+        var newPG = p5.createGraphics(width, height);
         newPG.image(pg, 0, 0, newPG.width, newPG.height);
         pg = newPG;
-        p5.resizeCanvas(p5.windowWidth, p5.height);
+        
+        p5.resizeCanvas(width, p5.height);
       }
 
       function handleInput() {
         if (p5.mouseIsPressed && active ) {
           pg.push();
           pg.fill(colorpicker.color());
-          variableEllipse(p5.mouseX, p5.mouseY, p5.pmouseX, p5.pmouseY);
+          variableEllipse(p5.mouseX/offset, p5.mouseY/offset, p5.pmouseX/offset, p5.pmouseY/offset);
           pg.pop();
         }
       }
 
       function displayDrawing() {
-        p5.image(pg, 0,0, p5.windowWidth, p5.windowHeight);
+        p5.image(pg, 0,0, width, height);
       }
 
       function resetGraphic() {
-        pg.background(252);
+        p5.reset()
       }
       
       function makeActive() {
@@ -75,6 +102,21 @@ export default {
     
     const P5 = require('p5');
     new P5(script);
+  },
+  data() {
+    return {
+      backgroundPattern: "pattern-1",
+    }
+  },
+  computed: {
+    flowStyle() {
+      return {
+        '--background-pattern': 'url(/assets/' + this.backgroundPattern + '.jpg)' ,
+        '--canvas-scale': 'scale(' + this.modifier + ')',
+        '--canvas-width': this.width + 'px',
+        '--canvas-height': this.height + 'px',
+      }
+    }
   }
 };
 </script>
@@ -86,9 +128,23 @@ export default {
   position: absolute;
   margin: 0 auto;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
-  border-radius: 20px;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
   overflow: hidden;
+  background: var(--background-pattern);
+  transform: var(--canvas-scale);
+  left: 350px;
+  right: 0;
+  top: 50px;
 }
+
+#flow-control {
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
 </style>

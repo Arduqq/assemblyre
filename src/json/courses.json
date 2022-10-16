@@ -1,0 +1,532 @@
+{
+    "seed": {
+        "title": "1: setup() ~ Why to Code",
+        "excerpt": "The first step of this course dealt with the societal need and potential of coding. In the following, you will look at existing art, first languages, and art installations.",
+        "code": "seed",
+        "description": [
+            "Look at the creative works others have produced. What might have they used to achieve it? Try to decompose their process and how you would tackle it. What resources would you need? Where would you apply them, and what would be your result?",
+            "Who is someone who understands code? What makes people interact with code? Where are technology and code intertwined? Picture possible interactions between you and a machine? Are there possible dangers with people understanding code that you do not?", 
+            "Is coding a process of writing text, or is it something else? What does your piece mean to you? Would you like to turn your pseudocode into something real? Do you believe society has the capabilities to produce the code you wrote?"
+        ],
+        "resources": [
+            {
+                "title": "The Hello World Collection",
+                "excerpt": "From a small collection of text files by the German network MausNet, a large corpus of Hello World programs emerged. In both program, and human languages, the source code is compiled in an exhaustive overview.",
+                "url": "http://helloworldcollection.de/" 
+            },
+            
+            {
+                "title": "Markdown Guide",
+                "excerpt": "Markdown is a language to format plain text. Just like any office application, you can use it to create headings, lists, italics, and much more. Assemblyre uses Markdown for its text field. Check out this reference guide if you would like to make use of it in your own program.",
+                "url": "https://www.markdownguide.org/basic-syntax" 
+            },
+
+            {
+                "title": "The P5.js Editor",
+                "excerpt": "P5.js is a javascript framework that is used by many web artists to create generative artwork. The live-preview gives you immediate feedback on your code to overcome any setup limitations. Try drawing a cricle and transform it however you like. Find Help using their Reference sheet.",
+                "url": "https://editor.p5js.org/" 
+            },
+
+            {
+                "title": "sasj.nl",
+                "excerpt": "Saaskia Freeke is a designer and coder from Amsterdam specializing in exploring structure, geometry, and playfulness with new media. Daily, she presents generative patterns and animations coded in the programming environment Processing.",
+                "url": "https://sasj.nl/portfolio/daily/" 
+            },
+
+            {
+                "title": "Annette Vee: Coding Literacy",
+                "excerpt": "If you got curious about what coding literacy means in a broader context, Annette Vee elaborates on the importance of understanding programming. She explores the boundaries between text and code, painting a picture of a society working under computational standards that are unknown to a majority of the population.",
+                "url": "http://mitpress.mit.edu/9780262340243/coding-literacy/" 
+            }
+        ],
+        "submissions": {
+            "grape": null,
+            "apple": null,
+            "pineapple": null,
+            "jackfruit": null,
+            "maracuja": null,
+            "peach": null,
+            "lemon": null,
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "STARS",
+              "backgroundColor": "white",
+              "program": [
+              ],
+              "canvasSize": {
+                "width": 0,
+                "height": 0
+              }
+            }
+        }
+    },
+    "leaf": {
+        "title": "2: data() ~ Real Data",
+        "excerpt": "Before we delve further into programming paradigms, we will look at core issues lying within the concept of data. This chapter is a longer one. The following resources are meant to further communicate its ultimate capabilities, and how they currently have been implemented.",
+        "code": "leaf",
+        "description": [
+            "Data forms an opportunity to convey data not only to computers, but to us. What role does data play to a machine compared to a human being? Is data an objective representation of information? What kind of data would you like to gather? How would you try to do that? What would you do with the data and in which ways would you share it, if so?",
+            "Imagine a button that would jumpstart a variety of tasks invisible to you. Do these buttons exist and where? How would you make such a button appealing to press?", 
+            "Have you ever “datafied” yourself? What were your experiences back then compared to this very moment?"
+        ],
+        "resources": [
+            {
+                "title": "VPRO Documentary: Shoshana Zuboff on surveillance capitalism",
+                "excerpt": "In this documentary featuring Harvard professor Shoshana Zuboff, the fundamental and grave dangers of capturing unending amounts of data are summarized. A social media network wouldn't need all of the data they could get from you - so where exactly does it go?",
+                "url": "https://www.youtube.com/watch?v=hIXhnWUmMvw&feature=emb_title" 
+            },
+            
+            {
+                "title": "Vienna Biennale: Uncanny Values",
+                "excerpt": "The Austrian design studio Process implemented in their generative art installation on artificial intelligence and uncanny emote. How would one generate such emotes? What makes them intriguing? What does identity mean in the face of an artificial intelligence?",
+                "url": "https://process.studio/works/uncanny-values/" 
+            },
+
+            {
+                "title": "Transmediale Artwork Archive",
+                "excerpt": "Since 1988, the transmediale archive features hundreds of artists with their multi-media installations. Browse through their catalogue on the many voices surrounding the topic of technology and culture.Transmediale is a festival that emplores a critical view on how digital media reflects on every aspect of our life. Do check out their publications as well, if you would like to delve deeper!",
+                "url": "https://archive.transmediale.de/archive/explore?f%5B0%5D=type:artwork" 
+            },
+
+            {
+                "title": "Facebook agrees to pay fine over Cambridge Analytica scandal",
+                "excerpt": "A comprehensive report on the 2018 discussion on Cambridge Analytica. How do we regulate data protection and has it really changed since then?",
+                "url": "https://www.theguardian.com/technology/2019/oct/30/facebook-agrees-to-pay-fine-over-cambridge-analytica-scandal" 
+            },
+
+            {
+                "title": "MLTalks: How Data Killed Facts",
+                "excerpt": "Jill Lepore, a Professor of American History in Harvard University argues the ever-changing definition of facts. If you are curious about how data is commonly referenced as a medium of facts, this discussion opens up new ways of thinking about what we ultimately perceive as truth.",
+                "url": "https://www.media.mit.edu/videos/ml-talks-2018-04-23/" 
+            }
+        ],
+        "submissions": {
+          "grape": null,
+            "apple": null,
+            "pineapple": null,
+            "jackfruit": null,
+            "maracuja": null,
+            "peach": null,
+            "lemon": null,
+            "garden" : {
+  "opus": "Bee Loop",
+  "version": "royal edition",
+  "backgroundPattern": "flowers-1",
+  "backgroundColor": "white",
+  "program": [
+    {
+      "id": "1",
+      "name": "code-1",
+      "styling": "default",
+      "type": "code",
+      "x": 4.600006103515625,
+      "y": 384,
+      "alive": true,
+      "modifier": 1,
+      "stackOrder": 1,
+      "style": {
+        "text": {
+          "textSize": 100,
+          "textAlignment": "left",
+          "fontFamily": "Roboto",
+          "textColor": "#fbfce3FF",
+          "blocks": [
+            {
+              "id": 1,
+              "indent": 0,
+              "type": "none",
+              "content": "WHILE bee.hasEnergy {"
+            },
+            {
+              "id": 2,
+              "content": "var flower = patch.curFlow.next()",
+              "type": "assign",
+              "indent": 1
+            },
+            {
+              "id": 3,
+              "content": "bee.storage = flower.gather(honey)",
+              "type": "generate",
+              "indent": 1
+            },
+            {
+              "id": 4,
+              "content": "}",
+              "type": "none",
+              "indent": 0
+            }
+          ]
+        },
+        "highlight": {
+          "textGlow": 0,
+          "textGlowColor": "transparent",
+          "highlightColor": "#430909FF"
+        },
+        "border": {
+          "borderSize": 11,
+          "borderRadius": 0,
+          "borderStyle": "solid",
+          "borderColor": "black"
+        },
+        "shadow": {
+          "shadowSize": 0,
+          "shadowDisplacement": 12,
+          "shadowColor": "#27060675"
+        },
+        "background": {
+          "backgroundSize": 100,
+          "backgroundColor": "#e3c178FF",
+          "backgroundImage": "none"
+        },
+        "animation": {
+          "animationDuration": 5,
+          "animationType": "none"
+        }
+      },
+      "w": 482,
+      "h": 188
+    },
+    {
+      "id": "2",
+      "name": "image-2",
+      "type": "image",
+      "x": 97,
+      "y": 74,
+      "alive": true,
+      "modifier": 1,
+      "media": "https://web.archive.org/web/20091026203059/http://uk.geocities.com/dsbka/images/bee_fly.gif",
+      "stackOrder": 2,
+      "style": {
+        "image": {
+          "imageRendering": "pixelated"
+        },
+        "border": {
+          "borderColor": "transparent",
+          "borderRadius": 0,
+          "borderStyle": "solid",
+          "borderSize": 0
+        },
+        "shadow": {
+          "shadowDisplacement": 0,
+          "shadowSize": 0,
+          "shadowColor": "transparent"
+        },
+        "background": {
+          "backgroundColor": "transparent",
+          "backgroundImage": "none",
+          "backgroundSize": 100
+        },
+        "animation": {
+          "animationDuration": 5,
+          "animationType": "ani1 cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+        }
+      },
+      "w": 285,
+      "h": 231.1333465576172
+    }
+  ],
+  "canvasSize": {
+    "width": 500,
+    "height": 600
+  }
+}
+
+        }
+    },
+    "twig": {
+        "title": "3: loops() ~ Time, but different",
+        "excerpt": "Before we delve further into programming paradigms, we will look at core issues lying within the concept of data. This chapter is a longer one. The following resources are meant to further communicate its ultimate capabilities, and how they currently have been implemented.",
+        "code": "twig",
+        "description": [
+            "When do you encounter loops in daily life? Think of them in the digital and analogue context! How do loops represent (or even steal) time? What the conditions of your loop? What are the variables?", 
+            "Have you encountered infinite loops in daily life? What is needed TO loop? Can we think of lifecycles as loops? Where are the boundaries?"
+        ],
+        "resources": [
+            {
+                "title": "DVD guy",
+                "excerpt": "This video series by constantdullaart reflects on what a loop in real life may look like. How does one feel when watching it go? How would we implement it? ",
+                "url": "https://www.youtube.com/watch?list=PLCUGKK4FUkbMdnNii8qoRy9_tMvqE8XHB&time_continue=4&v=4RfakB58kb8&feature=emb_logo" 
+            },
+            {
+                "title": "Sort the Court",
+                "excerpt": "Build your own kingdom based on your responses to the townsfolk. See it thrive or burn by your actions of responding binarily. See the narrative unfold in this simple loop of actions, and think about where you might have gone wrong. Are binary decisions fitting for positions in power? When is an enforced binary helpful, and when is it a burden to others?",
+                "url": "https://graebor.itch.io/sort-the-court" 
+            }
+        ],
+        "submissions": {
+          "grape": null,
+            "apple": null,
+            "pineapple": null,
+            "jackfruit": null,
+            "maracuja": null,
+            "peach": null,
+            "lemon": null,
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "BRICKS-3",
+              "backgroundColor": "white",
+              "program": [
+              ],
+              "canvasSize": {
+                "width": 0,
+                "height": 0
+              }
+            }
+
+        }
+    },
+    "branch": {
+        "title": "4: generation() ~ Building (Random) Blocks",
+        "excerpt": "Use the additional resources as inspiration. Would you consider generative art to be the only way to see code as an art form? What would you like to generate? What are the components that you are generating? Try to go through the iterations manually? How long would the generation take? Where would randomness come into place and which parts of the real world could be used to simulate said randomness?",
+        "code": "branch",
+        "description": [
+            "When do you encounter loops in daily life? Think of them in the digital and analogue context! How do loops represent (or even steal) time? What the conditions of your loop? What are the variables?", 
+            "Have you encountered infinite loops in daily life? What is needed TO loop? Can we think of lifecycles as loops? Where are the boundaries?"
+        ],
+        "resources": [
+            {
+                "title": "Generative Artistry",
+                "excerpt": "Generative Artistery is a project by Ruth John and Tim Holman and features a variety of fun tutorials on getting into generative artwork. The guides are visualized along your reading progress and detail the thought process of expressing yourself through generation. The guides don't need a framework, but are simple algorithms on the HTML canvas element. Feel free to make your own .html and .js file and code ahead!",
+                "url": "https://generativeartistry.com/tutorials/" 
+            },
+            {
+                "title": "Generative Tarot [content note: flashes, moving images, rapid image changes]",
+                "excerpt": "A fun and expressive way to get into tarot. This P5.js project features multiple artists that would design their own tarot cards to be visualized randomly at every pull. Which card did you pick? Would you realize your own cards differently?",
+                "url": "https://www.melaniehoff.com/generativetarot/" 
+            },
+            {
+                "title": "The Coding Train: 2D Arrays in JavaScript",
+                "excerpt": "The Coding Train is a delightful series of coding problems and uses the P5.js framework for their implementation as well. Feel free to take a peek into this lesson on 2D arrays to understand a fundamental way of structuring your data, and maybe code along!",
+                "url": "https://www.youtube.com/watch?v=OTNpiLUSiB4" 
+            },
+            {
+                "title": "David Link: Machine Heart",
+                "excerpt": "An essay on how we could define computers as sentient in the context of showing affection. An artificial intelligence producing love letters opens the discussion on love and intimacy in a mathematical context.",
+                "url": "http://www.alpha60.de/art/love_letters/DavidLink_DasHerzDerMaschine_2012.pdf" 
+            }
+        ],
+        "submissions": {
+          "grape": null,
+            "apple": null,
+            "pineapple": null,
+            "jackfruit": null,
+            "maracuja": null,
+            "peach": null,
+            "lemon": null,
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "BRICKS-3",
+              "backgroundColor": "white",
+              "program": [
+              ],
+              "canvasSize": {
+                "width": 0,
+                "height": 0
+              }
+            }
+
+        }
+    },
+    "fruit": {
+        "title": "5: abstraction() ~ Matter (over/under) Class",
+        "excerpt": "Abstraction constantly takes place in human perception. How do we simplify, why do we care about it, and how can we make these processes consciously? Take a look at some small video games that would make use of that exact process to bring light to new points of view.",
+        "code": "fruit",
+        "description": [
+            "Picture an object. What properties does it have, and how can we interact with it? Try to model yourself in an object. Start with a very basic representation of yourself and put your Me-object into simple scenarios! What would the scenario need from you? How would you want to improve your object for new scenarios? Could a computer help you improve your Me-object, or would it make things difficult?", 
+            "Think of a game that you played sometime! What objects might have been used? Try to imagine a game yourself and how you could implement it! Which parts of the real world would need to be abstracted?"
+        ],
+        "resources": [
+            {
+                "title": "Murder at the Residence Gudul",
+                "excerpt": "The Residence Gudul is no stranger to the exciting benefits of The Distribute, a nifty television with a one-button device to send you everything you see on the monitor. Help Dowie fix his favourite toy while uncovering an unusual murder in this short, dystopian role play game on consumerism.",
+                "url": "https://sparklinlabs.itch.io/gudul" 
+            },
+            {
+                "title": "Cats are Assholes but we still like them",
+                "excerpt": "Watch your precious stray cats under time pressure, management issues and the ever-growing fear of getting old. A fast-paced game written in mere days. Try finding out more about the Game Jam that this was a part of. What are your thoughts on Game Jams? How do you think people deal with time constraints in software development, and especially in the creative field of indie gaming?",
+                "url": "https://deepnight.itch.io/cats-are-assholes" 
+            },
+            {
+                "title": "Different Strokes",
+                "excerpt": "Help this community of artist to improve the submissions of others. Explore the gallery, talk to the personnel, draw something! What would you do if you witnessed your artwork to be drawn over both consentually and unconsentually? Think about the experiences you had in art communities, or how you imagine them to be. Would you consider collaborative code to be of similar nature?",
+                "url": "https://swsteffes.itch.io/different-strokes" 
+            }
+
+        ],
+        "submissions": {
+
+            "grape": null,
+            "apple": null,
+            "pineapple": null,
+            "jackfruit": null,
+            "maracuja": null,
+            "peach": null,
+            "lemon": null,
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "BRICKS-3",
+              "backgroundColor": "white",
+              "program": [
+              ],
+              "canvasSize": {
+                "width": 0,
+                "height": 0
+              }
+            }
+
+        }
+    },
+    "vine": {
+        "title": "6: queery() ~ Computers 2 Action",
+        "excerpt": "Data comes in raw form, and it is up to us to govern it accordingly. In this chapter, we try to think about the many steps a computer could take to process a request. What are we looking for, and what actually do we get?",
+        "code": "vine",
+        "description": [
+            "With large databases, developers create contact points for you to see, query and process. These so-called APIs are possibilities for you to explore complex data that others have gathered in the scope of the internet. Which large databases would you like to explore? Whose API would you like to query, and what would you use it for?", 
+            "Think more about the API that you would like to address! What are its capabilities? What does it tell about the instance providing you with that information? How and why would you process your desired data from that API?",
+            "Do you have any concerns regarding the public APIs? How could power dynamics be exploited with such a concept? Who would you share your API with? What if there was an API for you as a human being - or does it already exist?"
+        ],
+        "resources": [
+            {
+                "title": "NAG: Net.Art Generator",
+                "excerpt": "As an art installation, the net art generator tackles the possibilities we have when we scour the internet for information. Taking various images that are openly accessible from anywhere, search engines can provide us with data that users barely have a hold over. Create some net art, and keep in mind the implications of a mere Google search.",
+                "url": "https://nag.iap.de/?lang=en" 
+            },
+            {
+                "title": "The Graph API: Key Points in the Facebook and Cambridge Analytica Debacle",
+                "excerpt": "An exhaustive explanation of the technology prevalent in the scandal regarding the Cambridge Analytica controversy. How much of the data people may track gets actually useful through a detailed query?",
+                "url": "https://nag.iap.de/?lang=en" 
+            },
+            {
+                "title": "Echo Beach",
+                "excerpt": "Tim Sheinman's Echo Beach is a great example for a merge of many art forms. Be the person who would track down notorious musicians in a world where music is against the law. Be a part of a small forum to deduce its seemingly anonymous information to take the artists to jail. Listen to the soundtracks, query the database, and see how you and your character may feel about that. A short and simplistic detective game on vulnerable anonymity, music as a medium of information, and balance between work and art.",
+                "url": "https://tim-sheinman.itch.io/echo-beach" 
+            }
+        ],
+        "submissions": {
+          "grape": null,
+            "apple": null,
+            "pineapple": null,
+            "jackfruit": null,
+            "maracuja": null,
+            "peach": null,
+            "lemon": null,
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "BRICKS-3",
+              "backgroundColor": "white",
+              "program": [
+              ],
+              "canvasSize": {
+                "width": 0,
+                "height": 0
+              }
+            }
+
+        }
+    },
+    "tree": {
+        "title": "7: algorithm() ~ Building (Complex) Blocks",
+        "excerpt": "The core of programming comes down to the algorithm - the combination of all the elements you have learned about. We will take a look at some algorithms and how they manage to convey their message through some short lines of text, their context of application, and the result they are striving for.",
+        "code": "tree",
+        "description": [
+            "In your course, you have been playing around with the editor to create diagrams of programs from the very beginning. Use this exercise to maybe create a piece that hasn’t really fit into any of the other courses. Try to imagine that someone else is reading your code: How can you make it understandable, clear and as transparent as possible? How would you convey the “flow of information” with the graphical tools provided?", 
+            "You may even just create a flowchart as explained above. Would you stick to the geometric forms presented?",
+            "Look at your previous work! What has been the most complex work until now? How could you make it more concise? How could you make it even more complex?",
+            "Do you think that simplifying, making your code as clear as possible, is something one should always keep in mind? What is the main problem with communicating your code in the most simple ways while remaining a complex code base? What are the technical challenges?"
+        ],
+        "resources": [
+            {
+                "title": "The Secret Rules of Modern Living: Algorithms",
+                "excerpt": "A short summary of what an algorithm is with a small-scale comparison of two staple algorithms, and a large-scale analysis of the societal context that we perceive.",
+                "url": "https://www.bbc.co.uk/programmes/p030s6b3/clips" 
+            },
+            {
+                "title": "Christian Sandving: Seeing the Sort: The Aesthetic and Industrial Defense of “The Algorithm”",
+                "excerpt": "An analysis on the cultural and mathematical definition of an algorithm. Christian Sandving tries to overcome the boundaries that would obfuscate the nature of an algorithm, and explains a complex structure of knowledge that is not tainted by a corporate identity.",
+                "url": "http://median.newmediacaucus.org/art-infrastructures-information/seeing-the-sort-the-aesthetic-and-industrial-defense-of-the-algorithm/" 
+            }
+        ],
+        "submissions": {
+          "grape": null,
+            "apple": null,
+            "pineapple": null,
+            "jackfruit": null,
+            "maracuja": null,
+            "peach": null,
+            "lemon": null,
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "BRICKS-3",
+              "backgroundColor": "white",
+              "program": [
+              ],
+              "canvasSize": {
+                "width": 0,
+                "height": 0
+              }
+            }
+
+        }
+    },
+    
+    "thicket": {
+        "title": "8: learning() ~ Cheating the Test",
+        "excerpt": "The core of programming comes down to the algorithm - the combination of all the elements you have learned about. We will take a look at some algorithms and how they manage to convey their message through some short lines of text, their context of application, and the result they are striving for.",
+        "code": "thicket",
+        "description": [
+            "Where do you see the duality of children learning, and machines learning? Where are its boundaries? From your understanding of designing a learning task, conceptualize a model that could solve some issue. What are the benefits of machine learning to you personally, and where would you draw the line? If machines are fit to learn, how would you implement them in a societal context?", 
+            "What is the common perception of machine learning in your daily life? How do you think different kinds of people perceive the possibilities of learning models? What could be done to further communicate their potential and its benefits and dangers?",
+            "Generate some images or other kinds of media yourself! What do you see? What do you think went into its generation? Would you consider the result to be art?"
+        ],
+        "resources": [
+            {
+                "title": "Ruha Benjamin: Are Robots Racist?",
+                "excerpt": "With institutions and corporations strongly relying on automation, the dangers are imminent, when programs are written by and tested on largely white men. In the context of race and gender biases, Ruha argues the dangers of current emplyoment practices and how capital employs software that undermines intersectional identities.",
+                "url": "https://www.dropbox.com/s/j80s8kjm63erf70/Ruha%20Benjamin%20Guest%20Lecture.mp4" 
+            },
+            {
+                "title": "Discriminating Systems: The Power in AI",
+                "excerpt": "In their paper, Sarah Myers et al. put together a comprehensive view on the matter of Gender, Race and Power in AI. Their findings paint a picture of a severe diversity crisis in AI, a research topic that has been largely discussed mathematically, yet has been barely touched in a societal and political context. ",
+                "url": "https://ainowinstitute.org/discriminatingsystems.pdf" 
+            },
+            {
+                "title": "Racial and Gender bias in Amazon Rekognition — Commercial AI System for Analyzing Faces",
+                "excerpt": "A showcase of an Amazon controversy surrounding facial recognition in commercial, closed-source software. Despite its dominance in industrial practice, its functionality not only discriminates against minorities, but gives room to weaponization and exploitation.",
+                "url": "https://medium.com/@Joy.Buolamwini/response-racial-and-gender-bias-in-amazon-rekognition-commercial-ai-system-for-analyzing-faces-a289222eeced" 
+            },
+            {
+                "title": "To Be or not to Be Hacked? The Future of Democracy, Work, and Identity",
+                "excerpt": "From the issues brought up in the resources before, this discussion on technological influence in different cultures sparks arguments on its future, and the historical development of digital norms.",
+                "url": "https://www.youtube.com/watch?v=tRVEY95cI0o" 
+            }
+        ],
+        "submissions": {
+          "grape": null,
+            "apple": null,
+            "pineapple": null,
+            "jackfruit": null,
+            "maracuja": null,
+            "peach": null,
+            "lemon": null,
+            "garden" : {
+              "opus": "Pseudo Program",
+              "version": "0.1",
+              "backgroundPattern": "BRICKS-3",
+              "backgroundColor": "white",
+              "program": [
+              ],
+              "canvasSize": {
+                "width": 0,
+                "height": 0
+              }
+            }
+
+        }
+    }
+}
