@@ -4,7 +4,7 @@
     <input type="checkbox" id="run-button" v-model="programRunning" />
     <label for="run-button"></label>
     <tooltip keyphrase="run-help" icon="⚠️"/>
-    <input type="range" min=".1" max="2" step=".1" v-model.number="canvasScale" />
+    x{{canvasScale}}<input type="range" min=".1" max="2" step=".1" v-model.number="canvasScale" />
   </div>
   
     <div class="editor-control active" >
@@ -136,7 +136,7 @@
             </div>
             <div v-for="(bg,i) in this.backgroundImages" :key="i" class="canvas-background">
               <input type="radio" name="patterns" :value="bg" :id="'canvas-background-'+bg" v-model="score.backgroundPattern"/>
-              <label :for="'canvas-background-'+bg" :style="'background-image: url(@/../assets/backgrounds/'+ bg + '.jpg)'"></label>
+              <label :for="'canvas-background-'+bg" :style="'background-image: url(/assets/backgrounds/'+ bg + '.jpg)'"></label>
             </div>
           </div>
           <tooltip keyphrase="warning" icon="⚠️"/>
@@ -325,7 +325,7 @@
           "garden": "🌿"
         },
         styles: styles,
-        backgroundImages: [ "ASPHALT", "BRICKS-1", "BRICKS-2", "BRICKS-3", "BRICKS-4", "BUILDING-1", "BUILDING-2", "BUILDING-3", "BUILDING-4", "BUILDING-5", "BUILDING-6", "BUILDING-7", "BUILDING-8", "BUILDING-9", "CIRCUIT", "CLOVER", "DOOR-1", "DOOR-2", "DOTS-1", "DOTS-2", "FLAME-1", "FLAME-2", "FLOWERS-1", "FLOWERS-2", "GIRAFFE", "LEATHER", "MACHINE", "PASTA", "PATTERN-1", "PATTERN-10", "PATTERN-11", "PATTERN-12", "PATTERN-13", "PATTERN-14", "PATTERN-15", "PATTERN-16", "PATTERN-17", "PATTERN-18", "PATTERN-19", "PATTERN-2", "PATTERN-20", "PATTERN-21", "PATTERN-22", "PATTERN-23", "PATTERN-24", "PATTERN-25", "PATTERN-26", "PATTERN-27", "PATTERN-28", "PATTERN-29", "PATTERN-3", "PATTERN-30", "PATTERN-31", "PATTERN-32", "PATTERN-33", "PATTERN-34", "PATTERN-35", "PATTERN-36", "PATTERN-37", "PATTERN-4", "PATTERN-5", "PATTERN-6", "PATTERN-7", "PATTERN-8", "PATTERN-9", "PLANTS", "PLATE", "ROCK-1", "ROCK-2", "ROCK-3", "ROCK-4", "SHELL", "SIBERIAN", "SPONGE", "STARS", "TIGER", "WATER", "WINDOWS-1", "WINDOWS-2", "WOOL-1", "WOOL-2"]
+        backgroundImages: [ "asphalt", "bricks-1", "bricks-2", "bricks-3", "bricks-4", "building-1", "building-2", "building-3", "building-4", "building-5", "building-6", "building-7", "building-8", "building-9", "circuit", "clover", "door-1", "door-2", "dots-1", "dots-2", "flame-1", "flame-2", "flowers-1", "flowers-2", "giraffe", "leather", "machine", "pasta", "pattern-1", "pattern-10", "pattern-11", "pattern-12", "pattern-13", "pattern-14", "pattern-15", "pattern-16", "pattern-17", "pattern-18", "pattern-19", "pattern-2", "pattern-20", "pattern-21", "pattern-22", "pattern-23", "pattern-24", "pattern-25", "pattern-26", "pattern-27", "pattern-28", "pattern-29", "pattern-3", "pattern-30", "pattern-31", "pattern-32", "pattern-33", "pattern-34", "pattern-35", "pattern-36", "pattern-37", "pattern-4", "pattern-5", "pattern-6", "pattern-7", "pattern-8", "pattern-9", "plants", "plate", "rock-1", "rock-2", "rock-3", "rock-4", "shell", "siberian", "sponge", "stars", "tiger", "water", "windows-1", "windows-2", "wool-1", "wool-2"]
       };
     },
     props: {
@@ -448,7 +448,7 @@
         return programByStackOrder.sort((a, b) => a.stackOrder < b.stackOrder );
       },
       canvasStyle() {
-        var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(@/../assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"
+        var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(/assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"
         return {
           "--canvas-scale": 'scale(' + this.canvasScale + ')',
           "--canvas-width": this.score.canvasSize.width + "px",
@@ -542,7 +542,6 @@
   .canvas-control {
     position: fixed;
     bottom: 0;
-    left: 350px;
     right: 0;
     margin: 0 auto;
     text-align: center;

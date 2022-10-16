@@ -25,7 +25,7 @@ export default {
 <style scoped>
 
     .field-config-slider .slider {
-        flex: 0 0 60%;
+        flex: 0 0 70%;
         height: 30px;
         background-color: var(--primary-color);
         color: var(--secondary-color);

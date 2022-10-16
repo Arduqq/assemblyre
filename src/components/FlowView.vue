@@ -111,7 +111,7 @@ export default {
   computed: {
     flowStyle() {
       return {
-        '--background-pattern': 'url(@/../assets/' + this.backgroundPattern + '.jpg)' ,
+        '--background-pattern': 'url(/assets/' + this.backgroundPattern + '.jpg)' ,
         '--canvas-scale': 'scale(' + this.modifier + ')',
         '--canvas-width': this.width + 'px',
         '--canvas-height': this.height + 'px',

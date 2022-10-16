@@ -145,7 +145,7 @@
         return programByStackOrder.sort((a, b) => a.stackOrder < b.stackOrder );
       },
       canvasStyle() {
-        var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(@/../assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"
+        var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(/assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"
         return {
           "--canvas-scale-transform": 'scale(' + this.canvasScale + ')',
           "--canvas-scale": this.canvasScale,

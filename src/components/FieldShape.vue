@@ -39,7 +39,7 @@
       fieldStyle () {
         var stacking = !this.inEdit ? this.stackOrder : 1000;
         var geometry = this.geometryMap[this.fieldStyleProperties.shape.shapeGeometry];
-        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(@/../assets/backgrounds/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
+        var backgroundImage = this.fieldStyleProperties.background.backgroundImage !== "none" ? 'url(/assets/backgrounds/' + this.fieldStyleProperties.background.backgroundImage + '.jpg)' : "none"
         return {
           '--field-background-color': this.fieldStyleProperties.background.backgroundColor,
           '--field-background-image': backgroundImage,

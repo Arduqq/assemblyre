@@ -110,17 +110,127 @@
             "peach": null,
             "lemon": null,
             "garden" : {
-              "opus": "Pseudo Program",
-              "version": "0.1",
-              "backgroundPattern": "BRICKS-3",
-              "backgroundColor": "white",
-              "program": [
-              ],
-              "canvasSize": {
-                "width": 0,
-                "height": 0
-              }
+  "opus": "Bee Loop",
+  "version": "royal edition",
+  "backgroundPattern": "flowers-1",
+  "backgroundColor": "white",
+  "program": [
+    {
+      "id": "1",
+      "name": "code-1",
+      "styling": "default",
+      "type": "code",
+      "x": 4.600006103515625,
+      "y": 384,
+      "alive": true,
+      "modifier": 1,
+      "stackOrder": 1,
+      "style": {
+        "text": {
+          "textSize": 100,
+          "textAlignment": "left",
+          "fontFamily": "Roboto",
+          "textColor": "#fbfce3FF",
+          "blocks": [
+            {
+              "id": 1,
+              "indent": 0,
+              "type": "none",
+              "content": "WHILE bee.hasEnergy {"
+            },
+            {
+              "id": 2,
+              "content": "var flower = patch.curFlow.next()",
+              "type": "assign",
+              "indent": 1
+            },
+            {
+              "id": 3,
+              "content": "bee.storage = flower.gather(honey)",
+              "type": "generate",
+              "indent": 1
+            },
+            {
+              "id": 4,
+              "content": "}",
+              "type": "none",
+              "indent": 0
             }
+          ]
+        },
+        "highlight": {
+          "textGlow": 0,
+          "textGlowColor": "transparent",
+          "highlightColor": "#430909FF"
+        },
+        "border": {
+          "borderSize": 11,
+          "borderRadius": 0,
+          "borderStyle": "solid",
+          "borderColor": "black"
+        },
+        "shadow": {
+          "shadowSize": 0,
+          "shadowDisplacement": 12,
+          "shadowColor": "#27060675"
+        },
+        "background": {
+          "backgroundSize": 100,
+          "backgroundColor": "#e3c178FF",
+          "backgroundImage": "none"
+        },
+        "animation": {
+          "animationDuration": 5,
+          "animationType": "none"
+        }
+      },
+      "w": 482,
+      "h": 188
+    },
+    {
+      "id": "2",
+      "name": "image-2",
+      "type": "image",
+      "x": 97,
+      "y": 74,
+      "alive": true,
+      "modifier": 1,
+      "media": "https://web.archive.org/web/20091026203059/http://uk.geocities.com/dsbka/images/bee_fly.gif",
+      "stackOrder": 2,
+      "style": {
+        "image": {
+          "imageRendering": "pixelated"
+        },
+        "border": {
+          "borderColor": "transparent",
+          "borderRadius": 0,
+          "borderStyle": "solid",
+          "borderSize": 0
+        },
+        "shadow": {
+          "shadowDisplacement": 0,
+          "shadowSize": 0,
+          "shadowColor": "transparent"
+        },
+        "background": {
+          "backgroundColor": "transparent",
+          "backgroundImage": "none",
+          "backgroundSize": 100
+        },
+        "animation": {
+          "animationDuration": 5,
+          "animationType": "ani1 cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+        }
+      },
+      "w": 285,
+      "h": 231.1333465576172
+    }
+  ],
+  "canvasSize": {
+    "width": 500,
+    "height": 600
+  }
+}
 
         }
     },
