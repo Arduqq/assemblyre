@@ -3,11 +3,11 @@
     <main >
       <field-code-config :fid="id" :onTop="screenY + screenHeight/2 > windowHeight / 2" v-show="inEdit" :properties="fieldStyleProperties" @delete-initiated="destroySelf" @input="updateProperties"/>
       
-      <div v-show="!edit" class="program-input">{{input}}</div>
-      <div v-show="!edit" class="program-output">{{output}}</div>
+      <div v-show="!edit" class="program-input">{{fieldStyleProperties.text.input}}</div>
+      <div v-show="!edit" class="program-output">{{fieldStyleProperties.text.output}}</div>
       <div v-show="edit" class="code-block" id="code-block-input">
         <span class="code-block-id"><b>IN</b></span>
-        <input type="text" v-model="input"/>
+        <input type="text" v-model="fieldStyleProperties.text.input"/>
       </div>
       <div v-for="block in fieldStyleProperties.text.blocks" :key="block.id" class="code-block" :id="id + '-' + block.id" :class="block.type">
         <span class="code-block-id">{{block.id}}</span>
@@ -38,7 +38,7 @@
       </div>
       <div v-show="edit" class="code-block" id="code-block-input">
         <span class="code-block-id"><b>OU</b></span>
-        <input type="text" v-model="output"/>
+        <input type="text" v-model="fieldStyleProperties.text.output"/>
       </div>
     </main>
   </div>
@@ -351,7 +351,7 @@
 
   @keyframes inout {
     0% {transform: translateY(0)}
-    50% {transform: translateY(4rem)}
+    50% {transform: translateY(calc(100% + 1rem))}
     100% {transform: translateY(0)}
   }
   @keyframes print {

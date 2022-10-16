@@ -127,6 +127,8 @@
       "stackOrder": 1,
       "style": {
         "text": {
+          "input": "pollen",
+          "output": "honey",
           "textSize": 100,
           "textAlignment": "left",
           "fontFamily": "Roboto",
