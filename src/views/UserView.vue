@@ -25,7 +25,7 @@
             <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link>
              <program-preview :score="course.submissions[userCode]" />
 
-            <a href="" class="route">Submit Code</a>
+            <a :href="'https://www.soscisurvey.de/test326808/?q=qnr2&r='+userCode+course.code" class="route">Submit Code</a>
           </section>
           
         </article>
