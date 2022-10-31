@@ -268,10 +268,12 @@
                 "textAlignment": "left",
                 "fontFamily": "Roboto",
                 "textColor": "#121212",
+                "input": "cookie crumbles",
+                "output": "cake",
                 "blocks": [{
                     "id": 1,
                     "indent": 0,
-                    "type": "print",
+                    "type": "none",
                     "content": ""
                 }]
             },
@@ -307,10 +309,12 @@
                 "textAlignment": "left",
                 "fontFamily": "FT88 Gothique",
                 "textColor": "#f0df8e",
+                "input": "cookie crumbles",
+                "output": "cake",
                 "blocks": [{
                     "id": 1,
                     "indent": 0,
-                    "type": "print",
+                    "type": "none",
                     "content": ""
 
                 }]
@@ -348,10 +352,12 @@
                 "textAlignment": "left",
                 "fontFamily": "Louise",
                 "textColor": "#fcf7f7FF",
+                "input": "cookie crumbles",
+                "output": "cake",
                 "blocks": [{
                     "id": 1,
                     "indent": 0,
-                    "type": "print",
+                    "type": "none",
                     "content": ""
 
                 }]
@@ -389,10 +395,12 @@
                 "textAlignment": "left",
                 "fontFamily": "FT88 School",
                 "textColor": "#ffffffef",
+                "input": "cookie crumbles",
+                "output": "cake",
                 "blocks": [{
                     "id": 1,
                     "indent": 0,
-                    "type": "print",
+                    "type": "none",
                     "content": ""
 
                 }]
@@ -430,10 +438,12 @@
                 "textAlignment": "left",
                 "fontFamily": "Abordage",
                 "textColor": "#ffbdf2",
+                "input": "cookie crumbles",
+                "output": "cake",
                 "blocks": [{
                     "id": 1,
                     "indent": 0,
-                    "type": "print",
+                    "type": "none",
                     "content": ""
 
                 }]
@@ -471,10 +481,12 @@
                 "textAlignment": "center",
                 "fontFamily": "FT88",
                 "textColor": "#f4d8fdFF",
+                "input": "cookie crumbles",
+                "output": "cake",
                 "blocks": [{
                     "id": 1,
                     "indent": 0,
-                    "type": "print",
+                    "type": "none",
                     "content": ""
 
                 }]
@@ -511,10 +523,12 @@
                 "textAlignment": "left",
                 "fontFamily": "CirrusCumulus",
                 "textColor": "#ffffff",
+                "input": "cookie crumbles",
+                "output": "cake",
                 "blocks": [{
                     "id": 1,
                     "indent": 0,
-                    "type": "print",
+                    "type": "none",
                     "content": ""
 
                 }]

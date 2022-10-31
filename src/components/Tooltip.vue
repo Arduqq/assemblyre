@@ -94,7 +94,7 @@ import DOMPurify from 'dompurify';
   .tooltip .message {
     display:none;
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
     right: 20px;
     background: white;
     color: black;

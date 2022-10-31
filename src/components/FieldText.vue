@@ -40,8 +40,10 @@
       if (this.importData === null) {
         const msg = sample(this.initMessages);
         this.fieldStyleProperties.text.content = [{ value: msg, md: DOMPurify.sanitize(marked.parse(msg))}]; 
+      } else {
+        this.fieldStyleProperties.text.content[0].md = DOMPurify.sanitize(marked.parse(this.fieldStyleProperties.text.content[0].value));
       }
-        this.updateAllContent();
+        this.updateAllContent(true);
         this.emitChange();
     },
     methods: {

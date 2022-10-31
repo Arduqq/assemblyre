@@ -23,9 +23,9 @@
             <h2>{{course.title}}</h2>
             <p>{{course.excerpt}}</p>
             <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link>
-             <program-preview :score="course.submissions[userCode]" />
+             <program-preview :score="course.submissions[userCode]" :id="userCode + course.code" />
 
-            <a href="" class="route">Submit Code</a>
+            <a :href="'https://www.soscisurvey.de/test326808/?q=qnr2&r='+userCode+course.code" class="route">Submit Code</a>
           </section>
           
         </article>
@@ -100,5 +100,5 @@ export default {
 .courses > * {
   flex: 1 1 500px;
 }
-
+  
 </style>
