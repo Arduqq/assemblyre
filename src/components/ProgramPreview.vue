@@ -7,6 +7,7 @@
           <field-text v-for="chord in programQuery('text')" 
             :id="id + chord.id"
             :name= "chord.name"
+            style="custom"
             :x= "chord.x  "
             :y= "chord.y " 
             :w= "chord.w"  
@@ -22,6 +23,7 @@
           <field-code v-for="code in programQuery('code')" 
             :id= "id + code.id "
             :name="code.name"
+            style="custom"
             :x= "code.x"  
             :y= "code.y"  
             :w= "code.w"  
@@ -37,6 +39,7 @@
           <field-media v-for="plug in programQuery('image')" 
             :id= "id + plug.id "
             :name="plug.name"
+            style="custom"
             :x= "plug.x"  
             :y= "plug.y"  
             :w= "plug.w"  
@@ -52,6 +55,7 @@
           <field-shape v-for="shape in programQuery('shape')" 
             :id= "id + shape.id"
             :name="shape.name"
+            style="custom"
             :x= "shape.x"  
             :y= "shape.y"  
             :w= "shape.w"  
@@ -149,7 +153,7 @@
     computed: {
       sortedFields(){
         var programByStackOrder = this.programQuery("alive");
-        return programByStackOrder.sort((a, b) => a.stackOrder < b.stackOrder );
+        return programByStackOrder.sort((a, b) => b.stackOrder - a.stackOrder );
       },
       canvasStyle() {
         var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(/assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"

@@ -359,19 +359,18 @@
         var files = e.target.files || e.dataTransfer.files;
         if (!files.length)
           return;
-        this.importProgram(files[0])
-      },
 
-      importProgram(file) {
         var reader = new FileReader();
-        var vm = this;
         this.score = {};
         reader.onload = (e) => {
-          var json = JSON.parse(e.target.result);
-          vm.score = json;
-        };
-        reader.readAsText(file);
-      },
+          this.score = JSON.parse(e.target.result);
+          this.score.program.forEach(function(field){
+              field.id = uniqueId();
+          });
+        }
+        reader.readAsText(files[0]);
+        },
+
         addChord: function (x, y, style) {
           const uID = uniqueId();
           const fieldType = "text";
@@ -444,7 +443,7 @@
     computed: {
       sortedFields(){
         var programByStackOrder = this.programQuery("alive");
-        return programByStackOrder.sort((a, b) => a.stackOrder < b.stackOrder );
+        return programByStackOrder.sort((a, b) => b.stackOrder - a.stackOrder );
       },
       canvasStyle() {
         var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(/assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"
@@ -739,7 +738,8 @@
     flex-flow: column nowrap;
     background: var(--gui-color);
     overflow-y: auto;
-    scrollbar-width: none;
+    overflow-x: hidden;
+    scrollbar-width: thin;
     color: white;
     margin-top: 60px;
     height: calc(100% - 60px);
@@ -747,6 +747,10 @@
     justify-content: flex-start;
     font-family: var(--display-font);
     border: 1px solid rgb(191, 146, 195);
+  }
+
+  .tool-control::-webkit-scrollbar {
+    display: none;
   }
 
   .tool-control label {
@@ -774,7 +778,7 @@
 
   .tool.layerbox {
     display: flex;
-    flex-flow: row-reverse wrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     align-content: flex-start;
@@ -805,6 +809,11 @@
 
   .tool.layerbox > .layer > * {
     font-size: 100%;
+    flex: 1 1 auto;
+  }
+
+  .tool.layerbox >.layer > input {
+    width: 100px;
   }
 
   .tool.layerbox > .layer > button {

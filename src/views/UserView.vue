@@ -18,7 +18,7 @@
 
       </section>
       <div class="courses">
-        <article class="course" v-for="course in courseData" :key="course.name">
+        <article class="course" v-for="course in courseData" :key="course.code">
           <section v-if="course.submissions[userCode] !== null || courseCode === course.code" class="course-details">
             <h2>{{course.title}}</h2>
             <p>{{course.excerpt}}</p>
