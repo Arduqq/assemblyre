@@ -3,7 +3,6 @@
   <div class="canvas-control">     
     <input type="checkbox" id="run-button" v-model="programRunning" />
     <label for="run-button"></label>
-    <tooltip keyphrase="run-help" icon="⚠️"/>
     x{{canvasScale}}<input type="range" min=".1" max="2" step=".1" v-model.number="canvasScale" />
   </div>
   
@@ -451,6 +450,7 @@
         var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(/assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"
         return {
           "--canvas-scale": 'scale(' + this.canvasScale + ')',
+          "--canvas-scale-val": this.canvasScale,
           "--canvas-width": this.score.canvasSize.width + "px",
           "--canvas-height": this.score.canvasSize.height + "px",
           "--canvas-background": backgroundImage,
@@ -504,11 +504,13 @@
     align-items: center;
     justify-content: center;
   }
-  .editor-control input {
-    flex: 0 1 150px;
+  .editor-control input{
+    flex: 0 0 100px;
     padding: 5px;
   }
-
+  .editor-control > label:nth-child(5) > input {
+      width: 100px;
+  }
   .editor-control .hub-link {
     border-radius: 100%;
   }
@@ -524,6 +526,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    flex-shrink: 0;
   }
 
   .editor-control .task {
@@ -550,13 +553,14 @@
     padding: 20px;
     gap: 20px;
     justify-content: flex-start;
+    align-items: center;
   }
 
   .editor {
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: flex-start;
     position: absolute;
     top: 0;
@@ -578,7 +582,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    flex: 1 1 1000px;
+    flex: 1 0 1000px;
     flex-flow: row nowrap;
     color: rgb(235, 235, 235);
     overflow: auto;
@@ -594,7 +598,7 @@
     background-color: var(--canvas-background-color);
     transform-origin: top left;;
     transition: .1s;
-    margin: 20px;
+    margin: 65px;
   }
   
   .sandbox .program.preview.alive {
@@ -730,7 +734,7 @@
   }
 
   .tool-control {
-    flex: 0 1 75px;
+    flex: 0 0 75px;
     display: flex;
     flex-flow: column nowrap;
     background: var(--gui-color);

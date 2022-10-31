@@ -128,7 +128,7 @@ header {
 
 
 header a {
-  flex: 0 0 125px;
+  flex: 0 1 125px;
   height: 125px;
   display: flex;
   flex-flow: row wrap;
@@ -240,6 +240,7 @@ input[type="text"] {
 input[type="text"].big{
   font-size: 200%;
   text-align: center;
+  width: 100%;
 }
 
 input[type="text"]:focus {

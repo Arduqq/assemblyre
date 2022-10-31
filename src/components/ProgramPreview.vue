@@ -1,66 +1,69 @@
 <template>
 <div class="program-preview" :style="canvasStyle"  :class="{'full' : fullView}">
         <div class="program" ref="program" @click="fullView = !fullView"> 
+          <h3>
+            {{score.opus}} - <i>{{score.version}}</i>
+          </h3>
           <field-text v-for="chord in programQuery('text')" 
-            :id= chord.id 
-            :name= chord.name
-            :x= chord.x  
-            :y= chord.y  
-            :w= chord.w  
-            :h= chord.h  
-            :alive = chord.alive
-            :modifier= canvasScale
-            :styling= chord.styling
-            :key= chord.id  
-            :stackOrder = chord.stackOrder
-            :active = chord.active
-            :edit = false  
+            :id="id + chord.id"
+            :name= "chord.name"
+            :x= "chord.x  "
+            :y= "chord.y " 
+            :w= "chord.w"  
+            :h= "chord.h"  
+            :alive = "chord.alive"
+            :modifier= "canvasScale"
+            :styling= "chord.styling"
+            :key= "chord.id"  
+            :stackOrder = "chord.stackOrder"
+            :active = "chord.active"
+            :edit = "false"  
             :importData = chord.style />
           <field-code v-for="code in programQuery('code')" 
-            :id= code.id 
-            :name=code.name
-            :x= code.x  
-            :y= code.y  
-            :w= code.w  
-            :h= code.h  
-            :alive = code.alive
-            :modifier= canvasScale 
-            :styling= code.styling
-            :key= code.id  
-            :stackOrder = code.stackOrder 
-            :active = code.active
-            :edit = false  
-            :importData = code.style />
+            :id= "id + code.id "
+            :name="code.name"
+            :x= "code.x"  
+            :y= "code.y"  
+            :w= "code.w"  
+            :h= "code.h"  
+            :alive = "code.alive"
+            :modifier= "canvasScale" 
+            :styling= "code.styling"
+            :key= "code.id"  
+            :stackOrder = "code.stackOrder" 
+            :active = "code.active"
+            :edit = "false"  
+            :importData = "code.style" />
           <field-media v-for="plug in programQuery('image')" 
-            :id= plug.id 
-            :name=plug.name
-            :x= plug.x  
-            :y= plug.y  
-            :w= plug.w  
-            :h= plug.h  
-            :alive = plug.alive
-            :modifier= canvasScale 
-            :media= plug.media  
-            :key= plug.id  
-            :stackOrder = plug.stackOrder 
-            :active = plug.active
-            :edit = false  
-            :importData = plug.style />
+            :id= "id + plug.id "
+            :name="plug.name"
+            :x= "plug.x"  
+            :y= "plug.y"  
+            :w= "plug.w"  
+            :h= "plug.h"  
+            :alive = "plug.alive"
+            :modifier= "canvasScale" 
+            :media= "plug.media"  
+            :key= "plug.id"  
+            :stackOrder = "plug.stackOrder" 
+            :active = "plug.active"
+            :edit = "false"  
+            :importData = "plug.style" />
           <field-shape v-for="shape in programQuery('shape')" 
-            :id= shape.id 
-            :name=shape.name
-            :x= shape.x  
-            :y= shape.y  
-            :w= shape.w  
-            :h= shape.h  
-            :alive = shape.alive
-            :modifier= canvasScale 
-            :styling= shape.styling 
-            :key= shape.id  
-            :stackOrder = shape.stackOrder 
-            :active = shape.active
-            :edit = false 
-            :importData = shape.style />
+            :id= "id + shape.id"
+            :name="shape.name"
+            :x= "shape.x"  
+            :y= "shape.y"  
+            :w= "shape.w"  
+            :h= "shape.h"  
+            :alive = "shape.alive"
+            :modifier= "canvasScale" 
+            :styling= "shape.styling" 
+            :key= "shape.id"  
+            :stackOrder = "shape.stackOrder" 
+            :active = "shape.active"
+            :edit = "false" 
+            :importData = "shape.style" />
           </div>
 
       </div>  
@@ -117,6 +120,10 @@
             canvasSize: { width: 800, height: 600 },
           }
         }
+      },
+      id: {
+        type: String,
+        required: true
       }
     },
     mounted: function() {
@@ -183,6 +190,10 @@
   height: 100vh;
   background: rgba(0,0,0,.3);
   z-index: 10000;
+  display: flex;
+flex-flow: row nowrap;
+align-items: center;
+justify-content: center;
 }
 
 .program-preview.full .program {
@@ -191,8 +202,8 @@
   cursor: zoom-out;
 }
 
- .program {
-    display: block;
+ .program {  
+   display: inline-block;
     transform: var(--canvas-scale-transform);
     width: var(--canvas-width);
     height: var(--canvas-height);
@@ -222,5 +233,15 @@
   }
 
 
+  
+
+  h3 {
+    background: black;
+    position: absolute;
+    padding: 5px;
+    color: white;
+    z-index: 3000;
+  }
+  
 
 </style>
