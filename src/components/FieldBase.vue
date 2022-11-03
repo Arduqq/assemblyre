@@ -25,7 +25,7 @@
       w: {
         type: Number,
         required: false,
-        default: 100
+        default: 200
       },
       h: {
         type: Number,
@@ -106,8 +106,11 @@
       this.emitChange();
     },
     mounted: function() {
-      let draggableWrapper = this.$refs.draggableWrapper;
-      this.initInteract(draggableWrapper);
+      if (this.$refs.draggableWrapper !== undefined) {
+        let draggableWrapper = this.$refs.draggableWrapper;
+        this.initInteract(draggableWrapper);
+
+      }
     },
     methods: {
       initInteract: function(selector) {

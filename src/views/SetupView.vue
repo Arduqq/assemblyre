@@ -1,11 +1,16 @@
 <template>
     <main class="content">
     <h1>Assemblyng Hub</h1>
-    
+
     <section id="welcome">
       <p>Thank you for participating in my study on <em>Composing Code</em>. Here, I will guide you through a learning platform alongside all of the resources that you may use for your sessions. Below, you can find further details on what will happen in this study.</p>
     </section>
     
+    <section id="bugfixes">
+      <h2>Bugfixes</h2>
+      <p v-for="(message, i) in messages" :key="i">{{message}}</p>
+      </section>
+
     <section id="code">
       <h2>Setup</h2>
       <p>On the front page of your <em>Lyre Zine</em> you can find your case-sensitive code to view your personal hub. From there you will be able to unlock your digital resources and tools for creating your very own programs. </p>
@@ -36,7 +41,12 @@ export default {
   name: 'SetupView',
   data() {
     return {
-      userCode: ''
+      userCode: '',
+      messages: [
+        "Hey! I added this small window to notify you of some small changes regarding prominent bugs. If you find something that is bothering you and feels frustrating, please reach out, so I can fix it. Submissions don't need to be perfect, so let me know if you weren't able to execute something.",
+        "- For Google Chrome, there were errors with Layers and Imports that should be fixed now. You should be able to adjust layer structure and add new content after importing a file.",
+        "- Safari is still not functional until I figure it out. Firefox is preferred for using the editor."
+      ]
     }
   }
 }
@@ -47,6 +57,14 @@ a {
   font-size: 150%;
 }
 
+section#bugfixes {
+  font-size: 80%;
+  width: 90%;
+  max-width: 600px;
+  background: white;
+  border: 20px solid var(--secondary-color);
+  font-family: var(--code-font);
+}
 
 
 
