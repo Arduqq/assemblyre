@@ -9,7 +9,7 @@
     <div class="editor-control active" >
       <a class="logo" title="Back to Start" href="/"></a>
       <router-link :title="'Back to ' + this.user.toUpperCase() + ' Hub'" class="hub-link route" :to="{ name: 'hub', params: { userCode: this.user }}" >{{participants[user]}}</router-link>
-      <input type="file" id="import-file" value="Import" @change="handleFile"/>
+      <input v-if="!importSuccessful" type="file" id="import-file" value="Import" @change="handleFile"/>
       <label>Title
         <input type="text" v-model="score.opus"/>
       </label>
@@ -296,14 +296,7 @@
       return {
         panningMode: false,
         activeTool: "text",
-        score: {
-          opus: "Pseudo Program",
-          version: "0.1",
-          backgroundPattern: "none",
-          backgroundColor: "white",
-          program: [],
-          canvasSize: { width: 800, height: 600 },
-        },
+        score: this.import,
         importedImages: [],
         newImageURL : "https://imgur.com/ftHNkoG.png",
         exportURL: null,
@@ -347,6 +340,20 @@
         type: String,
         required: false,
         default: "spurt"
+      },
+      import: {
+        type: Object,
+        required: false,
+        default: function() {
+          return {
+            opus: "Pseudo Program",
+            version: "0.1",
+            backgroundPattern: "none",
+            backgroundColor: "white",
+            program: [],
+            canvasSize: { width: 800, height: 600 },
+          }
+        }
       }
     },
     mounted: function() {
@@ -361,12 +368,8 @@
           return;
 
         var reader = new FileReader();
-        this.score = {};
         reader.onload = (e) => {
           this.score = JSON.parse(e.target.result);
-          this.score.program.forEach(function(field){
-              field.id = uniqueId();
-          });
         }
         reader.readAsText(files[0]);
         },
@@ -442,8 +445,11 @@
     },
     computed: {
       sortedFields(){
-        var programByStackOrder = this.programQuery("alive");
-        return programByStackOrder.sort((a, b) => b.stackOrder - a.stackOrder );
+        if (!this.importRunning) {
+          var programByStackOrder = this.programQuery("alive");
+          return programByStackOrder.sort((a, b) => b.stackOrder - a.stackOrder );
+        } 
+        return this.score.program
       },
       canvasStyle() {
         var backgroundImage = this.score.backgroundPattern !== "none" ? 'url(/assets/backgrounds/' + this.score.backgroundPattern + '.jpg)' : "white"
