@@ -1176,12 +1176,2237 @@
                 "url": "https://www.media.mit.edu/videos/ml-talks-2018-04-23/"
             }
         ],
-        "submissions": {
-            "grape": null,
-            "apple": {
                 "opus": "Rorschach test",
-                "version": "gamma",
-                "backgroundPattern": "pattern-16",
+        "canvasSize": {
+          "width": 671,
+          "height": 671
+        }
+      },
+      "pineapple": null,
+      "jackfruit": {
+        "opus": "Everything is shapes",
+        "version": "0.1",
+        "backgroundPattern": "none",
+        "backgroundColor": "#2d2d2d",
+        "program": [
+          {
+            "id": "1",
+            "name": "shape-1",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 579.0856061662943,
+            "y": 459.5142222813197,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 5,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 114.79998779296875,
+            "h": 128.23995971679688,
+            "active": false
+          },
+          {
+            "id": "2",
+            "name": "shape-2",
+            "styling": "triangle",
+            "type": "shape",
+            "x": -3.000030517578125,
+            "y": 590.5999832153321,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 6,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 218.3912353515625,
+            "h": 88.47998046875,
+            "active": false
+          },
+          {
+            "id": "3",
+            "name": "shape-3",
+            "styling": "triangle",
+            "type": "shape",
+            "x": -3.0000000000002314,
+            "y": 420.2374965122769,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 7,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 124.38998413085938,
+            "h": 207.73373413085938,
+            "active": false
+          },
+          {
+            "id": "4",
+            "name": "See",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": -3.000000000000006,
+            "y": 348.2267139979774,
+            "alive": true,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 55,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#060232",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 723.2401123046875,
+            "h": 254.9312744140625,
+            "active": false
+          },
+          {
+            "id": "5",
+            "name": "Wiese",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 13.000034877232142,
+            "y": 241.8000259399414,
+            "alive": true,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 15,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "#064210",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 702.6000366210938,
+            "h": 332.6399841308594,
+            "active": false
+          },
+          {
+            "id": "6",
+            "name": "shape-6",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 595.9749581473212,
+            "y": 352.56246675763805,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 8,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 308.15765380859375,
+            "h": 255.10626220703125,
+            "active": false
+          },
+          {
+            "id": "7",
+            "name": "Himmel",
+            "styling": "square",
+            "type": "shape",
+            "x": 13.000015500992063,
+            "y": 24.199979509626132,
+            "alive": true,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 2,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "#11157e",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 500.60003662109375,
+            "h": 141.19375610351562,
+            "active": false
+          },
+          {
+            "id": "8",
+            "name": "shape-8",
+            "styling": "triangle",
+            "type": "shape",
+            "x": -3.000021798270172,
+            "y": 519.8625090462824,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 9,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 723.2400512695312,
+            "h": 137.99624633789062,
+            "active": false
+          },
+          {
+            "id": "9",
+            "name": "shape-9",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 152.45719691685258,
+            "y": 390.16246632167264,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 10,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 299.9062805175781,
+            "h": 228.7862548828125,
+            "active": false
+          },
+          {
+            "id": "10",
+            "name": "Mond",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 534.1429094587055,
+            "y": 185.57147979736314,
+            "alive": true,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 4,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#aeb2c1",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00004577636719,
+            "active": false
+          },
+          {
+            "id": "11",
+            "name": "shape-11",
+            "styling": "star",
+            "type": "shape",
+            "x": 394.39996337890625,
+            "y": 17.60003662109375,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 11,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 100.00003051757812,
+            "h": 100
+          },
+          {
+            "id": "12",
+            "name": "shape-12",
+            "styling": "rhombus",
+            "type": "shape",
+            "x": 100.80001831054688,
+            "y": 113.59998321533203,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 12,
+            "style": {
+              "shape": {
+                "shapeGeometry": "rhombus"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 200,
+            "h": 100
+          },
+          {
+            "id": "13",
+            "name": "shape-13",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 351.08571515764527,
+            "y": 190.85711560930517,
+            "alive": false,
+            "modifier": 1,
+            "lockedResolution": false,
+            "stackOrder": 13,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 62,
+            "h": 59.60003662109375,
+            "active": false
+          },
+          {
+            "id": "14",
+            "name": "Baum 1",
+            "styling": "star",
+            "type": "shape",
+            "x": 421.7142595563615,
+            "y": 316.5714372907366,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 1,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "15",
+            "name": "Baum 2",
+            "styling": "star",
+            "type": "shape",
+            "x": 441.14279610770086,
+            "y": 315.4285321916854,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 17,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00006103515625,
+            "active": false
+          },
+          {
+            "id": "16",
+            "name": "Baum 3",
+            "styling": "star",
+            "type": "shape",
+            "x": 460.57141985212064,
+            "y": 314.28571428571416,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 18,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "17",
+            "name": "Baum 4",
+            "styling": "star",
+            "type": "shape",
+            "x": 431.99999128069226,
+            "y": 315.4285975864954,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 19,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "18",
+            "name": "Baum 5",
+            "styling": "star",
+            "type": "shape",
+            "x": 492.57145472935264,
+            "y": 315.4285539899551,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 20,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "19",
+            "name": "Baum 6",
+            "styling": "star",
+            "type": "shape",
+            "x": 513.1428745814737,
+            "y": 321.1428397042411,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 21,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "20",
+            "name": "Baum 7",
+            "styling": "star",
+            "type": "shape",
+            "x": 530.2856881277905,
+            "y": 317.7142551967074,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 22,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "21",
+            "name": "Baum 17",
+            "styling": "star",
+            "type": "shape",
+            "x": 521.1428833007814,
+            "y": 324.5714242117746,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 23,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "22",
+            "name": "Baum 16",
+            "styling": "star",
+            "type": "shape",
+            "x": 546.2857055664065,
+            "y": 317.71427699497764,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 24,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "23",
+            "name": "Baum 15",
+            "styling": "star",
+            "type": "shape",
+            "x": 577.1429007393976,
+            "y": 327.99998692103765,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 25,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "24",
+            "name": "Baum 14",
+            "styling": "star",
+            "type": "shape",
+            "x": 651.4285714285714,
+            "y": 340.57137625558033,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 26,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70,
+            "active": false
+          },
+          {
+            "id": "25",
+            "name": "Baum 13",
+            "styling": "star",
+            "type": "shape",
+            "x": 672.0000348772321,
+            "y": 337.1428571428569,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 27,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "26",
+            "name": "Baum 12",
+            "styling": "star",
+            "type": "shape",
+            "x": 608.0000087193081,
+            "y": 331.42859322684143,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 28,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70,
+            "active": false
+          },
+          {
+            "id": "27",
+            "name": "Baum 11",
+            "styling": "star",
+            "type": "shape",
+            "x": 594.2857578822551,
+            "y": 324.5713588169642,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 29,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00003051757812,
+            "active": false
+          },
+          {
+            "id": "28",
+            "name": "Baum 10",
+            "styling": "star",
+            "type": "shape",
+            "x": 618.2857404436378,
+            "y": 330.28573172433033,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 30,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70,
+            "active": false
+          },
+          {
+            "id": "29",
+            "name": "Baum 9",
+            "styling": "star",
+            "type": "shape",
+            "x": 707.4286324637275,
+            "y": 345.1428440638953,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 31,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70,
+            "active": false
+          },
+          {
+            "id": "30",
+            "name": "Baum 8",
+            "styling": "star",
+            "type": "shape",
+            "x": 628.5713849748888,
+            "y": 329.14282662527893,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 32,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70,
+            "active": false
+          },
+          {
+            "id": "31",
+            "name": "shape-31",
+            "styling": "star",
+            "type": "shape",
+            "x": 502.85718645368297,
+            "y": 321.14283970424106,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 33,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "32",
+            "name": "shape-32",
+            "styling": "star",
+            "type": "shape",
+            "x": 329.14284842354897,
+            "y": 333.71429443359386,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 34,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "33",
+            "name": "shape-33",
+            "styling": "star",
+            "type": "shape",
+            "x": 270.85719517299117,
+            "y": 336.0000174386161,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 35,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "34",
+            "name": "shape-34",
+            "styling": "star",
+            "type": "shape",
+            "x": 637.714320591518,
+            "y": 330.28573172433033,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 36,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "35",
+            "name": "shape-35",
+            "styling": "star",
+            "type": "shape",
+            "x": 468.57147216796886,
+            "y": 314.28571428571433,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 37,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "36",
+            "name": "shape-36",
+            "styling": "star",
+            "type": "shape",
+            "x": 286.85712541852666,
+            "y": 333.71429443359386,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 38,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "37",
+            "name": "shape-37",
+            "styling": "star",
+            "type": "shape",
+            "x": 382.85709926060287,
+            "y": 317.7142769949774,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 39,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "38",
+            "name": "shape-38",
+            "styling": "star",
+            "type": "shape",
+            "x": 365.7143293108258,
+            "y": 324.57142421177446,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 40,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "39",
+            "name": "shape-39",
+            "styling": "star",
+            "type": "shape",
+            "x": 684.5714460100443,
+            "y": 340.5714198521208,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 41,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "40",
+            "name": "shape-40",
+            "styling": "star",
+            "type": "shape",
+            "x": 302.8571428571426,
+            "y": 330.2856881277903,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 42,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "41",
+            "name": "shape-41",
+            "styling": "star",
+            "type": "shape",
+            "x": 316.5713936941965,
+            "y": 328.00000871930825,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 44,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "42",
+            "name": "shape-42",
+            "styling": "star",
+            "type": "shape",
+            "x": 564.5714896065845,
+            "y": 321.14288330078136,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 43,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00001525878906,
+            "active": false
+          },
+          {
+            "id": "43",
+            "name": "shape-43",
+            "styling": "star",
+            "type": "shape",
+            "x": 337.1428571428569,
+            "y": 323.42860630580367,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 45,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00001525878906,
+            "active": false
+          },
+          {
+            "id": "44",
+            "name": "shape-44",
+            "styling": "star",
+            "type": "shape",
+            "x": 481.14288330078097,
+            "y": 317.71427699497787,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 46,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "45",
+            "name": "shape-45",
+            "styling": "star",
+            "type": "shape",
+            "x": 355.4285539899552,
+            "y": 322.28572300502225,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 47,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "46",
+            "name": "shape-46",
+            "styling": "star",
+            "type": "shape",
+            "x": 406.85712541852655,
+            "y": 318.85711669921875,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 48,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "47",
+            "name": "shape-47",
+            "styling": "star",
+            "type": "shape",
+            "x": 374.85717773437506,
+            "y": 324.5714460100447,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 49,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "48",
+            "name": "shape-48",
+            "styling": "star",
+            "type": "shape",
+            "x": 394.2857142857142,
+            "y": 319.99999999999994,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 50,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "49",
+            "name": "shape-49",
+            "styling": "star",
+            "type": "shape",
+            "x": 228.57142857142856,
+            "y": 347.42854527064725,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 51,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "50",
+            "name": "shape-50",
+            "styling": "star",
+            "type": "shape",
+            "x": 786.2857491629466,
+            "y": 369.14284842354914,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 52,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "51",
+            "name": "shape-51",
+            "styling": "star",
+            "type": "shape",
+            "x": 765.7142857142854,
+            "y": 363.4285845075335,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 53,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "52",
+            "name": "shape-52",
+            "styling": "star",
+            "type": "shape",
+            "x": 777.1428571428573,
+            "y": 371.4285932268417,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 54,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "#00240d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 70.00000762939453,
+            "active": false
+          },
+          {
+            "id": "53",
+            "name": "Wald Schatten",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 188.57142857142878,
+            "y": 349.7142900739396,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 57,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#06032d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 459.1650390625,
+            "h": 70,
+            "active": false
+          },
+          {
+            "id": "54",
+            "name": "Mond Schatten",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 533.7140764508922,
+            "y": 243.42856270926285,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 16,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "#065a0c",
+                "backgroundImage": "none",
+                "backgroundSize": 37
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 70,
+            "h": 69.99998474121094,
+            "active": false
+          },
+          {
+            "id": "55",
+            "name": "Mond Schatten",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 804.5714460100446,
+            "y": 250.2857317243304,
+            "alive": false,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 14,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#337054",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 69.99993896484375,
+            "h": 69.99998474121094,
+            "active": false
+          },
+          {
+            "id": "56",
+            "name": "See Schatten",
+            "styling": "square",
+            "type": "shape",
+            "x": 534.857264927455,
+            "y": 410.2856881277901,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 56,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "#1a1a60D1",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 69.99993896484375,
+            "h": 201.9937744140625,
+            "active": false
+          },
+          {
+            "id": "57",
+            "name": "shape-57",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 783.6429268973229,
+            "y": 445.5999755859375,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 58,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 171.98992919921875,
+            "h": 189.98001098632812,
+            "active": false
+          },
+          {
+            "id": "58",
+            "name": "shape-58",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 74.28571428571449,
+            "y": 575.8625357491622,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 59,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 673.19873046875,
+            "h": 98.79623413085938,
+            "active": false
+          },
+          {
+            "id": "59",
+            "name": "shape-59",
+            "styling": "triangle",
+            "type": "shape",
+            "x": -3.0000087193080374,
+            "y": 321.77499680292044,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 60,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 241.5975341796875,
+            "h": 237.13499450683594,
+            "active": false
+          },
+          {
+            "id": "60",
+            "name": "shape-60",
+            "styling": "triangle",
+            "type": "shape",
+            "x": -3.000008719308032,
+            "y": 505.0000254313156,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 61,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 60,
+            "h": 127.19998168945312,
+            "active": false
+          },
+          {
+            "id": "61",
+            "name": "shape-61",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 317.71424793061766,
+            "y": 579.2875271751768,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 62,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 60,
+            "h": 82.62747192382812,
+            "active": false
+          },
+          {
+            "id": "62",
+            "name": "shape-62",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 573.3625575474339,
+            "y": 471.8750326974052,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 63,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 323.98626708984375,
+            "h": 171.58749389648438,
+            "active": false
+          },
+          {
+            "id": "63",
+            "name": "shape-63",
+            "styling": "square",
+            "type": "shape",
+            "x": 896.8127005440849,
+            "y": 551.8749673025948,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 64,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 97.5712890625,
+            "h": 115.58749389648438,
+            "active": false
+          },
+          {
+            "id": "64",
+            "name": "shape-64",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 888.8126482282372,
+            "y": 438.76250130789595,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 65,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 103.1712646484375,
+            "h": 194.7662353515625,
+            "active": false
+          },
+          {
+            "id": "65",
+            "name": "shape-65",
+            "styling": "square",
+            "type": "shape",
+            "x": -3.0000087193080356,
+            "y": 561.0000174386164,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 66,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 110.80001831054688,
+            "h": 105.20004272460938,
+            "active": false
+          },
+          {
+            "id": "66",
+            "name": "Mond 2",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 516.5714372907366,
+            "y": 158.85716029575892,
+            "alive": true,
+            "modifier": 0.7,
+            "lockedResolution": false,
+            "stackOrder": 3,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#153165",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 94.39501953125,
+            "h": 95.59375,
+            "active": false
+          },
+          {
+            "id": "67",
+            "name": "shape-67",
+            "styling": "triangle",
+            "type": "shape",
+            "x": 243.22224934895848,
+            "y": 541.4500342475045,
+            "alive": true,
+            "modifier": 0.9,
+            "lockedResolution": false,
+            "stackOrder": 67,
+            "style": {
+              "shape": {
+                "shapeGeometry": "triangle"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 246.044921875,
+            "h": 105.3299560546875
+          },
+          {
+            "id": "68",
+            "name": "shape-68",
+            "styling": "star",
+            "type": "shape",
+            "x": 496.8889024522574,
+            "y": 374.2222086588542,
+            "alive": false,
+            "modifier": 0.9,
+            "lockedResolution": false,
+            "stackOrder": 68,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 90,
+            "h": 90
+          },
+          {
+            "id": "69",
+            "name": "shape-69",
+            "styling": "rhombus",
+            "type": "shape",
+            "x": 494.2222425672746,
+            "y": 360.88890923394075,
+            "alive": true,
+            "modifier": 0.9,
+            "lockedResolution": false,
+            "stackOrder": 69,
+            "style": {
+              "shape": {
+                "shapeGeometry": "rhombus"
+              },
+              "background": {
+                "backgroundColor": "#06032d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 90,
+            "h": 90.00000762939453
+          },
+          {
+            "id": "70",
+            "name": "shape-70",
+            "styling": "rhombus",
+            "type": "shape",
+            "x": 511.1111450195312,
+            "y": 361.77776760525165,
+            "alive": true,
+            "modifier": 0.9,
+            "lockedResolution": false,
+            "stackOrder": 70,
+            "style": {
+              "shape": {
+                "shapeGeometry": "rhombus"
+              },
+              "background": {
+                "backgroundColor": "#06032d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 90,
+            "h": 90.00000762939453
+          },
+          {
+            "id": "71",
+            "name": "shape-71",
+            "styling": "square",
+            "type": "shape",
+            "x": 529.7777303059896,
+            "y": 361.77779303656695,
+            "alive": true,
+            "modifier": 0.9,
+            "lockedResolution": false,
+            "stackOrder": 71,
+            "style": {
+              "shape": {
+                "shapeGeometry": "rhombus"
+              },
+              "background": {
+                "backgroundColor": "#06032d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 89.99993896484375,
+            "h": 90
+          },
+          {
+            "id": "72",
+            "name": "shape-72",
+            "styling": "rhombus",
+            "type": "shape",
+            "x": 546.6667005750866,
+            "y": 361.77776760525177,
+            "alive": true,
+            "modifier": 0.9,
+            "lockedResolution": false,
+            "stackOrder": 72,
+            "style": {
+              "shape": {
+                "shapeGeometry": "rhombus"
+              },
+              "background": {
+                "backgroundColor": "#06032d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 90,
+            "h": 90.00000762939453
+          },
+          {
+            "id": "73",
+            "name": "shape-73",
+            "styling": "rhombus",
+            "type": "shape",
+            "x": 569.7777981228298,
+            "y": 357.33332316080725,
+            "alive": true,
+            "modifier": 0.9,
+            "lockedResolution": false,
+            "stackOrder": 73,
+            "style": {
+              "shape": {
+                "shapeGeometry": "rhombus"
+              },
+              "background": {
+                "backgroundColor": "#06032d",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 90,
+            "h": 90.00003051757812
+          },
+          {
+            "id": "74",
+            "name": "shape-74",
+            "styling": "star",
+            "type": "shape",
+            "x": 0,
+            "y": 0,
+            "alive": false,
+            "modifier": 0.6,
+            "lockedResolution": false,
+            "stackOrder": 74,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 200,
+            "h": 100
+          },
+          {
+            "id": "75",
+            "name": "shape-75",
+            "styling": "star",
+            "type": "shape",
+            "x": 316.0000440809464,
+            "y": 361.7778311835393,
+            "alive": false,
+            "modifier": 0.6,
+            "lockedResolution": false,
+            "stackOrder": 75,
+            "style": {
+              "shape": {
+                "shapeGeometry": "star"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 90,
+            "h": 90.00003051757812
+          }
+        ],
+        "canvasSize": {
+          "width": 1280,
+          "height": 720
+        }
+      },
+      "maracuja": null,
+      "peach": {
+        "opus": "Pseudo Program",
+        "version": "0.1",
+        "backgroundPattern": "pattern-5",
+        "backgroundColor": "white",
+        "program": [
+          {
+            "id": "field-1",
+            "name": "text-1",
+            "styling": "thrive",
+            "type": "text",
+            "x": 0,
+            "y": 0,
+            "alive": true,
+            "modifier": 1,
+            "stackOrder": 1,
+            "style": {
+              "text": {
+                "textSize": 136,
+                "textAlignment": "center",
+                "fontFamily": "CirrusCumulus",
+                "textColor": "#ffffff",
+                "content": [
+                  {
+                    "value": "veganer Schoko-Birnen-Kuchen",
+                    "md": "<p>veganer Schoko-Birnen-Kuchen</p>\n"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 3,
+                "textGlowColor": "#ffffff",
+                "highlightColor": "#000000"
+              },
+              "border": {
+                "borderSize": 6,
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderColor": "#000000"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
                 "backgroundColor": "white",
                 "program": [{
                         "id": "text-1",
@@ -3138,20 +5363,965 @@
                 }
             }
         }
-    },
-    "root": {
-        "title": "6: queery() ~ Computers 2 Action",
-        "excerpt": "Data comes in raw form, and it is up to us to govern it accordingly. In this chapter, we try to think about the many steps a computer could take to process a request. What are we looking for, and what actually do we get?",
-        "code": "root",
-        "description": [
-            "With large databases, developers create contact points for you to see, query and process. These so-called APIs are possibilities for you to explore complex data that others have gathered in the scope of the internet. Which large databases would you like to explore? Whose API would you like to query, and what would you use it for?",
-            "Think more about the API that you would like to address! What are its capabilities? What does it tell about the instance providing you with that information? How and why would you process your desired data from that API?",
-            "Do you have any concerns regarding the public APIs? How could power dynamics be exploited with such a concept? Who would you share your API with? What if there was an API for you as a human being - or does it already exist?"
+      },
+      "pineapple": null,
+      "jackfruit": {
+        "opus": "Choices",
+        "version": "0.1",
+        "backgroundPattern": "pattern-13",
+        "backgroundColor": "white",
+        "program": [
+          {
+            "id": "1",
+            "name": "shape-1",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 620,
+            "y": 320.00003814697266,
+            "alive": false,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 1,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 80,
+            "h": 79.99996948242188
+          },
+          {
+            "id": "2",
+            "name": "shape-2",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 287.0000457763672,
+            "y": 318.0000114440918,
+            "alive": false,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 2,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 3,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 84,
+            "h": 81.58999633789062
+          },
+          {
+            "id": "3",
+            "name": "shape-3",
+            "styling": "square",
+            "type": "shape",
+            "x": -0.33330281575520804,
+            "y": -0.33332506815592433,
+            "alive": true,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 3,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "pattern-12",
+                "backgroundSize": 15
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 619.9200439453125,
+            "h": 187.98001098632812,
+            "active": false
+          },
+          {
+            "id": "4",
+            "name": "shape-4",
+            "styling": "square",
+            "type": "shape",
+            "x": 428.99993896484375,
+            "y": 534.0000152587891,
+            "alive": false,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 4,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 80.00006103515625,
+            "h": 80.80001831054688
+          },
+          {
+            "id": "5",
+            "name": "shape-5",
+            "styling": "speechbubble",
+            "type": "shape",
+            "x": 149.00001525878906,
+            "y": 31.999998092651367,
+            "alive": false,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 5,
+            "style": {
+              "shape": {
+                "shapeGeometry": "speechbubble"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 160.00003051757812,
+            "h": 79.99999237060547
+          },
+          {
+            "id": "6",
+            "name": "shape-6",
+            "styling": "rhombus",
+            "type": "shape",
+            "x": -1.6666793823242185,
+            "y": 407.01241493225103,
+            "alive": true,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 6,
+            "style": {
+              "shape": {
+                "shapeGeometry": "square"
+              },
+              "background": {
+                "backgroundColor": "black",
+                "backgroundImage": "pattern-13",
+                "backgroundSize": 27
+              },
+              "animation": {
+                "animationDuration": 1,
+                "animationType": "none"
+              }
+            },
+            "w": 619.9200439453125,
+            "h": 184.62753295898438,
+            "active": false
+          },
+          {
+            "id": "7",
+            "name": "code-7",
+            "styling": "arcade",
+            "type": "code",
+            "x": 406.9999694824219,
+            "y": 435.00000953674316,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 7,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 12,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 264.0000305175781,
+            "h": 96.95999908447266
+          },
+          {
+            "id": "8",
+            "name": "code-8",
+            "styling": "arcade",
+            "type": "code",
+            "x": -2.9999923706054688,
+            "y": 473.00007820129395,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 8,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 12,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 264.0000305175781,
+            "h": 96.95999908447266
+          },
+          {
+            "id": "9",
+            "name": "code-9",
+            "styling": "arcade",
+            "type": "code",
+            "x": -2.9999923706054688,
+            "y": 225.00001907348633,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 9,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 12,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 264.0000305175781,
+            "h": 96.95999908447266
+          },
+          {
+            "id": "10",
+            "name": "code-10",
+            "styling": "thrive",
+            "type": "code",
+            "x": 0,
+            "y": 185,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 10,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "CirrusCumulus",
+                "textColor": "#ffffff",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 3,
+                "textGlowColor": "#ffffff",
+                "highlightColor": "#000000"
+              },
+              "border": {
+                "borderSize": 6,
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderColor": "#000000"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "stars"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 264.0000305175781,
+            "h": 87.35999298095703
+          },
+          {
+            "id": "11",
+            "name": "code-11",
+            "styling": "letter",
+            "type": "code",
+            "x": 0,
+            "y": 0,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 11,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Louise",
+                "textColor": "#fcf7f7FF",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 1,
+                "textGlowColor": "#000",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 0,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "transparent"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 9,
+                "shadowColor": "#5c5ceb4A",
+                "shadow": 6
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#fbeaeaFF",
+                "backgroundImage": "asphalt"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 200,
+            "h": 100
+          },
+          {
+            "id": "12",
+            "name": "code-12",
+            "styling": "hunter",
+            "type": "code",
+            "x": 0,
+            "y": 0,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 12,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "FT88 Gothique",
+                "textColor": "#f0df8e",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 1,
+                "borderRadius": 6,
+                "borderStyle": "dashed",
+                "borderColor": "#f0df8e"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 4,
+                "shadowColor": "#00000020",
+                "shadow": 8
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000aa",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 200,
+            "h": 100
+          },
+          {
+            "id": "13",
+            "name": "code-13",
+            "styling": "default",
+            "type": "code",
+            "x": 0,
+            "y": 0,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 13,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Roboto",
+                "textColor": "#121212",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 0,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "transparent"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 200,
+            "h": 100
+          },
+          {
+            "id": "14",
+            "name": "code-14",
+            "styling": "hustle",
+            "type": "code",
+            "x": 0,
+            "y": 0,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 14,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "Abordage",
+                "textColor": "#ffbdf2",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 3,
+                "textGlowColor": "#ff97dd",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 3,
+                "borderRadius": 13,
+                "borderStyle": "dashed",
+                "borderColor": "#ffbdf2"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "#ffbdf2",
+                "shadow": 11
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "asphalt"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 200,
+            "h": 100
+          },
+          {
+            "id": "15",
+            "name": "text-15",
+            "styling": "arcade",
+            "type": "text",
+            "x": 138.66676330566406,
+            "y": 78.99995803833005,
+            "alive": true,
+            "modifier": 0.8,
+            "stackOrder": 16,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "content": [
+                  {
+                    "value": "Agree",
+                    "md": "<p>Agree</p>\n"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 0,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 2,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 60,
+            "h": 45.59999084472656,
+            "active": false
+          },
+          {
+            "id": "16",
+            "name": "text-16",
+            "styling": "arcade",
+            "type": "text",
+            "x": 790.3331629435224,
+            "y": 551.6665776570637,
+            "alive": true,
+            "modifier": 0.8,
+            "stackOrder": 19,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#1d1616",
+                "content": [
+                  {
+                    "value": "Decline",
+                    "md": "<p>Decline</p>\n"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 0,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#141010"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#d9c8f4FF",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 2,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 67.99493408203125,
+            "h": 45.5999755859375,
+            "active": false
+          },
+          {
+            "id": "17",
+            "name": "text-17",
+            "styling": "arcade",
+            "type": "text",
+            "x": 498.0000686645508,
+            "y": 311.9999122619629,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 17,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "content": [
+                  {
+                    "value": "Settings",
+                    "md": "<p>Settings</p>\n"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 12,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 148.79998779296875,
+            "h": 76.79995727539062
+          },
+          {
+            "id": "18",
+            "name": "code-18",
+            "styling": "arcade",
+            "type": "code",
+            "x": 36.999918619791735,
+            "y": 310.33333778381336,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 18,
+            "style": {
+              "text": {
+                "textSize": 97,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "input": "agree",
+                "output": "decline",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": "       Settings"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 2,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 573.99755859375,
+            "h": 59.279998779296875,
+            "active": false
+          },
+          {
+            "id": "19",
+            "name": "text-19",
+            "styling": "arcade",
+            "type": "text",
+            "x": 382.6666259765624,
+            "y": 296.0000356038411,
+            "alive": true,
+            "modifier": 0.6,
+            "stackOrder": 15,
+            "style": {
+              "text": {
+                "textSize": 200,
+                "textAlignment": "center",
+                "fontFamily": "FT88",
+                "textColor": "#f4d8fdFF",
+                "content": [
+                  {
+                    "value": "Settings",
+                    "md": "<p>Settings</p>\n"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 6,
+                "borderRadius": 0,
+                "borderStyle": "solid",
+                "borderColor": "#f4d8fdFF"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 172.784912109375,
+            "h": 79.20001220703125,
+            "active": false
+          }
         ],
-        "resources": [{
-                "title": "NAG: Net.Art Generator",
-                "excerpt": "As an art installation, the net art generator tackles the possibilities we have when we scour the internet for information. Taking various images that are openly accessible from anywhere, search engines can provide us with data that users barely have a hold over. Create some net art, and keep in mind the implications of a mere Google search.",
-                "url": "https://nag.iap.de/?lang=en"
+        "canvasSize": {
+          "width": 1280,
+          "height": 720
+        }
+      },
+      "maracuja": null,
+      "peach": {
+        "opus": "Pseudo Program",
+        "version": "0.1",
+        "backgroundPattern": "none",
+        "backgroundColor": "white",
+        "program": [
+          {
+            "id": "1",
+            "name": "text-1",
+            "styling": "hunter",
+            "type": "text",
+            "x": 18,
+            "y": 138,
+            "alive": false,
+            "modifier": 1,
+            "stackOrder": 1,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "FT88 Gothique",
+                "textColor": "#f0df8e",
+                "content": [
+                  {
+                    "value": "How it is we have so much information, but know so little?",
+                    "md": "<p>How it is we have so much information, but know so little?</p>\n"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 1,
+                "borderRadius": 6,
+                "borderStyle": "dashed",
+                "borderColor": "#f0df8e"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 4,
+                "shadowColor": "#00000020",
+                "shadow": 8
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000aa",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
             },
             {
                 "title": "The Graph API: Key Points in the Facebook and Cambridge Analytica Debacle",
@@ -3562,5 +6732,533 @@
                 }
             }
         }
+      },
+      "pineapple": null,
+      "jackfruit": {
+        "opus": "cycles",
+        "version": "0.1",
+        "backgroundPattern": "windows-2",
+        "backgroundColor": "white",
+        "program": [
+          {
+            "id": "1",
+            "name": "code-1",
+            "styling": "thrive",
+            "type": "code",
+            "x": 77.00004577636719,
+            "y": 115,
+            "alive": false,
+            "modifier": 0.8,
+            "stackOrder": 1,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "CirrusCumulus",
+                "textColor": "#ffffff",
+                "input": "cookie crumbles",
+                "output": "cake",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": ""
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 3,
+                "textGlowColor": "#ffffff",
+                "highlightColor": "#000000"
+              },
+              "border": {
+                "borderSize": 6,
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderColor": "#000000"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "stars"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 264.0000305175781,
+            "h": 87.3600082397461
+          },
+          {
+            "id": "2",
+            "name": "moon 2",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 254.4000473022461,
+            "y": 251.60004425048828,
+            "alive": true,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 6,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#ebebfeFF",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 10,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 100,
+            "h": 100,
+            "active": false
+          },
+          {
+            "id": "3",
+            "name": "moon 3",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 253.00003051757812,
+            "y": 132.00002670288086,
+            "alive": false,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 8,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#e3e3f8FF",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 10,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 80,
+            "h": 80.00001525878906,
+            "active": false
+          },
+          {
+            "id": "4",
+            "name": "moon 4",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 369.00001525878906,
+            "y": 260.0000190734863,
+            "alive": false,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 10,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#dedefcFF",
+                "backgroundImage": "none",
+                "backgroundSize": 98
+              },
+              "animation": {
+                "animationDuration": 8,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 72.79998779296875,
+            "h": 79.99996948242188,
+            "active": false
+          },
+          {
+            "id": "5",
+            "name": "code-5",
+            "styling": "thrive",
+            "type": "code",
+            "x": 73.48877970377602,
+            "y": 459.59995820787196,
+            "alive": true,
+            "modifier": 0.8,
+            "stackOrder": 2,
+            "style": {
+              "text": {
+                "textSize": 149,
+                "textAlignment": "left",
+                "fontFamily": "CirrusCumulus",
+                "textColor": "#181111",
+                "input": "variable:moon",
+                "output": "result:tide",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": "rotation.loop"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "#ffffff",
+                "highlightColor": "#000000"
+              },
+              "border": {
+                "borderSize": 6,
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderColor": "#000000"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "white",
+                "backgroundImage": "stars"
+              },
+              "animation": {
+                "animationDuration": 20,
+                "animationType": "none"
+              }
+            },
+            "w": 296.9999694824219,
+            "h": 169.55999755859375,
+            "active": false
+          },
+          {
+            "id": "6",
+            "name": "code-6",
+            "styling": "thrive",
+            "type": "code",
+            "x": 556.4223259819872,
+            "y": 459.59998151991095,
+            "alive": true,
+            "modifier": 0.8,
+            "stackOrder": 4,
+            "style": {
+              "text": {
+                "textSize": 149,
+                "textAlignment": "left",
+                "fontFamily": "CirrusCumulus",
+                "textColor": "#ffffff",
+                "input": "variable:earth",
+                "output": "result:time",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": "rotation.loop"
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 3,
+                "textGlowColor": "#ffffff",
+                "highlightColor": "#000000"
+              },
+              "border": {
+                "borderSize": 6,
+                "borderRadius": 3,
+                "borderStyle": "solid",
+                "borderColor": "#000000"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 0,
+                "shadowColor": "transparent"
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#d8db30",
+                "backgroundImage": "flame-2"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 297,
+            "h": 169.55999755859375,
+            "active": false
+          },
+          {
+            "id": "7",
+            "name": "sun 1",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 489.5999069213867,
+            "y": 276.6000175476074,
+            "alive": true,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 5,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#ffd500",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 9,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 100,
+            "h": 100,
+            "active": false
+          },
+          {
+            "id": "8",
+            "name": "sun 2",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 738.999870300293,
+            "y": 123.40004348754883,
+            "alive": true,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 7,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#ffd500",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 10,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 100,
+            "h": 100,
+            "active": false
+          },
+          {
+            "id": "9",
+            "name": "sun 3",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 731.9999313354492,
+            "y": 122.99997329711914,
+            "alive": false,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 9,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#fff71a",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 80,
+            "h": 80.00001525878906,
+            "active": false
+          },
+          {
+            "id": "10",
+            "name": "sun 4",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 851.0000610351562,
+            "y": 250.9999656677246,
+            "alive": false,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 11,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#fff71a",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 80,
+            "h": 80.00000762939453,
+            "active": false
+          },
+          {
+            "id": "11",
+            "name": "moon 1",
+            "styling": "ellipse",
+            "type": "shape",
+            "x": 8.400062561035156,
+            "y": 101.40001678466797,
+            "alive": true,
+            "modifier": 0.8,
+            "lockedResolution": false,
+            "stackOrder": 3,
+            "style": {
+              "shape": {
+                "shapeGeometry": "ellipse"
+              },
+              "background": {
+                "backgroundColor": "#ebebfeFF",
+                "backgroundImage": "none",
+                "backgroundSize": 100
+              },
+              "animation": {
+                "animationDuration": 9,
+                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+              }
+            },
+            "w": 100,
+            "h": 99.99998474121094,
+            "active": false
+          }
+        ],
+        "canvasSize": {
+          "width": 961,
+          "height": 651
+        }
+      },
+      "maracuja": null,
+      "peach": {
+        "opus": "Pseudo Program",
+        "version": "0.1",
+        "backgroundPattern": "pattern-33",
+        "backgroundColor": "white",
+        "program": [
+          {
+            "id": "1",
+            "name": "code-1",
+            "styling": "hunter",
+            "type": "code",
+            "x": 158,
+            "y": 200,
+            "alive": true,
+            "modifier": 1,
+            "stackOrder": 1,
+            "style": {
+              "text": {
+                "textSize": 100,
+                "textAlignment": "left",
+                "fontFamily": "FT88 Gothique",
+                "textColor": "#f0df8e",
+                "input": "Hallo",
+                "output": "Tschüß",
+                "blocks": [
+                  {
+                    "id": 1,
+                    "indent": 0,
+                    "type": "none",
+                    "content": "message = (\"Hallo Artur!\", \"Hallo Caro!\")"
+                  },
+                  {
+                    "id": 2,
+                    "content": " for gruß in message",
+                    "type": "none",
+                    "indent": 0
+                  },
+                  {
+                    "id": 3,
+                    "content": "  if gruß = \"Hallo Artur!\":",
+                    "type": "none",
+                    "indent": 0
+                  },
+                  {
+                    "id": 4,
+                    "content": " print ('Hallo Artur!')",
+                    "type": "none",
+                    "indent": 0
+                  },
+                  {
+                    "id": 5,
+                    "content": "else:",
+                    "type": "none",
+                    "indent": 0
+                  },
+                  {
+                    "id": 6,
+                    "content": " print ('Hallo Caro!')",
+                    "type": "none",
+                    "indent": 0
+                  }
+                ]
+              },
+              "highlight": {
+                "textGlow": 0,
+                "textGlowColor": "transparent",
+                "highlightColor": "transparent"
+              },
+              "border": {
+                "borderSize": 1,
+                "borderRadius": 6,
+                "borderStyle": "dashed",
+                "borderColor": "#f0df8e"
+              },
+              "shadow": {
+                "shadowSize": 0,
+                "shadowDisplacement": 4,
+                "shadowColor": "#00000020",
+                "shadow": 8
+              },
+              "background": {
+                "backgroundSize": 100,
+                "backgroundColor": "#000000aa",
+                "backgroundImage": "none"
+              },
+              "animation": {
+                "animationDuration": 5,
+                "animationType": "none"
+              }
+            },
+            "w": 512.6666259765625,
+            "h": 218.00003051757812
+          }
+        ],
+        "canvasSize": {
+          "width": 800,
+          "height": 600
+        }
+      },
+      "lemon": null,
+      "garden": {
+        "opus": "Pseudo Program",
+        "version": "0.1",
+        "backgroundPattern": "BRICKS-3",
+        "backgroundColor": "white",
+        "program": [],
+        "canvasSize": {
+          "width": 0,
+          "height": 0
+        }
+      }
     }
 }
