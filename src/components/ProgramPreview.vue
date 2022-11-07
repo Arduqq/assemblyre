@@ -182,6 +182,8 @@
   width: calc(var(--canvas-width) * var(--canvas-scale));
   height: calc(var(--canvas-height) * var(--canvas-scale));
   align-self: center;
+  max-width: 100%;
+
 }
 
 .program-preview.full {
@@ -223,13 +225,8 @@ justify-content: center;
   }
 
 .field .rendered-view {
-    overflow-wrap: break-word;
-    font-size: 75%;
-    padding: 5px;
-    width: 200px;
-    height: 60px;
-
-  }
+  padding: calc(10px * var(--canvas-scale));
+}
 
   .field {
     border: none!important;

@@ -565,7 +565,7 @@
                                 "textColor": "#f0df8e",
                                 "content": [{
                                     "value": "1. List\n1. With\n1. Random\n1. Entrys",
-                                    "md": "<ol>\n<li>List</li>\n<li>With</li>\n<li>Random</li>\n<li>Entrys</li>\n</ol>\n"
+                                    "md": "<ol>\nList\nWith\nRandom\nEntrys\n</ol>\n"
                                 }]
                             },
                             "highlight": {
@@ -4071,8 +4071,8 @@
                                 "fontFamily": "FT88",
                                 "textColor": "#f4d8fdFF",
                                 "content": [{
-                                    "value": "Your personal data has been transmitted successfully.<br><br><br><br><br><br><br><br><br><br>\n",
-                                    "md": "<p>Your personal data has been transmitted successfully.<br><br><br><br><br><br><br><br><br><br></p>\n"
+                                    "value": "Your personal data has been transmitted successfully.<br><br><br><br><br>\n",
+                                    "md": "<p>Your personal data has been transmitted successfully.<br><br><br><br><br></p>\n"
                                 }]
                             },
                             "highlight": {
@@ -4222,8 +4222,8 @@
                                 "fontFamily": "FT88",
                                 "textColor": "#f0df8e",
                                 "content": [{
-                                    "value": "gender = \"female\" <br><br>\nposition = \"top vers\" <br><br>\nemotion = \"💔\" <br><br>\nheart_rate = 178 <br><br>\nreligion = \"neo-liberalism\" <br><br>\nfriends = [2345, 4578, 0295, 8023, 7032, 6109] <br><br>\nclick_count = 148532 <br><br>\nhigh-school_diploma = false <br><br>\nwatchtime = [\"Funny Cats Compilation (Most Popular) Part 4\", 723]\n\n\n",
-                                    "md": "<p>gender = \"female\" <br><br>\nposition = \"top vers\" <br><br>\nemotion = \"💔\" <br><br>\nheart_rate = 178 <br><br>\nreligion = \"neo-liberalism\" <br><br>\nfriends = [2345, 4578, 0295, 8023, 7032, 6109] <br><br>\nclick_count = 148532 <br><br>\nhigh-school_diploma = false <br><br>\nwatchtime = [\"Funny Cats Compilation (Most Popular) Part 4\", 723]</p>\n"
+                                    "value": "gender = \"female\" <br>\nposition = \"top vers\" <br>\nemotion = \"💔\" <br>\nheart_rate = 178 <br>\nreligion = \"neo-liberalism\" <br>\nfriends = [2345, 4578, 0295, 8023, 7032, 6109] <br>\nclick_count = 148532 <br>\nhigh-school_diploma = false <br>\nwatchtime = [\"Funny Cats Compilation (Most Popular) Part 4\", 723]\n\n\n",
+                                    "md": "<p>gender = \"female\" <br>\nposition = \"top vers\" <br>\nemotion = \"💔\" <br>\nheart_rate = 178 <br>\nreligion = \"neo-liberalism\" <br>\nfriends = [2345, 4578, 0295, 8023, 7032, 6109] <br>\nclick_count = 148532 <br>\nhigh-school_diploma = false <br>\nwatchtime = [\"Funny Cats Compilation (Most Popular) Part 4\", 723]</p>\n"
                                 }]
                             },
                             "highlight": {
@@ -8075,389 +8075,396 @@
                 "version": "delta",
                 "backgroundPattern": "pattern-35",
                 "backgroundColor": "white",
-                "program": [{
-                        "id": "1",
-                        "name": "image-1",
-                        "type": "image",
-                        "x": -3,
-                        "y": 295,
-                        "alive": false,
-                        "modifier": 1,
-                        "media": "https://uc2d71596019a8cbc1df6ca6f895.previews.dropboxusercontent.com/p/thumb/ABtSu7ctFVryP-g5WnPb9mpN84E6ZfsFD-0zqdsksXC1M-rYAWaWdyMrOyHNhc6CdnE19RDNfHigAtoSxLKG6OSHxuyOWGQYeI5fxo26dy7TQyMY3HA40cvA3a_367xQC9kMht72yVfNhbxzT04H8ASdMIHywHP-PtyCVv_baPOfLtsq06EcuEP7pCaUjr1fKrtjIa5yd-BdVWRZ4V9XU2bOYUKEHFEp-B2IjN6qUxzqTAyNm994JGKqzniPgginxeaMH_GA88wBzI1gZPcknw_xVPNBD3pmxFtmr2d5c_lchchnYQamYooKi-8JHEDSKW9JuGxX3nj5PYpmyqly2FCS0fPibhJb9YHCjeyhl30XMjXK2rtbldScyss8416Fy9fBQsSCp-nVXGTlAUj_I44QPJrBHnVXJp59ZBt-Ho5V8A/p.jpeg",
-                        "stackOrder": 1,
-                        "style": {
-                            "image": {
-                                "imageRendering": "auto"
-                            },
-                            "border": {
-                                "borderColor": "#513c3c",
-                                "borderRadius": 0,
-                                "borderStyle": "solid",
-                                "borderSize": 7
-                            },
-                            "shadow": {
-                                "shadowDisplacement": 0,
-                                "shadowSize": 0,
-                                "shadowColor": "transparent"
-                            },
-                            "background": {
-                                "backgroundColor": "#000000",
-                                "backgroundImage": "none",
-                                "backgroundSize": 100
-                            },
-                            "animation": {
-                                "animationDuration": 5,
-                                "animationType": "none"
-                            }
-                        },
-                        "w": 302,
-                        "h": 302
+                "program": [
+                  {
+                    "id": "1",
+                    "name": "image-1",
+                    "type": "image",
+                    "x": -3,
+                    "y": 295,
+                    "alive": false,
+                    "modifier": 1,
+                    "media": "https://uc2d71596019a8cbc1df6ca6f895.previews.dropboxusercontent.com/p/thumb/ABtSu7ctFVryP-g5WnPb9mpN84E6ZfsFD-0zqdsksXC1M-rYAWaWdyMrOyHNhc6CdnE19RDNfHigAtoSxLKG6OSHxuyOWGQYeI5fxo26dy7TQyMY3HA40cvA3a_367xQC9kMht72yVfNhbxzT04H8ASdMIHywHP-PtyCVv_baPOfLtsq06EcuEP7pCaUjr1fKrtjIa5yd-BdVWRZ4V9XU2bOYUKEHFEp-B2IjN6qUxzqTAyNm994JGKqzniPgginxeaMH_GA88wBzI1gZPcknw_xVPNBD3pmxFtmr2d5c_lchchnYQamYooKi-8JHEDSKW9JuGxX3nj5PYpmyqly2FCS0fPibhJb9YHCjeyhl30XMjXK2rtbldScyss8416Fy9fBQsSCp-nVXGTlAUj_I44QPJrBHnVXJp59ZBt-Ho5V8A/p.jpeg",
+                    "stackOrder": 1,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "#513c3c",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 7
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "#000000",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
                     },
-                    {
-                        "id": "2",
-                        "name": "image-2",
-                        "type": "image",
-                        "x": 61,
-                        "y": 216,
-                        "alive": false,
-                        "modifier": 1,
-                        "media": "https://ucf0f9bfe229a8a32aa1756c6cf7.previews.dropboxusercontent.com/p/thumb/ABtNBX_GcAdqcuTLdOoV1M-oHnY-75HJXMqXe7HgzEzV5uzNaGI-U8upUa_AegRY4TtZOy29i0cQYIRLGKoyRunu-k5Da85G9fy3YmhcpuX9UQWiTzmuq9mM2RSZxAC3j3z6Q0LbvO088fjXz1q9QQMdBsipbpxooQXLKeWR1uXMXBMzFNI44Pkkrjz4r850o4WdplHvMabDEKQ4YjE1cF7WRgJrQq1bpggKCserqu1VADKzjteolT7YpkuAmFKjgvTibeiuu-q6PkW5jed0_URrlzQc7pLEJQS0PQ5wu8H5KDNtLmQ7s-t77ukES0jK7InRb_ZAmsqSXu-Kas9fkf9L1WUsFbF4K0IpBl5G9DDo_SbztHTkqkKIzTLG_mEfQnx37fNwXaOedNHPJpxNd-Ep4M0VO0S1Q2ZNBd_gzA9bMw/p.jpeg",
-                        "stackOrder": 2,
-                        "style": {
-                            "image": {
-                                "imageRendering": "auto"
-                            },
-                            "border": {
-                                "borderColor": "#513c3c",
-                                "borderRadius": 0,
-                                "borderStyle": "solid",
-                                "borderSize": 7
-                            },
-                            "shadow": {
-                                "shadowDisplacement": 0,
-                                "shadowSize": 0,
-                                "shadowColor": "transparent"
-                            },
-                            "background": {
-                                "backgroundColor": "transparent",
-                                "backgroundImage": "none",
-                                "backgroundSize": 100
-                            },
-                            "animation": {
-                                "animationDuration": 5,
-                                "animationType": "none"
-                            }
-                        },
-                        "w": 301,
-                        "h": 301
+                    "w": 302,
+                    "h": 302
+                  },
+                  {
+                    "id": "2",
+                    "name": "image-2",
+                    "type": "image",
+                    "x": 61,
+                    "y": 216,
+                    "alive": false,
+                    "modifier": 1,
+                    "media": "https://ucf0f9bfe229a8a32aa1756c6cf7.previews.dropboxusercontent.com/p/thumb/ABtNBX_GcAdqcuTLdOoV1M-oHnY-75HJXMqXe7HgzEzV5uzNaGI-U8upUa_AegRY4TtZOy29i0cQYIRLGKoyRunu-k5Da85G9fy3YmhcpuX9UQWiTzmuq9mM2RSZxAC3j3z6Q0LbvO088fjXz1q9QQMdBsipbpxooQXLKeWR1uXMXBMzFNI44Pkkrjz4r850o4WdplHvMabDEKQ4YjE1cF7WRgJrQq1bpggKCserqu1VADKzjteolT7YpkuAmFKjgvTibeiuu-q6PkW5jed0_URrlzQc7pLEJQS0PQ5wu8H5KDNtLmQ7s-t77ukES0jK7InRb_ZAmsqSXu-Kas9fkf9L1WUsFbF4K0IpBl5G9DDo_SbztHTkqkKIzTLG_mEfQnx37fNwXaOedNHPJpxNd-Ep4M0VO0S1Q2ZNBd_gzA9bMw/p.jpeg",
+                    "stackOrder": 2,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "#513c3c",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 7
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
                     },
-                    {
-                        "id": "3",
-                        "name": "image-3",
-                        "type": "image",
-                        "x": 297,
-                        "y": 297,
-                        "alive": false,
-                        "modifier": 1,
-                        "media": "https://ucc71986c6f1ad75bdc124e2e22b.previews.dropboxusercontent.com/p/thumb/ABus512wbl_NaAkmsRXwAylEXBhFk8G2g3vXsg9qKkCVSv1E3TVdmXYyAmecuoS9mAgcB16H_Wzfv7REcDXL1551ixLd1UroNFBRC6Nf7jk1zQBt4BI-0zOD1aM5zgJJv-uBN1G7Jfg3lKjoCNJNrqoc3ffsD7ippz2G6cPc_6stXBzkq0Rd6ITQPIdLHkuwhNLF_L763SLGtZlZjbgrgq9qxq_RUTQPb3GcbHViO3EE8c31W3ABQY2lobc61wE1NnkJs8iLGzEVg6dBC1XXuGnQjsUUkY7849wd8k1z4JlcUtZV5fpyWBa1OSSHbbSti4fxYMjcrQQ0yLEWFTK9ewlLymLIDlXtUmF4W_MJMN3bTRjyaAhhqpEs71bgEHGDzFydgol1hnOuwgSpRHNob7-riQh2ETDHqXqyVijPXfDJgg/p.jpeg",
-                        "stackOrder": 3,
-                        "style": {
-                            "image": {
-                                "imageRendering": "auto"
-                            },
-                            "border": {
-                                "borderColor": "#513c3c",
-                                "borderRadius": 0,
-                                "borderStyle": "solid",
-                                "borderSize": 7
-                            },
-                            "shadow": {
-                                "shadowDisplacement": 0,
-                                "shadowSize": 0,
-                                "shadowColor": "transparent"
-                            },
-                            "background": {
-                                "backgroundColor": "transparent",
-                                "backgroundImage": "none",
-                                "backgroundSize": 100
-                            },
-                            "animation": {
-                                "animationDuration": 5,
-                                "animationType": "none"
-                            }
-                        },
-                        "w": 298,
-                        "h": 100
+                    "w": 301,
+                    "h": 301
+                  },
+                  {
+                    "id": "3",
+                    "name": "image-3",
+                    "type": "image",
+                    "x": 297,
+                    "y": 297,
+                    "alive": false,
+                    "modifier": 1,
+                    "media": "https://ucc71986c6f1ad75bdc124e2e22b.previews.dropboxusercontent.com/p/thumb/ABus512wbl_NaAkmsRXwAylEXBhFk8G2g3vXsg9qKkCVSv1E3TVdmXYyAmecuoS9mAgcB16H_Wzfv7REcDXL1551ixLd1UroNFBRC6Nf7jk1zQBt4BI-0zOD1aM5zgJJv-uBN1G7Jfg3lKjoCNJNrqoc3ffsD7ippz2G6cPc_6stXBzkq0Rd6ITQPIdLHkuwhNLF_L763SLGtZlZjbgrgq9qxq_RUTQPb3GcbHViO3EE8c31W3ABQY2lobc61wE1NnkJs8iLGzEVg6dBC1XXuGnQjsUUkY7849wd8k1z4JlcUtZV5fpyWBa1OSSHbbSti4fxYMjcrQQ0yLEWFTK9ewlLymLIDlXtUmF4W_MJMN3bTRjyaAhhqpEs71bgEHGDzFydgol1hnOuwgSpRHNob7-riQh2ETDHqXqyVijPXfDJgg/p.jpeg",
+                    "stackOrder": 3,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "#513c3c",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 7
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
                     },
-                    {
-                        "id": "4",
-                        "name": "text-4",
-                        "styling": "default",
-                        "type": "text",
-                        "x": 323,
-                        "y": 220,
-                        "alive": false,
-                        "modifier": 1,
-                        "stackOrder": 4,
-                        "style": {
-                            "text": {
-                                "textSize": 100,
-                                "textAlignment": "left",
-                                "fontFamily": "Roboto",
-                                "textColor": "#121212",
-                                "content": [{
-                                    "value": "[🖤](https://youtu.be/D0v0kuoFDp8)",
-                                    "md": "<p><a href=\"https://youtu.be/D0v0kuoFDp8\">🖤</a></p>\n"
-                                }]
-                            },
-                            "highlight": {
-                                "textGlow": 0,
-                                "textGlowColor": "transparent",
-                                "highlightColor": "transparent"
-                            },
-                            "border": {
-                                "borderSize": 0,
-                                "borderRadius": 0,
-                                "borderStyle": "solid",
-                                "borderColor": "transparent"
-                            },
-                            "shadow": {
-                                "shadowSize": 0,
-                                "shadowDisplacement": 0,
-                                "shadowColor": "transparent"
-                            },
-                            "background": {
-                                "backgroundSize": 100,
-                                "backgroundColor": "#e5783400",
-                                "backgroundImage": "none"
-                            },
-                            "animation": {
-                                "animationDuration": 5,
-                                "animationType": "none"
-                            }
-                        },
-                        "w": 100,
-                        "h": 77
+                    "w": 298,
+                    "h": 100
+                  },
+                  {
+                    "id": "4",
+                    "name": "text-4",
+                    "styling": "default",
+                    "type": "text",
+                    "x": 323,
+                    "y": 220,
+                    "alive": false,
+                    "modifier": 1,
+                    "stackOrder": 4,
+                    "style": {
+                      "text": {
+                        "textSize": 100,
+                        "textAlignment": "left",
+                        "fontFamily": "Roboto",
+                        "textColor": "#121212",
+                        "content": [
+                          {
+                            "value": "[🖤](https://youtu.be/D0v0kuoFDp8)",
+                            "md": "<p><a href=\"https://youtu.be/D0v0kuoFDp8\">🖤</a></p>\n"
+                          }
+                        ]
+                      },
+                      "highlight": {
+                        "textGlow": 0,
+                        "textGlowColor": "transparent",
+                        "highlightColor": "transparent"
+                      },
+                      "border": {
+                        "borderSize": 0,
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderColor": "transparent"
+                      },
+                      "shadow": {
+                        "shadowSize": 0,
+                        "shadowDisplacement": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundSize": 100,
+                        "backgroundColor": "#e5783400",
+                        "backgroundImage": "none"
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
                     },
-                    {
-                        "id": "5",
-                        "name": "text-5",
-                        "styling": "hunter",
-                        "type": "text",
-                        "x": 296,
-                        "y": 92,
-                        "alive": true,
-                        "modifier": 1,
-                        "stackOrder": 5,
-                        "style": {
-                            "text": {
-                                "textSize": 61,
-                                "textAlignment": "left",
-                                "fontFamily": "FT88",
-                                "textColor": "#f0df8e",
-                                "content": [{
-                                    "value": "title = \"Haiku for a lovesick computer\" <br>\n___\n\n*if* (**strachey**=\"online\")<br>\n*then* {print(**seductive_letter**)}<br>\n*else*{shutdown_lonely}",
-                                    "md": "<p>title = \"Haiku for a lovesick computer\" <br></p>\n<hr>\n<p><em>if</em> (<strong>strachey</strong>=\"online\")<br>\n<em>then</em> {print(<strong>seductive_letter</strong>)}<br>\n<em>else</em>{shutdown_lonely}</p>\n"
-                                }]
-                            },
-                            "highlight": {
-                                "textGlow": 0,
-                                "textGlowColor": "transparent",
-                                "highlightColor": "transparent"
-                            },
-                            "border": {
-                                "borderSize": 1,
-                                "borderRadius": 6,
-                                "borderStyle": "dashed",
-                                "borderColor": "#f0df8e"
-                            },
-                            "shadow": {
-                                "shadowSize": 0,
-                                "shadowDisplacement": 4,
-                                "shadowColor": "#00000020",
-                                "shadow": 8
-                            },
-                            "background": {
-                                "backgroundSize": 100,
-                                "backgroundColor": "#000000aa",
-                                "backgroundImage": "none"
-                            },
-                            "animation": {
-                                "animationDuration": 20,
-                                "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
-                            }
-                        },
-                        "w": 301,
-                        "h": 107.06666564941406
+                    "w": 100,
+                    "h": 77
+                  },
+                  {
+                    "id": "5",
+                    "name": "text-5",
+                    "styling": "hunter",
+                    "type": "text",
+                    "x": 296,
+                    "y": 92,
+                    "alive": true,
+                    "modifier": 1,
+                    "stackOrder": 5,
+                    "style": {
+                      "text": {
+                        "textSize": 61,
+                        "textAlignment": "left",
+                        "fontFamily": "FT88",
+                        "textColor": "#f0df8e",
+                        "content": [
+                          {
+                            "value": "title = \"Haiku for a lovesick computer\" <br>\n___\n\n*if* (**strachey**=\"online\")<br>\n*then* {print(**seductive_letter**)}<br>\n*else*{shutdown_lonely}",
+                            "md": "<p>title = \"Haiku for a lovesick computer\" <br></p>\n<hr>\n<p><em>if</em> (<strong>strachey</strong>=\"online\")<br>\n<em>then</em> {print(<strong>seductive_letter</strong>)}<br>\n<em>else</em>{shutdown_lonely}</p>\n"
+                          }
+                        ]
+                      },
+                      "highlight": {
+                        "textGlow": 0,
+                        "textGlowColor": "transparent",
+                        "highlightColor": "transparent"
+                      },
+                      "border": {
+                        "borderSize": 1,
+                        "borderRadius": 6,
+                        "borderStyle": "dashed",
+                        "borderColor": "#f0df8e"
+                      },
+                      "shadow": {
+                        "shadowSize": 0,
+                        "shadowDisplacement": 4,
+                        "shadowColor": "#00000020",
+                        "shadow": 8
+                      },
+                      "background": {
+                        "backgroundSize": 100,
+                        "backgroundColor": "#000000aa",
+                        "backgroundImage": "none"
+                      },
+                      "animation": {
+                        "animationDuration": 20,
+                        "animationType": "ani6 cubic-bezier(0.165, 0.84, 0.44, 1)"
+                      }
                     },
-                    {
-                        "id": "6",
-                        "name": "image-6",
-                        "type": "image",
-                        "x": -3,
-                        "y": 296,
-                        "alive": true,
-                        "modifier": 1,
-                        "media": "https://uc2d71596019a8cbc1df6ca6f895.previews.dropboxusercontent.com/p/thumb/ABuSSoicqCkYODlNuMZTTc6e0BCwsLmMrcHuXOr1AxaoS7pzm-JRB2ejUTrzfxo2pwC4rmkDBVhyv_ke33qC5thR39QtjKlz62AAVdAzZDwxTCadu95HEEhEPBu_HwCggRiX3qux-RcZ7I_oHtgmlQjPsxgMPXMIH8RkAaSwZiC1oCepdaIRIOpDZSt4yGwnG7mGdIgaxJL2skV44C6HU2pLGuc8eI0-qa7POEZPPrvBa2IuGHym_fLzFQtja7wF_MgN8rAWil79XZm7grx0ksq8MUr6fWOzdug9TFqJiv1RH3Ts8MDID2Yup4_UR953e05Cvc3xjzidDixv3sKwvrrssP_JSyj8_jBKAayO5H9jpYDDZjgB_4dZyRPfzqk-MJlp3A0yPvRyIT98kRVCApB5XmdD8kPLWlJImoXSOO3uSg/p.jpeg",
-                        "stackOrder": 6,
-                        "style": {
-                            "image": {
-                                "imageRendering": "auto"
-                            },
-                            "border": {
-                                "borderColor": "#513c3c",
-                                "borderRadius": 0,
-                                "borderStyle": "solid",
-                                "borderSize": 7
-                            },
-                            "shadow": {
-                                "shadowDisplacement": 0,
-                                "shadowSize": 0,
-                                "shadowColor": "transparent"
-                            },
-                            "background": {
-                                "backgroundColor": "transparent",
-                                "backgroundImage": "none",
-                                "backgroundSize": 100
-                            },
-                            "animation": {
-                                "animationDuration": 5,
-                                "animationType": "none"
-                            }
-                        },
-                        "w": 302,
-                        "h": 300
+                    "w": 301,
+                    "h": 107.06666564941406
+                  },
+                  {
+                    "id": "6",
+                    "name": "image-6",
+                    "type": "image",
+                    "x": -3,
+                    "y": 296,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://uc2d71596019a8cbc1df6ca6f895.previews.dropboxusercontent.com/p/thumb/ABuSSoicqCkYODlNuMZTTc6e0BCwsLmMrcHuXOr1AxaoS7pzm-JRB2ejUTrzfxo2pwC4rmkDBVhyv_ke33qC5thR39QtjKlz62AAVdAzZDwxTCadu95HEEhEPBu_HwCggRiX3qux-RcZ7I_oHtgmlQjPsxgMPXMIH8RkAaSwZiC1oCepdaIRIOpDZSt4yGwnG7mGdIgaxJL2skV44C6HU2pLGuc8eI0-qa7POEZPPrvBa2IuGHym_fLzFQtja7wF_MgN8rAWil79XZm7grx0ksq8MUr6fWOzdug9TFqJiv1RH3Ts8MDID2Yup4_UR953e05Cvc3xjzidDixv3sKwvrrssP_JSyj8_jBKAayO5H9jpYDDZjgB_4dZyRPfzqk-MJlp3A0yPvRyIT98kRVCApB5XmdD8kPLWlJImoXSOO3uSg/p.jpeg",
+                    "stackOrder": 6,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "#513c3c",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 7
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
                     },
-                    {
-                        "id": "7",
-                        "name": "image-7",
-                        "type": "image",
-                        "x": -2,
-                        "y": -1,
-                        "alive": true,
-                        "modifier": 1,
-                        "media": "https://ucf0f9bfe229a8a32aa1756c6cf7.previews.dropboxusercontent.com/p/thumb/ABtATikOqf5IzJKfpK7BKP09nuHugMLEm6wx_39bRnn79UoR8xOGMuDy3xaTEtZooAl2rjDRiGZIteWszPE-kNGy9PyghbMX93wj57Yo3rRKfK6QoZpqKxhnMc547uV59u51j04jeml0JaVfF_-KF6fzajd0VkzTVxUl8GNBGA9UvCEc88OoeMuYZ486nC_VtnzA95dMoepdRQZed6Pc9MAPpzIMBou9NStS-m_303ytb_KbobMNHmYZii4-f9klpCNV6D4DJ9XFi0u_BpscR7kmWiwmk5fV6knX-j5GC4XzL8VplN5s2Iae1xzOPX4mkOHaanY7hvUFAFbpQ8-l-YTX7bQa2CPjp4oCvL7HzD4kGM-ivl-2rm9ZrgLR3K6KlOxSc9AC3LFN0xJAL5yZUGGxCbfY2E0PsopxsFg-6AvC6g/p.jpeg",
-                        "stackOrder": 7,
-                        "style": {
-                            "image": {
-                                "imageRendering": "auto"
-                            },
-                            "border": {
-                                "borderColor": "#513c3c",
-                                "borderRadius": 0,
-                                "borderStyle": "solid",
-                                "borderSize": 7
-                            },
-                            "shadow": {
-                                "shadowDisplacement": 0,
-                                "shadowSize": 0,
-                                "shadowColor": "transparent"
-                            },
-                            "background": {
-                                "backgroundColor": "transparent",
-                                "backgroundImage": "none",
-                                "backgroundSize": 100
-                            },
-                            "animation": {
-                                "animationDuration": 5,
-                                "animationType": "none"
-                            }
-                        },
-                        "w": 299,
-                        "h": 298
+                    "w": 302,
+                    "h": 300
+                  },
+                  {
+                    "id": "7",
+                    "name": "image-7",
+                    "type": "image",
+                    "x": -2,
+                    "y": -1,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://ucf0f9bfe229a8a32aa1756c6cf7.previews.dropboxusercontent.com/p/thumb/ABtATikOqf5IzJKfpK7BKP09nuHugMLEm6wx_39bRnn79UoR8xOGMuDy3xaTEtZooAl2rjDRiGZIteWszPE-kNGy9PyghbMX93wj57Yo3rRKfK6QoZpqKxhnMc547uV59u51j04jeml0JaVfF_-KF6fzajd0VkzTVxUl8GNBGA9UvCEc88OoeMuYZ486nC_VtnzA95dMoepdRQZed6Pc9MAPpzIMBou9NStS-m_303ytb_KbobMNHmYZii4-f9klpCNV6D4DJ9XFi0u_BpscR7kmWiwmk5fV6knX-j5GC4XzL8VplN5s2Iae1xzOPX4mkOHaanY7hvUFAFbpQ8-l-YTX7bQa2CPjp4oCvL7HzD4kGM-ivl-2rm9ZrgLR3K6KlOxSc9AC3LFN0xJAL5yZUGGxCbfY2E0PsopxsFg-6AvC6g/p.jpeg",
+                    "stackOrder": 7,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "#513c3c",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 7
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
                     },
-                    {
-                        "id": "8",
-                        "name": "image-8",
-                        "type": "image",
-                        "x": 296,
-                        "y": 297,
-                        "alive": true,
-                        "modifier": 1,
-                        "media": "https://ucc71986c6f1ad75bdc124e2e22b.previews.dropboxusercontent.com/p/thumb/ABvy2cvnSJvbNoOLPJG3aKFXzgKDOdYyvcEI4KO_qa1JX6GwtF68ikRpslxpzx33y6xfL-zFWCjt_Zw16nISrII3KgXEsX-QnCr0eYWgaq_jxvwROBbi_lxNndnmsiEdPHGbnEBpZ2eFdAdqlWA3akBMYq1Ijo0Cp571RMtN__5Zho5RAfWUfEOZavv7n5M5h8sfSRDIa5fZI1FjJ1tvzpAeCexg0FcIKRK7vt3YSPWeuFYMWkXmj2LARnuNUfJDdUWU3hi3XtKCeFKJalx5xjh6DppYexKTEdY_ccvHbkdC_iEjEJzhklz4jSkV-NzcktwvD1AM4cCh4Qv1ntm-r0CNow4vn1WgxpjMCqXc4AOw8zA7qiNtG9F_08CtU1lM59sNcGhP6v-vpb_J0ZsReYlkEd8W8qC4qtnHwTAe-Sb6nw/p.jpeg",
-                        "stackOrder": 8,
-                        "style": {
-                            "image": {
-                                "imageRendering": "auto"
-                            },
-                            "border": {
-                                "borderColor": "#513c3c",
-                                "borderRadius": 0,
-                                "borderStyle": "solid",
-                                "borderSize": 7
-                            },
-                            "shadow": {
-                                "shadowDisplacement": 0,
-                                "shadowSize": 0,
-                                "shadowColor": "transparent"
-                            },
-                            "background": {
-                                "backgroundColor": "transparent",
-                                "backgroundImage": "none",
-                                "backgroundSize": 100
-                            },
-                            "animation": {
-                                "animationDuration": 5,
-                                "animationType": "none"
-                            }
-                        },
-                        "w": 300,
-                        "h": 300
+                    "w": 299,
+                    "h": 298
+                  },
+                  {
+                    "id": "8",
+                    "name": "image-8",
+                    "type": "image",
+                    "x": 296,
+                    "y": 297,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://ucc71986c6f1ad75bdc124e2e22b.previews.dropboxusercontent.com/p/thumb/ABvy2cvnSJvbNoOLPJG3aKFXzgKDOdYyvcEI4KO_qa1JX6GwtF68ikRpslxpzx33y6xfL-zFWCjt_Zw16nISrII3KgXEsX-QnCr0eYWgaq_jxvwROBbi_lxNndnmsiEdPHGbnEBpZ2eFdAdqlWA3akBMYq1Ijo0Cp571RMtN__5Zho5RAfWUfEOZavv7n5M5h8sfSRDIa5fZI1FjJ1tvzpAeCexg0FcIKRK7vt3YSPWeuFYMWkXmj2LARnuNUfJDdUWU3hi3XtKCeFKJalx5xjh6DppYexKTEdY_ccvHbkdC_iEjEJzhklz4jSkV-NzcktwvD1AM4cCh4Qv1ntm-r0CNow4vn1WgxpjMCqXc4AOw8zA7qiNtG9F_08CtU1lM59sNcGhP6v-vpb_J0ZsReYlkEd8W8qC4qtnHwTAe-Sb6nw/p.jpeg",
+                    "stackOrder": 8,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "#513c3c",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 7
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
                     },
-                    {
-                        "id": "9",
-                        "name": "text-9",
-                        "styling": "default",
-                        "type": "text",
-                        "x": 159,
-                        "y": 175,
-                        "alive": true,
-                        "modifier": 1,
-                        "stackOrder": 9,
-                        "style": {
-                            "text": {
-                                "textSize": 100,
-                                "textAlignment": "left",
-                                "fontFamily": "Roboto",
-                                "textColor": "#121212",
-                                "content": [{
-                                    "value": "[🖤](https://youtu.be/D0v0kuoFDp8)",
-                                    "md": "<p><a href=\"https://youtu.be/D0v0kuoFDp8\">🖤</a></p>\n"
-                                }]
-                            },
-                            "highlight": {
-                                "textGlow": 0,
-                                "textGlowColor": "transparent",
-                                "highlightColor": "transparent"
-                            },
-                            "border": {
-                                "borderSize": 0,
-                                "borderRadius": 0,
-                                "borderStyle": "solid",
-                                "borderColor": "transparent"
-                            },
-                            "shadow": {
-                                "shadowSize": 0,
-                                "shadowDisplacement": 0,
-                                "shadowColor": "transparent"
-                            },
-                            "background": {
-                                "backgroundSize": 100,
-                                "backgroundColor": "#b89de100",
-                                "backgroundImage": "none"
-                            },
-                            "animation": {
-                                "animationDuration": 5,
-                                "animationType": "none"
-                            }
-                        },
-                        "w": 100,
-                        "h": 77
-                    }
+                    "w": 300,
+                    "h": 300
+                  },
+                  {
+                    "id": "9",
+                    "name": "text-9",
+                    "styling": "default",
+                    "type": "text",
+                    "x": 159,
+                    "y": 175,
+                    "alive": true,
+                    "modifier": 1,
+                    "stackOrder": 9,
+                    "style": {
+                      "text": {
+                        "textSize": 100,
+                        "textAlignment": "left",
+                        "fontFamily": "Roboto",
+                        "textColor": "#121212",
+                        "content": [
+                          {
+                            "value": "[🖤](https://youtu.be/D0v0kuoFDp8)",
+                            "md": "<p><a href=\"https://youtu.be/D0v0kuoFDp8\">🖤</a></p>\n"
+                          }
+                        ]
+                      },
+                      "highlight": {
+                        "textGlow": 0,
+                        "textGlowColor": "transparent",
+                        "highlightColor": "transparent"
+                      },
+                      "border": {
+                        "borderSize": 0,
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderColor": "transparent"
+                      },
+                      "shadow": {
+                        "shadowSize": 0,
+                        "shadowDisplacement": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundSize": 100,
+                        "backgroundColor": "#b89de100",
+                        "backgroundImage": "none"
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 100,
+                    "h": 77
+                  }
                 ],
                 "canvasSize": {
-                    "width": 600,
-                    "height": 600
+                  "width": 600,
+                  "height": 600
                 }
             },
             "pineapple": {
@@ -9812,8 +9819,8 @@
                                 "fontFamily": "FT88",
                                 "textColor": "#f0df8e",
                                 "content": [{
-                                    "value": "- λmax/nm = [430, 453, 643, 662] <br>\n- structure = caulome + foliage leaf + petal + thorn <br>\n- colour red <br>\n- fragrant nicely<br>\n- alive\n\n",
-                                    "md": "<ul>\n<li>λmax/nm = [430, 453, 643, 662] <br></li>\n<li>structure = caulome + foliage leaf + petal + thorn <br></li>\n<li>colour red <br></li>\n<li>fragrant nicely<br></li>\n<li>alive</li>\n</ul>\n"
+                                    "value": "• λmax/nm = [430, 453, 643, 662] <br>\n• structure = caulome + foliage leaf + petal + thorn <br>\n• colour red <br>\n• fragrant nicely<br>\n• alive\n\n",
+                                    "md": "λmax/nm = [430, 453, 643, 662] <br>\nstructure = caulome + foliage leaf + petal + thorn <br>\ncolour red <br>\nfragrant nicely<br>\nalive\n</ul>\n"
                                 }]
                             },
                             "highlight": {
@@ -9863,8 +9870,8 @@
                                 "fontFamily": "FT88",
                                 "textColor": "#f0df8e",
                                 "content": [{
-                                    "value": "- kill_with(thorn, boy_412) <br>\n- burn() <br>\n- sting(me) <br>\n- infuse() <br>\n- water_it <br>\n- eat it (in a salat)\n- destill the odorous oils <br>\n- give the rose to a person you really like <br>\n- dance a romatic and intensive tango with the red rose in your mouth\n",
-                                    "md": "<ul>\n<li>kill_with(thorn, boy_412) <br></li>\n<li>burn() <br></li>\n<li>sting(me) <br></li>\n<li>infuse() <br></li>\n<li>water_it <br></li>\n<li>eat it (in a salat)</li>\n<li>destill the odorous oils <br></li>\n<li>give the rose to a person you really like <br></li>\n<li>dance a romatic and intensive tango with the red rose in your mouth</li>\n</ul>\n"
+                                    "value": "• kill_with (thorn, boy_412) <br>\n• burn() <br>\n• sting(me) <br>\n• infuse() <br>\n• water_it <br>\n• eat it (in a salat) <br>\n• destill the odorous oils <br>\n• give the rose to a person you really like <br>\n• dance a romatic and intensive tango with the red rose in your mouth <br>\n",
+                                    "md": "kill_with(thorn, boy_412) <br>\nburn() <br>\nsting(me) <br>\ninfuse() <br>\nwater_it <br>\neat it (in a salat) <br>\ndestill the odorous oils <br>\ngive the rose to a person you really like <br>\ndance a romatic and intensive tango with the red rose in your mouth\n</ul>\n"
                                 }]
                             },
                             "highlight": {
@@ -10520,16 +10527,493 @@
                 }
             },
             "apple": {
-                "opus": "",
-                "version": "",
-                "backgroundPattern": "",
+                "opus": "Old structures in a new shape",
+                "version": "alpha",
+                "backgroundPattern": "building-6",
                 "backgroundColor": "white",
-                "program": [],
+                "program": [
+                  {
+                    "id": "1",
+                    "name": "code-1",
+                    "styling": "hustle",
+                    "type": "code",
+                    "x": 86,
+                    "y": 161,
+                    "alive": false,
+                    "modifier": 1,
+                    "stackOrder": 1,
+                    "style": {
+                      "text": {
+                        "textSize": 100,
+                        "textAlignment": "left",
+                        "fontFamily": "Abordage",
+                        "textColor": "#ffbdf2",
+                        "input": "cookie crumbles",
+                        "output": "cake",
+                        "blocks": [
+                          {
+                            "id": 1,
+                            "indent": 0,
+                            "type": "generate",
+                            "content": "jkkjgkjhkh"
+                          }
+                        ]
+                      },
+                      "highlight": {
+                        "textGlow": 3,
+                        "textGlowColor": "#ff97dd",
+                        "highlightColor": "transparent"
+                      },
+                      "border": {
+                        "borderSize": 3,
+                        "borderRadius": 13,
+                        "borderStyle": "dashed",
+                        "borderColor": "#ffbdf2"
+                      },
+                      "shadow": {
+                        "shadowSize": 0,
+                        "shadowDisplacement": 0,
+                        "shadowColor": "#ffbdf2",
+                        "shadow": 11
+                      },
+                      "background": {
+                        "backgroundSize": 100,
+                        "backgroundColor": "white",
+                        "backgroundImage": "asphalt"
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 330,
+                    "h": 102
+                  },
+                  {
+                    "id": "2",
+                    "name": "code-2",
+                    "styling": "educate",
+                    "type": "code",
+                    "x": 245,
+                    "y": 267,
+                    "alive": true,
+                    "modifier": 1,
+                    "stackOrder": 3,
+                    "style": {
+                      "text": {
+                        "textSize": 106,
+                        "textAlignment": "left",
+                        "fontFamily": "FT88 School",
+                        "textColor": "#38dc38FF",
+                        "input": "racist input",
+                        "output": "biased output",
+                        "blocks": [
+                          {
+                            "id": 1,
+                            "indent": 0,
+                            "type": "none",
+                            "content": "AI"
+                          }
+                        ]
+                      },
+                      "highlight": {
+                        "textGlow": 0,
+                        "textGlowColor": "transparent",
+                        "highlightColor": "transparent"
+                      },
+                      "border": {
+                        "borderSize": 9,
+                        "borderRadius": 50,
+                        "borderStyle": "solid",
+                        "borderColor": "#fbe5e5FF"
+                      },
+                      "shadow": {
+                        "shadowSize": 0,
+                        "shadowDisplacement": 3,
+                        "shadowColor": "#d7888aFF",
+                        "shadow": 15
+                      },
+                      "background": {
+                        "backgroundSize": 100,
+                        "backgroundColor": "#f5e28fFF",
+                        "backgroundImage": "circuit"
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 330,
+                    "h": 117,
+                    "active": false
+                  },
+                  {
+                    "id": "3",
+                    "name": "shape-3",
+                    "styling": "square",
+                    "type": "shape",
+                    "x": 359,
+                    "y": -1,
+                    "alive": true,
+                    "modifier": 1,
+                    "lockedResolution": false,
+                    "stackOrder": 2,
+                    "style": {
+                      "shape": {
+                        "shapeGeometry": "square"
+                      },
+                      "background": {
+                        "backgroundColor": "black",
+                        "backgroundImage": "building-9",
+                        "backgroundSize": 200
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 100,
+                    "h": 606,
+                    "active": false
+                  },
+                  {
+                    "id": "4",
+                    "name": "text-4",
+                    "styling": "arcade",
+                    "type": "text",
+                    "x": 0,
+                    "y": 0,
+                    "alive": true,
+                    "modifier": 1,
+                    "stackOrder": 4,
+                    "style": {
+                      "text": {
+                        "textSize": 100,
+                        "textAlignment": "center",
+                        "fontFamily": "FT88",
+                        "textColor": "#f4d8fdFF",
+                        "content": [
+                          {
+                            "value": "input = \"criminal human\"\n",
+                            "md": "<p>input = \"criminal human\"</p>\n"
+                          }
+                        ]
+                      },
+                      "highlight": {
+                        "textGlow": 0,
+                        "textGlowColor": "transparent",
+                        "highlightColor": "transparent"
+                      },
+                      "border": {
+                        "borderSize": 12,
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderColor": "#f4d8fdFF"
+                      },
+                      "shadow": {
+                        "shadowSize": 0,
+                        "shadowDisplacement": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundSize": 100,
+                        "backgroundColor": "#000000",
+                        "backgroundImage": "none"
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 235,
+                    "h": 137.60000610351562
+                  },
+                  {
+                    "id": "5",
+                    "name": "text-5",
+                    "styling": "arcade",
+                    "type": "text",
+                    "x": 557,
+                    "y": 0,
+                    "alive": true,
+                    "modifier": 1,
+                    "stackOrder": 5,
+                    "style": {
+                      "text": {
+                        "textSize": 100,
+                        "textAlignment": "center",
+                        "fontFamily": "FT88",
+                        "textColor": "#f4d8fdFF",
+                        "content": [
+                          {
+                            "value": "input = \"good employe\"\n",
+                            "md": "<p>input = \"good employe\"</p>\n"
+                          }
+                        ]
+                      },
+                      "highlight": {
+                        "textGlow": 0,
+                        "textGlowColor": "transparent",
+                        "highlightColor": "transparent"
+                      },
+                      "border": {
+                        "borderSize": 12,
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderColor": "#f4d8fdFF"
+                      },
+                      "shadow": {
+                        "shadowSize": 0,
+                        "shadowDisplacement": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundSize": 100,
+                        "backgroundColor": "#000000",
+                        "backgroundImage": "none"
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 237,
+                    "h": 118.39999389648438
+                  },
+                  {
+                    "id": "6",
+                    "name": "image-6",
+                    "type": "image",
+                    "x": 77,
+                    "y": 139,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://i1.lensdump.com/i/R0gDbo.jpg",
+                    "stackOrder": 6,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "transparent",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 0
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 164,
+                    "h": 164
+                  },
+                  {
+                    "id": "7",
+                    "name": "image-7",
+                    "type": "image",
+                    "x": 466,
+                    "y": 439,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://i2.lensdump.com/i/R0gcjC.jpg",
+                    "stackOrder": 7,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "transparent",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 0
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 152,
+                    "h": 158
+                  },
+                  {
+                    "id": "8",
+                    "name": "image-8",
+                    "type": "image",
+                    "x": 20,
+                    "y": 317,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://i2.lensdump.com/i/R0gPt9.jpg",
+                    "stackOrder": 8,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "transparent",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 0
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 163,
+                    "h": 163
+                  },
+                  {
+                    "id": "9",
+                    "name": "image-9",
+                    "type": "image",
+                    "x": 622,
+                    "y": 316,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://i.lensdump.com/i/R0gfK2.jpg",
+                    "stackOrder": 9,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "transparent",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 0
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 167,
+                    "h": 167
+                  },
+                  {
+                    "id": "10",
+                    "name": "image-10",
+                    "type": "image",
+                    "x": 193,
+                    "y": 434,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://i3.lensdump.com/i/R0gFPv.jpg",
+                    "stackOrder": 10,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "transparent",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 0
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 160,
+                    "h": 160
+                  },
+                  {
+                    "id": "11",
+                    "name": "image-11",
+                    "type": "image",
+                    "x": 584,
+                    "y": 134,
+                    "alive": true,
+                    "modifier": 1,
+                    "media": "https://i3.lensdump.com/i/R0gXd5.jpg",
+                    "stackOrder": 11,
+                    "style": {
+                      "image": {
+                        "imageRendering": "auto"
+                      },
+                      "border": {
+                        "borderColor": "transparent",
+                        "borderRadius": 0,
+                        "borderStyle": "solid",
+                        "borderSize": 0
+                      },
+                      "shadow": {
+                        "shadowDisplacement": 0,
+                        "shadowSize": 0,
+                        "shadowColor": "transparent"
+                      },
+                      "background": {
+                        "backgroundColor": "transparent",
+                        "backgroundImage": "none",
+                        "backgroundSize": 100
+                      },
+                      "animation": {
+                        "animationDuration": 5,
+                        "animationType": "none"
+                      }
+                    },
+                    "w": 167,
+                    "h": 167
+                  }
+                ],
                 "canvasSize": {
-                    "width": 0,
-                    "height": 0
+                  "width": 800,
+                  "height": 600
                 }
-            },
+              },
             "pineapple": {
                 "opus": "",
                 "version": "",
