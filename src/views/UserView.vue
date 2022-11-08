@@ -24,7 +24,12 @@
             <p>{{course.excerpt}}</p>
             <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link>
              <program-preview :score="course.submissions[userCode]" :id="userCode + course.code" />
-
+             <router-link 
+                v-if="course.submissions[userCode]!==null"
+                :score="course.submissions[userCode]" :key="i + course.code" :id="i + course.code" class="route" 
+                :to="{ name: 'edit', params: { user: userCode, task: course.code, import: course.submissions[userCode], width: course.submissions[userCode].canvasSize.width, height: course.submissions[userCode].canvasSize.height }}">
+                Edit Code
+            </router-link>
             <a :href="'https://www.soscisurvey.de/test326808/?q=qnr2&r='+userCode+course.code" class="route">Submit Code</a>
           </section>
           
