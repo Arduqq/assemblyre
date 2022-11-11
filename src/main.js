@@ -7,6 +7,7 @@ import EditorView from './views/EditorView.vue'
 import InfoView from './views/InfoView.vue'
 import MoreView from './views/MoreView.vue'
 import ZineView from './views/ZineView.vue'
+import ScreenView from './views/ScreenView.vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -18,7 +19,8 @@ const routes = [
     { path: '/about', name: 'about', component: InfoView },
     { path: '/more', name: 'more', component: MoreView },
     { path: '/zine', name: 'zine', component: ZineView },
-    { path: '/', name: 'setup', component: SetupView }
+    { path: '/', name: 'setup', component: SetupView },
+    { path: '/screen', name: 'screen', component: ScreenView }
 ]
 
 const router = new VueRouter({

@@ -327,8 +327,8 @@
     padding: 5px;
     position: absolute;
     margin: 0 auto;
-    color: var(--field-text-color);
-    background: var(--field-background-color);
+    color: black;
+    background: white;
     z-index: -1;
     font-size: var(--field-text-size);
     clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);  
@@ -340,8 +340,8 @@
     bottom: 5%;
     margin: 0 auto;
     padding: 5px;
-    background: var(--field-text-color);
-    color: var(--field-background-color);
+    background: white;
+    color: black;
     position: absolute;
     z-index: -1;
     font-size: var(--field-text-size);

@@ -9,7 +9,7 @@
     <div class="editor-control active" >
       <a class="logo" title="Back to Start" href="/"></a>
       <router-link :title="'Back to ' + this.user.toUpperCase() + ' Hub'" class="hub-link route" :to="{ name: 'hub', params: { userCode: this.user }}" >{{participants[user]}}</router-link>
-      <input v-if="!importSuccessful" type="file" id="import-file" value="Import" @change="handleFile"/>
+      <input type="file" id="import-file" value="Import" @change="handleFile"/>
       <label>Title
         <input type="text" v-model="score.opus"/>
       </label>
@@ -287,7 +287,6 @@
   import FieldMedia from "../components/FieldMedia.vue";
   import FieldShape from "../components/FieldShape.vue";
   import Tooltip from "../components/Tooltip.vue";
-  import uniqueId from 'lodash.uniqueid';
   import styles from '../json/styles.json'
 
   export default {
@@ -357,7 +356,6 @@
       }
     },
     mounted: function() {
-      /*let program = this.$refs.program;*/
       this.score.canvasSize.width = this.width;
       this.score.canvasSize.height = this.height;
     },
@@ -366,7 +364,7 @@
         var files = e.target.files || e.dataTransfer.files;
         if (!files.length)
           return;
-
+        this.score = this.import;
         var reader = new FileReader();
         reader.onload = (e) => {
           this.score = JSON.parse(e.target.result);
@@ -375,14 +373,14 @@
         },
 
         addChord: function (x, y, style) {
-          const uID = uniqueId();
+          const uID = String(this.score.program.length+1);
           const fieldType = "text";
           const field = {id: uID, name: fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
           this.score.program.push(field);
 
         },
         addPlug: function(x,y, url) {
-          const uID = uniqueId();
+          const uID = String(this.score.program.length+1);
           const fieldType = "image";
           const field = {id: uID, name: fieldType + "-" + uID, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, media: url, stackOrder: parseInt(uID)};
           this.score.program.push(field);
@@ -395,14 +393,14 @@
           }
         },
         addCode: function(x,y, style) {
-          const uID = uniqueId();
+          const uID = String(this.score.program.length+1);
           const fieldType = "code";
           const field = {id: uID, name:fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, stackOrder: parseInt(uID)};
           this.score.program.push(field);
         },
         
         addShape: function(x,y, style) {
-          const uID = uniqueId();
+          const uID = String(this.score.program.length+1);
           const fieldType = "shape";
           const field = {id: uID, name: fieldType + "-" + uID, styling: style, type: fieldType, x: x, y: y, alive: true, modifier: this.canvasScale, lockedResolution: false, stackOrder: parseInt(uID)};
           this.score.program.push(field);

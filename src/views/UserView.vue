@@ -8,7 +8,6 @@
         <p>Please fill out this survey before you begin working on your code.</p>
         <a class="route" :href="'https://www.soscisurvey.de/test326808/?r='+userCode">Composing Code Survey</a>
       </section>
-
       <section id="code">
         <h2>Course Progress</h2>
         <p>Here you can unlock your new courses. After every chapter in the zine, you can find a code that will lead you to your online resources and the editor for you to create your code piece. Take your time with the resources. Every link provided is optional and is not required for you to write pseudocode.</p>
@@ -24,7 +23,12 @@
             <p>{{course.excerpt}}</p>
             <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link>
              <program-preview :score="course.submissions[userCode]" :id="userCode + course.code" />
-
+             <router-link 
+                v-if="course.submissions[userCode]!==null"
+                :score="course.submissions[userCode]" :key="i + course.code" :id="i + course.code" class="route" 
+                :to="{ name: 'edit', params: { user: userCode, task: course.code, import: course.submissions[userCode], width: course.submissions[userCode].canvasSize.width, height: course.submissions[userCode].canvasSize.height }}">
+                Edit Code
+            </router-link>
             <a :href="'https://www.soscisurvey.de/test326808/?q=qnr2&r='+userCode+course.code" class="route">Submit Code</a>
           </section>
           
@@ -62,7 +66,7 @@ export default {
       participants: [
         "grape",
         "apple",
-        "ananas",
+        "maracuja",
         "jackfruit",
         "pineapple",
         "peach",

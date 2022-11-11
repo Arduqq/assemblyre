@@ -104,6 +104,7 @@ body {
   background: white;
   padding: 0;
   font-family: var(--text-font);
+  overflow-x: hidden;
 }
 
 header {
