@@ -8,7 +8,6 @@
         <p>Please fill out this survey before you begin working on your code.</p>
         <a class="route" :href="'https://www.soscisurvey.de/test326808/?r='+userCode">Composing Code Survey</a>
       </section>
-
       <section id="code">
         <h2>Course Progress</h2>
         <p>Here you can unlock your new courses. After every chapter in the zine, you can find a code that will lead you to your online resources and the editor for you to create your code piece. Take your time with the resources. Every link provided is optional and is not required for you to write pseudocode.</p>
@@ -67,7 +66,7 @@ export default {
       participants: [
         "grape",
         "apple",
-        "ananas",
+        "maracuja",
         "jackfruit",
         "pineapple",
         "peach",
