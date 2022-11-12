@@ -84,7 +84,7 @@
     name: "ProgramPreview",
     data() {
       return {
-        canvasScale: 0.5,
+        canvasScale: 0.8,
         fullView: false,
         participants:  {
           "lemon": "🍋",
@@ -130,13 +130,6 @@
         required: true
       }
     },
-    mounted: function() {
-      /*let program = this.$refs.program;*/
-      /*this.score.canvasSize.width = this.width;
-      this.score.canvasSize.height = this.height;*/
-      console.log(this.score);
-
-    },
     methods: {
         programQuery(type) {
           if (type==="alive") {
@@ -181,7 +174,7 @@
 .program-preview {
   width: calc(var(--canvas-width) * var(--canvas-scale));
   height: calc(var(--canvas-height) * var(--canvas-scale));
-  align-self: center;
+  align-self: flex-start;
   max-width: 100%;
 
 }
@@ -234,14 +227,18 @@ justify-content: center;
   }
 
 
-  
+  .program:hover h3 {
+    opacity: 1;
+  }
 
   h3 {
     background: black;
     position: absolute;
     padding: 5px;
     color: white;
+    transition: .1s;
     z-index: 3000;
+    opacity: 0;
   }
   
 
