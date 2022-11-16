@@ -3,7 +3,7 @@
     <h1>Assemblyng Hub: Preview</h1>
 
     <section id="welcome">
-      <p>Here are the profiles for every participant. All information is privately stored on an offline harddrive. This branch is for interview showcase and data analysis purposes.</p>
+      <p>Here are the profiles for every participant. All information is privately stored on an offline hard drive. This branch is for interview showcase and data analysis purposes.</p>
     </section>
     
     <section id="profiles">

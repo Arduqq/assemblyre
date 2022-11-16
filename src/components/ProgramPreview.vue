@@ -69,7 +69,8 @@
             :edit = "false" 
             :importData = "shape.style" />
           </div>
-
+          <button @click="saveImage">Save</button>
+          <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.png'">Download</a>
       </div>  
 </template>
 
@@ -79,6 +80,7 @@
   import FieldCode from "./FieldCode.vue";
   import FieldMedia from "./FieldMedia.vue";
   import FieldShape from "./FieldShape.vue";
+  import domtoimage from "dom-to-image-more";
 
   export default {
     name: "ProgramPreview",
@@ -86,6 +88,7 @@
       return {
         canvasScale: 0.8,
         fullView: false,
+        exportURL: null,
         participants:  {
           "lemon": "🍋",
           "peach": "🍑",
@@ -140,6 +143,12 @@
           return this.score.program.filter(function (field) {
             return field.type === type && field.alive;
           })
+        },
+        saveImage: async function() {
+          domtoimage.toBlob(this.$el).then(function (blob) {
+            this.exportURL = blob
+          });
+          
         }
         
     },

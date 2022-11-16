@@ -15,6 +15,14 @@
               <p class="comment">{{course.submissions[userCode].comments[1]}}</p>
               <h3>Would the program or the topic you are tackling influence anyone else?</h3>
               <p class="comment">{{course.submissions[userCode].comments[2]}}</p>
+              
+              <h4>File Statistics</h4>
+              <div class="file-stats">
+                <span>text {{ programQuery(course.submissions[userCode].program, "text").length }}</span>
+                <span>code {{ programQuery(course.submissions[userCode].program, "code").length }}</span>
+                <span>image {{ programQuery(course.submissions[userCode].program, "image").length }}</span>
+                <span>shape {{ programQuery(course.submissions[userCode].program, "shape").length }}</span>
+              </div>
               <router-link 
                   :score="course.submissions[userCode]" :id="course.code" class="route" 
                   :to="{ name: 'edit', params: { user: userCode, task: course.code, import: course.submissions[userCode], width: course.submissions[userCode].canvasSize.width, height: course.submissions[userCode].canvasSize.height }}">
@@ -59,6 +67,13 @@ export default {
       ]
     }
   },
+  methods: {
+    programQuery(program, type) {
+      return program.filter(function (field) {
+        return field.type === type && field.alive;
+      })
+    },
+  },
   components: {
     ProgramPreview
   }
@@ -94,6 +109,23 @@ export default {
   font-size: 80%;
   background: var(--secondary-color);
   padding: 10px;
+}
+
+.file-stats {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.file-stats > * {
+  padding: 10px;
+  background: var(--gui-color);
+  border-radius: 25px;
+  font-size: 80%;
+  color: var(--secondary-color);
 }
 
 .courses > * {
