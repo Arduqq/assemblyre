@@ -2,7 +2,7 @@
     <main class="content" id='hub'>
       
       <h1>Assemblyng Hub: <span>{{userCode}}</span></h1>
-      
+      <input type="checkbox" v-model="detailedView" />
       <div class="courses">
         <article class="course" v-for="course in courseData" :key="course.code">
           <section v-if="course.submissions[userCode] !== null" class="course-details">
@@ -16,8 +16,8 @@
               <h3>Would the program or the topic you are tackling influence anyone else?</h3>
               <p class="comment">{{course.submissions[userCode].comments[2]}}</p>
               
+              <div v-show="detailedView"  class="file-stats">
               <h4>File Statistics</h4>
-              <div class="file-stats">
                 <span>text {{ programQuery(course.submissions[userCode].program, "text").length }}</span>
                 <span>code {{ programQuery(course.submissions[userCode].program, "code").length }}</span>
                 <span>image {{ programQuery(course.submissions[userCode].program, "image").length }}</span>
@@ -64,7 +64,8 @@ export default {
         "peach",
         "lemon",
         "garden"
-      ]
+      ],
+      detailedView: false
     }
   },
   methods: {
@@ -94,12 +95,12 @@ export default {
   padding: 10px 20px;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
 }
 
 .courses .course .course-details .submission-details {
-  flex: 0 0 600px;
+  flex: 0 1 600px;
   padding: 20px;
   border-radius: 5px;
   border: 3px solid var(--primary-alt-color);

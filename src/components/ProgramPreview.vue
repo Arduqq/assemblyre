@@ -69,7 +69,6 @@
             :edit = "false" 
             :importData = "shape.style" />
           </div>
-          <button @click="saveImage">Save</button>
           <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.png'">Download</a>
       </div>  
 </template>
@@ -185,7 +184,8 @@
   height: calc(var(--canvas-height) * var(--canvas-scale));
   align-self: flex-start;
   max-width: 100%;
-
+  top: 50px;
+  position: sticky; 
 }
 
 .program-preview.full {
