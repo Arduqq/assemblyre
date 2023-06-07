@@ -1,0 +1,1 @@
+The course form presents not enough guidance in states of distress and error. Especially in the beginning, participants have problems navigating through the open-ended task and usually seek guidance. Supporting learners in their problems will help them stay motivated.

@@ -1,0 +1,1 @@
+Inspiration doesn't come from just one source that has to be planned out. While undoubtedly useful, participants will find their own way to get inspired as it is not a static process. Different inspiration sources will intertwine to produce code most suiting to the coder.

@@ -1,0 +1,1 @@
+The course amplifies the participants' active involvement with the tool to produce meaningful learnings. The autonomous involvement with the medium is a key to understand it, and achieving that come in the form of combining the personal system with the technical thoughts. 

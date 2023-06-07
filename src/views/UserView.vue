@@ -94,7 +94,7 @@ export default {
 .courses .course .course-details {
   padding: 10px 20px;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: center;
   gap: 10px;
 }
