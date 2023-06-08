@@ -1,0 +1,1 @@
+Participants are voicing positive feedback on the different aspects of the course. They imply comfort during course participation. A course like this brings people joy which should not be underestimated. It supports their motivation, and creativity.

@@ -1,0 +1,1 @@
+Participants must be up-to-speed with the course's goals and values from the very beginning. Such concepts that are foreign in a domain must be carefully explained and discussed in a learning group to not misguide and frustrate new learners who have never attempted to work with the medium.

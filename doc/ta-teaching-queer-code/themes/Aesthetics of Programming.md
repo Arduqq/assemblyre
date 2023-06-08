@@ -1,0 +1,1 @@
+Programming remains socially charged, and its perception changes as learners find out more about the subject. . Participants were eager to discuss how they viewed programming before, during, and after the course. Capturing these opinions is important to understand how the course shaped the participants' aesthetic programming.

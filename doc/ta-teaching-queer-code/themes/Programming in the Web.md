@@ -1,0 +1,1 @@
+Programming takes place online in many ways, and not just through hosting. People make use of it to help them understand a medium, or to reference and discuss media that is online.

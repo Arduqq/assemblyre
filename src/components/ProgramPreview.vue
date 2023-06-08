@@ -69,7 +69,7 @@
             :edit = "false" 
             :importData = "shape.style" />
           </div>
-
+          <a v-if="this.exportURL!=null" :href="'data:'+this.exportURL" :download="score.opus + '-' + score.version + '.png'">Download</a>
       </div>  
 </template>
 
@@ -79,13 +79,15 @@
   import FieldCode from "./FieldCode.vue";
   import FieldMedia from "./FieldMedia.vue";
   import FieldShape from "./FieldShape.vue";
+  import domtoimage from "dom-to-image-more";
 
   export default {
     name: "ProgramPreview",
     data() {
       return {
-        canvasScale: 0.5,
+        canvasScale: 0.8,
         fullView: false,
+        exportURL: null,
         participants:  {
           "lemon": "🍋",
           "peach": "🍑",
@@ -130,13 +132,6 @@
         required: true
       }
     },
-    mounted: function() {
-      /*let program = this.$refs.program;*/
-      /*this.score.canvasSize.width = this.width;
-      this.score.canvasSize.height = this.height;*/
-      console.log(this.score);
-
-    },
     methods: {
         programQuery(type) {
           if (type==="alive") {
@@ -147,6 +142,12 @@
           return this.score.program.filter(function (field) {
             return field.type === type && field.alive;
           })
+        },
+        saveImage: async function() {
+          domtoimage.toBlob(this.$el).then(function (blob) {
+            this.exportURL = blob
+          });
+          
         }
         
     },
@@ -181,9 +182,10 @@
 .program-preview {
   width: calc(var(--canvas-width) * var(--canvas-scale));
   height: calc(var(--canvas-height) * var(--canvas-scale));
-  align-self: center;
+  align-self: flex-start;
   max-width: 100%;
-
+  top: 50px;
+  position: sticky; 
 }
 
 .program-preview.full {
@@ -234,14 +236,18 @@ justify-content: center;
   }
 
 
-  
+  .program:hover h3 {
+    opacity: 1;
+  }
 
   h3 {
     background: black;
     position: absolute;
     padding: 5px;
     color: white;
+    transition: .1s;
     z-index: 3000;
+    opacity: 0;
   }
   
 

@@ -1,0 +1,1 @@
+Users are not stupid, they are busy. This does not only go for people using interfaces, but especially for people who are learning. Participants voiced that some parts of the study require time, or are required to be done in a certain time that is not fixed. What has to be determined is a way to stay motivated without being overbearing or too heavy with the subject.

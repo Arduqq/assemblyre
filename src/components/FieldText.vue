@@ -136,7 +136,7 @@
     border-width: var(--field-border-size);
     border-style: var(--field-border-style);
     border-radius: var(--field-border-radius);
-    font-size: var(--field-text-size);
+    font-size: calc(var(--field-text-size) * var(--canvas-scale));
     color: var(--field-text-color);
     text-align: var(--field-text-alignment);
     box-shadow: var(--field-shadow-displacement) var(--field-shadow-displacement) 0 var(--field-shadow-size) var(--field-shadow-color);

@@ -1,49 +1,38 @@
 <template>
-    <main class="content" id='hub' v-if="participants.indexOf(userCode) > -1 ">
+    <main class="content" id='hub'>
       
       <h1>Assemblyng Hub: <span>{{userCode}}</span></h1>
-      
-      <section id="survey">
-        <h2>Survey</h2>
-        <p>Please fill out this survey before you begin working on your code.</p>
-        <a class="route" :href="'https://www.soscisurvey.de/test326808/?r='+userCode">Composing Code Survey</a>
-      </section>
-
-      <section id="code">
-        <h2>Course Progress</h2>
-        <p>Here you can unlock your new courses. After every chapter in the zine, you can find a code that will lead you to your online resources and the editor for you to create your code piece. Take your time with the resources. Every link provided is optional and is not required for you to write pseudocode.</p>
-        <p>If you are still unsure about what to code, you are provided with additional questions that you are free to answer through the editor. Again, they are meant to provide you with inspiration for reflecting on the respective topic.</p>
-        <p>After accessing your course, codes will not be saved on the site, which means that you will have to navigate back to your course every time. After every submission, your code piece will be displayed on your Hub after some time. </p>
-        <input type="text" class="big" placeholder="code" v-model="courseCode"/>
-
-      </section>
+      <input type="checkbox" v-model="detailedView" />
       <div class="courses">
         <article class="course" v-for="course in courseData" :key="course.code">
-          <section v-if="course.submissions[userCode] !== null || courseCode === course.code" class="course-details">
-            <h2>{{course.title}}</h2>
-            <p>{{course.excerpt}}</p>
-            <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link>
+          <section v-if="course.submissions[userCode] !== null" class="course-details">
              <program-preview :score="course.submissions[userCode]" :id="userCode + course.code" />
-             <router-link 
-                v-if="course.submissions[userCode]!==null"
-                :score="course.submissions[userCode]" :key="i + course.code" :id="i + course.code" class="route" 
-                :to="{ name: 'edit', params: { user: userCode, task: course.code, import: course.submissions[userCode], width: course.submissions[userCode].canvasSize.width, height: course.submissions[userCode].canvasSize.height }}">
-                Edit Code
-            </router-link>
-            <a :href="'https://www.soscisurvey.de/test326808/?q=qnr2&r='+userCode+course.code" class="route">Submit Code</a>
+             <div class="submission-details">
+              <h2>{{course.title}}</h2>
+              <h3>What inspired your piece?</h3>
+              <p class="comment">{{course.submissions[userCode].comments[0]}}</p>
+              <h3>How does the topic influence yourself?</h3>
+              <p class="comment">{{course.submissions[userCode].comments[1]}}</p>
+              <h3>Would the program or the topic you are tackling influence anyone else?</h3>
+              <p class="comment">{{course.submissions[userCode].comments[2]}}</p>
+              
+              <div v-show="detailedView"  class="file-stats">
+              <h4>File Statistics</h4>
+                <span>text {{ programQuery(course.submissions[userCode].program, "text").length }}</span>
+                <span>code {{ programQuery(course.submissions[userCode].program, "code").length }}</span>
+                <span>image {{ programQuery(course.submissions[userCode].program, "image").length }}</span>
+                <span>shape {{ programQuery(course.submissions[userCode].program, "shape").length }}</span>
+              </div>
+              <router-link 
+                  :score="course.submissions[userCode]" :id="course.code" class="route" 
+                  :to="{ name: 'edit', params: { user: userCode, task: course.code, import: course.submissions[userCode], width: course.submissions[userCode].canvasSize.width, height: course.submissions[userCode].canvasSize.height }}">
+                  View in Editor
+              </router-link>
+             </div>
           </section>
           
         </article>
       </div>
-    </main>
-    <main class="content" id="hub" v-else>
-      <h1>Assemblyng Hub: <span>{{userCode}}</span></h1>
-      <section id="error">
-        <p>Seems like '{{userCode}}' is not a participant of the study. Check your Lyre Zine! The code is right at the front page.</p>
-        <img src="/assets/zine-cover.png" />
-        <input class="big" placeholder="code" type="text" v-model="userCodeNew"/>
-        <router-link class="route" :to="{ name: 'hub', params: { userCode: userCodeNew }}" >Try again</router-link>
-      </section>
     </main>
 </template>
 
@@ -59,22 +48,32 @@ export default {
       default: 'growth'
     }
   },
+    mounted: function() {
+      console.log(courses);
+
+    },
   data() {
     return {
       courseData: courses,
-      courseCode: '',
-      userCodeNew: this.userCode,
       participants: [
         "grape",
         "apple",
-        "ananas",
+        "maracuja",
         "jackfruit",
         "pineapple",
         "peach",
         "lemon",
         "garden"
-      ]
+      ],
+      detailedView: false
     }
+  },
+  methods: {
+    programQuery(program, type) {
+      return program.filter(function (field) {
+        return field.type === type && field.alive;
+      })
+    },
   },
   components: {
     ProgramPreview
@@ -94,16 +93,44 @@ export default {
 
 .courses .course .course-details {
   padding: 10px 20px;
-  border-radius: 5px;
-  border: 3px solid var(--primary-alt-color);
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
+  flex-flow: row nowrap;
+  justify-content: center;
   gap: 10px;
 }
 
+.courses .course .course-details .submission-details {
+  flex: 0 1 600px;
+  padding: 20px;
+  border-radius: 5px;
+  border: 3px solid var(--primary-alt-color);
+}
+
+.courses .course .course-details .submission-details .comment {
+  font-size: 80%;
+  background: var(--secondary-color);
+  padding: 10px;
+}
+
+.file-stats {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.file-stats > * {
+  padding: 10px;
+  background: var(--gui-color);
+  border-radius: 25px;
+  font-size: 80%;
+  color: var(--secondary-color);
+}
+
 .courses > * {
-  flex: 1 1 500px;
+  flex: 0 0 100%;
 }
   
 </style>
