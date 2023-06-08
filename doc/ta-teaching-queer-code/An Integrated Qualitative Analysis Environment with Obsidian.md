@@ -54,7 +54,7 @@ An easy thing to do is quantify the number of data points associated with each t
 
 There are many many ways you may quantify the number of data points per theme. The simplest is just to use Obsidian's core Search functions. For each theme, enter `"[[` followed by the exact name into your search, then end the search query with `]]"`. This will search for exact mentions of the linked theme. Once the search has finished, tap on the Copy Search Results button above the search query text box. Last, in the options presented to you, change the List Prefix to "Numbered." This gives you a count for the number of results for each theme.
 
-However, that could be tedious if you have a lot of themes to count. Instead, this environment uses the Dataview plugin. See the [[Statistics]] page.
+However, that could be tedious if you have a lot of themes to count. Instead, this environment uses the Dataview plugin. See the [[Theme Distribution]] page.
 
 This generates a table listing each theme, the number of data points associated with that theme, and the number of other themes you've linked to that theme (if you have done so at all). 
 
