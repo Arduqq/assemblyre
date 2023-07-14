@@ -1,7 +1,7 @@
 <template>
     <main class="content">
-    <h1>Assemblyng Hub: <span>{{userCode}} {{courseCode}}</span></h1>
-    <router-link class="route" :to="{ name: 'hub', params: { userCode: userCode }}" >Back to Hub</router-link>
+    <h1>Assemblyng Hub: <span>{{ userCode }} {{courseCode}}</span></h1>
+    <router-link class="route" :to="{ name: 'hub', params: { userCode: 'code' }}" >Back to Hub</router-link>
 
     <section>
       <h2>{{this.course.title}}</h2>
@@ -11,7 +11,7 @@
         <p>{{resource.excerpt}}</p>
       </a>
     </section>
-    <router-link class="route" :to="{ name: 'edit', params: { user: userCode, task: course.code  }}" >Start Coding</router-link>
+    <router-link class="route" :to="{ name: 'edit', params: { user: 'code', task: course.code  }}" >Start Coding</router-link>
 
     </main>
 </template>

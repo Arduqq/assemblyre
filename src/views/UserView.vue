@@ -1,136 +1,83 @@
 <template>
-    <main class="content" id='hub'>
-      
-      <h1>Assemblyng Hub: <span>{{userCode}}</span></h1>
-      <input type="checkbox" v-model="detailedView" />
-      <div class="courses">
-        <article class="course" v-for="course in courseData" :key="course.code">
-          <section v-if="course.submissions[userCode] !== null" class="course-details">
-             <program-preview :score="course.submissions[userCode]" :id="userCode + course.code" />
-             <div class="submission-details">
-              <h2>{{course.title}}</h2>
-              <h3>What inspired your piece?</h3>
-              <p class="comment">{{course.submissions[userCode].comments[0]}}</p>
-              <h3>How does the topic influence yourself?</h3>
-              <p class="comment">{{course.submissions[userCode].comments[1]}}</p>
-              <h3>Would the program or the topic you are tackling influence anyone else?</h3>
-              <p class="comment">{{course.submissions[userCode].comments[2]}}</p>
-              
-              <div v-show="detailedView"  class="file-stats">
-              <h4>File Statistics</h4>
-                <span>text {{ programQuery(course.submissions[userCode].program, "text").length }}</span>
-                <span>code {{ programQuery(course.submissions[userCode].program, "code").length }}</span>
-                <span>image {{ programQuery(course.submissions[userCode].program, "image").length }}</span>
-                <span>shape {{ programQuery(course.submissions[userCode].program, "shape").length }}</span>
-              </div>
-              <router-link 
-                  :score="course.submissions[userCode]" :id="course.code" class="route" 
-                  :to="{ name: 'edit', params: { user: userCode, task: course.code, import: course.submissions[userCode], width: course.submissions[userCode].canvasSize.width, height: course.submissions[userCode].canvasSize.height }}">
-                  View in Editor
-              </router-link>
-             </div>
-          </section>
-          
-        </article>
-      </div>
-    </main>
+  <main class="content" id='hub'>
+    
+    <h1>Assemblyng Hub: <span>{{userCode}}</span></h1>
+    <section>
+      <h2>Course Overview</h2>
+      <p>Here you can find all the resources for every zine chapter. Skim through them, and feel free to mail me your code! By submitting your code, you consent for it to be displayed on this website.</p>
+    </section>
+    <div class="courses">
+      <article class="course" v-for="course in courseData" :key="course.code">
+        <section class="course-details">
+          <h2>{{course.title}}</h2>
+          <p>{{course.excerpt}}</p>
+          <router-link class="route" :to="{ name: 'course', params: { userCode: userCode , courseCode: course.code }}" >See More Details</router-link>
+           <program-preview :score="course.submissions[userCode]" :id="userCode + course.code" />
+          <a :href="'mailto:lyonid@protonmail.com?subject=[assemblyre ' + course.code + ']'" class="route">Submit Code [Mail]</a>
+        </section>
+        
+      </article>
+    </div>
+  </main>
 </template>
 
 <script>
 import courses from '../json/courses.json'
 import ProgramPreview from '../components/ProgramPreview'
 export default {
-  name: 'HubView',
-  props: {
-    userCode: {
-      type: String,
-      required: false,
-      default: 'growth'
-    }
-  },
-    mounted: function() {
-      console.log(courses);
-
-    },
-  data() {
-    return {
-      courseData: courses,
-      participants: [
-        "grape",
-        "apple",
-        "maracuja",
-        "jackfruit",
-        "pineapple",
-        "peach",
-        "lemon",
-        "garden"
-      ],
-      detailedView: false
-    }
-  },
-  methods: {
-    programQuery(program, type) {
-      return program.filter(function (field) {
-        return field.type === type && field.alive;
-      })
-    },
-  },
-  components: {
-    ProgramPreview
+name: 'HubView',
+props: {
+  userCode: {
+    type: String,
+    required: false,
+    default: 'growth'
   }
+},
+data() {
+  return {
+    courseData: courses,
+    courseCode: '',
+    userCodeNew: this.userCode,
+    participants: [
+      "grape",
+      "apple",
+      "maracuja",
+      "jackfruit",
+      "pineapple",
+      "peach",
+      "lemon",
+      "garden"
+    ]
+  }
+},
+components: {
+  ProgramPreview
+}
 }
 </script>
 
 <style scoped>
 
 .courses {
-  margin-top: 20px;
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  gap: 20px;
+margin-top: 20px;
+width: 100%;
+display: flex;
+flex-flow: row wrap;
+gap: 20px;
 }
 
 .courses .course .course-details {
-  padding: 10px 20px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-.courses .course .course-details .submission-details {
-  flex: 0 1 600px;
-  padding: 20px;
-  border-radius: 5px;
-  border: 3px solid var(--primary-alt-color);
-}
-
-.courses .course .course-details .submission-details .comment {
-  font-size: 80%;
-  background: var(--secondary-color);
-  padding: 10px;
-}
-
-.file-stats {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-
-.file-stats > * {
-  padding: 10px;
-  background: var(--gui-color);
-  border-radius: 25px;
-  font-size: 80%;
-  color: var(--secondary-color);
+padding: 10px 20px;
+border-radius: 5px;
+border: 3px solid var(--primary-alt-color);
+display: flex;
+flex-flow: column nowrap;
+justify-content: space-around;
+gap: 10px;
 }
 
 .courses > * {
-  flex: 0 0 100%;
+flex: 1 1 500px;
 }
-  
+
 </style>
